@@ -70,24 +70,23 @@ class TelaInicial extends StatelessWidget {
                     backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
               ),
               SizedBox(
-                height: 15,
+                height: 335,
               ),
               Stack(children: <Widget>[
                 Container(
-                  alignment: Alignment.bottomCenter,
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: Image.asset('assets/images/ellipse.png'),
+                ),
+                Align(
+                  alignment: AlignmentDirectional.bottomEnd,
                   child: Image.asset(
                     'assets/images/recycle-bin.png',
-                    alignment: Alignment.bottomCenter,
                   ),
                 ),
-                // Container(
-                //   alignment: Alignment.bottomCenter,
-                //   child: Image.asset('assets/images/leave.png'),
-                // ),
-                // Container(
-                //   alignment: Alignment.bottomCenter,
-                //   child: Image.asset('assets/images/ellipse.png'),
-                // ),
+                Container(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: Image.asset('assets/images/leave.png'),
+                ),
               ]),
               // criarStack()
             ],
