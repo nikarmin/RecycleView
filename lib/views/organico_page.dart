@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class PapelPage extends StatelessWidget {
+class OrganicoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background/papel_page.png'),
+            image: AssetImage('assets/images/background/organico_page.png'),
             fit: BoxFit.fill,
           ),
         ),
@@ -57,4 +56,5 @@ class PapelPage extends StatelessWidget {
       ),
     );
   }
+  
 }

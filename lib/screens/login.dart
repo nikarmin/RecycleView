@@ -9,12 +9,12 @@ class Login extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background/login.png'),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(children: [
           SizedBox(
-            height: 150,
+            height: 220,
           ),
           ElevatedButton(
             onPressed: () {},
@@ -74,7 +74,7 @@ class Login extends StatelessWidget {
                 backgroundColor: Color.fromRGBO(24, 119, 242, 1)),
           ),
           SizedBox(
-            height: 40,
+            height: 80,
           ),
           Padding(
             padding: EdgeInsets.only(left: 57),
@@ -86,7 +86,7 @@ class Login extends StatelessWidget {
                 style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         decoration: TextDecoration.none,
-                        fontSize: 18,
+                        fontSize: 20,
                         color: Colors.black,
                         fontWeight: FontWeight.w300)),
               ),
@@ -101,6 +101,7 @@ class Login extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: SizedBox(
                 width: 250,
+                height: 50,
                 child: Material(
                   // TIRAR O FOCUS DO TEXTFIELD!!
                   color: Colors.transparent,
@@ -108,12 +109,11 @@ class Login extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
                       hintText: 'Digite seu email...',
                       hintStyle: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
-                          fontSize: 14,
-                          color: Colors.black.withOpacity(0.3)),
+                          fontSize: 16,
+                          color: Colors.black.withOpacity(0.5)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: BorderSide(
@@ -143,7 +143,7 @@ class Login extends StatelessWidget {
                 style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         decoration: TextDecoration.none,
-                        fontSize: 18,
+                        fontSize: 20,
                         color: Colors.black,
                         fontWeight: FontWeight.w300)),
               ),
@@ -158,6 +158,7 @@ class Login extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: SizedBox(
                 width: 250,
+                height: 50,
                 child: Material(
                   // TIRAR O FOCUS DO TEXTFIELD!!
                   color: Colors.transparent,
@@ -165,12 +166,11 @@ class Login extends StatelessWidget {
                     obscureText: true,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
                       hintText: 'Digite sua senha...',
                       hintStyle: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
-                          fontSize: 14,
-                          color: Colors.black.withOpacity(0.3)),
+                          fontSize: 16,
+                          color: Colors.black.withOpacity(0.5)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: BorderSide(
@@ -187,28 +187,20 @@ class Login extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 15,
-          ),
           ElevatedButton(
             onPressed: () {},
-            child: Text('ENTRAR',
+            child: Text('Entrar',
                 style: GoogleFonts.poppins(
-                    textStyle: TextStyle(fontSize: 14, color: Colors.white))),
+                    textStyle: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300))),
             style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.only(left: 35, right: 35),
-                backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Esqueceu sua senha?',
-              style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 14,
-                      color: Color.fromRGBO(51, 111, 93, 0.5),
-                      fontWeight: FontWeight.w300))),
+                //shape: Border.,
+                padding:
+                    EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
+                backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
+          )
         ]));
   }
 }

@@ -10,7 +10,7 @@ class Cadastro extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background/login.png'),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
           child: Column(children: [
