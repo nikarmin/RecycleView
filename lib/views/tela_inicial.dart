@@ -6,14 +6,26 @@ class TelaInicial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         //padding: EdgeInsets.symmetric(vertical: 12),
         //alignment: Alignment.center,
-        child: SingleChildScrollView(
-            child: SizedBox(
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/wave.png'),
+              Stack(children: <Widget>[
+                  Image.asset(
+                    'assets/images/wave.png',
+                     alignment: Alignment.topCenter,
+                     fit: BoxFit.fill,
+                  ),
+                Container(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: Image.asset(
+                    'assets/images/sparkles.png',
+                  ),
+                )
+              ]),
               SizedBox(
                 height: 100,
               ),
@@ -70,59 +82,33 @@ class TelaInicial extends StatelessWidget {
                     backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
               ),
               SizedBox(
-                height: 335,
+                height: 290,
               ),
               Stack(children: <Widget>[
                 Container(
                   alignment: AlignmentDirectional.bottomEnd,
                   child: Image.asset('assets/images/ellipse.png'),
                 ),
-                Align(
-                  alignment: AlignmentDirectional.bottomEnd,
-                  child: Image.asset(
-                    'assets/images/recycle-bin.png',
-                  ),
-                ),
                 Container(
                   alignment: AlignmentDirectional.bottomEnd,
-                  child: Image.asset('assets/images/leave.png'),
+                  child: Image.asset(
+                    'assets/images/leave.png',
+                    height: 190,
+                  ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 35),
+                  child: Align(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    child: Image.asset(
+                      'assets/images/recycle-bin.png',
+                    ),
+                  ),
+                )
               ]),
               // criarStack()
             ],
           ),
-        )),
-      ),
-    );
+        ));
   }
 }
-
-Stack criarStack() {
-  return Stack(
-    children: <Widget>[
-      new Positioned(
-        child: Image.asset('assets/images/ellipse.png'),
-        top: 0,
-        right: 0,
-      ),
-      new Positioned(
-        child: Image.asset('assets/images/leave.png'),
-        bottom: 0,
-        left: 0,
-      ),
-      new Positioned(
-        child: Image.asset('assets/images/recycle-bin.png'),
-        bottom: 0,
-        left: 0,
-      ),
-    ],
-  );
-}
-// Scaffold(
-//       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
-//       body: Container(
-//         child: Container(
-//           child: Image.asset('assets/images/wave.png'),
-//         ),
-//       )
-//       );
