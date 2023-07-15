@@ -8,7 +8,7 @@ class Login extends StatelessWidget {
     return Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background/login.png'),
+            image: AssetImage('assets/images/background/teste.png'),
             fit: BoxFit.fill,
           ),
         ),

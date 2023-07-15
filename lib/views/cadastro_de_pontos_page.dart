@@ -7,68 +7,233 @@ class CadastroDePontosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(233, 233, 233, 1),
+            image: DecorationImage(
+              image: AssetImage(
+                  'assets/images/background/cadastro_de_pontos_page.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color: Color.fromRGBO(233, 233, 233, 1),
           child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Nome do ponto',
-                      style: GoogleFonts.jost(
-                          textStyle: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black)),
+                    SizedBox(
+                      height: 80,
                     ),
-                    TextField(),
-                    Text('CEP',
-                      style: GoogleFonts.jost(
-                          textStyle: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black))),
-                    TextField(),
-                    Text('Número',
-                      style: GoogleFonts.jost(
-                          textStyle: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black))),
-                    TextField(),
-                    Text('O que esse ponto recolhe?',
-                      style: GoogleFonts.jost(
-                          textStyle: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black))),
-                    CheckboxListTile(
-                      title: Text('Óleo'),
-                      value: false,
-                      onChanged: (value) {},
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0, top: 20.0),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Nome do ponto:',
+                          style: GoogleFonts.jost(
+                            textStyle: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ),
-                    CheckboxListTile(
-                      title: Text('Eletrônicos'),
-                      value: false,
-                      onChanged: (value) {},
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35.0, top: 20.0),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: SizedBox(
+                          width: 280,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color.fromRGBO(217, 217, 217, 1),
+                                contentPadding: EdgeInsets.all(10),
+                                hintText: 'Digite o nome do ponto...',
+                                hintStyle: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.poppins().fontFamily,
+                                    fontSize: 14,
+                                    color: Colors.black.withOpacity(0.3)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(217, 217, 217, 1),
+                                        width: 1.5)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(217, 217, 217, 1),
+                                        width: 1.5))),
+                          ),
+                        ),
+                      ),
                     ),
-                    CheckboxListTile(
-                      title: Text('Recicláveis'),
-                      value: false,
-                      onChanged: (value) {},
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0, top: 20.0),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'CEP:',
+                          style: GoogleFonts.jost(
+                            textStyle: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('CADASTRAR',
-                          style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  fontSize: 14, color: Colors.white))),
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.all(20),
-                          backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35.0, top: 20.0),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: SizedBox(
+                          width: 280,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color.fromRGBO(217, 217, 217, 1),
+                                contentPadding: EdgeInsets.all(10),
+                                hintText: 'Digite o número do CEP...',
+                                hintStyle: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.poppins().fontFamily,
+                                    fontSize: 14,
+                                    color: Colors.black.withOpacity(0.3)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(217, 217, 217, 1),
+                                        width: 1.5)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(217, 217, 217, 1),
+                                        width: 1.5))),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0, top: 20.0),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Número do ponto:',
+                          style: GoogleFonts.jost(
+                            textStyle: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 35.0, top: 20, bottom: 20),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: SizedBox(
+                          width: 280,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color.fromRGBO(217, 217, 217, 1),
+                                contentPadding: EdgeInsets.all(10),
+                                hintText: 'Digite o número do ponto...',
+                                hintStyle: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.poppins().fontFamily,
+                                    fontSize: 14,
+                                    color: Colors.black.withOpacity(0.3)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(217, 217, 217, 1),
+                                        width: 1.5)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(
+                                        color: Color.fromRGBO(217, 217, 217, 1),
+                                        width: 1.5))),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0, bottom: 20.0),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('O que esse ponto recolhe?',
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35.0),
+                      child: Theme(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Checkbox(value: false, onChanged: (value) {}),
+                                Text('Óleo',
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black)))
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Checkbox(value: false, onChanged: (value) {}),
+                                Text('Eletrônicos',
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black)))
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Checkbox(value: false, onChanged: (value) {}),
+                                Text('Recicláveis',
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black)))
+                              ],
+                            )
+                          ],
+                        ),
+                        data: ThemeData(
+                            unselectedWidgetColor:
+                                Color.fromRGBO(51, 111, 93, 1)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text('CADASTRAR PONTO',
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 14, color: Colors.white))),
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(20),
+                            backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
+                      ),
                     ),
                   ]))),
       appBar: AppBar(
