@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recycle_view/views/cadastro.dart';
+import 'package:recycle_view/views/login.dart';
 
 class TelaInicial extends StatelessWidget {
   @override
@@ -17,7 +19,7 @@ class TelaInicial extends StatelessWidget {
                   Image.asset(
                     'assets/images/wave.png',
                      alignment: Alignment.topCenter,
-                     fit: BoxFit.fill,
+                     fit: BoxFit.cover,
                   ),
                 Container(
                   alignment: AlignmentDirectional.topEnd,
@@ -51,7 +53,9 @@ class TelaInicial extends StatelessWidget {
                 height: 100,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                },
                 child: Text('Entrar',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
@@ -68,7 +72,9 @@ class TelaInicial extends StatelessWidget {
                 height: 15,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro()));
+                },
                 child: Text('Cadastrar',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(

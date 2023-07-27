@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/authentication.dart';
+
 class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
+    return Container(
+        //color: Color.fromRGBO(245, 245, 245, 1),
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background/login.png'),
@@ -15,7 +16,7 @@ class Cadastro extends StatelessWidget {
           ),
           child: Column(children: [
             SizedBox(
-              height: 150,
+              height: 200,
             ),
             ElevatedButton(
               onPressed: () {},
@@ -311,13 +312,24 @@ class Cadastro extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(fontSize: 14, color: Colors.white))),
               style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.only(left: 35, right: 35),
+                  padding: EdgeInsets.only(left: 35, top: 15, bottom: 15, right: 35),
                   backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
             ),
-            SizedBox(
-              height: 10,
-            ),
-          ])),
-    );
+            // FutureBuilder(
+            //     future: Authentication.initializeFirebase(context: context),
+            //     builder: (context, snapshot) {
+            //       if (snapshot.hasError) {
+            //         return Text('Error initializing Firebase');
+            //       } else if (snapshot.connectionState == ConnectionState.done) {
+            //         return GoogleSignInButton();
+            //       }
+            //       return CircularProgressIndicator(
+            //         valueColor: AlwaysStoppedAnimation<Color>(
+            //           Colors.green,
+            //         ),
+            //       );
+            //     },
+            //   ),
+          ]));
   }
 }

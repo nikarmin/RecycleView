@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recycle_view/views/esqueceu_a_senha_page.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class Login extends StatelessWidget {
         ),
         child: Column(children: [
           SizedBox(
-            height: 150,
+            height: 200,
           ),
           ElevatedButton(
             onPressed: () {},
@@ -196,35 +197,43 @@ class Login extends StatelessWidget {
                 style: GoogleFonts.poppins(
                     textStyle: TextStyle(fontSize: 14, color: Colors.white))),
             style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.only(left: 35, right: 35),
+                padding:
+                    EdgeInsets.only(left: 35, top: 15, bottom: 15, right: 35),
                 backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
           ),
           SizedBox(
             height: 10,
           ),
-          Text('Esqueceu sua senha?',
-              style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 14,
-                      color: Color.fromRGBO(51, 111, 93, 0.5),
-                      fontWeight: FontWeight.w300))),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => EsqueceuSenha()));
+            },
+            child: Text.rich(TextSpan(
+                text: 'Esqueceu sua ',
+                style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 14,
+                        color: Color.fromRGBO(51, 111, 93, 0.5),
+                        fontWeight: FontWeight.w300)),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'senha?',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              decoration: TextDecoration.none,
+                              fontSize: 14,
+                              color: Color.fromRGBO(51, 111, 93, 0.5),
+                              fontWeight: FontWeight.w600)))
+                ])),
+          )
+          // Text('Esqueceu sua senha?',
+          //     style: GoogleFonts.poppins(
+          //         textStyle: TextStyle(
+          //             decoration: TextDecoration.none,
+          //             fontSize: 14,
+          //             color: Color.fromRGBO(51, 111, 93, 0.5),
+          //             fontWeight: FontWeight.w300))),
         ]));
   }
 }
-  //   return Scaffold(
-  //     body: Container(
-  //       width: MediaQuery.of(context).size.width,
-  //       height: MediaQuery.of(context).size.height,
-  //         child: Container(
-  //           decoration: const BoxDecoration(
-  //             image: DecorationImage(
-  //               image: AssetImage('assets/images/login.png'),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-            
-  //         )
-  //       ),
-  //     );
-  // }

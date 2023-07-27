@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943543278295",
+    "project_id": "recycleview-fd7a9",
+    "storage_bucket": "recycleview-fd7a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943543278295:android:bad0fdaf04a5caec55ae92",
+        "android_client_info": {
+          "package_name": "com.unicamp.recycleview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943543278295-kncsn687nvq8du21vff2bb7vr9s3lm4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCBGOOiaMrzC1UlDREjTnYypw48SKu8h4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943543278295-kncsn687nvq8du21vff2bb7vr9s3lm4b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
