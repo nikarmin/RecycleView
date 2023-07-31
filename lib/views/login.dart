@@ -206,7 +206,8 @@ class Login extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EsqueceuSenha()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EsqueceuSenha()));
             },
             child: Text.rich(TextSpan(
                 text: 'Esqueceu sua ',

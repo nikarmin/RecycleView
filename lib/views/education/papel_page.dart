@@ -30,14 +30,11 @@ class PapelPage extends StatelessWidget {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 14.0),
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/background/papel_page.png'),
-                fit: BoxFit.fill,
-              ),
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background/papel_page.png'),
+              fit: BoxFit.fill,
             ),
           ),
         ),

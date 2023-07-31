@@ -7,5 +7,4 @@ class EsqueceuSenha extends StatelessWidget {
       body: Text('Quem vai ser rainha, quem vai ser o rei?'),
     );
   }
-  
 }
