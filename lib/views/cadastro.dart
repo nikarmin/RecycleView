@@ -1,19 +1,54 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:recycle_view/views/bemvindo_page.dart';
 
-import '../utils/authentication.dart';
+import '../services/auth_service.dart';
 
-class Cadastro extends StatelessWidget {
+class Cadastro extends StatefulWidget {
+  const Cadastro({super.key});
+
+  @override
+  State<Cadastro> createState() => _CadastroState();
+}
+
+class _CadastroState extends State<Cadastro> {
+  final formKey = GlobalKey<FormState>();
+  final email = TextEditingController();
+  final senha = TextEditingController();
+
+  bool isLogin = true;
+  bool loading = false;
+
+  registrar() async {
+    try {
+      await context.read<AuthService>().registrar(email.text, senha.text);
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return BemVindoPage();
+      }));
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.message!),
+        backgroundColor: Colors.red,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         //color: Color.fromRGBO(245, 245, 245, 1),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/background/login.png'),
-              fit: BoxFit.fill,
-            ),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background/login.png'),
+            fit: BoxFit.fill,
           ),
+        ),
+        child: Form(
+          key: formKey,
           child: Column(children: [
             SizedBox(
               height: 200,
@@ -106,9 +141,8 @@ class Cadastro extends StatelessWidget {
                   child: Material(
                     // TIRAR O FOCUS DO TEXTFIELD!!
                     color: Colors.transparent,
-                    child: TextField(
+                    child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
                         hintText: 'Digite seu nome...',
@@ -163,9 +197,9 @@ class Cadastro extends StatelessWidget {
                   child: Material(
                     // TIRAR O FOCUS DO TEXTFIELD!!
                     color: Colors.transparent,
-                    child: TextField(
+                    child: TextFormField(
+                      controller: email,
                       keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
                         hintText: 'Digite seu email...',
@@ -222,7 +256,6 @@ class Cadastro extends StatelessWidget {
                     color: Colors.transparent,
                     child: TextField(
                       keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
                         hintText: 'Digite sua cidade...',
@@ -277,9 +310,9 @@ class Cadastro extends StatelessWidget {
                   child: Material(
                     // TIRAR O FOCUS DO TEXTFIELD!!
                     color: Colors.transparent,
-                    child: TextField(
+                    child: TextFormField(
                       obscureText: true,
-                      textInputAction: TextInputAction.next,
+                      controller: senha,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
                         hintText: 'Digite sua senha...',
@@ -307,12 +340,17 @@ class Cadastro extends StatelessWidget {
               height: 15,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  registrar();
+                }
+              },
               child: Text('REGISTRAR',
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(fontSize: 14, color: Colors.white))),
               style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.only(left: 35, top: 15, bottom: 15, right: 35),
+                  padding:
+                      EdgeInsets.only(left: 35, top: 15, bottom: 15, right: 35),
                   backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
             ),
             // FutureBuilder(
@@ -330,6 +368,7 @@ class Cadastro extends StatelessWidget {
             //       );
             //     },
             //   ),
-          ]));
+          ]),
+        ));
   }
 }

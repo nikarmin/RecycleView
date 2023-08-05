@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recycle_view/views/perfil_page.dart';
 
 class BemVindoPage extends StatelessWidget {
   @override
@@ -39,7 +40,8 @@ class BemVindoPage extends StatelessWidget {
               ),
               Image.asset('assets/images/icons/logo-recycleview.png'),
               Padding(
-                padding: const EdgeInsets.only(left: 38.0, right: 38.0, top: 15),
+                padding:
+                    const EdgeInsets.only(left: 38.0, right: 38.0, top: 15),
                 child: Text(
                   'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dignissim dapibus leo at tincidunt. Nullam massa metus, finibus maximus tempus interdum, tempus sed urna. Cras pellentesque velit libero, quis tincidunt lacus luctus non. Praesent eget enim posuere, rhoncus est suscipit, facilisis purus.',
                   style: GoogleFonts.jost(
@@ -74,8 +76,8 @@ class BemVindoPage extends StatelessWidget {
                           Text(
                             'Identificar objetos       ',
                             style: GoogleFonts.jost(
-                                textStyle:
-                                    TextStyle(fontSize: 18, color: Colors.black)),
+                                textStyle: TextStyle(
+                                    fontSize: 18, color: Colors.black)),
                           ),
                         ],
                       )),
@@ -108,8 +110,8 @@ class BemVindoPage extends StatelessWidget {
                           Text(
                             'Notícias de reciclagem',
                             style: GoogleFonts.jost(
-                                textStyle:
-                                    TextStyle(fontSize: 18, color: Colors.black)),
+                                textStyle: TextStyle(
+                                    fontSize: 18, color: Colors.black)),
                           ),
                         ],
                       )),
@@ -142,8 +144,8 @@ class BemVindoPage extends StatelessWidget {
                           Text(
                             'Pontos de coleta         ',
                             style: GoogleFonts.jost(
-                                textStyle:
-                                    TextStyle(fontSize: 18, color: Colors.black)),
+                                textStyle: TextStyle(
+                                    fontSize: 18, color: Colors.black)),
                           ),
                         ],
                       )),
@@ -176,8 +178,8 @@ class BemVindoPage extends StatelessWidget {
                           Text(
                             'Educação Ambiental   ',
                             style: GoogleFonts.jost(
-                                textStyle:
-                                    TextStyle(fontSize: 18, color: Colors.black)),
+                                textStyle: TextStyle(
+                                    fontSize: 18, color: Colors.black)),
                           ),
                         ],
                       )),
@@ -208,7 +210,11 @@ class BemVindoPage extends StatelessWidget {
               AssetImage('assets/images/icons/profile.png'),
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Perfil();
+              }));
+            },
           ),
         ],
       ),
