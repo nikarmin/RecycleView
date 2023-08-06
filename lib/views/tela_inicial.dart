@@ -16,118 +16,120 @@ class TelaInicial extends StatelessWidget {
               alignment: Alignment.topCenter)),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 70,
-          ),
-          Container(
-            alignment: AlignmentDirectional.topEnd,
-            child: Image.asset(
-              'assets/images/sparkles.png',
-            ),
-          ),
-          SizedBox(
-            height: 58,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              'RecycleView ',
-              style: GoogleFonts.poppins(
-                  textStyle:
-                      TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),
-            ),
-            Image.asset(
-              'assets/images/planet-earth.png',
-              height: 40,
-              width: 40,
-            ),
-          ]),
-          //Text('RecycleView', style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),),
-          Text('O jeito reciclável de ser!',
-              style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 14))),
-          //Image.asset('assets/images/planet-earth.png',),
-          SizedBox(
-            height: 100,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.bottomToTop,
-                      child: Login(),
-                      duration: Duration(milliseconds: 150)));
-              // Navigator.of(context).push(_createRoute(Login()));
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => Login()));
-            },
-            child: Text('Entrar',
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300))),
-            style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(),
-                padding:
-                    EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
-                backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.bottomToTop,
-                      child: Cadastro(),
-                      duration: Duration(milliseconds: 150)));
-              // Navigator.of(context).push(_createRoute(Cadastro()));
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => Cadastro()));
-            },
-            child: Text('Cadastrar',
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300))),
-            style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(),
-                padding:
-                    EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
-                backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
-          ),
-          SizedBox(
-            height: 290,
-          ),
-          Stack(children: <Widget>[
-            Container(
-              alignment: AlignmentDirectional.bottomEnd,
-              child: Image.asset('assets/images/ellipse.png'),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 70,
             ),
             Container(
-              alignment: AlignmentDirectional.bottomEnd,
+              alignment: AlignmentDirectional.topEnd,
               child: Image.asset(
-                'assets/images/leave.png',
-                height: 190,
+                'assets/images/sparkles.png',
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 35),
-              child: Align(
+            SizedBox(
+              height: 58,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                'RecycleView ',
+                style: GoogleFonts.poppins(
+                    textStyle:
+                        TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),
+              ),
+              Image.asset(
+                'assets/images/planet-earth.png',
+                height: 40,
+                width: 40,
+              ),
+            ]),
+            //Text('RecycleView', style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),),
+            Text('O jeito reciclável de ser!',
+                style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 14))),
+            //Image.asset('assets/images/planet-earth.png',),
+            SizedBox(
+              height: 70,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.bottomToTop,
+                        child: Login(),
+                        duration: Duration(milliseconds: 150)));
+                // Navigator.of(context).push(_createRoute(Login()));
+                // Navigator.push(
+                //     context, MaterialPageRoute(builder: (context) => Login()));
+              },
+              child: Text('Entrar',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300))),
+              style: ElevatedButton.styleFrom(
+                  shape: StadiumBorder(),
+                  padding:
+                      EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
+                  backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.bottomToTop,
+                        child: Cadastro(),
+                        duration: Duration(milliseconds: 150)));
+                // Navigator.of(context).push(_createRoute(Cadastro()));
+                // Navigator.push(
+                //     context, MaterialPageRoute(builder: (context) => Cadastro()));
+              },
+              child: Text('Cadastrar',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300))),
+              style: ElevatedButton.styleFrom(
+                  shape: StadiumBorder(),
+                  padding:
+                      EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
+                  backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Stack(children: <Widget>[
+              Container(
+                alignment: AlignmentDirectional.bottomEnd,
+                child: Image.asset('assets/images/ellipse.png'),
+              ),
+              Container(
                 alignment: AlignmentDirectional.bottomEnd,
                 child: Image.asset(
-                  'assets/images/recycle-bin.png',
+                  'assets/images/leave.png',
+                  height: 190,
                 ),
               ),
-            )
-          ]),
-          // criarStack()
-        ],
+              Padding(
+                padding: EdgeInsets.only(top: 35),
+                child: Align(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: Image.asset(
+                    'assets/images/recycle-bin.png',
+                  ),
+                ),
+              )
+            ]),
+            // criarStack()
+          ],
+        ),
       ),
     ));
   }

@@ -21,6 +21,7 @@ class _LoginState extends State<Login> {
   final senha = TextEditingController();
 
   bool isLogin = true;
+  bool loading = false;
 
   initState() {
     super.initState();
@@ -39,10 +40,16 @@ class _LoginState extends State<Login> {
 
   login() async {
     try {
+      setState(() {
+        loading = true;
+      });
       await context.read<AuthService>().login(email.text, senha.text);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => BemVindoPage()));
     } on AuthException catch (e) {
+      setState(() {
+        loading = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.message!),
         backgroundColor: Colors.red,
@@ -60,6 +67,7 @@ class _LoginState extends State<Login> {
           ),
         ),
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Form(
             key: formKey,
             child: Column(children: [
@@ -252,20 +260,40 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: 15,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    login();
-                  }
-                },
-                child: Text('ENTRAR',
-                    style: GoogleFonts.poppins(
-                        textStyle:
-                            TextStyle(fontSize: 14, color: Colors.white))),
-                style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.only(
-                        left: 35, top: 15, bottom: 15, right: 35),
-                    backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: (loading)
+                      ? [
+                          Padding(padding: EdgeInsets.all(16)),
+                          SizedBox(
+                            width: 24,
+                            height: 24,
+                            child:
+                                CircularProgressIndicator(color: Colors.white),
+                          )
+                        ]
+                      : [
+                          ElevatedButton(
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                login();
+                              }
+                            },
+                            child: Text('ENTRAR',
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 14, color: Colors.white))),
+                            style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.only(
+                                    left: 35, top: 15, bottom: 15, right: 35),
+                                backgroundColor:
+                                    Color.fromRGBO(51, 111, 93, 1)),
+                          ),
+                        ],
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -293,7 +321,31 @@ class _LoginState extends State<Login> {
                                   color: Color.fromRGBO(51, 111, 93, 0.5),
                                   fontWeight: FontWeight.w600)))
                     ])),
-              )
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EsqueceuSenha()));
+                },
+                child: Text.rich(TextSpan(
+                    text: 'Já possui uma ',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 14,
+                            color: Color.fromRGBO(51, 111, 93, 0.5),
+                            fontWeight: FontWeight.w300)),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'conta?',
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 14,
+                                  color: Color.fromRGBO(51, 111, 93, 0.5),
+                                  fontWeight: FontWeight.w600)))
+                    ])),
+              ),
               // Text('Esqueceu sua senha?',
               //     style: GoogleFonts.poppins(
               //         textStyle: TextStyle(
