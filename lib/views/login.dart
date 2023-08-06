@@ -358,10 +358,10 @@ class _LoginState extends State<Login> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EsqueceuSenha()));
+                      MaterialPageRoute(builder: (context) => Cadastro()));
                 },
                 child: Text.rich(TextSpan(
-                    text: 'Já possui uma ',
+                    text: 'Não possui uma ',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             decoration: TextDecoration.none,

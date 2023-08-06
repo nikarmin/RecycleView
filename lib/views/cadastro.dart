@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class _CadastroState extends State<Cadastro> {
   final senha = TextEditingController();
   final nome = TextEditingController();
   var _procurarCepController = TextEditingController();
+
+  late FirebaseFirestore db;
 
   bool isLogin = true;
   bool loading = false;
