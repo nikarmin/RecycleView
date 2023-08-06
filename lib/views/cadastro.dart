@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:recycle_view/models/result_cep.dart';
+import 'package:recycle_view/services/via_cep_service.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/login.dart';
+import 'package:http/http.dart' as http;
 
 import '../services/auth_service.dart';
 
@@ -19,13 +24,17 @@ class _CadastroState extends State<Cadastro> {
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final senha = TextEditingController();
+  final nome = TextEditingController();
+  var _procurarCepController = TextEditingController();
 
   bool isLogin = true;
   bool loading = false;
 
   registrar() async {
     try {
-      await context.read<AuthService>().registrar(email.text, senha.text);
+      await context
+          .read<AuthService>()
+          .registrar(email.text, senha.text, nome.text);
 
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return BemVindoPage();
@@ -36,6 +45,36 @@ class _CadastroState extends State<Cadastro> {
         backgroundColor: Colors.red,
       ));
     }
+  }
+
+  final textFieldFocusNode = FocusNode();
+  bool _obscured = false;
+  bool mostrar = true;
+
+  void _toggleObscured() {
+    setState(() {
+      _obscured = !_obscured;
+      if (textFieldFocusNode.hasPrimaryFocus) {
+        return; // If focus is on text field, dont unfocus
+      }
+      textFieldFocusNode.canRequestFocus =
+          false; // Prevents focus if tap on eye
+
+      if (_obscured == true) {
+        mostrar = true;
+      } else {
+        mostrar = false;
+      }
+    });
+  }
+
+  Future _encontrarCep() async {
+    final String cep = _procurarCepController.text;
+    final resultCep = await ViaCepService.fetchCep(cep: cep);
+    print(resultCep.localidade);
+    // setState(() {
+    //   _procurarCepController.text = resultCep.cep!;
+    // });
   }
 
   @override
@@ -54,7 +93,7 @@ class _CadastroState extends State<Cadastro> {
             key: formKey,
             child: Column(children: [
               SizedBox(
-                height: 200,
+                height: 150,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -145,6 +184,7 @@ class _CadastroState extends State<Cadastro> {
                       // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
+                        controller: nome,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
@@ -234,7 +274,7 @@ class _CadastroState extends State<Cadastro> {
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    'Cidade: ',
+                    'CEP: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
@@ -257,11 +297,19 @@ class _CadastroState extends State<Cadastro> {
                     child: Material(
                       // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
-                      child: TextField(
-                        keyboardType: TextInputType.emailAddress,
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Digite um CEP válido!';
+                          } else {
+                            _encontrarCep();
+                          }
+                        },
+                        controller: _procurarCepController,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
-                          hintText: 'Digite sua cidade...',
+                          hintText: '00000-000...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
                               fontSize: 14,
@@ -314,9 +362,21 @@ class _CadastroState extends State<Cadastro> {
                       // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: mostrar ? true : false,
                         controller: senha,
                         decoration: InputDecoration(
+                          suffixIcon: Padding(
+                            padding: EdgeInsets.all(4),
+                            child: GestureDetector(
+                              onTap: _toggleObscured,
+                              child: Icon(
+                                _obscured
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black.withOpacity(0.3),
+                              ),
+                            ),
+                          ),
                           contentPadding: EdgeInsets.all(10),
                           hintText: 'Digite sua senha...',
                           hintStyle: TextStyle(
@@ -346,6 +406,7 @@ class _CadastroState extends State<Cadastro> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     registrar();
+                    _encontrarCep();
                   }
                 },
                 child: Text('REGISTRAR',

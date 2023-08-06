@@ -23,7 +23,8 @@ class _PerfilState extends State<Perfil> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => TelaInicial()));
         },
-        child: Text("Sair"),
+        //user!.displayName.toString()
+        child: Text("Sair..."),
       ),
     );
   }

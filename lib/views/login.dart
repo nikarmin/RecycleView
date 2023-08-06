@@ -57,6 +57,27 @@ class _LoginState extends State<Login> {
     }
   }
 
+  final textFieldFocusNode = FocusNode();
+  bool _obscured = false;
+  bool mostrar = false;
+
+  void _toggleObscured() {
+    setState(() {
+      _obscured = !_obscured;
+      if (textFieldFocusNode.hasPrimaryFocus) {
+        return; // If focus is on text field, dont unfocus
+      }
+      textFieldFocusNode.canRequestFocus =
+          false; // Prevents focus if tap on eye
+
+      if (_obscured == true) {
+        mostrar = true;
+      } else {
+        mostrar = false;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -226,7 +247,7 @@ class _LoginState extends State<Login> {
                       // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: mostrar ? true : false,
                         controller: senha,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -235,6 +256,18 @@ class _LoginState extends State<Login> {
                           return null;
                         },
                         decoration: InputDecoration(
+                          suffixIcon: Padding(
+                            padding: EdgeInsets.all(4),
+                            child: GestureDetector(
+                              onTap: _toggleObscured,
+                              child: Icon(
+                                _obscured
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black.withOpacity(0.3),
+                              ),
+                            ),
+                          ),
                           contentPadding: EdgeInsets.all(10),
                           hintText: 'Digite sua senha...',
                           hintStyle: TextStyle(
