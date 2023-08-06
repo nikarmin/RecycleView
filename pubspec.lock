@@ -383,6 +383,17 @@ packages:
       sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
       url: "https://pub.dev"
     source: hosted
+<<<<<<< HEAD
+=======
+    version: "4.2.4"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
+      url: "https://pub.dev"
+    source: hosted
+>>>>>>> ff543ebc070a89b90ea2890aec58c858f8f2178f
     version: "6.0.5"
   quiver:
     dependency: transitive
