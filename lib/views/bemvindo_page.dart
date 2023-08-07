@@ -43,7 +43,7 @@ class BemVindoPage extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(left: 38.0, right: 38.0, top: 15),
                 child: Text(
-                  'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dignissim dapibus leo at tincidunt. Nullam massa metus, finibus maximus tempus interdum, tempus sed urna. Cras pellentesque velit libero, quis tincidunt lacus luctus non. Praesent eget enim posuere, rhoncus est suscipit, facilisis purus.',
+                  'RecycleView é um aplicativo que reúne diversas informações sobre reciclagem e coleta seletiva em um só lugar! Você tem diversas funcionalidades a seres exploradas! Veja abaixo:',
                   style: GoogleFonts.jost(
                       textStyle: TextStyle(fontSize: 18, color: Colors.black)),
                   textAlign: TextAlign.justify,

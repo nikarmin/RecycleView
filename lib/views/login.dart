@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
 
   final textFieldFocusNode = FocusNode();
   bool _obscured = false;
-  bool mostrar = false;
+  bool mostrar = true;
 
   void _toggleObscured() {
     setState(() {
