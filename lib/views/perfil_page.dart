@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
+  final FirebaseStorage storage = FirebaseStorage.instance;
   final user = FirebaseAuth.instance.currentUser;
 
   XFile? _image;
@@ -26,6 +28,17 @@ class _PerfilState extends State<Perfil> {
     setState(() {
       _image = img;
     });
+  }
+
+  Future<void> upload(String path) async {
+    File file = File(path);
+
+    try {
+      String ref  = 'images/img-${DateTime.now().millisecondsSinceEpoch}.jpg';
+      await storage.ref(ref).putFile(file);
+    } on FirebaseException catch (e) {
+      throw Exception('Erro no upload: ${e.code}');
+    }
   }
 
   void myAlert() {
@@ -58,7 +71,7 @@ class _PerfilState extends State<Perfil> {
                     child: Row(
                       children: [
                         Icon(Icons.camera),
-                        Text('Camera'),
+                        Text('Câmera'),
                       ],
                     ))
               ]),
@@ -106,8 +119,9 @@ class _PerfilState extends State<Perfil> {
                 ElevatedButton(
                   onPressed: () {
                     myAlert();
+                    context.read<AuthService>().updateFoto(_image!.path);
                   },
-                  child: Text('Upload Photo'),
+                  child: Text('Escolher foto'),
                 ),
                 SizedBox(
                   height: 10,
@@ -129,7 +143,7 @@ class _PerfilState extends State<Perfil> {
                         ),
                       )
                     : Text(
-                        "No Image",
+                        "Sem imagem...",
                         style: TextStyle(fontSize: 20),
                       ),
                 SizedBox(

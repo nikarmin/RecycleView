@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       color: Color.fromRGBO(233, 233, 233, 1),
       debugShowCheckedModeBanner: false,
-      home: VidroPage(),
+      home: AuthCheck(),
     );
   }
 }
