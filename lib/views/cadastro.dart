@@ -6,12 +6,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:recycle_view/databases/db_firestore.dart';
 import 'package:recycle_view/models/result_cep.dart';
 import 'package:recycle_view/services/via_cep_service.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/login.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/usuario.dart';
 import '../services/auth_service.dart';
 
 class Cadastro extends StatefulWidget {
@@ -29,6 +31,7 @@ class _CadastroState extends State<Cadastro> {
   var _procurarCepController = TextEditingController();
 
   late FirebaseFirestore db;
+  late AuthService auth;
 
   bool isLogin = true;
   bool loading = false;
@@ -49,6 +52,25 @@ class _CadastroState extends State<Cadastro> {
       ));
     }
   }
+
+  startFirestore() async {
+    db = DBFirestore.get();
+  }
+
+  // registrar2(Usuario usuario) async {
+  //   try {
+  //     await context.read<AuthService>().registrar2(usuario);
+
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //       return BemVindoPage();
+  //     }));
+  //   } on AuthException catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text(e.message!),
+  //       backgroundColor: Colors.red,
+  //     ));
+  //   }
+  // }
 
   final textFieldFocusNode = FocusNode();
   bool _obscured = false;
@@ -72,13 +94,31 @@ class _CadastroState extends State<Cadastro> {
   }
 
   Future _encontrarCep() async {
-    final String cep = _procurarCepController.text;
-    final resultCep = await ViaCepService.fetchCep(cep: cep);
-    print(resultCep.localidade);
+    try {
+      final String cep = _procurarCepController.text;
+      final resultCep = await ViaCepService.fetchCep(cep: cep);
+      print(resultCep.localidade);
+    } on Exception catch (e) {
+      Exception('Erro ao buscar CEP: $e');
+    }
     // setState(() {
     //   _procurarCepController.text = resultCep.cep!;
     // });
   }
+
+  // Future adicionarCep() async {
+  //   try {
+  //     user.cep = int.parse(_procurarCepController.text);
+  //     final uid = await Provider.of(context).auth.getCurrentUID();
+  //     await Provider.of(context)
+  //         .db
+  //         .collection('usuários')
+  //         .document(uid)
+  //         .setData(user.toJson());
+  //   } on FirebaseException catch (e) {
+  //     Exception('Erro ao buscar CEP: $e');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -406,10 +446,28 @@ class _CadastroState extends State<Cadastro> {
                 height: 15,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
+                    // final usuario = Usuario(
+                    //     nome: nome.text,
+                    //     email: email.text,
+                    //     senha: senha.text,
+                    //     cep: int.parse(_procurarCepController.text));
+
+                    // registrar2(usuario);
+                    // startFirestore();
                     registrar();
                     _encontrarCep();
+
+                    // user.cep = int.parse(_procurarCepController.text);
+                    // final uid = await Provider.of(context).auth.getCurrentUID();
+
+                    // await Provider.of<dynamic>(context, listen: false)
+                    //     .db
+                    //     .collection('usuários')
+                    //     .document(uid)
+                    //     .setData(user.toJson());
+                    // adicionarCep();
                   }
                 },
                 child: Text('REGISTRAR',

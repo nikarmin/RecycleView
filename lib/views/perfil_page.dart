@@ -34,7 +34,7 @@ class _PerfilState extends State<Perfil> {
     File file = File(path);
 
     try {
-      String ref  = 'images/img-${DateTime.now().millisecondsSinceEpoch}.jpg';
+      String ref = 'images/img-${DateTime.now().millisecondsSinceEpoch}.jpg';
       await storage.ref(ref).putFile(file);
     } on FirebaseException catch (e) {
       throw Exception('Erro no upload: ${e.code}');
@@ -149,6 +149,8 @@ class _PerfilState extends State<Perfil> {
                 SizedBox(
                   height: 30,
                 ),
+                Text(user!.displayName.toString()),
+                Text(user!.email.toString()),
                 ElevatedButton(
                   onPressed: () {
                     context.read<AuthService>().logout();

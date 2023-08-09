@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+
+import '../models/usuario.dart';
 
 class AuthException implements Exception {
   String message;
@@ -8,6 +12,7 @@ class AuthException implements Exception {
 
 class AuthService extends ChangeNotifier {
   FirebaseAuth _auth = FirebaseAuth.instance;
+  final _db = FirebaseFirestore.instance;
   User? usuario;
   bool isLoading = true;
 
@@ -33,14 +38,21 @@ class AuthService extends ChangeNotifier {
       await _auth.createUserWithEmailAndPassword(email: email, password: senha);
       _getUser();
       usuario?.updateDisplayName(nome);
-      print(nome);
-      print(usuario?.displayName);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw AuthException('A senha é muito fraca!');
       } else if (e.code == 'email-already-in-use') {
         throw AuthException('Este email já está cadastrado');
       }
+    }
+  }
+
+  registrar2(Usuario usuario) async {
+    try {
+      await _db.collection('usuários').add(usuario.toJson());
+      _getUser();
+    } on FirebaseException catch (e) {
+      Exception(e.message);
     }
   }
 
@@ -67,6 +79,8 @@ class AuthService extends ChangeNotifier {
       throw Exception(e.message);
     }
   }
+
+  adicionarCep(int cep) async {}
 
   logout() async {
     await _auth.signOut();
