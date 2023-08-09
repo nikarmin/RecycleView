@@ -36,11 +36,11 @@ class _CadastroState extends State<Cadastro> {
   bool isLogin = true;
   bool loading = false;
 
-  registrar() async {
+  registrar(Usuario user) async {
     try {
       await context
           .read<AuthService>()
-          .registrar(email.text, senha.text, nome.text);
+          .registrar(email.text, senha.text, nome.text, user);
 
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return BemVindoPage();
@@ -448,15 +448,15 @@ class _CadastroState extends State<Cadastro> {
               ElevatedButton(
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
-                    // final usuario = Usuario(
-                    //     nome: nome.text,
-                    //     email: email.text,
-                    //     senha: senha.text,
-                    //     cep: int.parse(_procurarCepController.text));
+                    final usuario = Usuario(
+                        nome: nome.text,
+                        email: email.text,
+                        senha: senha.text,
+                        cep: int.parse(_procurarCepController.text));
 
                     // registrar2(usuario);
                     // startFirestore();
-                    registrar();
+                    registrar(usuario);
                     _encontrarCep();
 
                     // user.cep = int.parse(_procurarCepController.text);

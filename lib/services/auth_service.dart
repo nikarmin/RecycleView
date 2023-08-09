@@ -33,9 +33,14 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  registrar(String email, String senha, String nome) async {
+  adicionarModel(Usuario usuario) async {
+    await _db.collection('usuarios').add(usuario.toJson());
+  }
+
+  registrar(String email, String senha, String nome, Usuario user) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+      adicionarModel(user);
       _getUser();
       usuario?.updateDisplayName(nome);
     } on FirebaseAuthException catch (e) {
