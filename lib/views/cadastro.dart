@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/databases/db_firestore.dart';
 import 'package:recycle_view/models/result_cep.dart';
@@ -228,10 +229,17 @@ class _CadastroState extends State<Cadastro> {
                       color: Colors.transparent,
                       child: TextFormField(
                         controller: nome,
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return 'Digite um nome válido';
+                          }
+                          return null;
+                        },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
-                          hintText: 'Digite seu nome...',
+                          hintText: 'Digite seu primeiro nome...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
                               fontSize: 14,
@@ -281,9 +289,18 @@ class _CadastroState extends State<Cadastro> {
                   child: SizedBox(
                     width: 250,
                     child: Material(
-                      // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          //|| !value.contains('@')
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                                  .hasMatch(value)) {
+                            return 'Digite um email válido';
+                          }
+                          return null;
+                        },
                         controller: email,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
@@ -341,9 +358,20 @@ class _CadastroState extends State<Cadastro> {
                       // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
+                        // autovalidateMode: AutovalidateMode.onUserInteraction,
+                        // inputFormatters: [
+                        //   MaskTextInputFormatter(
+                        //     mask: '#####-###',
+                        //     type: MaskAutoCompletionType.lazy,
+                        //     filter: {
+                        //       "#": RegExp(
+                        //           r'[0-9]'), //https://stackoverflow.com/questions/49644892/flutter-textinputformatter-regex-for-credit-card-expiry-date
+                        //     },
+                        //   )
+                        // ],
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Digite um CEP válido!';
+                          if (value!.isEmpty || value.length != 8) {
+                            return 'Digite um CEP válido';
                           } else {
                             _encontrarCep();
                           }
@@ -402,9 +430,15 @@ class _CadastroState extends State<Cadastro> {
                   child: SizedBox(
                     width: 250,
                     child: Material(
-                      // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value!.isEmpty || value.length < 6) {
+                            return 'Digite uma senha válida';
+                          }
+                          return null;
+                        },
                         obscureText: mostrar ? true : false,
                         controller: senha,
                         decoration: InputDecoration(

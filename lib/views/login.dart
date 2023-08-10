@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/cadastro.dart';
 import 'package:recycle_view/views/esqueceu_a_senha_page.dart';
+import 'package:recycle_view/views/home_screen.dart';
 
 import '../services/auth_service.dart';
 
@@ -45,7 +46,7 @@ class _LoginState extends State<Login> {
       });
       await context.read<AuthService>().login(email.text, senha.text);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BemVindoPage()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
     } on AuthException catch (e) {
       setState(() {
         loading = false;

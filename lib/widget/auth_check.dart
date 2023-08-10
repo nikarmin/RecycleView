@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
+import 'package:recycle_view/views/home_screen.dart';
 import 'package:recycle_view/views/login.dart';
 import 'package:recycle_view/views/tela_inicial.dart';
 
@@ -23,7 +24,7 @@ class _AuthCheckState extends State<AuthCheck> {
     else if (auth.usuario == null)
       return TelaInicial();
     else
-      return BemVindoPage();
+      return HomeScreen();
   }
 
   loading() {
