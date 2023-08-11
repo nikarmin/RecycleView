@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recycle_view/models/noticia.dart';
+import 'package:recycle_view/services/news_service.dart';
 import 'package:recycle_view/views/perfil_page.dart';
 
 import 'news/layout_noticia.dart';
@@ -11,6 +13,8 @@ class Noticias extends StatefulWidget {
 }
 
 class _NoticiasState extends State<Noticias> {
+  NewsService newsService = NewsService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +48,25 @@ class _NoticiasState extends State<Noticias> {
         ],
       ),
       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
-      body: Container(
-        child: ListView.builder(
-            itemCount: 5, itemBuilder: (context, index) => LayoutNoticia()),
+      body: FutureBuilder(
+        future: NewsService().getArticle(),
+        builder: (BuildContext context, AsyncSnapshot<List<Noticia>> snapshot) {
+          if (snapshot.hasData) {
+            List<Noticia> noticias = snapshot.data!;
+            return ListView.builder(
+                itemCount: noticias.length,
+                itemBuilder: (context, index) =>
+                    ListTile(title: Text(noticias[index].title!)));
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
 }
+
+//// builder: Container(
+        //   child: ListView.builder(
+        //       itemCount: 5, itemBuilder: (context, index) => LayoutNoticia()),
+        // ),
