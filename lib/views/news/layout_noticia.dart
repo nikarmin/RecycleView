@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recycle_view/models/noticia.dart';
 
 class LayoutNoticia extends StatelessWidget {
-  const LayoutNoticia({super.key});
+  const LayoutNoticia({super.key, required this.artigo});
+
+  final Artigo artigo;
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +14,10 @@ class LayoutNoticia extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.network(
-              'https://cdn.awsli.com.br/600x450/18/18885/produto/102523124/6ba7072878.jpg',
-              height: 100,
-              width: 100,
-            ),
+            Container(
+                height: 100,
+                width: 100,
+                child: Image.network(artigo.urlToImage)),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(8.0),
@@ -23,7 +25,7 @@ class LayoutNoticia extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Título da notícia',
+                      artigo.title,
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
@@ -31,14 +33,14 @@ class LayoutNoticia extends StatelessWidget {
                       height: 10.0,
                     ),
                     Text(
-                      'Descrição da notícia',
+                      artigo.description,
                       style: TextStyle(fontSize: 14.0),
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
                     Text(
-                      'Data da notícia',
+                      artigo.publishedAt,
                       style: TextStyle(fontSize: 14.0),
                     ),
                   ],

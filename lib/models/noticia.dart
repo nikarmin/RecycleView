@@ -1,35 +1,46 @@
-import 'package:recycle_view/models/source.dart';
-
 class Noticia {
-  Source? source;
-  String? author;
-  String? title;
-  String? description;
-  String? url;
-  String? urlToImage;
-  String? publishedAt;
-  String? content;
+  String status;
+  String? error;
+  int? totalResults;
+  List<Artigo> articles;
 
-  Noticia(
-      {this.source,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+  Noticia({required this.status, required this.articles});
 
-  factory Noticia.fromJson(Map<String, dynamic> json) {
-    return Noticia(
-      source: Source.fromJson(json['source']),
-      author: json['author'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      url: json['url'] as String,
-      urlToImage: json['urlToImage'] as String,
-      publishedAt: json['publishedAt'] as String,
-      content: json['content'] as String,
-    );
-  }
+  Noticia.fromJson(Map<String, dynamic> newsJson)
+      : status = newsJson['status'],
+        articles = List.from(newsJson['articles'])
+            .map((article) => Artigo.fromJson(article))
+            .toList(),
+        totalResults = newsJson['totalResults'],
+        error = newsJson['error'];
+}
+
+class Artigo {
+  Source source;
+  String author;
+  String title;
+  String description;
+  String urlToImage;
+  String url;
+  String publishedAt;
+  String content;
+
+  Artigo.fromJson(Map<String, dynamic> articleJson)
+      : source = Source.fromJson(articleJson['source']),
+        author = articleJson['author'],
+        title = articleJson['title'],
+        description = articleJson['description'],
+        url = articleJson['url'],
+        urlToImage = articleJson['urlToImage'],
+        publishedAt = articleJson['publishedAt'],
+        content = articleJson['content'];
+}
+
+class Source {
+  String id;
+  String name;
+
+  Source.fromJson(Map<String, dynamic> sourceJson)
+      : id = sourceJson['id'],
+        name = sourceJson['name'];
 }
