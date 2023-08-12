@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recycle_view/models/noticia.dart';
 
+import '../../models/artigo.dart';
+
 class LayoutNoticia extends StatelessWidget {
   const LayoutNoticia({super.key, required this.artigo});
 
@@ -15,9 +17,9 @@ class LayoutNoticia extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                height: 100,
-                width: 100,
-                child: Image.network(artigo.urlToImage)),
+              height: 100,
+              width: 100, /*child: Image.network(artigo.urlToImage)*/
+            ),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(8.0),
@@ -39,10 +41,10 @@ class LayoutNoticia extends StatelessWidget {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Text(
-                      artigo.publishedAt,
-                      style: TextStyle(fontSize: 14.0),
-                    ),
+                    // Text(
+                    //   artigo.publishedAt,
+                    //   style: TextStyle(fontSize: 14.0),
+                    // ),
                   ],
                 ),
               ),

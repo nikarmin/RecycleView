@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
+
+import 'artigo.dart';
+
 class Noticia {
   String status;
   String? error;
@@ -14,33 +20,23 @@ class Noticia {
         totalResults = newsJson['totalResults'],
         error = newsJson['error'];
 }
+// class Artigo {
+//   Source source;
+//   String author;
+//   String title;
+//   String description;
+//   String urlToImage;
+//   String url;
+//   String publishedAt;
+//   String content;
 
-class Artigo {
-  Source source;
-  String author;
-  String title;
-  String description;
-  String urlToImage;
-  String url;
-  String publishedAt;
-  String content;
-
-  Artigo.fromJson(Map<String, dynamic> articleJson)
-      : source = Source.fromJson(articleJson['source']),
-        author = articleJson['author'],
-        title = articleJson['title'],
-        description = articleJson['description'],
-        url = articleJson['url'],
-        urlToImage = articleJson['urlToImage'],
-        publishedAt = articleJson['publishedAt'],
-        content = articleJson['content'];
-}
-
-class Source {
-  String id;
-  String name;
-
-  Source.fromJson(Map<String, dynamic> sourceJson)
-      : id = sourceJson['id'],
-        name = sourceJson['name'];
-}
+//   Artigo.fromJson(Map<String, dynamic> articleJson)
+//       : source = Source.fromJson(articleJson['source']),
+//         author = articleJson['author'],
+//         title = articleJson['title'],
+//         description = articleJson['description'],
+//         url = articleJson['url'],
+//         urlToImage = articleJson['urlToImage'],
+//         publishedAt = articleJson['publishedAt'],
+//         content = articleJson['content'];
+// }
