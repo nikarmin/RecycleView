@@ -4,17 +4,17 @@ import 'package:recycle_view/models/noticia.dart';
 import '../../models/artigo.dart';
 
 class LayoutNoticia extends StatelessWidget {
-  const LayoutNoticia({super.key, required this.artigo});
+  const LayoutNoticia(
+      {super.key,
+      required this.title,
+      required this.description,
+      required this.author,
+      required this.image});
 
-  final Artigo artigo;
-
-  getText() {
-    if (artigo.title != null) {
-      return artigo.title;
-    } else {
-      return 'Sem descrição';
-    }
-  }
+  final String title;
+  final String description;
+  final String author;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +24,23 @@ class LayoutNoticia extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              height: 100,
-              width: 100, /*child: Image.network(artigo.urlToImage)*/
-            ),
+            Container(height: 100, width: 100, child: Image.network(image)),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // Text(
-                    //   artigo.title,
-                    //   style: TextStyle(
-                    //       fontSize: 18.0, fontWeight: FontWeight.bold),
-                    // ),
-                    // SizedBox(
-                    //   height: 10.0,
-                    // ),
                     Text(
-                      getText(),
+                      title,
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      author,
                       style: TextStyle(fontSize: 14.0),
                     ),
                     SizedBox(
