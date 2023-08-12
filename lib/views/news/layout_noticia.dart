@@ -8,6 +8,14 @@ class LayoutNoticia extends StatelessWidget {
 
   final Artigo artigo;
 
+  getText() {
+    if (artigo.title != null) {
+      return artigo.title;
+    } else {
+      return 'Sem descrição';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -26,16 +34,16 @@ class LayoutNoticia extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    // Text(
+                    //   artigo.title,
+                    //   style: TextStyle(
+                    //       fontSize: 18.0, fontWeight: FontWeight.bold),
+                    // ),
+                    // SizedBox(
+                    //   height: 10.0,
+                    // ),
                     Text(
-                      artigo.title,
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Text(
-                      artigo.description,
+                      getText(),
                       style: TextStyle(fontSize: 14.0),
                     ),
                     SizedBox(

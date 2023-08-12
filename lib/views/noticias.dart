@@ -18,65 +18,31 @@ class Noticias extends StatefulWidget {
 }
 
 class _NoticiasState extends State<Noticias> {
-  List<Artigo> _listaDeNoticias = [];
+  late String stringResponse;
+  late Map mapResponse;
+  List listResponse = [];
 
-  NewsService client = NewsService();
+  Future apiCall() async {
+    http.Response response;
+    String url =
+        "https://newsapi.org/v2/everything?q=reciclagem&apiKey=885038448a224a658b6824599de332d7";
+    response = await http.get(Uri.parse(url));
 
-  // Future<void> getNoticias() async {
-  //   var response = await get(Uri.parse(
-  //       'http://newsapi.org/v2/top-headlines?country=us&apiKey=885038448a224a658b6824599de332d7'));
-  //   var jsonData = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      setState(() {
+        mapResponse = jsonDecode(response.body);
+        listResponse = mapResponse["articles"];
+      });
+    } else {
+      print("FODASE TUDIO");
+    }
+  }
 
-  //   if (jsonData['status'] == 'ok') {
-  //     jsonData['articles'].forEach((element) {
-  //       if (element['urlToImage'] != null && element['description'] != null) {
-  //         Artigo artigo = Artigo(
-  //             source: Source.fromJson(element['source']),
-  //             title: element['title'],
-  //             description: element['description'],
-  //             author: element['author']);
-  //         _listaDeNoticias.add(artigo);
-  //       }
-  //     });
-  //   }
-  // }
-
-  // Future<List<Artigo>> getData() async {
-  //   final response = await http.get(Uri.parse(
-  //       'http://newsapi.org/v2/top-headlines?country=us&apiKey=885038448a224a658b6824599de332d7'));
-
-  //   // setState(() {
-  //   Map<String, dynamic> json = jsonDecode(response.body);
-  //   List<dynamic> body = json['articles'];
-  //   print(body.map((dynamic item) => Artigo.fromJson(item)).toList());
-  //   _listaDeNoticias =
-  //       body.map((dynamic item) => Artigo.fromJson(item)).toList();
-
-  //   //return _listaDeNoticias;
-  //   // _listaDeNoticias =
-  //   //     Noticia.fromJson(json.decode(response.body)).articles;
-  //   // });
-
-  //   return _listaDeNoticias;
-  // }
-
-  // getDoGet() async {
-  //   Noticia newsdata = Noticia(
-  //     status: 'ok',
-  //     articles: [],
-  //   );
-
-  //   await newsdata.getNoticias();
-
-  //   _listaDeNoticias = newsdata.articles;
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getDoGet();
-  //   //getData();
-  // }
+  @override
+  void initState() {
+    apiCall();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,41 +77,62 @@ class _NoticiasState extends State<Noticias> {
         ],
       ),
       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
-      body: FutureBuilder(
-        future: client.getArticle(),
-        builder: (BuildContext context, AsyncSnapshot<List<Artigo>> snapshot) {
-          if (snapshot.hasData) {
-            return Center(child: Text("TESXT FHBIUABSD FODASE "));
-            // List<Artigo> noticias = snapshot.data!;
-            // return ListView.builder(
-            //     itemCount: noticias.length,
-            //     itemBuilder: (context, index) => LayoutNoticia(
-            //           artigo: noticias[index],
-            //         ));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-      // body: FutureBuilder(
-      //   future: NewsService().getArticle(),
-      //   builder: (BuildContext context, AsyncSnapshot<List<Noticia>> snapshot) {
-      //     if (snapshot.hasData) {
-      //       List<Noticia> noticias = snapshot.data!;
-      //       return ListView.builder(
-      //           itemCount: noticias.length,
-      //           itemBuilder: (context, index) => ListTile(
-      //               title: Text(noticias[index].articles[index].title!)));
-      //     } else {
-      //       return Center(child: CircularProgressIndicator());
-      //     }
-      //   },
-      //),
+      body: ListView.builder(
+          itemCount: listResponse.length,
+          itemBuilder: (context, index) => Container(
+                  child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 150,
+                    width: 250,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.network(
+                        listResponse[index]['urlToImage'],
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  // Container(
+                  //     height: 100,
+                  //     width: 100,
+                  //     child: Image.network(
+                  //       listResponse[index]['urlToImage'],
+                  //       fit: BoxFit.fill,
+                  //     )),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            listResponse[index]['title'],
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            listResponse[index]['description'],
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            listResponse[index]['publishedAt'],
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ))),
     );
   }
 }
-
-//// builder: Container(
-        //   child: ListView.builder(
-        //       itemCount: 5, itemBuilder: (context, index) => LayoutNoticia()),
-        // ),
