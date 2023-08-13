@@ -75,22 +75,18 @@ class _CadastroState extends State<Cadastro> {
 
   final textFieldFocusNode = FocusNode();
   bool _obscured = false;
-  bool mostrar = true;
+  late bool mostrar;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    mostrar = false;
+  }
 
   void _toggleObscured() {
     setState(() {
-      _obscured = !_obscured;
-      if (textFieldFocusNode.hasPrimaryFocus) {
-        return; // If focus is on text field, dont unfocus
-      }
-      textFieldFocusNode.canRequestFocus =
-          false; // Prevents focus if tap on eye
-
-      if (_obscured == true) {
-        mostrar = true;
-      } else {
-        mostrar = false;
-      }
+      mostrar = !mostrar;
     });
   }
 
@@ -439,7 +435,7 @@ class _CadastroState extends State<Cadastro> {
                           }
                           return null;
                         },
-                        obscureText: mostrar ? true : false,
+                        obscureText: !mostrar,
                         controller: senha,
                         decoration: InputDecoration(
                           suffixIcon: Padding(
@@ -447,7 +443,7 @@ class _CadastroState extends State<Cadastro> {
                             child: GestureDetector(
                               onTap: _toggleObscured,
                               child: Icon(
-                                _obscured
+                                mostrar
                                     ? Icons.visibility
                                     : Icons.visibility_off,
                                 color: Colors.black.withOpacity(0.3),

@@ -25,18 +25,97 @@ class _PieData {
 }
 
 class _PerfilState extends State<Perfil> {
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: Text(
+        'Adicionar reciclagem',
+        style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black)),
+      ),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Form(
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Objeto:',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300)),
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(value: false, onChanged: (value) {}),
+                      Text('Óleo',
+                          style: GoogleFonts.jost(
+                              textStyle: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black)))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(value: false, onChanged: (value) {}),
+                      Text('Eletrônicos',
+                          style: GoogleFonts.jost(
+                              textStyle: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black)))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(value: false, onChanged: (value) {}),
+                      Text('Recicláveis',
+                          style: GoogleFonts.jost(
+                              textStyle: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black)))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   final FirebaseStorage storage = FirebaseStorage.instance;
   final user = FirebaseAuth.instance.currentUser;
 
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
+  var photo;
 
   Future getImage(ImageSource media) async {
     var img = await _picker.pickImage(source: media);
 
     setState(() {
       _image = img;
+      photo = Image.file(File(user!.photoURL.toString()));
     });
+    await context.read<AuthService>().updateFoto(_image!.path);
   }
 
   Future<void> upload(String path) async {
@@ -62,24 +141,37 @@ class _PerfilState extends State<Perfil> {
               height: MediaQuery.of(context).size.height / 6,
               child: Column(children: [
                 ElevatedButton(
-                    onPressed: () {
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateColor.resolveWith(
+                            (states) => Color.fromRGBO(51, 111, 93, 1))),
+                    onPressed: () async {
                       Navigator.pop(context);
                       getImage(ImageSource.gallery);
                     },
                     child: Row(
                       children: [
                         Icon(Icons.image),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Text('Galeria'),
                       ],
                     )),
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateColor.resolveWith(
+                            (states) => Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () {
                       Navigator.pop(context);
                       getImage(ImageSource.camera);
+                      context.read<AuthService>().updateFoto(_image!.path);
                     },
                     child: Row(
                       children: [
                         Icon(Icons.camera),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Text('Câmera'),
                       ],
                     ))
@@ -132,32 +224,52 @@ class _PerfilState extends State<Perfil> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     myAlert();
-                  //     context.read<AuthService>().updateFoto(_image!.path);
-                  //   },
-                  //   child: Text('Escolher foto'),
-                  // ),
                   SizedBox(
                     height: 10,
                   ),
-                  //if image not null show the image
-                  //if image null show text
-                  _image != null
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.file(
-                              //to show image, you type like this.
-                              File(_image!.path),
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width,
-                              height: 300,
+                  user?.photoURL != null
+                      ? Stack(children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ClipOval(
+                                child: Image.file(
+                              File(user!.photoURL.toString()),
+                              height: 130,
+                              width: 130,
+                            )),
+                          ),
+                          Positioned(
+                            bottom: 2,
+                            right: 2,
+                            child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateColor
+                                        .resolveWith((states) =>
+                                            Color.fromARGB(255, 226, 226, 226)),
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            EdgeInsets.zero),
+                                    alignment: Alignment.center,
+                                    shape:
+                                        MaterialStateProperty.all<CircleBorder>(
+                                            CircleBorder())),
+                                onPressed: () {
+                                  myAlert();
+                                },
+                                child: Container(
+                                  child: Icon(
+                                    Icons.brush,
+                                    color: Colors.black,
+                                    size: 15,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        )
+                        ])
                       : Stack(
                           children: [
                             Container(
@@ -194,9 +306,6 @@ class _PerfilState extends State<Perfil> {
                                           CircleBorder>(CircleBorder())),
                                   onPressed: () {
                                     myAlert();
-                                    context
-                                        .read<AuthService>()
-                                        .updateFoto(_image!.path);
                                   },
                                   child: Container(
                                     child: Icon(
@@ -232,7 +341,32 @@ class _PerfilState extends State<Perfil> {
                             backgroundColor: MaterialStateColor.resolveWith(
                                 (states) => Color.fromRGBO(51, 111, 93, 1))),
                         label: Text(
-                          "Sair",
+                          "Editar",
+                          style: GoogleFonts.archivo(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                        icon: Icon(Icons.edit_rounded),
+                        onPressed: () {
+                          context.read<AuthService>().logout();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TelaInicial()));
+                        },
+                        //user!.displayName.toString()
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: ElevatedButton.icon(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith(
+                                (states) => Color.fromRGBO(51, 111, 93, 1))),
+                        label: Text(
+                          "Sair    ",
                           style: GoogleFonts.archivo(
                               fontSize: 14, fontWeight: FontWeight.w500),
                         ),
@@ -243,6 +377,30 @@ class _PerfilState extends State<Perfil> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => TelaInicial()));
+                        },
+                        //user!.displayName.toString()
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: ElevatedButton.icon(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith(
+                                (states) => Color.fromRGBO(51, 111, 93, 1))),
+                        label: Text(
+                          "Adicionar contribuição",
+                          style: GoogleFonts.archivo(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                        icon: Icon(Icons.recycling_rounded),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  _buildPopupDialog(context));
                         },
                         //user!.displayName.toString()
                       ),

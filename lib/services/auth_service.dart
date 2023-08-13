@@ -78,8 +78,9 @@ class AuthService extends ChangeNotifier {
 
   updateFoto(String url) async {
     try {
-      usuario?.updatePhotoURL(url);
+      await usuario?.updatePhotoURL(url);
       _getUser();
+      print(usuario?.photoURL);
     } on FirebaseException catch (e) {
       throw Exception(e.message);
     }

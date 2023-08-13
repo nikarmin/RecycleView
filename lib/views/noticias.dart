@@ -8,7 +8,7 @@ import 'package:recycle_view/views/perfil_page.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/artigo.dart';
-import 'news/layout_noticia.dart';
+import 'layout/layout_noticia.dart';
 
 class Noticias extends StatefulWidget {
   const Noticias({super.key});
