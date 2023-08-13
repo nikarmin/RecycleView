@@ -53,15 +53,7 @@ class _NoticiasState extends State<Noticias> {
           centerTitle: true,
           backgroundColor: Color.fromRGBO(245, 245, 245, 1),
           elevation: 0,
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+          automaticallyImplyLeading: false,
           actions: [
             IconButton(
               icon: ImageIcon(

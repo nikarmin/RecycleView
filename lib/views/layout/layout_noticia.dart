@@ -19,6 +19,7 @@ class LayoutNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+        color: Color.fromRGBO(233, 233, 233, 1),
         borderRadius: new BorderRadius.circular(6.0),
         elevation: 2.0,
         child: Row(

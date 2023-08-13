@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'perfil_page.dart';
 
-class InteligenciaArtificial extends StatefulWidget {
-  const InteligenciaArtificial({super.key});
+class PontosPage extends StatefulWidget {
+  const PontosPage({super.key});
 
   @override
-  State<InteligenciaArtificial> createState() => _InteligenciaArtificialState();
+  State<PontosPage> createState() => _PontosPageState();
 }
 
-class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
+class _PontosPageState extends State<PontosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

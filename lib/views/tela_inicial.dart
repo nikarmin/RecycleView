@@ -8,6 +8,23 @@ class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // bottomSheet: Stack(children: <Widget>[
+        //   Container(
+        //     child: Image.asset('assets/images/ellipse.png'),
+        //   ),
+        //   Container(
+        //     //alignment: AlignmentDirectional.bottomEnd,
+        //     child: Image.asset(
+        //       'assets/images/leave.png',
+        //       height: 190,
+        //     ),
+        //   ),
+        //   Container(
+        //     child: Image.asset(
+        //       'assets/images/recycle-bin.png',
+        //     ),
+        //   ),
+        // ]),
         body: Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -17,6 +34,7 @@ class TelaInicial extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             SizedBox(
@@ -39,9 +57,9 @@ class TelaInicial extends StatelessWidget {
                         TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),
               ),
               Image.asset(
-                'assets/images/planet-earth.png',
-                height: 40,
-                width: 40,
+                'assets/images/ecology.png',
+                height: 50,
+                width: 50,
               ),
             ]),
             //Text('RecycleView', style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),),
@@ -105,29 +123,6 @@ class TelaInicial extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            Stack(children: <Widget>[
-              Container(
-                alignment: AlignmentDirectional.bottomEnd,
-                child: Image.asset('assets/images/ellipse.png'),
-              ),
-              Container(
-                alignment: AlignmentDirectional.bottomEnd,
-                child: Image.asset(
-                  'assets/images/leave.png',
-                  height: 190,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 35),
-                child: Align(
-                  alignment: AlignmentDirectional.bottomEnd,
-                  child: Image.asset(
-                    'assets/images/recycle-bin.png',
-                  ),
-                ),
-              )
-            ]),
-            // criarStack()
           ],
         ),
       ),

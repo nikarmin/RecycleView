@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/inteligencia_artificial.dart';
 import 'package:recycle_view/views/noticias.dart';
+import 'package:recycle_view/views/pontos.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _telas = [
     BemVindoPage(),
     InteligenciaArtificial(),
-    Noticias()
+    Noticias(),
+    PontosPage()
   ];
 
   void _onItemTapped(int index) {

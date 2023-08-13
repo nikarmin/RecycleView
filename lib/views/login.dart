@@ -42,6 +42,8 @@ class _LoginState extends State<Login> {
       await context.read<AuthService>().login(email.text, senha.text);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
     } on AuthException catch (e) {
       setState(() {
         loading = false;
@@ -78,6 +80,7 @@ class _LoginState extends State<Login> {
           ),
         ),
         child: SingleChildScrollView(
+          reverse: true,
           scrollDirection: Axis.vertical,
           child: Form(
             key: formKey,

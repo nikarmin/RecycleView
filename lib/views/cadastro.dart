@@ -11,6 +11,7 @@ import 'package:recycle_view/databases/db_firestore.dart';
 import 'package:recycle_view/models/result_cep.dart';
 import 'package:recycle_view/services/via_cep_service.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
+import 'package:recycle_view/views/home_screen.dart';
 import 'package:recycle_view/views/login.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,7 +45,7 @@ class _CadastroState extends State<Cadastro> {
           .registrar(email.text, senha.text, nome.text, user);
 
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return BemVindoPage();
+        return HomeScreen();
       }));
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -128,6 +129,7 @@ class _CadastroState extends State<Cadastro> {
           ),
         ),
         child: SingleChildScrollView(
+          reverse: true,
           scrollDirection: Axis.vertical,
           child: Form(
             key: formKey,
@@ -486,8 +488,8 @@ class _CadastroState extends State<Cadastro> {
 
                     // registrar2(usuario);
                     // startFirestore();
-                    registrar(usuario);
                     _encontrarCep();
+                    registrar(usuario);
 
                     // user.cep = int.parse(_procurarCepController.text);
                     // final uid = await Provider.of(context).auth.getCurrentUID();

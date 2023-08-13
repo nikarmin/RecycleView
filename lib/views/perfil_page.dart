@@ -106,16 +106,22 @@ class _PerfilState extends State<Perfil> {
 
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
-  var photo;
+  late Image photo;
 
   Future getImage(ImageSource media) async {
     var img = await _picker.pickImage(source: media);
 
     setState(() {
       _image = img;
-      photo = Image.file(File(user!.photoURL.toString()));
+      //photo = Image.file(File(user!.photoURL.toString()));
     });
     await context.read<AuthService>().updateFoto(_image!.path);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    photo = Image.file(File(user!.photoURL.toString()));
   }
 
   Future<void> upload(String path) async {
