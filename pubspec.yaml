@@ -41,5 +41,6 @@ flutter:
     - assets/images/
     - assets/images/background/
     - assets/images/icons/
+    - assets/images/icons_materials/
     
   uses-material-design: true

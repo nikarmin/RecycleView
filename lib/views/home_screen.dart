@@ -4,6 +4,8 @@ import 'package:recycle_view/views/inteligencia_artificial.dart';
 import 'package:recycle_view/views/noticias.dart';
 import 'package:recycle_view/views/pontos.dart';
 
+import 'educacao_ambiental_page.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -17,7 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
     BemVindoPage(),
     InteligenciaArtificial(),
     Noticias(),
-    PontosPage()
+    PontosPage(),
+    EducacaoAmbientalPage()
   ];
 
   void _onItemTapped(int index) {
