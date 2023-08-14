@@ -19,9 +19,12 @@ class TelaInicial extends StatelessWidget {
         //       height: 190,
         //     ),
         //   ),
-        //   Container(
-        //     child: Image.asset(
-        //       'assets/images/recycle-bin.png',
+        //   Align(
+        //     alignment: Alignment.bottomRight,
+        //     child: Container(
+        //       child: Image.asset(
+        //         'assets/images/recycle-bin.png',
+        //       ),
         //     ),
         //   ),
         // ]),
@@ -31,11 +34,12 @@ class TelaInicial extends StatelessWidget {
               image: AssetImage('assets/images/wave.png'),
               fit: BoxFit.fitWidth,
               alignment: Alignment.topCenter)),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      width: double.infinity,
+      height: double.infinity,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
               height: 70,
@@ -123,6 +127,27 @@ class TelaInicial extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
+            // Stack(children: <Widget>[
+            //   Expanded(
+            //     child: SizedBox(
+            //       child: Container(
+            //         child: Image.asset('assets/images/ellipse.png'),
+            //       ),
+            //     ),
+            //   ),
+            //   Container(
+            //     //alignment: AlignmentDirectional.bottomEnd,
+            //     child: Image.asset(
+            //       'assets/images/leave.png',
+            //       height: 190,
+            //     ),
+            //   ),
+            //   Container(
+            //     child: Image.asset(
+            //       'assets/images/recycle-bin.png',
+            //     ),
+            //   ),
+            // ]),
           ],
         ),
       ),

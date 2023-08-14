@@ -80,13 +80,12 @@ class _LoginState extends State<Login> {
           ),
         ),
         child: SingleChildScrollView(
-          reverse: true,
           scrollDirection: Axis.vertical,
           child: Form(
             key: formKey,
             child: Column(children: [
               SizedBox(
-                height: 200,
+                height: 180,
               ),
               ElevatedButton(
                 onPressed: () {},
