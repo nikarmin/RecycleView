@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:recycle_view/views/education/plastico_page.dart';
 
 class EducacaoAmbientalPage extends StatelessWidget {
   @override
@@ -34,42 +36,53 @@ class EducacaoAmbientalPage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage('assets/images/background/pageuau.png')),
-        ),
+        // decoration: const BoxDecoration(
+        //   image: DecorationImage(
+        //       fit: BoxFit.fill,
+        //       image: AssetImage('assets/images/background/pageuau.png')),
+        // ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 150,
-                width: 250,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/ed_ambiental.png'),
-                      fit: BoxFit.contain),
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Column(children: [
+              // Container(
+              //   height: 150,
+              //   width: 250,
+              //   decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         image: AssetImage('assets/images/ed_ambiental.png'),
+              //         fit: BoxFit.contain),
+              //   ),
+              // ),
+              SizedBox(height: 5),
+              Column(children: [
                 Padding(
                   padding:
                       EdgeInsets.only(left: 0, bottom: 5, right: 0, top: 10),
-                  child: Text("Educação Ambiental",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.black),
-                      textAlign: TextAlign.center),
+                  child: Text(
+                    'EDUCAÇÃO AMBIENTAL',
+                    style: GoogleFonts.jost(
+                        textStyle: TextStyle(
+                            fontSize: 30,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  // child: Text("Educação Ambiental",
+                  //     style: TextStyle(
+                  //         fontWeight: FontWeight.bold,
+                  //         fontSize: 30,
+                  //         color: Colors.black),
+                  //     textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding:
                       EdgeInsets.only(left: 18, bottom: 5, right: 18, top: 0),
                   child: Text(
                     '"Entendem-se por educação ambiental os processos por meio dos quais o indivíduo e a coletividade constroem valores sociais, conhecimentos, habilidades, atitudes e competências voltadas para a conservação do meio ambiente, bem de uso comum do povo, essencial à sadia qualidade de vida e sua sustentabilidade." Política Nacional de Educação Ambiental - Lei nº 9795/1999, Art 1º.',
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: GoogleFonts.jost(
+                        textStyle:
+                            TextStyle(fontSize: 18, color: Colors.black)),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ]),
@@ -86,7 +99,7 @@ class EducacaoAmbientalPage extends StatelessWidget {
                         title: Text.rich(TextSpan(children: [
                           TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
                           TextSpan(
-                              text: "PAPEL",
+                              text: "PAPEL ",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -110,33 +123,43 @@ class EducacaoAmbientalPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 height: 150,
-                child: const Card(
-                    color: Colors.red,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "PLÁSTICO",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 30)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/plastic-bottle.png'),
-                            color: Colors.white,
-                            size: 30,
-                          ))
-                        ])),
-                        subtitle: Text("\nGarrafas PET, embalagens, sacolas...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PlasticoPage()));
+                  },
+                  child: const Card(
+                      color: Colors.red,
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "PLÁSTICO ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 30)),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/plastic-bottle.png'),
+                              color: Colors.white,
+                              size: 30,
+                            ))
+                          ])),
+                          subtitle: Text(
+                              "\nGarrafas PET, embalagens, sacolas...",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18)),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
               Container(

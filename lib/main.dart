@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
@@ -30,7 +31,7 @@ class MainApp extends StatelessWidget {
 // Tela inicial (colocar em outra classe)
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       color: Color.fromRGBO(233, 233, 233, 1),
       debugShowCheckedModeBanner: false,
       home: AuthCheck(),

@@ -463,49 +463,6 @@ class _PerfilState extends State<Perfil> {
                 topLeft: Radius.circular(30.0),
                 topRight: Radius.circular(30.0),
               ),
-              child: BottomNavigationBar(
-                currentIndex: 0,
-                type: BottomNavigationBarType.fixed,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                selectedItemColor: Color.fromARGB(255, 89, 165, 128),
-                onTap: (value) {},
-                items: [
-                  BottomNavigationBarItem(
-                    icon: ImageIcon(
-                      AssetImage(
-                        'assets/images/icons/home.png',
-                      ),
-                      size: 50,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(
-                        AssetImage('assets/images/icons/camera.png'),
-                        size: 50,
-                      ),
-                      label: ''),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(
-                        AssetImage('assets/images/icons/newspaper.png'),
-                        size: 50,
-                      ),
-                      label: ''),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(
-                        AssetImage('assets/images/icons/pin.png'),
-                        size: 50,
-                      ),
-                      label: ''),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(
-                        AssetImage('assets/images/icons/planet-ecologic.png'),
-                        size: 50,
-                      ),
-                      label: ''),
-                ],
-              ),
             ),
           ),
         ));

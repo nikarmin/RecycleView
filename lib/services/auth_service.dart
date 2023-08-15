@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'dart:io' as io;
 
 import '../models/usuario.dart';
 
@@ -76,8 +79,15 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+// final bytes = io.File(imageBytes.path).readAsBytesSync();
+
+// String img64 = base64Encode(bytes);
+
   updateFoto(String url) async {
     try {
+      final bytes = io.File(url).readAsBytesSync();
+      String img64 = base64Encode(bytes);
+      print(img64);
       await usuario?.updatePhotoURL(url);
       _getUser();
       print(usuario?.photoURL);

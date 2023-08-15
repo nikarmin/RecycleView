@@ -8,12 +8,14 @@ environment:
 
 dependencies:
   camera: ^0.10.5+3
+  camera_camera: ^3.0.0
   cloud_firestore: ^4.8.4
   firebase_auth: ^4.7.1
   firebase_core: ^2.15.0
   firebase_storage: ^11.2.5
   flutter:
     sdk: flutter
+  get: ^4.6.5
   google_fonts: ^5.1.0
   google_sign_in: ^6.1.4
   graphic: ^2.2.0
