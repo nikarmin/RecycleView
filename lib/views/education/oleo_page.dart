@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OleoPage extends StatelessWidget {
   @override
@@ -50,10 +51,11 @@ class OleoPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "COMO DESCARTAR",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -85,8 +87,9 @@ class OleoPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  O ideal é ser armazenado já frio em garrafas PET (garrafas de vidro podem quebrar!);",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -102,12 +105,13 @@ class OleoPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Através da reciclagem pode produzir sabão, ração animal, tinta, adesivos, detergente, glicerina, lubrificantes e muitos outros.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                     ]),
-                SizedBox(height: 35),
+                SizedBox(height: 20),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -117,10 +121,11 @@ class OleoPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "IMPACTOS AMBIENTAIS",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -129,8 +134,9 @@ class OleoPage extends StatelessWidget {
                             text: TextSpan(
                                 text:
                                     "Através da reciclagem de óleo de cozinha temos um menor impacto ambiental, pois, o óleo é altamente poluente e ses descarte incorreto é capaz de gerar uma série de malefícios ao meio ambiente, como a impermeabilização e a contaminação do solo, entupimento de redes de esgoto e poluição dos lençóis freáticos, além de em sua decomposição produzir gás metano, gás inodoro e incolor, que é emitido na atmosfera, formando uma mistura altamente explosiva.",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
                       ),
                     ]),
                 SizedBox(height: 20)
@@ -152,49 +158,6 @@ class OleoPage extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: 0,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedItemColor: Color.fromARGB(255, 89, 165, 128),
-            onTap: (value) {},
-            items: [
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    'assets/images/icons/home.png',
-                  ),
-                  size: 50,
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/camera.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/newspaper.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/pin.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/planet-ecologic.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-            ],
           ),
         ),
       ),

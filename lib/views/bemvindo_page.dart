@@ -69,7 +69,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
                   textAlign: TextAlign.justify,
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 30),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
@@ -87,8 +87,8 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         children: [
                           Image.asset(
                             'assets/images/icons/camera.png',
-                            height: 40,
-                            width: 40,
+                            height: 30,
+                            width: 30,
                           ),
                           SizedBox(
                             width: 10,
@@ -121,8 +121,8 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         children: [
                           Image.asset(
                             'assets/images/icons/newspaper.png',
-                            height: 40,
-                            width: 40,
+                            height: 30,
+                            width: 30,
                           ),
                           SizedBox(
                             width: 10,
@@ -155,8 +155,8 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         children: [
                           Image.asset(
                             'assets/images/icons/pin.png',
-                            height: 40,
-                            width: 40,
+                            height: 30,
+                            width: 30,
                           ),
                           SizedBox(
                             width: 10,
@@ -188,9 +188,9 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/images/icons/planet-ecologic.png',
-                            height: 40,
-                            width: 40,
+                            'assets/images/icons/earth-day.png',
+                            height: 30,
+                            width: 30,
                           ),
                           SizedBox(
                             width: 10,

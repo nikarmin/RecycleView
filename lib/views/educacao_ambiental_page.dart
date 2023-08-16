@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:recycle_view/views/bemvindo_page.dart';
+import 'package:recycle_view/views/education/metal_page.dart';
+import 'package:recycle_view/views/education/oleo_page.dart';
+import 'package:recycle_view/views/education/organico_page.dart';
 import 'package:recycle_view/views/education/plastico_page.dart';
 
-class EducacaoAmbientalPage extends StatelessWidget {
+import 'package:recycle_view/views/education/papel_page.dart';
+import 'package:recycle_view/views/education/vidro_page.dart';
+import 'package:recycle_view/views/home_screen.dart';
+
+class EducacaoAmbientalPage extends StatefulWidget {
+  const EducacaoAmbientalPage({super.key});
+
+  @override
+  State<EducacaoAmbientalPage> createState() => _EducacaoAmbientalPageState();
+}
+
+class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
+  TextEditingController _search = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,19 +29,10 @@ class EducacaoAmbientalPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         actions: [
           IconButton(
             icon: const ImageIcon(
-              AssetImage('assets/images/icons/loupe.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
               size: 20,
             ),
@@ -36,26 +44,42 @@ class EducacaoAmbientalPage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        // decoration: const BoxDecoration(
-        //   image: DecorationImage(
-        //       fit: BoxFit.fill,
-        //       image: AssetImage('assets/images/background/pageuau.png')),
-        // ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Container(
-              //   height: 150,
-              //   width: 250,
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //         image: AssetImage('assets/images/ed_ambiental.png'),
-              //         fit: BoxFit.contain),
-              //   ),
-              // ),
-              SizedBox(height: 5),
+              SizedBox(height: 15),
               Column(children: [
+                Container(
+                  width: MediaQuery.sizeOf(context).width / 1.1,
+                  child: TextField(
+                    controller: _search,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color.fromRGBO(243, 243, 243, 1),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          borderSide: BorderSide(
+                            style: BorderStyle.none,
+                            width: 0,
+                          )),
+                      prefixIcon: IconButton(
+                        icon: Icon(Icons.search, color: Colors.grey),
+                        onPressed: () {
+                          // Perform the search here
+                        },
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.clear, color: Colors.grey),
+                        onPressed: () => _search.clear(),
+                      ),
+                      hintText: 'Jornais, papéis, pilhas...',
+                      hintStyle: GoogleFonts.jost(
+                          textStyle:
+                              TextStyle(fontSize: 17, color: Colors.black)),
+                    ),
+                  ),
+                ),
                 Container(
                     child: Image.asset(
                   'assets/images/image_education.png',
@@ -64,7 +88,7 @@ class EducacaoAmbientalPage extends StatelessWidget {
                 )),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: 0, bottom: 5, right: 0, top: 10),
+                      EdgeInsets.only(left: 0, bottom: 20, right: 0, top: 20),
                   child: Text(
                     'EDUCAÇÃO AMBIENTAL',
                     style: GoogleFonts.jost(
@@ -73,12 +97,6 @@ class EducacaoAmbientalPage extends StatelessWidget {
                             color: Colors.black,
                             fontWeight: FontWeight.bold)),
                   ),
-                  // child: Text("Educação Ambiental",
-                  //     style: TextStyle(
-                  //         fontWeight: FontWeight.bold,
-                  //         fontSize: 30,
-                  //         color: Colors.black),
-                  //     textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding:
@@ -93,37 +111,46 @@ class EducacaoAmbientalPage extends StatelessWidget {
                 ),
               ]),
               const SizedBox(height: 10),
-              Container(
-                margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: const Card(
-                    color: Colors.lightBlueAccent,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "PAPEL ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 30)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/paper-plane.png'),
-                            color: Colors.white,
-                            size: 30,
-                          ))
-                        ])),
-                        subtitle: Text(
-                            "\nJornais, revistas, caixas de papelão...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PapelPage()));
+                },
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                  height: 150,
+                  child: Card(
+                      color: Colors.lightBlueAccent,
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "PAPEL ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/paper-plane.png'),
+                              color: Colors.white,
+                              size: 30,
+                            ))
+                          ])),
+                          subtitle: Text(
+                              "\nJornais, revistas, caixas de papelão...",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20))),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
               Container(
@@ -136,7 +163,7 @@ class EducacaoAmbientalPage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => PlasticoPage()));
                   },
-                  child: const Card(
+                  child: Card(
                       color: Colors.red,
                       elevation: 7,
                       shape: RoundedRectangleBorder(
@@ -147,10 +174,11 @@ class EducacaoAmbientalPage extends StatelessWidget {
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "PLÁSTICO ",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 30)),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
                             WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
@@ -161,8 +189,9 @@ class EducacaoAmbientalPage extends StatelessWidget {
                           ])),
                           subtitle: Text(
                               "\nGarrafas PET, embalagens, sacolas...",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18)),
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20))),
                           trailing: Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
@@ -171,71 +200,89 @@ class EducacaoAmbientalPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 height: 150,
-                child: const Card(
-                    color: Colors.amber,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "METAL ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 30)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/metals.png'),
-                            color: Colors.white,
-                            size: 30,
-                          ))
-                        ])),
-                        subtitle: Text("\nLatas, materiais de alumínio...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MetalPage()));
+                  },
+                  child: Card(
+                      color: Colors.amber,
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "METAL ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/metals.png'),
+                              color: Colors.white,
+                              size: 30,
+                            ))
+                          ])),
+                          subtitle: Text("\nLatas, materiais de alumínio...",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20))),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 height: 150,
-                child: const Card(
-                    color: Color.fromARGB(255, 24, 87, 28),
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "VIDRO ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 30)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/bottle.png'),
-                            color: Colors.white,
-                            size: 30,
-                          ))
-                        ])),
-                        subtitle: Text("\nGarradas, copos, potes de vidro...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => VidroPage()));
+                  },
+                  child: Card(
+                      color: Color.fromARGB(255, 24, 87, 28),
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "VIDRO ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/bottle.png'),
+                              color: Colors.white,
+                              size: 30,
+                            ))
+                          ])),
+                          subtitle: Text("\nGarradas, copos, potes de vidro...",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20))),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: const Card(
+                height: 170,
+                child: Card(
                     color: Colors.grey,
                     elevation: 7,
                     shape: RoundedRectangleBorder(
@@ -245,10 +292,11 @@ class EducacaoAmbientalPage extends StatelessWidget {
                           TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
                           TextSpan(
                               text: "MATERIAIS ELETRÔNICOS ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 25)),
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white))),
                           WidgetSpan(
                               child: ImageIcon(
                             AssetImage(
@@ -258,8 +306,9 @@ class EducacaoAmbientalPage extends StatelessWidget {
                           ))
                         ])),
                         subtitle: Text("\nCelulares, computadores, pilhas...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 20))),
                         trailing: Icon(Icons.arrow_forward_ios),
                         iconColor: Colors.white)),
               ),
@@ -267,72 +316,93 @@ class EducacaoAmbientalPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 height: 150,
-                child: const Card(
-                    color: Color.fromARGB(255, 246, 188, 43),
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "ÓLEO ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 30)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/oil-bottle.png'),
-                            color: Colors.white,
-                            size: 30,
-                          ))
-                        ])),
-                        subtitle: Text("\nÓleo de cozinha...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => OleoPage()));
+                  },
+                  child: Card(
+                      color: Color.fromARGB(255, 246, 188, 43),
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "ÓLEO ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/oil-bottle.png'),
+                              color: Colors.white,
+                              size: 30,
+                            ))
+                          ])),
+                          subtitle: Text("\nÓleo de cozinha...",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20))),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: const Card(
-                    color: Color.fromARGB(255, 72, 47, 42),
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "ORGÂNICOS ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 30)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/apple.png'),
-                            color: Colors.white,
-                            size: 30,
-                          ))
-                        ])),
-                        subtitle: Text(
-                            "\nRestos de alimentos, folhas, sementes, restos de carne...",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+                height: 160,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => OrganicoPage()));
+                  },
+                  child: Card(
+                      color: Color.fromARGB(255, 72, 47, 42),
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "ORGÂNICOS ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/apple.png'),
+                              color: Colors.white,
+                              size: 30,
+                            ))
+                          ])),
+                          subtitle: Text(
+                              "\nRestos de alimentos, folhas, sementes, restos de carne...",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20))),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
+              /*
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 height: 150,
-                child: const Card(
+                child: Card(
                     color: Colors.white,
                     elevation: 7,
                     shape: RoundedRectangleBorder(
@@ -342,10 +412,12 @@ class EducacaoAmbientalPage extends StatelessWidget {
                           TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
                           TextSpan(
                               text: "RESÍDUOS HOSPITALARES ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 25)),
+                              style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors
+                                            .white))),
                           WidgetSpan(
                               child: ImageIcon(
                             AssetImage(
@@ -390,10 +462,12 @@ class EducacaoAmbientalPage extends StatelessWidget {
                         subtitle: Text(
                             "\nResíduos utilizados em usinas nucleares...",
                             style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
+                                GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 17))),
                         trailing: Icon(Icons.arrow_forward_ios),
                         iconColor: Colors.white)),
-              ),
+              ),*/
             ],
           ),
         ),

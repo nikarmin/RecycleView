@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VidroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -57,10 +58,11 @@ class VidroPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "COMO DESCARTAR",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -74,8 +76,9 @@ class VidroPage extends StatelessWidget {
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text: "  Coleta Seletiva;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -91,8 +94,9 @@ class VidroPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Separar os vidros recicláveis para descarte;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -108,8 +112,9 @@ class VidroPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Recipientes em geral dever ser higienizados para evitar a proliferação de micro-organismos e pragas;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -125,8 +130,9 @@ class VidroPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Esses recipientes dever estar sempre vazios;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -142,8 +148,9 @@ class VidroPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Embalagens e recipientes secos, não precisam ser lavados;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -159,8 +166,9 @@ class VidroPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Retire das embalagens rótulos e acessórios de papel ou plástico, se houver;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                     ]),
@@ -173,10 +181,11 @@ class VidroPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "ATENÇÃO",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 24, 87, 28),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromARGB(255, 24, 87, 28),
+                                        fontSize: 17)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -185,11 +194,12 @@ class VidroPage extends StatelessWidget {
                             text: TextSpan(
                                 text:
                                     "No caso do vidro, se estiver quebrado, é preciso ter um cuidado extra e fazer uma “embalagem especial” para não ferir os trabalhadores que vierem a manuseá-lo. Se os cacos de vidro forem pequenos, você pode colocá-los dentro de uma garrafa PET, caixa de papelão ou jornal. Lembre-se de escrever ou colar um papel onde informe que ali contém vidro, assim, ninguém se machucará ao manusear.",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
                       ),
                     ]),
-                SizedBox(height: 35),
+                SizedBox(height: 20),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -199,10 +209,11 @@ class VidroPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "IMPACTOS AMBIENTAIS",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -211,8 +222,9 @@ class VidroPage extends StatelessWidget {
                             text: TextSpan(
                                 text:
                                     "Através da reciclagem do vidro temos um menor impacto ambiental, pois, os vidros não são biodegradáveis e permanecem na natureza por cerca de dez mil anos, por isso a importância do descarte correto.",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
                       ),
                     ]),
                 SizedBox(height: 20),
@@ -226,10 +238,11 @@ class VidroPage extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(
                                   text: "RECICLÁVEIS",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold))),
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black)))),
                         ),
                       )
                     ]),
@@ -245,8 +258,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Tampas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -257,8 +271,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Potes',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -269,8 +284,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Frascos em geral',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -281,8 +297,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Copos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -298,8 +315,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Garrafas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -310,8 +328,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Embalagens',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -322,8 +341,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Potes',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -334,8 +354,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cacos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -350,10 +371,11 @@ class VidroPage extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(
                                   text: "NÃO RECICLÁVEIS",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold))),
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black)))),
                         ),
                       )
                     ]),
@@ -369,8 +391,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Espelho',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -381,8 +404,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cristal',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -393,8 +417,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Ampolas de medicamentos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -410,8 +435,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Louças',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -422,8 +448,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cerâmicas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -434,8 +461,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Lâmpadas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -451,8 +479,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Vidros temperados planos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -463,8 +492,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Tubos de televisão',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -480,8 +510,9 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Vidros de janelas de automóveis',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -497,10 +528,14 @@ class VidroPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Utensílios domésticos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ]))),
 

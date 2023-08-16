@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MetalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -22,7 +23,7 @@ class MetalPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {},
@@ -33,16 +34,15 @@ class MetalPage extends StatelessWidget {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/background/metal_page.png')),
-          ),
           child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                SizedBox(height: 160),
+                Image.asset(
+                  'assets/images/wave_metal.png',
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -51,10 +51,11 @@ class MetalPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "COMO DESCARTAR",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -67,8 +68,9 @@ class MetalPage extends StatelessWidget {
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text: "  Coleta Seletiva;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -83,8 +85,9 @@ class MetalPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Separar os metais recicláveis para descarte;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -99,8 +102,9 @@ class MetalPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Recipientes em geral dever ser higienizados para evitar a proliferação de micro-organismos e pragas;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -115,8 +119,9 @@ class MetalPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Esses recipientes dever estar sempre vazios;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -131,8 +136,9 @@ class MetalPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Embalagens e recipientes secos, não precisam ser lavados;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -147,8 +153,9 @@ class MetalPage extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Retire das embalagens rótulos e acessórios de papel ou plástico, se houver.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                     ]),
@@ -162,10 +169,11 @@ class MetalPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "IMPACTOS AMBIENTAIS",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -174,8 +182,9 @@ class MetalPage extends StatelessWidget {
                             text: TextSpan(
                                 text:
                                     "Através da reciclagem de metais temos um menor impacto ambiental, pois, ao contrário de outros materiais, os metais podem ser reciclados infitas vezes sem perderem suas propriedades, ou seja, uma simples peça de lata pode se tornar muitas outras coisas, desde uma panela a uma peça de avião, além disso, outro beneficio da reciclagem é redução de extração de minérios, extração essa que pode levar a destruição de vegetações, poluição de rios e ar, risco de rompimento de barragens e muitos outros. ",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
                       ),
                     ]),
                 SizedBox(height: 20),
@@ -189,10 +198,11 @@ class MetalPage extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(
                                   text: "RECICLÁVEIS",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold))),
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black)))),
                         ),
                       )
                     ]),
@@ -208,8 +218,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Latas de alumínio e aço',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -220,8 +231,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Tampas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -232,8 +244,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Ferragens',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -249,8 +262,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Esquadrias',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -261,8 +275,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Canos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -273,8 +288,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Molduras de quadros',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -290,8 +306,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Latas de alimento',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -302,8 +319,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Alumínio',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -314,8 +332,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Tampa de iogurte',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -331,8 +350,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Folhas de alumínio',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -343,8 +363,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cápsulas de café',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -355,8 +376,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Arame',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -371,9 +393,10 @@ class MetalPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: EdgeInsets.all(5),
-                            child: Text('FFio de cobre',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                            child: Text('Fio de cobre',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -384,8 +407,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Panela sem cabo',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -400,10 +424,11 @@ class MetalPage extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(
                                   text: "NÃO RECICLÁVEIS",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold))),
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black)))),
                         ),
                       )
                     ]),
@@ -419,8 +444,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Clipes',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -431,8 +457,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Grampos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -443,8 +470,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Esponjas de aço',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -460,8 +488,9 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Latas de tinta e verniz',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -472,11 +501,15 @@ class MetalPage extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Latas de aerossol',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                )
               ]))),
 
 /////////////////////////////////////////////////////////////////////////////

@@ -237,7 +237,7 @@ class CadastroDePontosPage extends StatelessWidget {
                     ),
                   ]))),
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -254,7 +254,7 @@ class CadastroDePontosPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {},
@@ -276,49 +276,6 @@ class CadastroDePontosPage extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: 0,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedItemColor: Color.fromARGB(255, 89, 165, 128),
-            onTap: (value) {},
-            items: [
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    'assets/images/icons/home.png',
-                  ),
-                  size: 50,
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/camera.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/newspaper.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/pin.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/planet-ecologic.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-            ],
           ),
         ),
       ),

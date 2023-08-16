@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class Usuario {
   //final String uid;
   final String nome;
@@ -7,8 +9,7 @@ class Usuario {
   final String? urlFoto;
 
   Usuario({
-    this.urlFoto,
-    //required this.uid,
+    required this.urlFoto,
     required this.nome,
     required this.email,
     required this.senha,
@@ -21,6 +22,7 @@ class Usuario {
         'email': email,
         'senha': senha,
         'cep': cep,
+        'urlFoto': urlFoto
       };
 
   Usuario.fromMap(Map<String, dynamic> map)

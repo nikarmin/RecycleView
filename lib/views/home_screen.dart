@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/inteligencia_artificial.dart';
+import 'package:recycle_view/views/mapa.dart';
 import 'package:recycle_view/views/noticias.dart';
-import 'package:recycle_view/views/pontos.dart';
 
 import 'educacao_ambiental_page.dart';
 
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     BemVindoPage(),
     InteligenciaArtificial(),
     Noticias(),
-    PontosPage(),
+    MapaPage(),
     EducacaoAmbientalPage()
   ];
 

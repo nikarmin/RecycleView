@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'dart:js';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -85,17 +84,30 @@ class AuthService extends ChangeNotifier {
 
 // String img64 = base64Encode(bytes);
 
-  updateFoto(String url) async {
-    try {
-      final bytes = io.File(url).readAsBytesSync();
-      String img64 = base64Encode(bytes);
-      print("IMAGEMMMMMMMMMMM: " + img64);
-      await usuario?.updatePhotoURL('data:image/jpeg;base64,' + img64);
-      _getUser();
-      print(usuario?.photoURL);
-    } on FirebaseException catch (e) {
-      throw Exception(e.message);
-    }
+  updateFoto(Uint8List? url) async {
+    var collection = _db.collection('usuarios');
+    await collection.doc(usuario?.uid).update({'urlFoto': url.toString()});
+
+    _getUser();
+    // var collection = _db
+    //     .collection('usuarios')
+    //     .doc(usuario?.uid)
+    //     .update({'urlFoto': url.toString()});
+    // try {
+    //   print("IMAGEMMMMMMMMMMM: " + url.toString());
+    //   await usuario?.updatePhotoURL(url.toString());
+    //   _getUser();
+    //   print(usuario?.photoURL);
+    // } on FirebaseException catch (e) {
+    //   throw Exception(e.message);
+    // }
+  }
+
+  pegarFoto() async {
+    var collection = _db.collection('usuarios');
+    var doc = await collection.doc(usuario?.uid).get();
+    var url = doc.data()!['urlFoto'];
+    return url;
   }
 
   adicionarCep(int cep) async {}

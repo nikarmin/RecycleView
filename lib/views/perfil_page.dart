@@ -12,6 +12,8 @@ import 'package:recycle_view/services/auth_service.dart';
 import 'package:recycle_view/views/tela_inicial.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../services/store_data.dart';
+
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
 
@@ -111,13 +113,11 @@ class _PerfilState extends State<Perfil> {
   late Image photo;
 
   Future getImage(ImageSource media) async {
-    var img = await _picker.pickImage(source: media);
+    _image = await _picker.pickImage(source: media);
 
-    setState(() {
-      _image = img;
-      //photo = Image.file(File(user!.photoURL.toString()));
-    });
-    await context.read<AuthService>().updateFoto(_image!.path);
+    if (_image != null) {
+      return await _image?.readAsBytes();
+    }
   }
 
   @override
@@ -136,6 +136,8 @@ class _PerfilState extends State<Perfil> {
       throw Exception('Erro no upload: ${e.code}');
     }
   }
+
+  Uint8List? _bytesImage;
 
   void myAlert() {
     showDialog(
@@ -169,10 +171,18 @@ class _PerfilState extends State<Perfil> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateColor.resolveWith(
                             (states) => Color.fromRGBO(51, 111, 93, 1))),
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.pop(context);
-                      getImage(ImageSource.camera);
-                      context.read<AuthService>().updateFoto(_image!.path);
+                      Uint8List img = await getImage(ImageSource.gallery);
+                      // Uint8List img = await getImage(ImageSource.gallery);
+                      setState(() {
+                        _bytesImage = img;
+                      });
+
+                      await StoreData().saveData(file: _bytesImage!);
+
+                      //await StoreData().saveData(file: _bytesImage!);
+                      //context.read<AuthService>().updateFoto(_bytesImage);
                     },
                     child: Row(
                       children: [
@@ -189,6 +199,10 @@ class _PerfilState extends State<Perfil> {
         });
   }
 
+  saveProfile() async {
+    String resp = await StoreData().saveData(file: _bytesImage!);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<_PieData> data = [
@@ -196,16 +210,9 @@ class _PerfilState extends State<Perfil> {
       _PieData('28', 23, 'Feb'),
     ];
 
-    Codec<String, String> stringToBase64Url = utf8.fuse(base64Url);
-    Uint8List _bytesImage;
-
-    pegarImg(String url) {
-      return _bytesImage = Base64Decoder().convert(url);
-    }
-
     return Scaffold(
         appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
           backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -222,7 +229,7 @@ class _PerfilState extends State<Perfil> {
           actions: [
             IconButton(
               icon: ImageIcon(
-                AssetImage('assets/images/icons/profile.png'),
+                AssetImage('assets/images/icons/account.png'),
                 color: Colors.black,
               ),
               onPressed: () {},
@@ -242,16 +249,17 @@ class _PerfilState extends State<Perfil> {
                   SizedBox(
                     height: 10,
                   ),
-                  user?.photoURL != null
+                  _bytesImage != null
                       ? Stack(children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: ClipOval(
-                                child: Image.memory(
-                              pegarImg(user!.photoURL.toString()),
+                                child: Image.network(
+                              user!.photoURL.toString(),
                               height: 130,
                               width: 130,
                             )),
+
                             //File(user!.photoURL.toString()),
                             // File(stringToBase64Url
                             //     .decode(user!.photoURL.toString())),

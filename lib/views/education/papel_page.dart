@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Aapaper extends StatelessWidget {
+class PapelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -22,7 +23,7 @@ class Aapaper extends StatelessWidget {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {},
@@ -33,11 +34,6 @@ class Aapaper extends StatelessWidget {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          // decoration: BoxDecoration(
-          //   image: DecorationImage(
-          //       fit: BoxFit.fill,
-          //       image: AssetImage('assets/images/background/papel_page.png')),
-          // ),
           child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -56,10 +52,11 @@ class Aapaper extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "COMO DESCARTAR",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -72,8 +69,9 @@ class Aapaper extends StatelessWidget {
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text: "  Coleta Seletiva;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -88,8 +86,9 @@ class Aapaper extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Separar os papéis recicláveis para descarte;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -104,8 +103,9 @@ class Aapaper extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Não incluir papeis sujos, engordurados, encerados ou plastificados;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -120,8 +120,9 @@ class Aapaper extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Guardanapos e papel higiênico, ainda que limpos, não são recicláveis;",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -136,8 +137,9 @@ class Aapaper extends StatelessWidget {
                           TextSpan(
                               text:
                                   "  Para o transporte de papel, o ideal é não amassá-lo, para não afetar as fibras da celulose, nem deteriorar o valor comercial para reciclagem.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16))
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                     ]),
@@ -151,10 +153,11 @@ class Aapaper extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text: "IMPACTOS AMBIENTAIS",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black)))),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -163,8 +166,9 @@ class Aapaper extends StatelessWidget {
                             text: TextSpan(
                                 text:
                                     "Através da reciclagem do papel temos um menor impacto ambiental, pois, a fabricação do papel afeta o meio ambiente de várias maneiras, com emissões de gases do efeito estufa, desmatamento em massa de florestas e poluição da água e ar. ",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
                       ),
                     ]),
                 SizedBox(height: 20),
@@ -178,10 +182,11 @@ class Aapaper extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(
                                   text: "RECICLÁVEIS",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold))),
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black)))),
                         ),
                       )
                     ]),
@@ -197,8 +202,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Jornais',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -209,8 +215,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Revistas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -221,8 +228,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cadernos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -233,8 +241,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Apostilas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -245,8 +254,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Caixas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -262,8 +272,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Sacos de papel',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -274,8 +285,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papelão',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -286,8 +298,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cartões',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -298,8 +311,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Envelopes',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -315,8 +329,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Livros',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -327,8 +342,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Cartolinas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -339,8 +355,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Folhas de caderno',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -351,8 +368,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Folhetos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -367,10 +385,11 @@ class Aapaper extends StatelessWidget {
                           child: RichText(
                               text: TextSpan(
                                   text: "NÃO RECICLÁVEIS",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold))),
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black)))),
                         ),
                       )
                     ]),
@@ -386,8 +405,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Adesivos',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -398,8 +418,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Celofane',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -410,8 +431,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Etiquetas',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -422,8 +444,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Fita crepe',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -439,8 +462,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papel carbono',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -451,8 +475,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papéis de extrato bancário',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -468,8 +493,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Fotografias',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -480,8 +506,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papel vegetal',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -492,8 +519,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papéis metalizados',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -509,8 +537,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papel toalha',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -521,8 +550,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papel higiênico',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
@@ -538,8 +568,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Fotografias',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -550,8 +581,9 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papel vegetal',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                     Card(
                         shape: RoundedRectangleBorder(
@@ -562,11 +594,13 @@ class Aapaper extends StatelessWidget {
                         child: Container(
                             padding: EdgeInsets.all(5),
                             child: Text('Papéis metalizados',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)))),
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
                     SizedBox(width: 2),
                   ],
                 ),
+                SizedBox(height: 20),
               ]))),
 
 /////////////////////////////////////////////////////////////////////////////

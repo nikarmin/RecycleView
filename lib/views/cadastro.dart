@@ -484,6 +484,7 @@ class _CadastroState extends State<Cadastro> {
                         nome: nome.text,
                         email: email.text,
                         senha: senha.text,
+                        urlFoto: '',
                         cep: int.parse(_procurarCepController.text));
 
                     // registrar2(usuario);
@@ -541,22 +542,6 @@ class _CadastroState extends State<Cadastro> {
               SizedBox(
                 height: 15,
               ),
-
-              // FutureBuilder(
-              //     future: Authentication.initializeFirebase(context: context),
-              //     builder: (context, snapshot) {
-              //       if (snapshot.hasError) {
-              //         return Text('Error initializing Firebase');
-              //       } else if (snapshot.connectionState == ConnectionState.done) {
-              //         return GoogleSignInButton();
-              //       }
-              //       return CircularProgressIndicator(
-              //         valueColor: AlwaysStoppedAnimation<Color>(
-              //           Colors.green,
-              //         ),
-              //       );
-              //     },
-              //   ),
             ]),
           ),
         ));
