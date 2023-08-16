@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:js';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -71,7 +72,7 @@ class AuthService extends ChangeNotifier {
       _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('EMAIL NAO ENCONTRADO');
+        //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:  Text('')));
         throw AuthException('Email não encontrado. Cadastre-se.');
       } else if (e.code == 'wrong-password') {
         print('SENHA INCORRETA');
