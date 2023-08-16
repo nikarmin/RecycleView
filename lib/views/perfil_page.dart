@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -194,6 +196,13 @@ class _PerfilState extends State<Perfil> {
       _PieData('28', 23, 'Feb'),
     ];
 
+    Codec<String, String> stringToBase64Url = utf8.fuse(base64Url);
+    Uint8List _bytesImage;
+
+    pegarImg(String url) {
+      return _bytesImage = Base64Decoder().convert(url);
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
@@ -238,11 +247,14 @@ class _PerfilState extends State<Perfil> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: ClipOval(
-                                child: Image.file(
-                              File(user!.photoURL.toString()),
+                                child: Image.memory(
+                              pegarImg(user!.photoURL.toString()),
                               height: 130,
                               width: 130,
                             )),
+                            //File(user!.photoURL.toString()),
+                            // File(stringToBase64Url
+                            //     .decode(user!.photoURL.toString())),
                           ),
                           Positioned(
                             bottom: 2,
