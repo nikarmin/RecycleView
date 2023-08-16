@@ -15,7 +15,7 @@ class _PontosPageState extends State<PontosPage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -24,7 +24,7 @@ class _PontosPageState extends State<PontosPage> {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {

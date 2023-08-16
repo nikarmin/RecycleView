@@ -89,7 +89,6 @@ class AuthService extends ChangeNotifier {
       final bytes = io.File(url).readAsBytesSync();
       String img64 = base64Encode(bytes);
       print("IMAGEMMMMMMMMMMM: " + img64);
-      this.avatarStgRef = _db.storage().ref("pictures" + user.uid);
       await usuario?.updatePhotoURL('data:image/jpeg;base64,' + img64);
       _getUser();
       print(usuario?.photoURL);

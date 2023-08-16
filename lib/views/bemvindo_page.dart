@@ -86,7 +86,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/images/icons/camera-noblur.png',
+                            'assets/images/icons/camera.png',
                             height: 40,
                             width: 40,
                           ),
@@ -120,7 +120,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/images/icons/newspaper-noblur.png',
+                            'assets/images/icons/newspaper.png',
                             height: 40,
                             width: 40,
                           ),
@@ -154,7 +154,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/images/icons/pin-noblur.png',
+                            'assets/images/icons/pin.png',
                             height: 40,
                             width: 40,
                           ),
@@ -188,7 +188,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/images/icons/planet-ecologic-noblur.png',
+                            'assets/images/icons/planet-ecologic.png',
                             height: 40,
                             width: 40,
                           ),
@@ -210,7 +210,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
         ),
       ),
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -222,7 +222,7 @@ class _BemVindoPageState extends State<BemVindoPage> {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {

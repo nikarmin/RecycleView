@@ -36,7 +36,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     return Scaffold(
         backgroundColor: Color.fromRGBO(233, 233, 233, 1),
         appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
           backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -45,7 +45,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
           actions: [
             IconButton(
               icon: ImageIcon(
-                AssetImage('assets/images/icons/profile.png'),
+                AssetImage('assets/images/icons/account.png'),
                 color: Colors.black,
               ),
               onPressed: () {
@@ -59,7 +59,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         body: Container(
           child: Column(
             children: [
-              if(arquivo != null) Anexo(arquivo: arquivo!),
+              if (arquivo != null) Anexo(arquivo: arquivo!),
               ElevatedButton(
                   onPressed: () {
                     Get.to(CameraCamera(onFile: (file) => showPreview(file)));

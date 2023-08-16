@@ -33,16 +33,21 @@ class Aapaper extends StatelessWidget {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/background/papel_page.png')),
-          ),
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //       fit: BoxFit.fill,
+          //       image: AssetImage('assets/images/background/papel_page.png')),
+          // ),
           child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                SizedBox(height: 160),
+                // SizedBox(height: 160),
+                Image.asset(
+                  'assets/images/wave_papel.png',
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

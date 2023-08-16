@@ -48,7 +48,7 @@ class _NoticiasState extends State<Noticias> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
           backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -57,7 +57,7 @@ class _NoticiasState extends State<Noticias> {
           actions: [
             IconButton(
               icon: ImageIcon(
-                AssetImage('assets/images/icons/profile.png'),
+                AssetImage('assets/images/icons/account.png'),
                 color: Colors.black,
               ),
               onPressed: () {

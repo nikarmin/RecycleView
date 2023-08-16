@@ -7,7 +7,7 @@ class EducacaoAmbientalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: const ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
@@ -56,6 +56,12 @@ class EducacaoAmbientalPage extends StatelessWidget {
               // ),
               SizedBox(height: 5),
               Column(children: [
+                Container(
+                    child: Image.asset(
+                  'assets/images/image_education.png',
+                  height: 150,
+                  width: 250,
+                )),
                 Padding(
                   padding:
                       EdgeInsets.only(left: 0, bottom: 5, right: 0, top: 10),

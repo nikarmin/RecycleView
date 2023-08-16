@@ -62,32 +62,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   AssetImage(
                     'assets/images/icons/home.png',
                   ),
-                  size: 50,
+                  size: 30,
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/icons/camera.png'),
-                    size: 50,
+                    size: 35,
                   ),
                   label: ''),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/icons/newspaper.png'),
-                    size: 50,
+                    size: 30,
                   ),
                   label: ''),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/icons/pin.png'),
-                    size: 50,
+                    size: 30,
                   ),
                   label: ''),
               BottomNavigationBarItem(
                   icon: ImageIcon(
-                    AssetImage('assets/images/icons/planet-ecologic.png'),
-                    size: 50,
+                    AssetImage('assets/images/icons/planet-earth.png'),
+                    size: 35,
                   ),
                   label: ''),
             ],

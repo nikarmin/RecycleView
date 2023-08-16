@@ -22,7 +22,7 @@ class VidroPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {},
@@ -33,16 +33,22 @@ class VidroPage extends StatelessWidget {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/background/vidro_page.png')),
-          ),
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //       fit: BoxFit.cover,
+          //       image: AssetImage('assets/images/background/vidro_page.png')),
+          // ),
           child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                SizedBox(height: 190),
+                Image.asset(
+                  'assets/images/wave_vidro.png',
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                ),
+                SizedBox(height: 20),
+                //SizedBox(height: 190),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
