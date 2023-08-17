@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
+import 'package:recycle_view/views/education/materiais_eletronicos_page.dart';
 import 'package:recycle_view/views/education/metal_page.dart';
 import 'package:recycle_view/views/education/oleo_page.dart';
 import 'package:recycle_view/views/education/organico_page.dart';
@@ -29,6 +30,7 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         elevation: 0,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const ImageIcon(
@@ -282,35 +284,44 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
               Container(
                 margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 height: 170,
-                child: Card(
-                    color: Colors.grey,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "MATERIAIS ELETRÔNICOS ",
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MatEletronicosPage()));
+                  },
+                  child: Card(
+                      color: Colors.grey,
+                      elevation: 7,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: ListTile(
+                          title: Text.rich(TextSpan(children: [
+                            TextSpan(
+                                text: "\n", style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                                text: "MATERIAIS ELETRÔNICOS ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))),
+                            WidgetSpan(
+                                child: ImageIcon(
+                              AssetImage(
+                                  'assets/images/icons_materials/light-bulb.png'),
+                              color: Colors.white,
+                              size: 25,
+                            ))
+                          ])),
+                          subtitle: Text("\nCelulares, computadores, pilhas...",
                               style: GoogleFonts.jost(
                                   textStyle: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white))),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/light-bulb.png'),
-                            color: Colors.white,
-                            size: 25,
-                          ))
-                        ])),
-                        subtitle: Text("\nCelulares, computadores, pilhas...",
-                            style: GoogleFonts.jost(
-                                textStyle: TextStyle(
-                                    color: Colors.white, fontSize: 20))),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
+                                      color: Colors.white, fontSize: 20))),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          iconColor: Colors.white)),
+                ),
               ),
               const SizedBox(height: 10),
               Container(

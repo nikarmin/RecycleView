@@ -3,7 +3,6 @@
         android:label="RecycleView"
         android:requestLegacyExternalStorage="true"
         android:name="${applicationName}"
-        <uses-permission android:name="android.permission.INTERNET"/>
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:recycle_view/views/perfil_page.dart';
 
 class MapaPage extends StatefulWidget {
@@ -13,7 +13,6 @@ class MapaPage extends StatefulWidget {
 
 class _MapaPageState extends State<MapaPage> {
   TextEditingController _search = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +22,7 @@ class _MapaPageState extends State<MapaPage> {
           centerTitle: true,
           backgroundColor: Color.fromRGBO(245, 245, 245, 1),
           elevation: 0,
-          leading: null,
+          automaticallyImplyLeading: false,
           actions: [
             IconButton(
               icon: ImageIcon(
@@ -46,7 +45,7 @@ class _MapaPageState extends State<MapaPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: 15),
                 Container(
                   width: MediaQuery.sizeOf(context).width / 1.1,
                   child: TextField(
@@ -77,21 +76,17 @@ class _MapaPageState extends State<MapaPage> {
                     ),
                   ),
                 ),
-                // Stack(children: [
-                //   FlutterMap(
-                //     options: MapOptions(
-                //       center: LatLng(51.509364, -0.128928),
-                //       zoom: 3.2,
-                //     ),
-                //     children: [
-                //       TileLayer(
-                //         urlTemplate:
-                //             'https://tile.openstreetmap.org/12323/324234/324234.png',
-                //         userAgentPackageName: 'com.example.app',
-                //       )
-                //     ],
-                //   ),
-                // ]),
+                Expanded(
+                  child: OpenStreetMapSearchAndPick(
+                      center: LatLong(23, 89),
+                      buttonColor: Colors.blue,
+                      buttonText: 'Set Current Location',
+                      onPicked: (pickedData) {
+                        print(pickedData.latLong.latitude);
+                        print(pickedData.latLong.longitude);
+                        print(pickedData.address);
+                      }),
+                )
               ],
             ),
           ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MatEletronicosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-love.png'),
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -22,21 +23,409 @@ class MatEletronicosPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/icons/profile.png'),
+              AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {},
           ),
         ],
       ),
+/////////////////////////////////////////////////////////////////////////////
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background/eletronicos_page.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
+          height: double.infinity,
+          width: double.infinity,
+          child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                Image.asset(
+                  'assets/images/wave_eletro.png',
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 25, bottom: 20, right: 25),
+                        child: RichText(
+                            text: TextSpan(
+                                text:
+                                    "RESÍDUOS ELETRÔNICOS: COMPUTADORES, PILHAS, BATERIAS...",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold)))),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 25, bottom: 15, right: 25),
+                        child: RichText(
+                            text: TextSpan(
+                                text: "RECICLAGEM",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold)))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 10, right: 25, top: 0),
+                        child: RichText(
+                            text: TextSpan(
+                                text:
+                                    "O processo de reciclagem desses materiais começa nos pontos de coleta de lixo eletrônico. ",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 10, right: 25, top: 0),
+                        child: RichText(
+                            text: TextSpan(
+                                text:
+                                    "Conheça os diversos pontos de coleta espalhados por aí através do nosso aplicativo!",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
+                      ),
+                    ]),
+                SizedBox(height: 25),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 25, bottom: 15),
+                        child: RichText(
+                            text: TextSpan(
+                                text: "COMO DESCARTAR",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold)))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.grey),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Jamais descarte produtos eletrônicos juntamente com o lixo residencial, esse tipo de resíduo contém substâncias tóxicas que contaminam o solo e a água;",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.grey),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Pilhas e baterias: armazená-las separadamente de outros materiais e envolvê-las em plásticos resistentes, assim evitamos possíveis vazamentos;",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.grey),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Consulte em nosso aplicativos quais são os pontos de coleta mais próximos de você.",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                    ]),
+                SizedBox(height: 30),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 25, bottom: 15, right: 25),
+                        child: RichText(
+                            text: TextSpan(
+                                text: "LÂMPADAS",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 25, bottom: 10),
+                        child: RichText(
+                            text: TextSpan(
+                                text: "COMO DESCARTAR",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold)))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.grey),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Nunca se devem descartar lâmpadas em junto da reciclagem de vidro. Uma vez que contêm materiais diferentes, devem ser tratados de forma diferente.",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.grey),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Nem todas as lâmpadas são recicladas da mesma forma, algumas nem sequer são recicláveis. Consulte em nosso aplicativos quais são os pontos de coleta mais próximos de você",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.grey),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Consulte em nosso aplicativos quais são os pontos de coleta mais próximos de você",
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                    ]),
+                SizedBox(height: 20),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 25, bottom: 10, right: 25),
+                        child: RichText(
+                            text: TextSpan(
+                                text: "IMPACTO AMBIENTAL",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold)))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 0, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(
+                                text:
+                                    "A reciclagem de lâmpadas é uma prática fundamental para minimizar os impactos no meio ambiente e proteger a saúde pública.",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 25, bottom: 10, right: 25, top: 0),
+                        child: RichText(
+                            text: TextSpan(
+                                text:
+                                    "Ao serem descartadas no lixo comum, cresce o risco de contaminação do solo, água, plantas e seres vivos pelo mercúrio. Ao realizar a reciclagem dessas lâmpadas, você contribui para a conservação de recursos naturais, a redução da poluição e a promoção de um ambiente mais sustentável.",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 17)))),
+                      ),
+                    ]),
+                SizedBox(height: 15),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 25, bottom: 15),
+                          child: RichText(
+                              text: TextSpan(
+                                  text: "RECICLÁVEIS",
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)))),
+                        ),
+                      )
+                    ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text('Fluorescentes',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text('Economizadores',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text('De descarga',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text("LED'S",
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text('Luminárias',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 25, bottom: 15),
+                          child: RichText(
+                              text: TextSpan(
+                                  text: "NÃO RECICLÁVEIS",
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)))),
+                        ),
+                      )
+                    ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text('Lâmpadas de filamentos',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Text('Halogéneo',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    SizedBox(width: 2),
+                  ],
+                ),
+                SizedBox(height: 20),
+              ]))),
+
+/////////////////////////////////////////////////////////////////////////////
       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -52,49 +441,6 @@ class MatEletronicosPage extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: 0,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedItemColor: Color.fromARGB(255, 89, 165, 128),
-            onTap: (value) {},
-            items: [
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    'assets/images/icons/home.png',
-                  ),
-                  size: 50,
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/camera.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/newspaper.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/pin.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage('assets/images/icons/planet-ecologic.png'),
-                    size: 50,
-                  ),
-                  label: ''),
-            ],
           ),
         ),
       ),

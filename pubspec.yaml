@@ -15,15 +15,14 @@ dependencies:
   firebase_storage: ^11.2.5
   flutter:
     sdk: flutter
-  flutter_map: ^5.0.0
+  flutter_map: ^3.1.0
   get: ^4.6.5
-  google_fonts: ^5.1.0
+  google_fonts: 
   google_sign_in: ^6.1.4
   graphic: ^2.2.0
-  http: ^1.1.0
   image_picker: ^1.0.2
-  latlng: ^1.0.0
   mask_text_input_formatter: ^2.5.0
+  open_street_map_search_and_pick: ^0.1.0
   page_transition: ^2.0.9
   provider: ^6.0.5
   shelf: ^1.4.1
