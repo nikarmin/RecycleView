@@ -45,37 +45,6 @@ class _MapaPageState extends State<MapaPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 15),
-                Container(
-                  width: MediaQuery.sizeOf(context).width / 1.1,
-                  child: TextField(
-                    controller: _search,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color.fromRGBO(243, 243, 243, 1),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
-                            style: BorderStyle.none,
-                            width: 0,
-                          )),
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.search, color: Colors.grey),
-                        onPressed: () {
-                          // Perform the search here
-                        },
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.clear, color: Colors.grey),
-                        onPressed: () => _search.clear(),
-                      ),
-                      hintText: 'Pesquise algum ponto...',
-                      hintStyle: GoogleFonts.jost(
-                          textStyle:
-                              TextStyle(fontSize: 17, color: Colors.black)),
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: OpenStreetMapSearchAndPick(
                       center: LatLong(23, 89),

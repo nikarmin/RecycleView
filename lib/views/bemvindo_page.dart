@@ -58,7 +58,11 @@ class _BemVindoPageState extends State<BemVindoPage> {
                           ))
                     ])),
               ),
-              Image.asset('assets/images/icons/logo-recycleview.png'),
+              Image.asset(
+                'assets/images/icons/logo.png',
+                height: 200,
+                width: 200,
+              ),
               Padding(
                 padding:
                     const EdgeInsets.only(left: 38.0, right: 38.0, top: 15),

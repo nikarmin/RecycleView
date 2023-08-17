@@ -475,6 +475,15 @@ class _CadastroState extends State<Cadastro> {
                 ),
               ),
               SizedBox(
+                height: 5,
+              ),
+              Text('Mínimo de 6 caracteres',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 12,
+                          color: Colors.black.withOpacity(0.3)))),
+              SizedBox(
                 height: 15,
               ),
               ElevatedButton(
