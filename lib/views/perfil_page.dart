@@ -106,34 +106,75 @@ class _PerfilState extends State<Perfil> {
   }
 
   final FirebaseStorage storage = FirebaseStorage.instance;
+  bool uploading = false;
+  double total = 0;
+  List<String> arquivos = [];
+  List<Reference> refs = [];
+  bool loading = true;
   final user = FirebaseAuth.instance.currentUser;
 
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
   late Image photo;
 
-  Future getImage(ImageSource media) async {
-    _image = await _picker.pickImage(source: media);
+  // Future getImage(ImageSource media) async {
+  //   _image = await _picker.pickImage(source: media);
 
-    if (_image != null) {
-      return await _image?.readAsBytes();
+  //   if (_image != null) {
+  //     return await _image?.readAsBytes();
+  //   }
+  // }
+
+  Future<XFile?> getImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    return image;
+  }
+
+  loadImages() async {
+    refs = (await storage.ref('images').listAll()).items;
+    for (var ref in refs) {
+      arquivos.add(await ref.getDownloadURL());
     }
+    setState(() {
+      loading = false;
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    photo = Image.file(File(user!.photoURL.toString()));
+    loadImages();
+    // photo = Image.file(File(user!.photoURL.toString()));
   }
 
-  Future<void> upload(String path) async {
+  Future<UploadTask> upload(String path) async {
     File file = File(path);
 
     try {
       String ref = 'images/img-${DateTime.now().millisecondsSinceEpoch}.jpg';
-      await storage.ref(ref).putFile(file);
+      return storage.ref(ref).putFile(file);
     } on FirebaseException catch (e) {
       throw Exception('Erro no upload: ${e.code}');
+    }
+  }
+
+  pickAndUploadImage() async {
+    XFile? file = await getImage();
+    if (file != null) {
+      UploadTask task = await upload(file.path);
+
+      task.snapshotEvents.listen((TaskSnapshot snapshot) async {
+        if (snapshot.state == TaskState.running) {
+          setState(() {
+            uploading = true;
+            total = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          });
+        } else if (snapshot.state == TaskState.success) {
+          setState(() {
+            uploading = false;
+          });
+        }
+      });
     }
   }
 
@@ -156,7 +197,7 @@ class _PerfilState extends State<Perfil> {
                             (states) => Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () async {
                       Navigator.pop(context);
-                      getImage(ImageSource.gallery);
+                      pickAndUploadImage();
                     },
                     child: Row(
                       children: [
@@ -173,13 +214,14 @@ class _PerfilState extends State<Perfil> {
                             (states) => Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () async {
                       Navigator.pop(context);
-                      Uint8List img = await getImage(ImageSource.gallery);
-                      // Uint8List img = await getImage(ImageSource.gallery);
-                      setState(() {
-                        _bytesImage = img;
-                      });
+                      pickAndUploadImage();
+                      // //Uint8List img = await getImage();
+                      // // Uint8List img = await getImage(ImageSource.gallery);
+                      // setState(() {
+                      //   _bytesImage = img;
+                      // });
 
-                      await StoreData().saveData(file: _bytesImage!);
+                      // await StoreData().saveData(file: _bytesImage!);
 
                       //await StoreData().saveData(file: _bytesImage!);
                       //context.read<AuthService>().updateFoto(_bytesImage);
@@ -249,54 +291,8 @@ class _PerfilState extends State<Perfil> {
                   SizedBox(
                     height: 10,
                   ),
-                  _bytesImage != null
-                      ? Stack(children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: ClipOval(
-                                child: Image.network(
-                              user!.photoURL.toString(),
-                              height: 130,
-                              width: 130,
-                            )),
-
-                            //File(user!.photoURL.toString()),
-                            // File(stringToBase64Url
-                            //     .decode(user!.photoURL.toString())),
-                          ),
-                          Positioned(
-                            bottom: 2,
-                            right: 2,
-                            child: SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor: MaterialStateColor
-                                        .resolveWith((states) =>
-                                            Color.fromARGB(255, 226, 226, 226)),
-                                    padding:
-                                        MaterialStateProperty.all<EdgeInsets>(
-                                            EdgeInsets.zero),
-                                    alignment: Alignment.center,
-                                    shape:
-                                        MaterialStateProperty.all<CircleBorder>(
-                                            CircleBorder())),
-                                onPressed: () {
-                                  myAlert();
-                                },
-                                child: Container(
-                                  child: Icon(
-                                    Icons.brush,
-                                    color: Colors.black,
-                                    size: 15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ])
-                      : Stack(
+                  arquivos.isEmpty
+                      ? Stack(
                           children: [
                             Container(
                               decoration: BoxDecoration(
@@ -344,7 +340,103 @@ class _PerfilState extends State<Perfil> {
                               ),
                             ),
                           ],
-                        ),
+                        )
+                      : Stack(children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ClipOval(
+                                child: Image.network(
+                              arquivos.last,
+                              height: 130,
+                              width: 130,
+                              fit: BoxFit.fill,
+                            )),
+
+                            //File(user!.photoURL.toString()),
+                            // File(stringToBase64Url
+                            //     .decode(user!.photoURL.toString())),
+                          ),
+                          Positioned(
+                            bottom: 2,
+                            right: 2,
+                            child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateColor
+                                        .resolveWith((states) =>
+                                            Color.fromARGB(255, 226, 226, 226)),
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            EdgeInsets.zero),
+                                    alignment: Alignment.center,
+                                    shape:
+                                        MaterialStateProperty.all<CircleBorder>(
+                                            CircleBorder())),
+                                onPressed: () {
+                                  myAlert();
+                                },
+                                child: Container(
+                                  child: Icon(
+                                    Icons.brush,
+                                    color: Colors.black,
+                                    size: 15,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                  // Stack(
+                  //     children: [
+                  //       Container(
+                  //         decoration: BoxDecoration(
+                  //             //shape: BoxShape.rectangle,
+                  //             shape: BoxShape.circle,
+                  //             //borderRadius: BorderRadius.circular(20),
+                  //             color: Color.fromARGB(255, 207, 207, 207)),
+                  //         height: 130,
+                  //         width: 130,
+                  //         child: Icon(
+                  //           Icons.recycling_rounded,
+                  //           size: 80,
+                  //           color: Colors.green[900],
+                  //         ),
+                  //       ),
+                  //       Positioned(
+                  //         bottom: 2,
+                  //         right: 2,
+                  //         child: SizedBox(
+                  //           width: 30,
+                  //           height: 30,
+                  //           child: ElevatedButton(
+                  //             style: ButtonStyle(
+                  //                 backgroundColor:
+                  //                     MaterialStateColor.resolveWith(
+                  //                         (states) => Color.fromARGB(
+                  //                             255, 226, 226, 226)),
+                  //                 padding:
+                  //                     MaterialStateProperty.all<EdgeInsets>(
+                  //                         EdgeInsets.zero),
+                  //                 alignment: Alignment.center,
+                  //                 shape: MaterialStateProperty.all<
+                  //                     CircleBorder>(CircleBorder())),
+                  //             onPressed: () {
+                  //               myAlert();
+                  //             },
+                  //             child: Container(
+                  //               child: Icon(
+                  //                 Icons.brush,
+                  //                 color: Colors.black,
+                  //                 size: 15,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
                   SizedBox(
                     height: 10,
                   ),
