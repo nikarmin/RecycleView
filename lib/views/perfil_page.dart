@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,7 @@ class _PerfilState extends State<Perfil> {
   List<String> arquivos = [];
   List<Reference> refs = [];
   bool loading = true;
-  final user = FirebaseAuth.instance.currentUser;
+  final User? user = FirebaseAuth.instance.currentUser;
 
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
@@ -130,6 +131,8 @@ class _PerfilState extends State<Perfil> {
     return image;
   }
 
+  var img = null;
+
   loadImages() async {
     refs = (await storage.ref('images').listAll()).items;
     for (var ref in refs) {
@@ -144,6 +147,7 @@ class _PerfilState extends State<Perfil> {
   void initState() {
     super.initState();
     loadImages();
+    img = user!.photoURL;
     // photo = Image.file(File(user!.photoURL.toString()));
   }
 
@@ -170,6 +174,18 @@ class _PerfilState extends State<Perfil> {
             total = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           });
         } else if (snapshot.state == TaskState.success) {
+          final String downloadUrl = await snapshot.ref.getDownloadURL();
+          print(user?.uid.toString());
+          user?.updatePhotoURL(downloadUrl);
+          img = user?.photoURL;
+          await FirebaseFirestore.instance
+              .collection("usuarios")
+              .doc(user?.uid)
+              .update({"urlFoto": downloadUrl});
+
+          // await FirebaseFirestore.instance
+          //     .collection("usuarios")
+          //     .add({"urlFoto": downloadUrl});
           setState(() {
             uploading = false;
           });
@@ -291,7 +307,7 @@ class _PerfilState extends State<Perfil> {
                   SizedBox(
                     height: 10,
                   ),
-                  arquivos.isEmpty
+                  img == null
                       ? Stack(
                           children: [
                             Container(
@@ -346,7 +362,7 @@ class _PerfilState extends State<Perfil> {
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: ClipOval(
                                 child: Image.network(
-                              arquivos.last,
+                              /*arquivos.last*/ user!.photoURL.toString(),
                               height: 130,
                               width: 130,
                               fit: BoxFit.fill,

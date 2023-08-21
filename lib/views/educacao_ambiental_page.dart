@@ -10,6 +10,7 @@ import 'package:recycle_view/views/education/plastico_page.dart';
 import 'package:recycle_view/views/education/papel_page.dart';
 import 'package:recycle_view/views/education/vidro_page.dart';
 import 'package:recycle_view/views/home_screen.dart';
+import 'package:recycle_view/views/perfil_page.dart';
 
 class EducacaoAmbientalPage extends StatefulWidget {
   const EducacaoAmbientalPage({super.key});
@@ -36,9 +37,12 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
             icon: const ImageIcon(
               AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
-              size: 20,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Perfil();
+              }));
+            },
           ),
         ],
       ),
@@ -53,35 +57,84 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
               SizedBox(height: 15),
               Column(children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width / 1.1,
-                  child: TextField(
-                    controller: _search,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color.fromRGBO(243, 243, 243, 1),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
-                            style: BorderStyle.none,
-                            width: 0,
-                          )),
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.search, color: Colors.grey),
-                        onPressed: () {
-                          // Perform the search here
-                        },
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.clear, color: Colors.grey),
-                        onPressed: () => _search.clear(),
-                      ),
-                      hintText: 'Jornais, papéis, pilhas...',
-                      hintStyle: GoogleFonts.jost(
-                          textStyle:
-                              TextStyle(fontSize: 17, color: Colors.black)),
-                    ),
-                  ),
-                ),
+                    width: MediaQuery.sizeOf(context).width / 1.1,
+                    child: SearchAnchor(
+                      viewBackgroundColor: Color.fromRGBO(243, 243, 243, 1),
+                      viewSurfaceTintColor: Color.fromRGBO(243, 243, 243, 1),
+                      dividerColor: Color.fromRGBO(243, 243, 243, 1),
+                      isFullScreen: false,
+                      builder:
+                          (BuildContext context, SearchController controller) {
+                        return SearchBar(
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromRGBO(243, 243, 243, 1)),
+                          shadowColor: MaterialStateProperty.all(
+                              Colors.black.withOpacity(0.2)),
+                          controller: controller,
+                          onTap: () {
+                            controller.openView();
+                          },
+                          onChanged: (_) {
+                            controller.openView();
+                          },
+                          leading: IconButton(
+                            icon: Icon(Icons.search, color: Colors.grey),
+                            onPressed: () {
+                              // Perform the search here
+                            },
+                          ),
+                          textStyle: MaterialStateProperty.all(GoogleFonts.jost(
+                              textStyle: TextStyle(
+                                  fontSize: 17, color: Colors.black))),
+                          hintText: 'Jornais, papéis, pilhas...',
+                          hintStyle: MaterialStateProperty.all(GoogleFonts.jost(
+                              textStyle: TextStyle(
+                                  fontSize: 17, color: Colors.black))),
+                        );
+                      },
+                      suggestionsBuilder:
+                          (BuildContext context, SearchController controller) {
+                        return List<ListTile>.generate(5, (int index) {
+                          final String item = 'arrumar... $index';
+                          return ListTile(
+                            title: Text(item),
+                            onTap: () {
+                              setState(() {
+                                controller.closeView(item);
+                              });
+                            },
+                          );
+                        });
+                      },
+                    )),
+                //   child: TextField(
+                //     controller: _search,
+                //     decoration: InputDecoration(
+                //       filled: true,
+                //       fillColor: Color.fromRGBO(243, 243, 243, 1),
+                //       border: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(50),
+                //           borderSide: BorderSide(
+                //             style: BorderStyle.none,
+                //             width: 0,
+                //           )),
+                //       prefixIcon: IconButton(
+                //         icon: Icon(Icons.search, color: Colors.grey),
+                //         onPressed: () {
+                //           // Perform the search here
+                //         },
+                //       ),
+                //       suffixIcon: IconButton(
+                //         icon: Icon(Icons.clear, color: Colors.grey),
+                //         onPressed: () => _search.clear(),
+                //       ),
+                //       hintText: 'Jornais, papéis, pilhas...',
+                //       hintStyle: GoogleFonts.jost(
+                //           textStyle:
+                //               TextStyle(fontSize: 17, color: Colors.black)),
+                //     ),
+                //   ),
+                // ),
                 Container(
                     child: Image.asset(
                   'assets/images/image_education.png',
