@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
+import 'package:recycle_view/views/openstreetmap.dart';
 import 'package:recycle_view/views/perfil_page.dart';
 
 class MapaPage extends StatefulWidget {

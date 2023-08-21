@@ -41,6 +41,8 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     super.initState();
   }
 
+  bool flashOn = false;
+
   loadCamera() async {
     cameras = await availableCameras();
     if (cameras != null) {
@@ -147,7 +149,15 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               height: 60,
               width: 60,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  flashOn = true;
+                  // if (flashOn == true)
+                  //   controller?.setFlashMode(FlashMode.always);
+                  // else {
+                  //   flashOn = false;
+                  //   controller?.setFlashMode(FlashMode.off);
+                  // }
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -194,6 +204,16 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
+                              SizedBox(height: 10),
+                              Container(
+                                height: 4,
+                                width: MediaQuery.of(context).size.width / 4,
+                                //color: Colors.black12,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.black12),
+                              ),
+                              SizedBox(height: 10),
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: Text(
@@ -206,34 +226,39 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 40),
+                              SizedBox(height: 20),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.black,
+                                          color: Color.fromRGBO(51, 111, 93, 1),
                                           shape: BoxShape.circle,
                                         ),
                                         height: 40,
                                         width: 40,
-                                        child: Text(
-                                          '1',
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w600)),
+                                        child: Center(
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ),
                                         )),
                                     SizedBox(
                                       width: 10,
                                     ),
                                     Flexible(
                                       child: Text(
-                                        'Fotos mal iluminadas dificultam o reconhecimento. Certifique-se de usar a '
-                                        'camêra em um lugar bem iluminado. ',
+                                        'Fotos mal iluminadas dificultam o reconhecimento. Certifique-se de usar a camêra em um lugar bem iluminado. ',
                                         style: GoogleFonts.poppins(
                                           textStyle: TextStyle(
                                               fontSize: 16,
@@ -244,15 +269,35 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.circle,
-                                      color: Colors.black,
-                                      size: 50,
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                        decoration: BoxDecoration(
+                                          color: Color.fromRGBO(51, 111, 93, 1),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        height: 40,
+                                        width: 40,
+                                        child: Center(
+                                          child: Text(
+                                            '2',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ),
+                                        )),
+                                    SizedBox(
+                                      width: 10,
                                     ),
                                     Flexible(
                                       child: Text(
@@ -267,15 +312,35 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.circle,
-                                      color: Colors.black,
-                                      size: 50,
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                        decoration: BoxDecoration(
+                                          color: Color.fromRGBO(51, 111, 93, 1),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        height: 40,
+                                        width: 40,
+                                        child: Center(
+                                          child: Text(
+                                            '3',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ),
+                                        )),
+                                    SizedBox(
+                                      width: 10,
                                     ),
                                     Flexible(
                                       child: Text(
