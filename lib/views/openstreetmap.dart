@@ -178,83 +178,83 @@ class _OpenStreetMapSearchAndPickState
               ),
             ],
           )),
-          Positioned.fill(
-              child: IgnorePointer(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(widget.locationPinText,
-                      style: widget.locationPinTextStyle,
-                      textAlign: TextAlign.center),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 50),
-                    child: Icon(
-                      widget.locationPinIcon,
-                      size: 50,
-                      color: widget.locationPinIconColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )),
-          Positioned(
-              bottom: 180,
-              right: 5,
-              child: FloatingActionButton(
-                heroTag: 'btn1',
-                backgroundColor: widget.buttonColor,
-                onPressed: () {
-                  _mapController.move(
-                      _mapController.center, _mapController.zoom + 1);
-                },
-                child: Icon(
-                  widget.zoomInIcon,
-                  color: widget.buttonTextColor,
-                ),
-              )),
-          Positioned(
-              bottom: 120,
-              right: 5,
-              child: FloatingActionButton(
-                heroTag: 'btn2',
-                backgroundColor: widget.buttonColor,
-                onPressed: () {
-                  _mapController.move(
-                      _mapController.center, _mapController.zoom - 1);
-                },
-                child: Icon(
-                  widget.zoomOutIcon,
-                  color: widget.buttonTextColor,
-                ),
-              )),
-          Positioned(
-              bottom: 60,
-              right: 5,
-              child: FloatingActionButton(
-                heroTag: 'btn3',
-                backgroundColor: widget.buttonColor,
-                onPressed: () async {
-                  try {
-                    LatLng position =
-                        await widget.onGetCurrentLocationPressed.call();
-                    _mapController.move(
-                        LatLng(position.latitude, position.longitude),
-                        _mapController.zoom);
-                  } catch (e) {
-                    _mapController.move(
-                        LatLng(widget.center.latitude, widget.center.longitude),
-                        _mapController.zoom);
-                  } finally {
-                    setNameCurrentPos();
-                  }
-                },
-                child: Icon(
-                  widget.currentLocationIcon,
-                  color: widget.buttonTextColor,
-                ),
-              )),
+          // Positioned.fill(
+          //     child: IgnorePointer(
+          //   child: Center(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Text(widget.locationPinText,
+          //             style: widget.locationPinTextStyle,
+          //             textAlign: TextAlign.center),
+          //         Padding(
+          //           padding: const EdgeInsets.only(bottom: 50),
+          //           child: Icon(
+          //             widget.locationPinIcon,
+          //             size: 50,
+          //             color: widget.locationPinIconColor,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // )),
+          // Positioned(
+          //     bottom: 180,
+          //     right: 5,
+          //     child: FloatingActionButton(
+          //       heroTag: 'btn1',
+          //       backgroundColor: Colors.purple,
+          //       onPressed: () {
+          //         _mapController.move(
+          //             _mapController.center, _mapController.zoom + 1);
+          //       },
+          //       child: Icon(
+          //         widget.zoomInIcon,
+          //         color: widget.buttonTextColor,
+          //       ),
+          //     )),
+          // Positioned(
+          //     bottom: 120,
+          //     right: 5,
+          //     child: FloatingActionButton(
+          //       heroTag: 'btn2',
+          //       backgroundColor: Colors.yellow,
+          //       onPressed: () {
+          //         _mapController.move(
+          //             _mapController.center, _mapController.zoom - 1);
+          //       },
+          //       child: Icon(
+          //         widget.zoomOutIcon,
+          //         color: widget.buttonTextColor,
+          //       ),
+          //     )),
+          // Positioned(
+          //     bottom: 60,
+          //     right: 5,
+          //     child: FloatingActionButton(
+          //       heroTag: 'btn3',
+          //       backgroundColor: Colors.red,
+          //       onPressed: () async {
+          //         try {
+          //           LatLng position =
+          //               await widget.onGetCurrentLocationPressed.call();
+          //           _mapController.move(
+          //               LatLng(position.latitude, position.longitude),
+          //               _mapController.zoom);
+          //         } catch (e) {
+          //           _mapController.move(
+          //               LatLng(widget.center.latitude, widget.center.longitude),
+          //               _mapController.zoom);
+          //         } finally {
+          //           setNameCurrentPos();
+          //         }
+          //       },
+          //       child: Icon(
+          //         widget.currentLocationIcon,
+          //         color: widget.buttonTextColor,
+          //       ),
+          //     )),
           Positioned(
             top: 0,
             left: 0,
@@ -355,29 +355,29 @@ class _OpenStreetMapSearchAndPickState
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: WideButton(
-                  widget.buttonText,
-                  textStyle: widget.buttonTextStyle,
-                  height: widget.buttonHeight,
-                  width: widget.buttonWidth,
-                  onPressed: () async {
-                    pickData().then((value) {
-                      widget.onPicked(value);
-                    });
-                  },
-                  backgroundColor: widget.buttonColor,
-                  foregroundColor: widget.buttonTextColor,
-                ),
-              ),
-            ),
-          )
+          //   Positioned(
+          //     bottom: 0,
+          //     left: 0,
+          //     right: 0,
+          //     child: Center(
+          //       child: Padding(
+          //         padding: const EdgeInsets.all(8.0),
+          //         child: WideButton(
+          //           widget.buttonText,
+          //           textStyle: widget.buttonTextStyle,
+          //           height: widget.buttonHeight,
+          //           width: widget.buttonWidth,
+          //           onPressed: () async {
+          //             pickData().then((value) {
+          //               widget.onPicked(value);
+          //             });
+          //           },
+          //           backgroundColor: widget.buttonColor,
+          //           foregroundColor: widget.buttonTextColor,
+          //         ),
+          //       ),
+          //     ),
+          //   )
         ],
       ),
     );

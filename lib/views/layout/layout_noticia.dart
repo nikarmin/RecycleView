@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:recycle_view/models/noticia.dart';
 
 import '../../models/artigo.dart';
@@ -19,43 +22,50 @@ class LayoutNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Color.fromRGBO(233, 233, 233, 1),
-        borderRadius: new BorderRadius.circular(6.0),
-        elevation: 2.0,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(height: 100, width: 100, child: Image.network(image)),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      title,
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Text(
-                      author,
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    // Text(
-                    //   artigo.publishedAt,
-                    //   style: TextStyle(fontSize: 14.0),
-                    // ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ));
+        child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Container(
+          margin: const EdgeInsets.fromLTRB(18, 5, 18, 5),
+          child: Row(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                    child: Container(
+                        height: 170,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromARGB(255, 219, 219, 219),
+                            image: DecorationImage(
+                                image: NetworkImage(image), fit: BoxFit.cover)),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(15, 15, 10, 15),
+                                      child: Text(title,
+                                          style: GoogleFonts.archivo(
+                                            textStyle: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          )))),
+                              SizedBox(height: 70),
+                              Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Padding(
+                                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                    child: Text(author,
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.white))),
+                              )
+                            ]))),
+              ]))
+    ])));
   }
 }

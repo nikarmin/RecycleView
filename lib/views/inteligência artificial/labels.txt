@@ -1,0 +1,4 @@
+0 Vidro
+1 Papel
+2 Plástico
+3 Metal
