@@ -5,6 +5,8 @@ import 'package:camera_camera/camera_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+// import 'package:tflite/tflite.dart';
 
 import 'anexo.dart';
 import 'perfil_page.dart';
@@ -34,11 +36,22 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   List<CameraDescription>? cameras; //list out the camera available
   CameraController? controller; //controller for camera
   XFile? image; //for captured image
+  CameraImage? _image;
 
   @override
   void initState() {
+    // loadModel().then((value) {
+    //   setState(() {});
+    // });
     loadCamera();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // Tflite.close();
   }
 
   bool flashOn = false;
@@ -53,40 +66,134 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         if (!mounted) {
           return;
         }
-        setState(() {});
+        setState(() {
+          // controller!.startImageStream((image) {
+          //   _image = image;
+          //   runModel();
+          // });
+        });
       });
     } else {
       print("NO any camera found");
     }
   }
 
+  late File image2;
+  bool setImage = false;
+  List result = [];
+  String output = '';
+
+  Future<void> chooseFile() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image!.path != null) {
+      setState(() {
+        setImage = true;
+        image2 = File(image.path);
+      });
+    }
+    // predictImage(image2);
+  }
+
+  // loadModel() async {
+  //   await Tflite.loadModel(
+  //       model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
+  // }
+
+  // runModel() async {
+  //   if (_image != null) {
+  //     var prediction = await Tflite.runModelOnFrame(
+  //         bytesList: _image!.planes.map((e) {
+  //           return e.bytes;
+  //         }).toList(),
+  //         imageHeight: _image!.height,
+  //         imageWidth: _image!.width,
+  //         imageMean: 127.5,
+  //         imageStd: 127.5,
+  //         rotation: 90,
+  //         numResults: 2,
+  //         threshold: 0.1,
+  //         asynch: true);
+
+  //     for (var elements in prediction!) {
+  //       setState(() {
+  //         output = elements['label'];
+  //       });
+  //       print(output);
+  //     }
+  //   }
+  // }
+
+  // predictImage(File img) async {
+  //   var output = await Tflite.runModelOnImage(
+  //       path: img.path,
+  //       numResults: 2,
+  //       threshold: 0.5,
+  //       imageMean: 127.5,
+  //       imageStd: 127.5);
+  //   setState(() {
+  //     result = output!;
+  //   });
+  //   print(output);
+  // }
+
   @override
   Widget build(BuildContext context) {
     // size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(233, 233, 233, 1),
-      appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
-            color: Colors.black),
-        centerTitle: true,
-        backgroundColor: Color.fromRGBO(245, 245, 245, 1),
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: ImageIcon(
-              AssetImage('assets/images/icons/account.png'),
-              color: Colors.black,
+        backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+        appBar: AppBar(
+          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+              color: Colors.black),
+          centerTitle: true,
+          backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              icon: ImageIcon(
+                AssetImage('assets/images/icons/account.png'),
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Perfil();
+                }));
+              },
             ),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Perfil();
-              }));
-            },
-          ),
-        ],
-      ),
-      body: Stack(children: [
+          ],
+        ),
+        body: ListView(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: (controller!.value.isInitialized)
+                  ? AspectRatio(
+                      aspectRatio: controller!.value.aspectRatio,
+                      child: CameraPreview(controller!),
+                    )
+                  : Container(),
+            )
+          ],
+        )
+        /*Column(
+          children: [
+            (setImage) ? Image.file(image2) : Container(),
+            (result.isEmpty) ? Container() : Text(result.toString()),
+            InkWell(
+              onTap: () {
+                chooseFile();
+              },
+              child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(18)),
+                child: Text("Escolheee aii"),
+              ),
+            ),
+          ],
+        )*/
+
+        /*Stack(children: [
         Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -385,20 +492,20 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
             ),
           ),
         ),
-      ]),
-      //)
-      // body: Container(
-      //   child: Center(child: _arquivoWidget()),
-      // ),
-      // floatingActionButton: imagem != null
-      //     ? FloatingActionButton.extended(
-      //         onPressed: () {
-      //           Navigator.pop(context);
-      //         },
-      //         label: Text('Finalizar'))
-      //     : null,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
-    );
+      ]),*/
+        //)
+        // body: Container(
+        //   child: Center(child: _arquivoWidget()),
+        // ),
+        // floatingActionButton: imagem != null
+        //     ? FloatingActionButton.extended(
+        //         onPressed: () {
+        //           Navigator.pop(context);
+        //         },
+        //         label: Text('Finalizar'))
+        //     : null,
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
+        );
   }
 
   // _arquivoWidget() {

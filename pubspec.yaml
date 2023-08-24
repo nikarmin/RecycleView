@@ -26,6 +26,7 @@ dependencies:
   page_transition: ^2.0.9
   provider: ^6.0.5
   shelf: ^1.4.1
+  #tflite: ^1.1.2
   syncfusion_flutter_charts: ^22.1.39
 
 dev_dependencies:
