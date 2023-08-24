@@ -6,6 +6,7 @@ buildscript {
     }
 
     dependencies {
+        compile 'org.tensorflow:tensorflow-android:+'
         classpath 'com.android.tools.build:gradle:7.3.0'
         // START: FlutterFire Configuration
         classpath 'com.google.gms:google-services:4.3.14'

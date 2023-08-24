@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:tflite/tflite.dart';
+import 'package:tflite_flutter/tflite_flutter.dart' as tfl;
 
 import 'anexo.dart';
 import 'perfil_page.dart';
@@ -40,9 +40,9 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
 
   @override
   void initState() {
-    // loadModel().then((value) {
-    //   setState(() {});
-    // });
+    loadModel().then((value) {
+      setState(() {});
+    });
     loadCamera();
     super.initState();
   }
@@ -51,7 +51,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    // Tflite.close();
+    Tflite.close();
   }
 
   bool flashOn = false;
@@ -60,17 +60,17 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     cameras = await availableCameras();
     if (cameras != null) {
       controller = CameraController(cameras![0], ResolutionPreset.max);
-      //cameras[0] = first camera, change to 1 to another camera
+      // cameras[0] = first camera, change to 1 to another camera
 
       controller!.initialize().then((_) {
         if (!mounted) {
           return;
         }
         setState(() {
-          // controller!.startImageStream((image) {
-          //   _image = image;
-          //   runModel();
-          // });
+          controller!.startImageStream((image) {
+            _image = image;
+            runModel();
+          });
         });
       });
     } else {
@@ -91,50 +91,52 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         image2 = File(image.path);
       });
     }
-    // predictImage(image2);
+    predictImage(image2);
   }
 
-  // loadModel() async {
-  //   await Tflite.loadModel(
-  //       model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
-  // }
+  loadModel() async {
+    // await Tflite.loadModel(
+    //     model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
+    final interpreter =
+        await tfl.Interpreter.fromAsset('assets/your_model.tflite');
+  }
 
-  // runModel() async {
-  //   if (_image != null) {
-  //     var prediction = await Tflite.runModelOnFrame(
-  //         bytesList: _image!.planes.map((e) {
-  //           return e.bytes;
-  //         }).toList(),
-  //         imageHeight: _image!.height,
-  //         imageWidth: _image!.width,
-  //         imageMean: 127.5,
-  //         imageStd: 127.5,
-  //         rotation: 90,
-  //         numResults: 2,
-  //         threshold: 0.1,
-  //         asynch: true);
+  runModel() async {
+    if (_image != null) {
+      var prediction = await Tflite.runModelOnFrame(
+          bytesList: _image!.planes.map((e) {
+            return e.bytes;
+          }).toList(),
+          imageHeight: _image!.height,
+          imageWidth: _image!.width,
+          imageMean: 127.5,
+          imageStd: 127.5,
+          rotation: 90,
+          numResults: 2,
+          threshold: 0.1,
+          asynch: true);
 
-  //     for (var elements in prediction!) {
-  //       setState(() {
-  //         output = elements['label'];
-  //       });
-  //       print(output);
-  //     }
-  //   }
-  // }
+      for (var elements in prediction!) {
+        setState(() {
+          output = elements['label'];
+        });
+        print(output);
+      }
+    }
+  }
 
-  // predictImage(File img) async {
-  //   var output = await Tflite.runModelOnImage(
-  //       path: img.path,
-  //       numResults: 2,
-  //       threshold: 0.5,
-  //       imageMean: 127.5,
-  //       imageStd: 127.5);
-  //   setState(() {
-  //     result = output!;
-  //   });
-  //   print(output);
-  // }
+  predictImage(File img) async {
+    var output = await Tflite.runModelOnImage(
+        path: img.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5);
+    setState(() {
+      result = output!;
+    });
+    print(output);
+  }
 
   @override
   Widget build(BuildContext context) {
