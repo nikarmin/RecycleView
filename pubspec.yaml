@@ -24,10 +24,13 @@ dependencies:
   mask_text_input_formatter: ^2.5.0
   open_street_map_search_and_pick: ^0.1.0
   page_transition: ^2.0.9
+  permission_handler: ^10.4.3
   provider: ^6.0.5
   shelf: ^1.4.1
   #tflite: ^1.1.2
   syncfusion_flutter_charts: ^22.1.39
+  tflite_flutter: ^0.10.1
+  tflite_v2: ^1.0.0
   #tflite_flutter: ^0.10.1
 
 dev_dependencies:
@@ -43,6 +46,8 @@ flutter_icons:
 
 flutter:
   assets:
+    - assets/ia/model_unquant.tflite
+    - assets/ia/labels.txt
     - assets/images/
     - assets/images/background/
     - assets/images/icons/

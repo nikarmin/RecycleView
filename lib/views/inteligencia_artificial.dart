@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite_v2/tflite_v2.dart';
 // import 'package:tflite/tflite.dart';
 // import 'package:tflite_flutter/tflite_flutter.dart';
 
@@ -47,7 +48,10 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   @override
   void initState() {
     // _loadModel();
-    _loadLabels();
+    //_loadLabels();
+    loadModel().then((value) {
+      setState(() {});
+    });
     loadCamera();
     super.initState();
   }
@@ -56,7 +60,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    interpreter.close();
+    Tflite.close();
   }
 
   bool flashOn = false;
@@ -74,7 +78,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         setState(() {
           controller!.startImageStream((image) {
             _image = image;
-            // runModel();
+             runModel();
           });
         });
       });
@@ -96,13 +100,13 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         image2 = File(image.path);
       });
     }
-    //predictImage(image2);
+    predictImage(image2);
   }
 
-  // loadModel() async {
-  //   await Tflite.loadModel(
-  //       model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
-  // }
+  loadModel() async {
+    await Tflite.loadModel(
+        model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
+  }
 
   // Load model
   // Future<void> _loadModel() async {
@@ -116,60 +120,42 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   //   outputTensor = interpreter.getOutputTensors().first;
   // }
 
-  Future<void> _loadLabels() async {
-    final labelTxt = await rootBundle.loadString('assets/labels.txt');
-    labels = labelTxt.split('\n');
+  runModel() async {
+    if (_image != null) {
+      var prediction = await Tflite.runModelOnFrame(
+          bytesList: _image!.planes.map((e) {
+            return e.bytes;
+          }).toList(),
+          imageHeight: _image!.height,
+          imageWidth: _image!.width,
+          imageMean: 127.5,
+          imageStd: 127.5,
+          rotation: 90,
+          numResults: 2,
+          threshold: 0.1,
+          asynch: true);
+
+      for (var elements in prediction!) {
+        setState(() {
+          output = elements['label'];
+        });
+        print(output);
+      }
+    }
   }
 
-  Future<void> runInference(
-    List<List<List<num>>> imageMatrix,
-  ) async {
-    // Tensor input [1, 224, 224, 3]
-    final input = [imageMatrix];
-    // Tensor output [1, 1001]
-    final output = [List<int>.filled(1001, 0)];
-    // Run inference
-    interpreter.run(input, output);
-    // Get first output tensor
-    final result = output.first;
+  predictImage(File img) async {
+    var output = await Tflite.runModelOnImage(
+        path: img.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5);
+    setState(() {
+      result = output!;
+    });
+    print(output);
   }
-
-  // runModel() async {
-  //   if (_image != null) {
-  //     var prediction = await Tflite.runModelOnFrame(
-  //         bytesList: _image!.planes.map((e) {
-  //           return e.bytes;
-  //         }).toList(),
-  //         imageHeight: _image!.height,
-  //         imageWidth: _image!.width,
-  //         imageMean: 127.5,
-  //         imageStd: 127.5,
-  //         rotation: 90,
-  //         numResults: 2,
-  //         threshold: 0.1,
-  //         asynch: true);
-
-  //     for (var elements in prediction!) {
-  //       setState(() {
-  //         output = elements['label'];
-  //       });
-  //       print(output);
-  //     }
-  //   }
-  // }
-
-  // predictImage(File img) async {
-  //   var output = await Tflite.runModelOnImage(
-  //       path: img.path,
-  //       numResults: 2,
-  //       threshold: 0.5,
-  //       imageMean: 127.5,
-  //       imageStd: 127.5);
-  //   setState(() {
-  //     result = output!;
-  //   });
-  //   print(output);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +183,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
             ),
           ],
         ),
-        body: ListView(
+        body: /*ListView(
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height,
@@ -210,8 +196,8 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   : Container(),
             )
           ],
-        )
-        /*Column(
+        ),*/
+            Column(
           children: [
             (setImage) ? Image.file(image2) : Container(),
             (result.isEmpty) ? Container() : Text(result.toString()),
@@ -226,7 +212,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               ),
             ),
           ],
-        )*/
+        )
 
         /*Stack(children: [
         Container(
