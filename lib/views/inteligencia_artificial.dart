@@ -78,7 +78,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         setState(() {
           controller!.startImageStream((image) {
             _image = image;
-             runModel();
+            runModel();
           });
         });
       });
@@ -161,29 +161,29 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   Widget build(BuildContext context) {
     // size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Color.fromRGBO(233, 233, 233, 1),
-        appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
-              color: Colors.black),
-          centerTitle: true,
-          backgroundColor: Color.fromRGBO(245, 245, 245, 1),
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-              icon: ImageIcon(
-                AssetImage('assets/images/icons/account.png'),
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Perfil();
-                }));
-              },
+      backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+      appBar: AppBar(
+        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+            color: Colors.black),
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: ImageIcon(
+              AssetImage('assets/images/icons/account.png'),
+              color: Colors.black,
             ),
-          ],
-        ),
-        body: /*ListView(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Perfil();
+              }));
+            },
+          ),
+        ],
+      ),
+      body: /*ListView(
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height,
@@ -197,7 +197,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
             )
           ],
         ),*/
-            Column(
+          /* Column(
           children: [
             (setImage) ? Image.file(image2) : Container(),
             (result.isEmpty) ? Container() : Text(result.toString()),
@@ -212,9 +212,9 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               ),
             ),
           ],
-        )
+        )*/
 
-        /*Stack(children: [
+          Stack(children: [
         Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -513,20 +513,20 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
             ),
           ),
         ),
-      ]),*/
-        //)
-        // body: Container(
-        //   child: Center(child: _arquivoWidget()),
-        // ),
-        // floatingActionButton: imagem != null
-        //     ? FloatingActionButton.extended(
-        //         onPressed: () {
-        //           Navigator.pop(context);
-        //         },
-        //         label: Text('Finalizar'))
-        //     : null,
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
-        );
+      ]),
+      //)
+      // body: Container(
+      //   child: Center(child: _arquivoWidget()),
+      // ),
+      // floatingActionButton: imagem != null
+      //     ? FloatingActionButton.extended(
+      //         onPressed: () {
+      //           Navigator.pop(context);
+      //         },
+      //         label: Text('Finalizar'))
+      //     : null,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
+    );
   }
 
   // _arquivoWidget() {
