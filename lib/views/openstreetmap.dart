@@ -2,12 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
-import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
@@ -28,12 +30,47 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final double buttonWidth;
   final TextStyle buttonTextStyle;
   final String baseUri;
+  final User? user = FirebaseAuth.instance.currentUser;
+  String? _currentAddress;
+  Position? _currentPosition;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
   }
 
-  const OpenStreetMapSearchAndPick(
+  void getCurrentPosition() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+  }
+
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    // if (!serviceEnabled) {
+    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //       content: Text('Location services are disabled. Please enable the services')));
+    //   return false;
+    // }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      // if (permission == LocationPermission.denied) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //       const SnackBar(content: Text('Location permissions are denied')));
+      //   return false;
+      // }
+    }
+    // if (permission == LocationPermission.deniedForever) {
+    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //       content: Text('Location permissions are permanently denied, we cannot request permissions.')));
+    //   return false;
+    // }
+    return true;
+  }
+
+  OpenStreetMapSearchAndPick(
       {Key? key,
       this.center = const LatLong(0, 0),
       required this.onPicked,
@@ -42,7 +79,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.currentLocationIcon = Icons.my_location,
       this.onGetCurrentLocationPressed = nopFunction,
       this.buttonColor = Colors.blue,
-      this.locationPinIconColor = Colors.blue,
+      this.locationPinIconColor = Colors.red,
       this.locationPinText = 'Location',
       this.locationPinTextStyle = const TextStyle(
           fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
@@ -54,7 +91,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.buttonHeight = 50,
       this.buttonWidth = 200,
       this.baseUri = 'https://nominatim.openstreetmap.org',
-      this.locationPinIcon = Icons.location_on})
+      this.locationPinIcon = Icons.home})
       : super(key: key);
 
   @override
@@ -270,6 +307,7 @@ class _OpenStreetMapSearchAndPickState
                   TextFormField(
                       controller: _searchController,
                       focusNode: _focusNode,
+                      style: GoogleFonts.poppins(),
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color.fromRGBO(243, 243, 243, 1),
@@ -329,27 +367,43 @@ class _OpenStreetMapSearchAndPickState
                         });
                       }),
                   StatefulBuilder(builder: ((context, setState) {
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _options.length > 5 ? 5 : _options.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(_options[index].displayname),
-                            subtitle: Text(
-                                '${_options[index].lat},${_options[index].lon}'),
-                            onTap: () {
-                              _mapController.move(
-                                  LatLng(
-                                      _options[index].lat, _options[index].lon),
-                                  15.0);
+                    return Container(
+                      child: Column(children: [
+                        SizedBox(height: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(243, 243, 243, 1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                                  _options.length > 5 ? 5 : _options.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text(
+                                    _options[index].displayname,
+                                    style: GoogleFonts.poppins(),
+                                  ),
+                                  subtitle: Text(
+                                      '${_options[index].lat},${_options[index].lon}',
+                                      style: GoogleFonts.jost()),
+                                  onTap: () {
+                                    _mapController.move(
+                                        LatLng(_options[index].lat,
+                                            _options[index].lon),
+                                        15.0);
 
-                              _focusNode.unfocus();
-                              _options.clear();
-                              setState(() {});
-                            },
-                          );
-                        });
+                                    _focusNode.unfocus();
+                                    _options.clear();
+                                    setState(() {});
+                                  },
+                                );
+                              }),
+                        ),
+                      ]),
+                    );
                   })),
                 ],
               ),

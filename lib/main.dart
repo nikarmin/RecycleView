@@ -4,6 +4,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
 import 'package:recycle_view/views/inteligencia_artificial.dart';
+import 'package:recycle_view/views/mapa.dart';
 import 'package:recycle_view/views/test_ia.dart';
 import 'package:recycle_view/widget/auth_check.dart';
 
@@ -32,7 +33,7 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       color: Color.fromRGBO(233, 233, 233, 1),
       debugShowCheckedModeBanner: false,
-      home: AuthCheck(),
+      home: MapaPage(),
     );
   }
 }

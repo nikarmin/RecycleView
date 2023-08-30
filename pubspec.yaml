@@ -16,6 +16,8 @@ dependencies:
   flutter:
     sdk: flutter
   #flutter_map: ^3.1.0
+  geocoding: ^2.1.0
+  geolocator: ^10.0.0
   get: ^4.6.5
   google_fonts: 
   google_sign_in: ^6.1.4
@@ -46,8 +48,7 @@ flutter_icons:
 
 flutter:
   assets:
-    - assets/ia/model_unquant.tflite
-    - assets/ia/labels.txt
+    - assets/ia/
     - assets/images/
     - assets/images/background/
     - assets/images/icons/

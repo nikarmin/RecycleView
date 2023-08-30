@@ -39,6 +39,7 @@ class _MapaPageState extends State<MapaPage> {
         ),
         backgroundColor: Color.fromRGBO(233, 233, 233, 1),
         body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Container(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height,

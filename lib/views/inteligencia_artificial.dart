@@ -40,25 +40,19 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   CameraController? controller; //controller for camera
   XFile? image; //for captured image
   CameraImage? _image;
-  var interpreter;
-  var inputTensor;
-  var outputTensor;
-  var labels;
 
   @override
   void initState() {
     // _loadModel();
     //_loadLabels();
-    loadModel().then((value) {
-      setState(() {});
-    });
+    loadModel();
+    //runModel();
     loadCamera();
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     Tflite.close();
   }
@@ -103,16 +97,22 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     predictImage(image2);
   }
 
-  loadModel() async {
-    await Tflite.loadModel(
-        model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
+  Future loadModel() async {
+    await Tflite.close();
+    try {
+      await Tflite.loadModel(
+          model: 'assets/ia/model_unquant.tflite',
+          labels: 'assets/ia/labels.txt');
+    } on PlatformException {
+      print('Failed to load model.');
+    }
   }
 
   // Load model
   // Future<void> _loadModel() async {
   //   final options = InterpreterOptions();
   //   // Load model from assets
-  //   interpreter = await Interpreter.fromAsset('assets/model_unquant.tflite',
+  //   interpreter = await Interpreter.fromAsset('assets/ia/model_unquant.tflite',
   //       options: options);
   //   // Get tensor input shape [1, 224, 224, 3]
   //   inputTensor = interpreter.getInputTensors().first;
