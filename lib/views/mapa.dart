@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:latlng/latlng.dart';
+import 'package:location/location.dart';
 import 'package:recycle_view/views/openstreetmap.dart';
 import 'package:recycle_view/views/perfil_page.dart';
 
@@ -12,6 +15,50 @@ class MapaPage extends StatefulWidget {
 }
 
 class _MapaPageState extends State<MapaPage> {
+  LocationData? _currentPosition;
+  String? _address, _dateTime;
+  Location location = Location();
+  LatLng _initialcameraposition = LatLng(0.5937, 0.9629);
+
+  getLoc() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _currentPosition = await location.getLocation();
+    _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+        _currentPosition!.longitude!.toDouble());
+    location.onLocationChanged.listen((LocationData currentLocation) {
+      print("${currentLocation.longitude} : ${currentLocation.longitude}");
+      setState(() {
+        _currentPosition = currentLocation;
+        _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+            _currentPosition!.longitude!.toDouble());
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLoc();
+  }
+
   TextEditingController _search = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -46,6 +93,13 @@ class _MapaPageState extends State<MapaPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Container(
+                    child: Column(
+                  children: [
+                    Text('LAT: ${_currentPosition?.latitude ?? ""}'),
+                    Text('LNG: ${_currentPosition?.longitude ?? ""}'),
+                  ],
+                )),
                 Expanded(
                   child: OpenStreetMapSearchAndPick(
                       center: LatLong(23, 89),
@@ -56,7 +110,7 @@ class _MapaPageState extends State<MapaPage> {
                         print(pickedData.latLong.longitude);
                         print(pickedData.address);
                       }),
-                )
+                ),
               ],
             ),
           ),

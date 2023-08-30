@@ -23,6 +23,8 @@ dependencies:
   google_sign_in: ^6.1.4
   graphic: ^2.2.0
   image_picker: ^1.0.2
+  latlng: ^1.0.0
+  location: ^5.0.3
   mask_text_input_formatter: ^2.5.0
   meta: ^1.9.1
   open_street_map_search_and_pick: ^0.1.0

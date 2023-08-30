@@ -31,43 +31,9 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final TextStyle buttonTextStyle;
   final String baseUri;
   final User? user = FirebaseAuth.instance.currentUser;
-  String? _currentAddress;
-  Position? _currentPosition;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
-  }
-
-  void getCurrentPosition() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-  }
-
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    // if (!serviceEnabled) {
-    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //       content: Text('Location services are disabled. Please enable the services')));
-    //   return false;
-    // }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      // if (permission == LocationPermission.denied) {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //       const SnackBar(content: Text('Location permissions are denied')));
-      //   return false;
-      // }
-    }
-    // if (permission == LocationPermission.deniedForever) {
-    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //       content: Text('Location permissions are permanently denied, we cannot request permissions.')));
-    //   return false;
-    // }
-    return true;
   }
 
   OpenStreetMapSearchAndPick(
