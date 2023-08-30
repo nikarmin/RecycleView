@@ -29,6 +29,7 @@ class TelaInicial extends StatelessWidget {
         //   ),
         // ]),
         body: Container(
+      color: Color.fromRGBO(233, 233, 233, 1),
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/wave.png'),

@@ -23,29 +23,43 @@ class InteligenciaArtificial extends StatefulWidget {
 }
 
 class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
-  // File? arquivo;
-
-  // showPreview(file) async {
-  //   file = await Get.to(() => PreviewPage(file: file));
-
-  //   if (file != null) {
-  //     setState(() {
-  //       arquivo = file;
-  //     });
-  //     Get.back();
-  //   }
-  // }
-
-  List<CameraDescription>? cameras; //list out the camera available
+  List<CameraDescription>? cameras = []; //list out the camera available
   CameraController? controller; //controller for camera
   XFile? image; //for captured image
   CameraImage? _image;
+  XFile? imagem;
+  File? img;
+  Size? size;
+
+  Widget infoObjeto(BuildContext context) {
+    return new AlertDialog(
+      content: Scaffold(
+        body: Column(
+          children: [
+            Image.file(
+              File(imagem!.path),
+              fit: BoxFit.contain,
+            ),
+            _outputs != null
+                ? Text(
+                    _outputs![0]["label"],
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  )
+                : Container()
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   void initState() {
     // _loadModel();
     //_loadLabels();
-    loadModel();
+    loadModel2();
     //runModel();
     loadCamera();
     super.initState();
@@ -62,22 +76,38 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   loadCamera() async {
     cameras = await availableCameras();
     if (cameras != null) {
-      controller = CameraController(cameras![0], ResolutionPreset.max);
-      //cameras[0] = first camera, change to 1 to another camera
+      controller = CameraController(cameras![0], ResolutionPreset.high,
+          enableAudio: false, imageFormatGroup: ImageFormatGroup.jpeg);
 
-      controller!.initialize().then((_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {
-          controller!.startImageStream((image) {
-            _image = image;
-            runModel();
-          });
-        });
-      });
+      try {
+        await controller!.initialize();
+      } on CameraException catch (e) {
+        print(e.description);
+      }
+
+      if (mounted) {
+        setState(() {});
+      }
+
+      // controller!.initialize().then((_) {
+      //   if (!mounted) {
+      //     return;
+      //   }
+      //   setState(() {
+      //     controller!.startImageStream((image) {
+      //       _image = image;
+      //       //runModel();
+      //     });
+      //   });
+      // });
     } else {
       print("NO any camera found");
+    }
+  }
+
+  startCamera() async {
+    if (cameras!.isEmpty) {
+      print('Câmera não foi encontrada');
     }
   }
 
@@ -85,6 +115,8 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   bool setImage = false;
   List result = [];
   String output = '';
+  bool _loading = false;
+  List<dynamic>? _outputs;
 
   Future<void> chooseFile() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -95,6 +127,27 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
       });
     }
     predictImage(image2);
+  }
+
+  loadModel2() async {
+    await Tflite.loadModel(
+      model: 'assets/model_unquant.tflite',
+      labels: 'assets/labels.txt',
+    );
+  }
+
+  classifyImage(imagem) async {
+    var out = await Tflite.runModelOnImage(
+        path: imagem.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5);
+
+    setState(() {
+      _loading = false;
+      _outputs = out;
+    });
   }
 
   Future loadModel() async {
@@ -159,7 +212,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
 
   @override
   Widget build(BuildContext context) {
-    // size = MediaQuery.of(context).size;
+    size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
       appBar: AppBar(
@@ -246,14 +299,20 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                 onPressed: () async {
                   try {
                     if (controller != null) {
-                      //check if contrller is not null
-                      if (controller!.value.isInitialized) {
-                        //check if controller is initialized
-                        image = await controller!.takePicture(); //capture image
-                        setState(() {
-                          File(image!.path);
-                        });
-                      }
+                      await tirarFoto();
+                      classifyImage(imagem);
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              infoObjeto(context));
+                      // //check if contrller is not null
+                      // if (controller!.value.isInitialized) {
+                      //   //check if controller is initialized
+                      //   image = await controller!.takePicture(); //capture image
+                      //   setState(() {
+                      //     File(image!.path);
+                      //   });
+                      // }
                     }
                   } catch (e) {
                     print(e); //show error
@@ -278,22 +337,34 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               width: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  flashOn = true;
-                  // if (flashOn == true)
-                  //   controller?.setFlashMode(FlashMode.always);
-                  // else {
-                  //   flashOn = false;
-                  //   controller?.setFlashMode(FlashMode.off);
-                  // }
+                  if (flashOn == false) {
+                    setState(() {
+                      flashOn = true;
+                    });
+                  } else {
+                    setState(() {
+                      flashOn = false;
+                    });
+                  }
+
+                  flashOn
+                      ? controller?.setFlashMode(FlashMode.torch)
+                      : controller?.setFlashMode(FlashMode.off);
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.flash_on_rounded,
-                      color: Colors.black,
-                      size: 30,
-                    ),
+                    flashOn
+                        ? Icon(
+                            Icons.flash_off_rounded,
+                            color: Colors.black,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.flash_on_rounded,
+                            color: Colors.black,
+                            size: 30,
+                          )
                   ],
                 ),
                 style: ButtonStyle(
@@ -529,18 +600,18 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     );
   }
 
-  // _arquivoWidget() {
-  //   return Container(
-  //     width: size!.width - 50,
-  //     height: size!.height - (size!.height / 3),
-  //     child: imagem == null
-  //         ? _cameraPreviewWidget()
-  //         : Image.file(
-  //             File(imagem!.path),
-  //             fit: BoxFit.contain,
-  //           ),
-  //   );
-  // }
+  _arquivoWidget() {
+    return Container(
+      width: size!.width - 50,
+      height: size!.height - (size!.height / 3),
+      child: imagem == null
+          ? Container()
+          : Image.file(
+              File(imagem!.path),
+              fit: BoxFit.contain,
+            ),
+    );
+  }
 
   // _cameraPreviewWidget() {
   //   final CameraController? cameraController = controller;
@@ -573,19 +644,20 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   //   );
   // }
 
-  // tirarFoto() async {
-  //   final CameraController? cameraController = controller;
+  tirarFoto() async {
+    final CameraController? cameraController = controller;
 
-  //   if (cameraController != null && cameraController.value.isInitialized) {
-  //     try {
-  //       XFile file = await cameraController.takePicture();
-  //       if (mounted)
-  //         setState(() {
-  //           imagem = file;
-  //         });
-  //     } on CameraException catch (e) {
-  //       print(e.description);
-  //     }
-  //   }
-  // }
+    if (cameraController != null && cameraController.value.isInitialized) {
+      try {
+        XFile file = await cameraController.takePicture();
+        if (mounted)
+          setState(() {
+            imagem = file;
+            img = File(file.path);
+          });
+      } on CameraException catch (e) {
+        print(e.description);
+      }
+    }
+  }
 }

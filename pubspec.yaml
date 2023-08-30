@@ -24,6 +24,7 @@ dependencies:
   graphic: ^2.2.0
   image_picker: ^1.0.2
   mask_text_input_formatter: ^2.5.0
+  meta: ^1.9.1
   open_street_map_search_and_pick: ^0.1.0
   page_transition: ^2.0.9
   permission_handler: ^10.4.3
@@ -50,6 +51,8 @@ flutter:
   assets:
     - assets/ia/
     - assets/images/
+    - assets/labels.txt
+    - assets/model_unquant.tflite
     - assets/images/background/
     - assets/images/icons/
     - assets/images/icons_materials/

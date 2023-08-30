@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       color: Color.fromRGBO(233, 233, 233, 1),
       debugShowCheckedModeBanner: false,
-      home: MapaPage(),
+      home: AuthCheck(),
     );
   }
 }
