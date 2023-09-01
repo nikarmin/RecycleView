@@ -10,6 +10,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
@@ -96,6 +97,61 @@ class _OpenStreetMapSearchAndPickState
     setState(() {});
   }
 
+  void setNameCurrentPosNew() async {
+    void setNameCurrentPos() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _currentPosition = await location.getLocation();
+    _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+        _currentPosition!.longitude!.toDouble());
+    location.onLocationChanged.listen((LocationData currentLocation) {
+      print("${currentLocation.longitude} : ${currentLocation.latitude}");
+      setState(() {
+        _currentPosition = currentLocation;
+        _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+            _currentPosition!.longitude!.toDouble());
+      });
+    });
+
+    double? latitude = _currentPosition?.latitude?.toDouble();
+    double? longitude = _currentPosition?.longitude?.toDouble();
+    if (kDebugMode) {
+      print(latitude);
+    }
+    if (kDebugMode) {
+      print(longitude);
+    }
+    String url =
+        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+
+    var response = await client.get(Uri.parse(url));
+    // var response = await client.post(Uri.parse(url));
+    var decodedResponse =
+        jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
+
+    _searchController.text =
+        decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
+    setState(() {});
+  }
+  }
+
   void setNameCurrentPosAtInit() async {
     double latitude = widget.center.latitude;
     double longitude = widget.center.longitude;
@@ -119,11 +175,113 @@ class _OpenStreetMapSearchAndPickState
     setState(() {});
   }
 
+  LocationData? _currentPosition;
+  String? _address, _dateTime;
+  Location location = Location();
+  LatLng _initialcameraposition = LatLng(0.5937, 0.9629);
+  OpenStreetMapSearchAndPick? open;
+
+  getLoc() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _currentPosition = await location.getLocation();
+    _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+        _currentPosition!.longitude!.toDouble());
+    location.onLocationChanged.listen((LocationData currentLocation) {
+      print("${currentLocation.longitude} : ${currentLocation.latitude}");
+      setState(() {
+        _currentPosition = currentLocation;
+        _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+            _currentPosition!.longitude!.toDouble());
+      });
+    });
+  }
+
+  void setPosicao() async {
+    //getLoc();
+
+    ////////////
+
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _currentPosition = await location.getLocation();
+    _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+        _currentPosition!.longitude!.toDouble());
+    location.onLocationChanged.listen((LocationData currentLocation) {
+      print("${currentLocation.longitude} : ${currentLocation.latitude}");
+      setState(() {
+        _currentPosition = currentLocation;
+        _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
+            _currentPosition!.longitude!.toDouble());
+      });
+    });
+
+    ///////////
+
+    if (kDebugMode) {
+      print(_currentPosition?.latitude);
+    }
+    if (kDebugMode) {
+      print(_currentPosition?.longitude);
+    }
+
+    // print(_currentPosition?.altitude);
+    // print(_currentPosition?.longitude);
+
+    String url =
+        '${widget.baseUri}/reverse?format=json&lat=$_currentPosition?.latitude&lon=$_currentPosition?.longitude&zoom=18&addressdetails=1';
+
+    var response = await client.get(Uri.parse(url));
+    // var response = await client.post(Uri.parse(url));
+    var decodedResponse =
+        jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
+
+    _searchController.text =
+        decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
+    setState(() {});
+  }
+
   @override
   void initState() {
+    //getLoc();
     _mapController = MapController();
 
-    setNameCurrentPosAtInit();
+    //setNameCurrentPosAtInit();
+    //setPosicao();
 
     _mapController.mapEventStream.listen((event) async {
       if (event is MapEventMoveEnd) {
@@ -232,32 +390,32 @@ class _OpenStreetMapSearchAndPickState
           //         color: widget.buttonTextColor,
           //       ),
           //     )),
-          // Positioned(
-          //     bottom: 60,
-          //     right: 5,
-          //     child: FloatingActionButton(
-          //       heroTag: 'btn3',
-          //       backgroundColor: Colors.red,
-          //       onPressed: () async {
-          //         try {
-          //           LatLng position =
-          //               await widget.onGetCurrentLocationPressed.call();
-          //           _mapController.move(
-          //               LatLng(position.latitude, position.longitude),
-          //               _mapController.zoom);
-          //         } catch (e) {
-          //           _mapController.move(
-          //               LatLng(widget.center.latitude, widget.center.longitude),
-          //               _mapController.zoom);
-          //         } finally {
-          //           setNameCurrentPos();
-          //         }
-          //       },
-          //       child: Icon(
-          //         widget.currentLocationIcon,
-          //         color: widget.buttonTextColor,
-          //       ),
-          //     )),
+          Positioned(
+              bottom: 60,
+              right: 5,
+              child: FloatingActionButton(
+                heroTag: 'btn3',
+                backgroundColor: Colors.red,
+                onPressed: () async {
+                  try {
+                    LatLng position =
+                        await widget.onGetCurrentLocationPressed.call();
+                    _mapController.move(
+                        LatLng(position.latitude, position.longitude),
+                        _mapController.zoom);
+                  } catch (e) {
+                    _mapController.move(
+                        LatLng(widget.center.latitude, widget.center.longitude),
+                        _mapController.zoom);
+                  } finally {
+                    setNameCurrentPos();
+                  }
+                },
+                child: Icon(
+                  widget.currentLocationIcon,
+                  color: widget.buttonTextColor,
+                ),
+              )),
           Positioned(
             top: 0,
             left: 0,
