@@ -31,40 +31,47 @@ class LayoutNoticia extends StatelessWidget {
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                    child: Container(
-                        height: 170,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            image: DecorationImage(
-                                image: NetworkImage(image), fit: BoxFit.cover)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(15, 15, 10, 15),
-                                      child: Text(title,
-                                          style: GoogleFonts.archivo(
-                                            textStyle: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          )))),
-                              SizedBox(height: 70),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                    child: Text(author,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            //fontWeight: FontWeight.bold,
-                                            color: Colors.white))),
-                              )
-                            ]))),
+                    child: (title == null &&
+                            description == null &&
+                            image == null &&
+                            author == null)
+                        ? Container()
+                        : Container(
+                            height: 170,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(255, 219, 219, 219),
+                                image: DecorationImage(
+                                    image: NetworkImage(image),
+                                    fit: BoxFit.cover)),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 10, 15),
+                                          child: Text(title,
+                                              style: GoogleFonts.archivo(
+                                                textStyle: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              )))),
+                                  SizedBox(height: 70),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                        child: Text(author,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.white))),
+                                  )
+                                ]))),
               ]))
     ])));
   }

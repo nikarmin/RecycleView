@@ -16,12 +16,15 @@ dependencies:
   flutter:
     sdk: flutter
   #flutter_map: ^3.1.0
+  flutter_html: ^3.0.0-beta.2
+  flutter_inappwebview: ^5.7.2+3
   geocoding: ^2.1.0
   geolocator: ^10.0.0
   get: ^4.6.5
   google_fonts: 
   google_sign_in: ^6.1.4
   graphic: ^2.2.0
+  html: ^0.15.4
   image_picker: ^1.0.2
   latlng: ^1.0.0
   location: ^5.0.3
@@ -36,6 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^22.1.39
   tflite_flutter: ^0.10.1
   tflite_v2: ^1.0.0
+  webview_flutter: ^4.2.4
   #tflite_flutter: ^0.10.1
 
 dev_dependencies:
