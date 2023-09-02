@@ -8,8 +8,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
-// import 'package:tflite/tflite.dart';
-// import 'package:tflite_flutter/tflite_flutter.dart';
 
 import 'anexo.dart';
 import 'perfil_page.dart';
@@ -88,18 +86,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
       if (mounted) {
         setState(() {});
       }
-
-      // controller!.initialize().then((_) {
-      //   if (!mounted) {
-      //     return;
-      //   }
-      //   setState(() {
-      //     controller!.startImageStream((image) {
-      //       _image = image;
-      //       //runModel();
-      //     });
-      //   });
-      // });
     } else {
       print("NO any camera found");
     }
@@ -160,18 +146,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
       print('Failed to load model.');
     }
   }
-
-  // Load model
-  // Future<void> _loadModel() async {
-  //   final options = InterpreterOptions();
-  //   // Load model from assets
-  //   interpreter = await Interpreter.fromAsset('assets/ia/model_unquant.tflite',
-  //       options: options);
-  //   // Get tensor input shape [1, 224, 224, 3]
-  //   inputTensor = interpreter.getInputTensors().first;
-  //   // Get tensor output shape [1, 1001]
-  //   outputTensor = interpreter.getOutputTensors().first;
-  // }
 
   runModel() async {
     if (_image != null) {
@@ -236,38 +210,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
           ),
         ],
       ),
-      body: /*ListView(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: (controller!.value.isInitialized)
-                  ? AspectRatio(
-                      aspectRatio: controller!.value.aspectRatio,
-                      child: CameraPreview(controller!),
-                    )
-                  : Container(),
-            )
-          ],
-        ),*/
-          /* Column(
-          children: [
-            (setImage) ? Image.file(image2) : Container(),
-            (result.isEmpty) ? Container() : Text(result.toString()),
-            InkWell(
-              onTap: () {
-                chooseFile();
-              },
-              child: Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(18)),
-                child: Text("Escolheee aii"),
-              ),
-            ),
-          ],
-        )*/
-
-          Stack(children: [
+      body: Stack(children: [
         Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -277,17 +220,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
-                    : CameraPreview(controller!)
-            // child: Column(
-            //   children: [
-            //     if (arquivo != null) Anexo(arquivo: arquivo!),
-            //     ElevatedButton(
-            //         onPressed: () {
-            //           Get.to(CameraCamera(onFile: (file) => showPreview(file)));
-            //         },
-            //         child: Text('tirar foto')),
-            //   ],
-            ),
+                    : CameraPreview(controller!)),
         Padding(
           padding: const EdgeInsets.only(bottom: 18.0),
           child: Align(
@@ -305,17 +238,9 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                           context: context,
                           builder: (BuildContext context) =>
                               infoObjeto(context));
-                      // //check if contrller is not null
-                      // if (controller!.value.isInitialized) {
-                      //   //check if controller is initialized
-                      //   image = await controller!.takePicture(); //capture image
-                      //   setState(() {
-                      //     File(image!.path);
-                      //   });
-                      // }
                     }
                   } catch (e) {
-                    print(e); //show error
+                    print(e);
                   }
                 },
                 child: Text(''),
@@ -585,18 +510,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
           ),
         ),
       ]),
-      //)
-      // body: Container(
-      //   child: Center(child: _arquivoWidget()),
-      // ),
-      // floatingActionButton: imagem != null
-      //     ? FloatingActionButton.extended(
-      //         onPressed: () {
-      //           Navigator.pop(context);
-      //         },
-      //         label: Text('Finalizar'))
-      //     : null,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
     );
   }
 
@@ -612,37 +525,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
             ),
     );
   }
-
-  // _cameraPreviewWidget() {
-  //   final CameraController? cameraController = controller;
-
-  //   if (cameraController == null || !cameraController.value.isInitialized) {
-  //     return const Text('Widget para Câmera que não está disponível');
-  //   } else {
-  //     return Stack(
-  //       alignment: Alignment.bottomCenter,
-  //       children: [CameraPreview(controller!), _botaoCapturaWidget()],
-  //     );
-  //   }
-  // }
-
-  // _botaoCapturaWidget() {
-  //   return Padding(
-  //     padding: EdgeInsets.only(bottom: 10),
-  //     child: CircleAvatar(
-  //       radius: 32,
-  //       backgroundColor: Colors.black,
-  //       child: IconButton(
-  //         icon: Icon(
-  //           Icons.camera_alt,
-  //           color: Colors.white,
-  //           size: 30,
-  //         ),
-  //         onPressed: tirarFoto(),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   tirarFoto() async {
     final CameraController? cameraController = controller;

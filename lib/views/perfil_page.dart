@@ -118,14 +118,6 @@ class _PerfilState extends State<Perfil> {
   final ImagePicker _picker = ImagePicker();
   late Image photo;
 
-  // Future getImage(ImageSource media) async {
-  //   _image = await _picker.pickImage(source: media);
-
-  //   if (_image != null) {
-  //     return await _image?.readAsBytes();
-  //   }
-  // }
-
   Future<XFile?> getImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     return image;
@@ -148,7 +140,6 @@ class _PerfilState extends State<Perfil> {
     super.initState();
     loadImages();
     img = user!.photoURL;
-    // photo = Image.file(File(user!.photoURL.toString()));
   }
 
   Future<UploadTask> upload(String path) async {
@@ -182,10 +173,6 @@ class _PerfilState extends State<Perfil> {
               .collection("usuarios")
               .doc(user?.uid)
               .update({"urlFoto": downloadUrl});
-
-          // await FirebaseFirestore.instance
-          //     .collection("usuarios")
-          //     .add({"urlFoto": downloadUrl});
           setState(() {
             uploading = false;
           });
@@ -231,16 +218,6 @@ class _PerfilState extends State<Perfil> {
                     onPressed: () async {
                       Navigator.pop(context);
                       pickAndUploadImage();
-                      // //Uint8List img = await getImage();
-                      // // Uint8List img = await getImage(ImageSource.gallery);
-                      // setState(() {
-                      //   _bytesImage = img;
-                      // });
-
-                      // await StoreData().saveData(file: _bytesImage!);
-
-                      //await StoreData().saveData(file: _bytesImage!);
-                      //context.read<AuthService>().updateFoto(_bytesImage);
                     },
                     child: Row(
                       children: [
@@ -367,10 +344,6 @@ class _PerfilState extends State<Perfil> {
                               width: 130,
                               fit: BoxFit.fill,
                             )),
-
-                            //File(user!.photoURL.toString()),
-                            // File(stringToBase64Url
-                            //     .decode(user!.photoURL.toString())),
                           ),
                           Positioned(
                             bottom: 2,
@@ -404,55 +377,6 @@ class _PerfilState extends State<Perfil> {
                             ),
                           ),
                         ]),
-                  // Stack(
-                  //     children: [
-                  //       Container(
-                  //         decoration: BoxDecoration(
-                  //             //shape: BoxShape.rectangle,
-                  //             shape: BoxShape.circle,
-                  //             //borderRadius: BorderRadius.circular(20),
-                  //             color: Color.fromARGB(255, 207, 207, 207)),
-                  //         height: 130,
-                  //         width: 130,
-                  //         child: Icon(
-                  //           Icons.recycling_rounded,
-                  //           size: 80,
-                  //           color: Colors.green[900],
-                  //         ),
-                  //       ),
-                  //       Positioned(
-                  //         bottom: 2,
-                  //         right: 2,
-                  //         child: SizedBox(
-                  //           width: 30,
-                  //           height: 30,
-                  //           child: ElevatedButton(
-                  //             style: ButtonStyle(
-                  //                 backgroundColor:
-                  //                     MaterialStateColor.resolveWith(
-                  //                         (states) => Color.fromARGB(
-                  //                             255, 226, 226, 226)),
-                  //                 padding:
-                  //                     MaterialStateProperty.all<EdgeInsets>(
-                  //                         EdgeInsets.zero),
-                  //                 alignment: Alignment.center,
-                  //                 shape: MaterialStateProperty.all<
-                  //                     CircleBorder>(CircleBorder())),
-                  //             onPressed: () {
-                  //               myAlert();
-                  //             },
-                  //             child: Container(
-                  //               child: Icon(
-                  //                 Icons.brush,
-                  //                 color: Colors.black,
-                  //                 size: 15,
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
                   SizedBox(
                     height: 10,
                   ),
@@ -596,16 +520,3 @@ class _PerfilState extends State<Perfil> {
         ));
   }
 }
-
-// return Scaffold(
-//       body: ElevatedButton(
-//         onPressed: () {
-//           context.read<AuthService>().logout();
-//           Navigator.push(
-//               context, MaterialPageRoute(builder: (context) => TelaInicial()));
-//         },
-//         //user!.displayName.toString()
-//         child: Text("Sair..."),
-//       ),
-//     );
-//   }
