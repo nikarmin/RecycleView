@@ -25,6 +25,7 @@ class _NoticiasState extends State<Noticias> {
 
   Future apiCall() async {
     http.Response response;
+    // https://newsdata.io/api/1/news?apikey=pub_2873739814a209a95f5d477831ae2a5f5fa6b&q=reciclagem 
     String url =
         "https://newsapi.org/v2/everything?q=reciclagem&apiKey=885038448a224a658b6824599de332d7";
     response = await http.get(Uri.parse(url));

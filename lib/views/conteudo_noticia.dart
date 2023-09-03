@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -60,8 +61,44 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
   @override
   void initState() {
     super.initState();
+    fetchNewsContent('885038448a224a658b6824599de332d7', 'google');
     getContent();
   }
+
+  Future<Map<String, dynamic>> fetchNewsContent(
+      String apiKey, String articleId) async {
+    final response = await http.get(
+      Uri.parse('https://newsapi.org/v2/everything?q=reciclagem&id=$articleId'),
+      headers: {'Authorization': 'Bearer $apiKey'},
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Falha ao carregar o conteúdo da notícia');
+    }
+  }
+
+  final controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setBackgroundColor(const Color(0x00000000))
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          // Update loading bar.
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onWebResourceError: (WebResourceError error) {},
+        onNavigationRequest: (NavigationRequest request) {
+          if (request.url.startsWith('https://www.youtube.com/')) {
+            return NavigationDecision.prevent;
+          }
+          return NavigationDecision.navigate;
+        },
+      ),
+    )
+    ..loadRequest(Uri.parse('https://flutter.dev'));
 
   @override
   Widget build(BuildContext context) {
@@ -157,11 +194,15 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
                         Container(
                             child: Padding(
                                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                child: Text(widget.content,
+                                child: Expanded(
+                                    child:
+                                        WebViewWidget(controller: controller))
+                                /*Text(widget.content,
                                     style: TextStyle(
                                         fontSize: 18,
                                         //fontWeight: FontWeight.bold,
-                                        color: Colors.black)))),
+                                        color: Colors.black))*/
+                                )),
                       ])),
                     ),
                   )

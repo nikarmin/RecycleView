@@ -15,51 +15,6 @@ class MapaPage extends StatefulWidget {
 }
 
 class _MapaPageState extends State<MapaPage> {
-  // LocationData? _currentPosition;
-  // String? _address, _dateTime;
-  // Location location = Location();
-  // LatLng _initialcameraposition = LatLng(0.5937, 0.9629);
-  // OpenStreetMapSearchAndPick? open;
-
-  // getLoc() async {
-  //   bool _serviceEnabled;
-  //   PermissionStatus _permissionGranted;
-
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     if (!_serviceEnabled) {
-  //       return;
-  //     }
-  //   }
-
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return;
-  //     }
-  //   }
-
-  //   _currentPosition = await location.getLocation();
-  //   _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
-  //       _currentPosition!.longitude!.toDouble());
-  //   location.onLocationChanged.listen((LocationData currentLocation) {
-  //     print("${currentLocation.longitude} : ${currentLocation.latitude}");
-  //     setState(() {
-  //       _currentPosition = currentLocation;
-  //       _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
-  //           _currentPosition!.longitude!.toDouble());
-  //     });
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getLoc();
-  // }
-
   TextEditingController _search = TextEditingController();
   @override
   Widget build(BuildContext context) {
