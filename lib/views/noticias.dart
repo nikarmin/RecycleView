@@ -7,6 +7,7 @@ import 'package:recycle_view/services/news_service.dart';
 import 'package:recycle_view/views/conteudo_noticia.dart';
 import 'package:recycle_view/views/perfil_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../models/artigo.dart';
 import 'layout/layout_noticia.dart';
@@ -25,7 +26,7 @@ class _NoticiasState extends State<Noticias> {
 
   Future apiCall() async {
     http.Response response;
-    // https://newsdata.io/api/1/news?apikey=pub_2873739814a209a95f5d477831ae2a5f5fa6b&q=reciclagem 
+    // https://newsdata.io/api/1/news?apikey=pub_2873739814a209a95f5d477831ae2a5f5fa6b&q=reciclagem
     String url =
         "https://newsapi.org/v2/everything?q=reciclagem&apiKey=885038448a224a658b6824599de332d7";
     response = await http.get(Uri.parse(url));

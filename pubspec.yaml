@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^22.1.39
   tflite_flutter: ^0.10.1
   tflite_v2: ^1.0.0
+  url_launcher: ^6.1.14
   webview_flutter: ^4.2.4
   #tflite_flutter: ^0.10.1
 
