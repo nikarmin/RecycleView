@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:graphic/graphic.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 
@@ -29,25 +30,205 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   File? img;
   Size? size;
 
-  Widget infoObjeto(BuildContext context) {
-    return new AlertDialog(
-      content: Scaffold(
-        body: Column(
-          children: [
-            Image.file(
-              File(imagem!.path),
-              fit: BoxFit.contain,
-            ),
-            _outputs != null
-                ? Text(
-                    _outputs![0]["label"],
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
+  objLabel(String obj) {
+    if (obj == 'Papel') {
+      return Column(
+        children: [
+          Text(_outputs![0]["label"].toString().substring(1),
+              textAlign: TextAlign.right,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  shadows: <Shadow>[
+                    Shadow(
+                        color: Colors.black.withOpacity(0.12),
+                        blurRadius: 10,
+                        offset: Offset(0, 0))
+                  ],
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[400],
+                  fontSize: 30.0,
+                ),
+              )),
+          Container(
+              child: Text(_outputs![0]["confidence"].toString(),
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
                     ),
-                  )
-                : Container()
-          ],
+                  ))),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Text(
+                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.jost(
+                    textStyle: TextStyle(
+                  fontSize: 18.0,
+                )),
+              ),
+            ),
+          )
+        ],
+      );
+    } else if (obj == 'Vidro') {
+      return Column(
+        children: [
+          Text(_outputs![0]["label"].toString().substring(1),
+              textAlign: TextAlign.right,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  shadows: <Shadow>[
+                    Shadow(
+                        color: Colors.black.withOpacity(0.12),
+                        blurRadius: 10,
+                        offset: Offset(0, 0))
+                  ],
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red[400],
+                  fontSize: 30.0,
+                ),
+              )),
+          Container(
+              child: Text(_outputs![0]["confidence"].toString(),
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                    ),
+                  ))),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Text(
+                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.jost(
+                    textStyle: TextStyle(
+                  fontSize: 18.0,
+                )),
+              ),
+            ),
+          )
+        ],
+      );
+    } else if (obj == 'Metal') {
+      return Column(
+        children: [
+          Text(_outputs![0]["label"].toString().substring(1),
+              textAlign: TextAlign.right,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  shadows: <Shadow>[
+                    Shadow(
+                        color: Colors.black.withOpacity(0.12),
+                        blurRadius: 10,
+                        offset: Offset(0, 0))
+                  ],
+                  fontWeight: FontWeight.bold,
+                  color: Colors.yellow[400],
+                  fontSize: 30.0,
+                ),
+              )),
+          Container(
+              child: Text(_outputs![0]["confidence"].toString(),
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                    ),
+                  ))),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Text(
+                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.jost(
+                    textStyle: TextStyle(
+                  fontSize: 18.0,
+                )),
+              ),
+            ),
+          )
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          Text(_outputs![0]["label"].toString().substring(1),
+              textAlign: TextAlign.right,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  shadows: <Shadow>[
+                    Shadow(
+                        color: Colors.black.withOpacity(0.12),
+                        blurRadius: 10,
+                        offset: Offset(0, 0))
+                  ],
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green[400],
+                  fontSize: 30.0,
+                ),
+              )),
+          Container(
+              child: Text(_outputs![0]["confidence"].toString(),
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                    ),
+                  ))),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Text(
+                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.jost(
+                    textStyle: TextStyle(
+                  fontSize: 18.0,
+                )),
+              ),
+            ),
+          )
+        ],
+      );
+    }
+  }
+
+  Widget infoObjeto(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      child: Container(
+        color: Color.fromRGBO(233, 233, 233, 1),
+        height: MediaQuery.of(context).size.height,
+        width: 400,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                  child: Image.file(
+                    File(imagem!.path),
+                    height: 400,
+                    width: 400,
+                  ),
+                ),
+              ),
+              _outputs != null
+                  ? objLabel(_outputs![0]['label'].toString().substring(2))
+                  : Container()
+            ],
+          ),
         ),
       ),
     );
