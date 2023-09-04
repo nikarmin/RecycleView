@@ -15,6 +15,28 @@ class MapaPage extends StatefulWidget {
 }
 
 class _MapaPageState extends State<MapaPage> {
+  Future<Position> getLocalizacao() async {
+    bool localizacaoOn = await Geolocator.isLocationServiceEnabled();
+
+    if (!localizacaoOn) {
+      return Future.error('Serviços de localização desativados.');
+    }
+    LocationPermission permissao = await Geolocator.checkPermission();
+
+    if (permissao == LocationPermission.denied) {
+      permissao = await Geolocator.requestPermission();
+      if (permissao == LocationPermission.denied) {
+        return Future.error('Permissão de localização negada.');
+      }
+    }
+
+    if (permissao == LocationPermission.deniedForever) {
+      return Future.error('Permissão para localização negada para sempre.');
+    }
+
+    return await Geolocator.getCurrentPosition();
+  }
+
   TextEditingController _search = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -40,35 +62,49 @@ class _MapaPageState extends State<MapaPage> {
             ),
           ],
         ),
-        backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+        backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Container(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    child: Column(
-                  children: [
-                    // Text('LAT: ${_currentPosition?.latitude ?? ""}'),
-                    // Text('LNG: ${_currentPosition?.longitude ?? ""}'),
-                  ],
-                )),
-                Expanded(
-                  child: OpenStreetMapSearchAndPick(
-                      center: LatLong(23, 89),
-                      buttonColor: Colors.blue,
-                      buttonText: 'Set Current Location',
-                      onPicked: (pickedData) {
-                        print(pickedData.latLong.latitude);
-                        print(pickedData.latLong.longitude);
-                        print(pickedData.address);
-                      }),
-                ),
-              ],
-            ),
+            child: FutureBuilder(
+                future: getLocalizacao(),
+                builder: (BuildContext context, AsyncSnapshot<Position> snap) {
+                  if (snap.connectionState == ConnectionState.waiting) {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.green,
+                    ));
+                  } else if (snap.hasError) {
+                    return Text(snap.hasError.toString());
+                  } else {
+                    return Expanded(
+                        child: OpenStreetMapSearchAndPick(
+                            center: LatLong(
+                                snap.data!.latitude, snap.data!.longitude),
+                            buttonColor: Colors.blue,
+                            buttonText: 'Set Current Location',
+                            onPicked: (pickedData) {
+                              print(pickedData.latLong.latitude);
+                              print(pickedData.latLong.longitude);
+                              print(pickedData.address);
+                            }));
+                  }
+                })
+            // Expanded(
+            //   child: OpenStreetMapSearchAndPick(
+            //       center: LatLong(23, 89),
+            //       buttonColor: Colors.blue,
+            //       buttonText: 'Set Current Location',
+            //       onPicked: (pickedData) {
+            //         print(pickedData.latLong.latitude);
+            //         print(pickedData.latLong.longitude);
+            //         print(pickedData.address);
+            //       }),
+            // ),
+
+            ,
           ),
         ));
   }

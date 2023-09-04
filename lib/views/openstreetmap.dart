@@ -277,27 +277,51 @@ class _OpenStreetMapSearchAndPickState
   loadMap() async {
     _mapController = MapController();
 
-    _mapController.mapEventStream.listen((event) async {
-      if (event is MapEventMoveEnd) {
-        var client = http.Client();
-        String url =
-            '${widget.baseUri}/reverse?format=json&lat=${_currentPosition?.latitude}&lon=${_currentPosition?.longitude}&zoom=18&addressdetails=1';
+    // return FutureBuilder(
+    //     builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+    //   if (snapshot.connectionState == ConnectionState.waiting) {
+    //     return Center(child: CircularProgressIndicator());
+    //   } else if (snapshot.hasError) {
+    //     return Center(child: Text('Error: ${snapshot.error}'));
+    //   } else {
+    //     _mapController.mapEventStream.listen((event) async {
+    //       if (event is MapEventMoveEnd) {
+    //         var client = http.Client();
+    //         String url =
+    //             '${widget.baseUri}/reverse?format=json&lat=${_currentPosition?.latitude}&lon=${_currentPosition?.longitude}&zoom=18&addressdetails=1';
 
-        var response = await client.get(Uri.parse(url));
-        // var response = await client.post(Uri.parse(url));
-        var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
-            as Map<dynamic, dynamic>;
+    //         var response = await client.get(Uri.parse(url));
+    //         // var response = await client.post(Uri.parse(url));
+    //         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
+    //             as Map<dynamic, dynamic>;
 
-        _searchController.text = decodedResponse['display_name'];
-        setState(() {});
-      }
-    });
+    //         _searchController.text = decodedResponse['display_name'];
+    //         setState(() {});
+    //       }
+    //     });
+    //   }
+    // });
+    // _mapController.mapEventStream.listen((event) async {
+    //   if (event is MapEventMoveEnd) {
+    //     var client = http.Client();
+    //     String url =
+    //         '${widget.baseUri}/reverse?format=json&lat=${_currentPosition?.latitude}&lon=${_currentPosition?.longitude}&zoom=18&addressdetails=1';
+
+    //     var response = await client.get(Uri.parse(url));
+    //     // var response = await client.post(Uri.parse(url));
+    //     var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
+    //         as Map<dynamic, dynamic>;
+
+    //     _searchController.text = decodedResponse['display_name'];
+    //     setState(() {});
+    //   }
+    // });
   }
 
   @override
   void initState() {
-    setNameCurrentPosNew();
-    loadMap();
+    setNameCurrentPos();
+    //loadMap();
     super.initState();
   }
 
@@ -323,6 +347,7 @@ class _OpenStreetMapSearchAndPickState
           Positioned.fill(
               child: FlutterMap(
             options: MapOptions(
+                screenSize: MediaQuery.of(context).size / 2,
                 onMapReady: () {
                   setState(() {
                     markers.add(
@@ -340,8 +365,7 @@ class _OpenStreetMapSearchAndPickState
                     );
                   });
                 },
-                center: LatLng(_currentPosition!.latitude!.toDouble(),
-                    _currentPosition!.longitude!.toDouble()),
+                center: LatLng(widget.center.latitude, widget.center.longitude),
                 zoom: 15.0,
                 maxZoom: 18,
                 minZoom: 6),
