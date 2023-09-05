@@ -51,7 +51,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.locationPinText = 'Location',
       this.locationPinTextStyle = const TextStyle(
           fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
-      this.hintText = 'Search Location',
+      this.hintText = 'Procurar endereço',
       this.buttonTextStyle = const TextStyle(
           fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
       this.buttonTextColor = Colors.white,
@@ -384,6 +384,25 @@ class _OpenStreetMapSearchAndPickState
               ),
             ],
           )),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30),
+                      ),
+                      color: Colors.red),
+                  height: 250,
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    child: Text("Teste"),
+                  ),
+                ),
+              ]),
           // Positioned(
           //     bottom: 60,
           //     right: 5,

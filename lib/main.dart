@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
+import 'package:recycle_view/views/mapa.dart';
 import 'package:recycle_view/widget/auth_check.dart';
 
 import 'firebase_options.dart';
