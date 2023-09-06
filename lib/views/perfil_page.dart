@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,6 +15,7 @@ import 'package:recycle_view/views/tela_inicial.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../services/store_data.dart';
+import 'indicator.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -46,49 +48,71 @@ class _PerfilState extends State<Perfil> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Objeto:',
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300)),
-                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Checkbox(value: false, onChanged: (value) {}),
-                      Text('Óleo',
-                          style: GoogleFonts.jost(
-                              textStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(value: false, onChanged: (value) {}),
-                      Text('Eletrônicos',
-                          style: GoogleFonts.jost(
-                              textStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(value: false, onChanged: (value) {}),
-                      Text('Recicláveis',
-                          style: GoogleFonts.jost(
-                              textStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black)))
+                      SizedBox(
+                        height: 18,
+                        width: 18,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            '-',
+                            textAlign: TextAlign.center,
+                          ),
+                          style: ButtonStyle(
+                            padding:
+                                MaterialStateProperty.all(EdgeInsets.all(3)),
+                            shape: MaterialStateProperty.all(CircleBorder()),
+                          ),
+                        ),
+                      )
                     ],
                   )
+
+                  // Text(
+                  //   'Objeto:',
+                  //   textAlign: TextAlign.left,
+                  //   style: GoogleFonts.poppins(
+                  //       textStyle: TextStyle(
+                  //           decoration: TextDecoration.none,
+                  //           fontSize: 16,
+                  //           color: Colors.black,
+                  //           fontWeight: FontWeight.w300)),
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     Checkbox(value: false, onChanged: (value) {}),
+                  //     Text('Óleo',
+                  //         style: GoogleFonts.jost(
+                  //             textStyle: TextStyle(
+                  //                 fontSize: 18,
+                  //                 fontWeight: FontWeight.w400,
+                  //                 color: Colors.black)))
+                  //   ],
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     Checkbox(value: false, onChanged: (value) {}),
+                  //     Text('Eletrônicos',
+                  //         style: GoogleFonts.jost(
+                  //             textStyle: TextStyle(
+                  //                 fontSize: 18,
+                  //                 fontWeight: FontWeight.w400,
+                  //                 color: Colors.black)))
+                  //   ],
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     Checkbox(value: false, onChanged: (value) {}),
+                  //     Text('Recicláveis',
+                  //         style: GoogleFonts.jost(
+                  //             textStyle: TextStyle(
+                  //                 fontSize: 18,
+                  //                 fontWeight: FontWeight.w400,
+                  //                 color: Colors.black)))
+                  //   ],
+                  // )
                 ],
               ),
             ),
@@ -244,6 +268,73 @@ class _PerfilState extends State<Perfil> {
       _PieData('35', 45, 'Jan'),
       _PieData('28', 23, 'Feb'),
     ];
+
+    int touchedIndex = -1;
+
+    List<PieChartSectionData> showingSections() {
+      return List.generate(4, (i) {
+        final isTouched = i == touchedIndex;
+        final fontSize = isTouched ? 25.0 : 16.0;
+        final radius = isTouched ? 60.0 : 50.0;
+        const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+        switch (i) {
+          case 0:
+            return PieChartSectionData(
+              color: Colors.green,
+              value: 40,
+              title: '40%',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                shadows: shadows,
+              ),
+            );
+          case 1:
+            return PieChartSectionData(
+              color: Colors.red,
+              value: 30,
+              title: '30%',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                shadows: shadows,
+              ),
+            );
+          case 2:
+            return PieChartSectionData(
+              color: Colors.blue,
+              value: 15,
+              title: '15%',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                shadows: shadows,
+              ),
+            );
+          case 3:
+            return PieChartSectionData(
+              color: Colors.purple,
+              value: 15,
+              title: '15%',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                shadows: shadows,
+              ),
+            );
+          default:
+            throw Error();
+        }
+      });
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -465,9 +556,63 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ),
                   Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: SingleChildScrollView(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: PieChart(
+                              PieChartData(
+                                  pieTouchData: PieTouchData(
+                                    touchCallback:
+                                        (FlTouchEvent event, pieTouchResponse) {
+                                      setState(() {
+                                        if (!event
+                                                .isInterestedForInteractions ||
+                                            pieTouchResponse == false ||
+                                            pieTouchResponse?.touchedSection ==
+                                                null) {
+                                          touchedIndex = -1;
+                                          return;
+                                        }
+                                        touchedIndex = pieTouchResponse!
+                                            .touchedSection!
+                                            .touchedSectionIndex;
+                                      });
+                                    },
+                                  ),
+                                  sectionsSpace: 0,
+                                  centerSpaceRadius: 40,
+                                  sections: showingSections()),
+                            ),
+                          ),
+                        ),
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Indicator(
+                                color: Colors.black,
+                                text: 'First',
+                                isSquare: true,
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Indicator(
+                                color: Colors.white,
+                                text: 'Second',
+                                isSquare: true,
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                            ])
+                      ],
+                    ),
+                    /*SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: Column(children: [
                             SfCircularChart(
@@ -488,7 +633,8 @@ class _PerfilState extends State<Perfil> {
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true)),
                                 ])
-                          ])))
+                          ]))*/
+                  )
                 ],
               ),
             ),
