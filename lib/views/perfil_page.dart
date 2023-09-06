@@ -66,6 +66,23 @@ class _PerfilState extends State<Perfil> {
                             shape: MaterialStateProperty.all(CircleBorder()),
                           ),
                         ),
+                      ),
+                      Text('oiii'),
+                      SizedBox(
+                        height: 18,
+                        width: 18,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            '+',
+                            textAlign: TextAlign.center,
+                          ),
+                          style: ButtonStyle(
+                            padding:
+                                MaterialStateProperty.all(EdgeInsets.all(3)),
+                            shape: MaterialStateProperty.all(CircleBorder()),
+                          ),
+                        ),
                       )
                     ],
                   )
