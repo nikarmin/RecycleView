@@ -103,6 +103,16 @@ class AuthService extends ChangeNotifier {
     // }
   }
 
+  getPontoDeColeta() async {
+    var colecao = _db.collection('pontos_de_coleta');
+    final QuerySnapshot<Map<String, dynamic>> listaDePontos;
+    try {
+      listaDePontos = await colecao.get();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   pegarFoto() async {
     var collection = _db.collection('usuarios');
     var doc = await collection.doc(usuario?.uid).get();

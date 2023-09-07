@@ -12,6 +12,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
+import 'package:provider/provider.dart';
+
+import '../services/auth_service.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
@@ -318,10 +321,15 @@ class _OpenStreetMapSearchAndPickState
     // });
   }
 
+  pegar() async {
+    await context.read<AuthService>().getPontoDeColeta();
+  }
+
   @override
   void initState() {
     setNameCurrentPos();
     //loadMap();
+    pegar();
     super.initState();
   }
 
