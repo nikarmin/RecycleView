@@ -5,6 +5,8 @@ import 'package:recycle_view/views/cadastro.dart';
 import 'package:recycle_view/views/login.dart';
 
 class TelaInicial extends StatelessWidget {
+  const TelaInicial({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +44,7 @@ class TelaInicial extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             Container(
@@ -51,15 +53,15 @@ class TelaInicial extends StatelessWidget {
                 'assets/images/sparkles.png',
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 58,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
                 'RecycleView ',
                 style: GoogleFonts.poppins(
-                    textStyle:
-                        TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),
+                    textStyle: const TextStyle(
+                        fontSize: 34, fontWeight: FontWeight.w300)),
               ),
               Image.asset(
                 'assets/images/ecology.png',
@@ -69,9 +71,10 @@ class TelaInicial extends StatelessWidget {
             ]),
             //Text('RecycleView', style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 34, fontWeight: FontWeight.w300)),),
             Text('O jeito reciclável de ser!',
-                style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 14))),
+                style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(fontSize: 14))),
             //Image.asset('assets/images/planet-earth.png',),
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             ElevatedButton(
@@ -80,25 +83,25 @@ class TelaInicial extends StatelessWidget {
                     context,
                     PageTransition(
                         type: PageTransitionType.bottomToTop,
-                        child: Login(),
-                        duration: Duration(milliseconds: 150)));
+                        child: const Login(),
+                        duration: const Duration(milliseconds: 150)));
                 // Navigator.of(context).push(_createRoute(Login()));
                 // Navigator.push(
                 //     context, MaterialPageRoute(builder: (context) => Login()));
               },
+              style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                  padding: const EdgeInsets.only(
+                      top: 15, bottom: 15, left: 25, right: 25),
+                  backgroundColor: const Color.fromRGBO(156, 204, 140, 1)),
               child: Text('Entrar',
                   style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           fontSize: 16,
                           color: Colors.black,
                           fontWeight: FontWeight.w300))),
-              style: ElevatedButton.styleFrom(
-                  shape: StadiumBorder(),
-                  padding:
-                      EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
-                  backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             ElevatedButton(
@@ -107,25 +110,25 @@ class TelaInicial extends StatelessWidget {
                     context,
                     PageTransition(
                         type: PageTransitionType.bottomToTop,
-                        child: Cadastro(),
-                        duration: Duration(milliseconds: 150)));
+                        child: const Cadastro(),
+                        duration: const Duration(milliseconds: 150)));
                 // Navigator.of(context).push(_createRoute(Cadastro()));
                 // Navigator.push(
                 //     context, MaterialPageRoute(builder: (context) => Cadastro()));
               },
+              style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                  padding: const EdgeInsets.only(
+                      top: 15, bottom: 15, left: 25, right: 25),
+                  backgroundColor: const Color.fromRGBO(156, 204, 140, 1)),
               child: Text('Cadastrar',
                   style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           fontSize: 16,
                           color: Colors.black,
                           fontWeight: FontWeight.w300))),
-              style: ElevatedButton.styleFrom(
-                  shape: StadiumBorder(),
-                  padding:
-                      EdgeInsets.only(top: 15, bottom: 15, left: 25, right: 25),
-                  backgroundColor: Color.fromRGBO(156, 204, 140, 1)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             // Stack(children: <Widget>[

@@ -37,26 +37,25 @@ class _MapaPageState extends State<MapaPage> {
     return await Geolocator.getCurrentPosition();
   }
 
-  TextEditingController _search = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+          title: const ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
-          backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+          backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
           elevation: 0,
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
-              icon: ImageIcon(
+              icon: const ImageIcon(
                 AssetImage('assets/images/icons/account.png'),
                 color: Colors.black,
               ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Perfil();
+                  return const Perfil();
                 }));
               },
             ),
@@ -65,14 +64,14 @@ class _MapaPageState extends State<MapaPage> {
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Container(
+          child:  Container(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height,
             child: FutureBuilder(
                 future: getLocalizacao(),
                 builder: (BuildContext context, AsyncSnapshot<Position> snap) {
                   if (snap.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                         child: CircularProgressIndicator(
                       color: Colors.green,
                     ));

@@ -12,13 +12,14 @@ class LayoutPontos extends StatelessWidget {
       height: 80,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color.fromRGBO(233, 233, 233, 1)),
+          color: const Color.fromRGBO(233, 233, 233, 1)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Stack(children: [
           Text(
             nome,
-            style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 20)),
+            style:
+                GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 20)),
           ),
           Positioned(
             bottom: 2,
@@ -29,22 +30,21 @@ class LayoutPontos extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Color.fromARGB(255, 226, 226, 226)),
+                        (states) => const Color.fromARGB(255, 226, 226, 226)),
                     padding:
                         MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
                     alignment: Alignment.center,
                     shape: MaterialStateProperty.all<CircleBorder>(
-                        CircleBorder())),
+                        const CircleBorder())),
                 onPressed: () {},
-                child: Container(
-                    child: Text(
+                child: Text(
                   "?",
                   style: GoogleFonts.archivo(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                           fontWeight: FontWeight.w500)),
-                )),
+                ),
               ),
             ),
           ),
@@ -57,19 +57,18 @@ class LayoutPontos extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Color.fromARGB(255, 226, 226, 226)),
+                        (states) => const Color.fromARGB(255, 226, 226, 226)),
                     padding:
                         MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
                     alignment: Alignment.center,
                     shape: MaterialStateProperty.all<CircleBorder>(
-                        CircleBorder())),
+                        const CircleBorder())),
                 onPressed: () {},
-                child: Container(
-                    child: Icon(
+                child: const Icon(
                   Icons.calendar_month_rounded,
                   color: Colors.black,
                   weight: 0.5,
-                )),
+                ),
               ),
             ),
           ),

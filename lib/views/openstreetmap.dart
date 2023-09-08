@@ -219,114 +219,6 @@ class _OpenStreetMapSearchAndPickState
     });
   }
 
-  void setPosicao() async {
-    //getLoc();
-
-    ////////////
-
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return;
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    setState(() async {
-      _currentPosition = await location.getLocation();
-    });
-
-    _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
-        _currentPosition!.longitude!.toDouble());
-    location.onLocationChanged.listen((LocationData currentLocation) {
-      print("${currentLocation.longitude} : ${currentLocation.latitude}");
-      setState(() {
-        _currentPosition = currentLocation;
-        _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
-            _currentPosition!.longitude!.toDouble());
-      });
-    });
-
-    ///////////
-
-    if (kDebugMode) {
-      print(_currentPosition?.latitude);
-    }
-    if (kDebugMode) {
-      print(_currentPosition?.longitude);
-    }
-
-    // print(_currentPosition?.altitude);
-    // print(_currentPosition?.longitude);
-
-    String url =
-        '${widget.baseUri}/reverse?format=json&lat=$_currentPosition?.latitude&lon=$_currentPosition?.longitude&zoom=18&addressdetails=1';
-
-    var response = await client.get(Uri.parse(url));
-    // var response = await client.post(Uri.parse(url));
-    var decodedResponse =
-        jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
-
-    _searchController.text =
-        decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
-    setState(() {});
-  }
-
-  loadMap() async {
-    _mapController = MapController();
-
-    // return FutureBuilder(
-    //     builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
-    //   if (snapshot.connectionState == ConnectionState.waiting) {
-    //     return Center(child: CircularProgressIndicator());
-    //   } else if (snapshot.hasError) {
-    //     return Center(child: Text('Error: ${snapshot.error}'));
-    //   } else {
-    //     _mapController.mapEventStream.listen((event) async {
-    //       if (event is MapEventMoveEnd) {
-    //         var client = http.Client();
-    //         String url =
-    //             '${widget.baseUri}/reverse?format=json&lat=${_currentPosition?.latitude}&lon=${_currentPosition?.longitude}&zoom=18&addressdetails=1';
-
-    //         var response = await client.get(Uri.parse(url));
-    //         // var response = await client.post(Uri.parse(url));
-    //         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
-    //             as Map<dynamic, dynamic>;
-
-    //         _searchController.text = decodedResponse['display_name'];
-    //         setState(() {});
-    //       }
-    //     });
-    //   }
-    // });
-    // _mapController.mapEventStream.listen((event) async {
-    //   if (event is MapEventMoveEnd) {
-    //     var client = http.Client();
-    //     String url =
-    //         '${widget.baseUri}/reverse?format=json&lat=${_currentPosition?.latitude}&lon=${_currentPosition?.longitude}&zoom=18&addressdetails=1';
-
-    //     var response = await client.get(Uri.parse(url));
-    //     // var response = await client.post(Uri.parse(url));
-    //     var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
-    //         as Map<dynamic, dynamic>;
-
-    //     _searchController.text = decodedResponse['display_name'];
-    //     setState(() {});
-    //   }
-    // });
-  }
-
   pegar() async {
     await context.read<AuthService>().getPontoDeColeta();
   }
@@ -334,7 +226,6 @@ class _OpenStreetMapSearchAndPickState
   @override
   void initState() {
     setNameCurrentPos();
-    //loadMap();
     pegar();
     super.initState();
   }
@@ -347,9 +238,9 @@ class _OpenStreetMapSearchAndPickState
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data?.docs
-        .map((doc) => new ListTile(
+        .map((doc) => ListTile(
               title: GestureDetector(
-                child: new LayoutPontos(nome: doc["nome"]),
+                child: LayoutPontos(nome: doc["nome"]),
                 onTap: () {
                   // adicionar função
                 },
@@ -416,7 +307,7 @@ class _OpenStreetMapSearchAndPickState
                     width: 60,
                     height: 60,
                     builder: (context) {
-                      return CircleAvatar(
+                      return const CircleAvatar(
                         backgroundColor: Color.fromRGBO(51, 111, 93, 0.397),
                         child: Icon(
                           Icons.emoji_people_outlined,
@@ -435,7 +326,7 @@ class _OpenStreetMapSearchAndPickState
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(30),
                         topLeft: Radius.circular(30),
@@ -445,7 +336,7 @@ class _OpenStreetMapSearchAndPickState
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 18,
                       ),
                       Expanded(
@@ -458,7 +349,7 @@ class _OpenStreetMapSearchAndPickState
                             if (snapshot.hasError) {
                               return Text('Something went wrong');
                             }
-                            return new ListView(
+                            return ListView(
                                 children: getExpenseItems(snapshot));
                           },
                         ),

@@ -23,12 +23,12 @@ class PreviewPage extends StatelessWidget {
                 Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: EdgeInsets.all(32),
+                      padding: const EdgeInsets.all(32),
                       child: CircleAvatar(
                         radius: 32,
                         backgroundColor: Colors.black12,
                         child: IconButton(
-                            icon: Icon(Icons.check),
+                            icon: const Icon(Icons.check),
                             color: Colors.white,
                             onPressed: () {
                               Get.back(result: file);
@@ -38,12 +38,12 @@ class PreviewPage extends StatelessWidget {
                 Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: EdgeInsets.all(32),
+                      padding: const EdgeInsets.all(32),
                       child: CircleAvatar(
                         radius: 32,
                         backgroundColor: Colors.black12,
                         child: IconButton(
-                            icon: Icon(Icons.close),
+                            icon: const Icon(Icons.close),
                             color: Colors.white,
                             onPressed: () {
                               Get.back();

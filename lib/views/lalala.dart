@@ -38,15 +38,17 @@ class _LalalaState extends State<Lalala> {
                             }
                           });
                         },
-                        child: Text(
-                          '-',
-                          textAlign: TextAlign.center,
-                        ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
+                          '-',
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -54,7 +56,7 @@ class _LalalaState extends State<Lalala> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         (count >= 0 ? count.toString() : '0'),
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.black,
                         ),
@@ -69,19 +71,21 @@ class _LalalaState extends State<Lalala> {
                             count++;
                           });
                         },
-                        child: Text(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
                           '+',
                           textAlign: TextAlign.center,
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
-                        ),
                       ),
                     ),
-                    Text('Metal')
+                    const Text('Metal')
                   ],
                 ),
                 Row(
@@ -100,15 +104,17 @@ class _LalalaState extends State<Lalala> {
                             }
                           });
                         },
-                        child: Text(
-                          '-',
-                          textAlign: TextAlign.center,
-                        ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
+                          '-',
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -116,7 +122,7 @@ class _LalalaState extends State<Lalala> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         (count >= 0 ? count.toString() : '0'),
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.black,
                         ),
@@ -131,19 +137,21 @@ class _LalalaState extends State<Lalala> {
                             count++;
                           });
                         },
-                        child: Text(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
                           '+',
                           textAlign: TextAlign.center,
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
-                        ),
                       ),
                     ),
-                    Text('Plástico')
+                    const Text('Plástico')
                   ],
                 ),
                 Row(
@@ -162,15 +170,17 @@ class _LalalaState extends State<Lalala> {
                             }
                           });
                         },
-                        child: Text(
-                          '-',
-                          textAlign: TextAlign.center,
-                        ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
+                          '-',
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -178,7 +188,7 @@ class _LalalaState extends State<Lalala> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         (count >= 0 ? count.toString() : '0'),
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.black,
                         ),
@@ -193,19 +203,21 @@ class _LalalaState extends State<Lalala> {
                             count++;
                           });
                         },
-                        child: Text(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
                           '+',
                           textAlign: TextAlign.center,
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
-                        ),
                       ),
                     ),
-                    Text('Papel')
+                    const Text('Papel')
                   ],
                 ),
                 Row(
@@ -224,15 +236,17 @@ class _LalalaState extends State<Lalala> {
                             }
                           });
                         },
-                        child: Text(
-                          '-',
-                          textAlign: TextAlign.center,
-                        ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
+                          '-',
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -240,7 +254,7 @@ class _LalalaState extends State<Lalala> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         (count >= 0 ? count.toString() : '0'),
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.black,
                         ),
@@ -255,19 +269,21 @@ class _LalalaState extends State<Lalala> {
                             count++;
                           });
                         },
-                        child: Text(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromRGBO(134, 167, 102, 1)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(3)),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: const Text(
                           '+',
                           textAlign: TextAlign.center,
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromRGBO(134, 167, 102, 1)),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(3)),
-                          shape: MaterialStateProperty.all(CircleBorder()),
-                        ),
                       ),
                     ),
-                    Text('Vidro')
+                    const Text('Vidro')
                   ],
                 )
               ],
