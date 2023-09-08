@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
+import 'package:recycle_view/views/layout/layout_ponto.dart';
+import 'package:recycle_view/views/tela_inicial.dart';
 
 import '../services/auth_service.dart';
 
@@ -240,7 +243,10 @@ class _OpenStreetMapSearchAndPickState
       }
     }
 
-    _currentPosition = await location.getLocation();
+    setState(() async {
+      _currentPosition = await location.getLocation();
+    });
+
     _initialcameraposition = LatLng(_currentPosition!.latitude!.toDouble(),
         _currentPosition!.longitude!.toDouble());
     location.onLocationChanged.listen((LocationData currentLocation) {
@@ -339,6 +345,19 @@ class _OpenStreetMapSearchAndPickState
     super.dispose();
   }
 
+  getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
+    return snapshot.data?.docs
+        .map((doc) => new ListTile(
+              title: GestureDetector(
+                child: new LayoutPontos(nome: doc["nome"]),
+                onTap: () {
+                  // adicionar função
+                },
+              ),
+            ))
+        .toList();
+  }
+
   List<Marker> markers = [];
   @override
   Widget build(BuildContext context) {
@@ -358,18 +377,20 @@ class _OpenStreetMapSearchAndPickState
                 screenSize: MediaQuery.of(context).size / 2,
                 onMapReady: () {
                   setState(() {
-                    markers.add(
-                      Marker(
-                        width: 150.0,
-                        height: 150.0,
-                        point: LatLng(_currentPosition!.latitude!.toDouble(),
-                            _currentPosition!.longitude!.toDouble()),
-                        builder: (ctx) => const Icon(
-                          Icons.location_on,
-                          color: Colors.red,
-                          size: 35.0,
+                    MarkerLayer(
+                      markers: [
+                        Marker(
+                          width: 20.0,
+                          height: 20.0,
+                          point: LatLng(
+                              widget.center.latitude, widget.center.longitude),
+                          builder: (ctx) => const Icon(
+                            Icons.location_on,
+                            color: Color.fromRGBO(51, 111, 93, 1),
+                            size: 35.0,
+                          ),
                         ),
-                      ),
+                      ],
                     );
                   });
                 },
@@ -379,9 +400,6 @@ class _OpenStreetMapSearchAndPickState
                 minZoom: 6),
             mapController: _mapController,
             children: [
-              MarkerLayer(
-                markers: [for (int i = 0; i < markers.length; i++) markers[i]],
-              ),
               TileLayer(
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -390,6 +408,25 @@ class _OpenStreetMapSearchAndPickState
                 //   return Text("© OpenStreetMap contributors");
                 // },
               ),
+              MarkerLayer(markers: [
+                if (widget.center != null)
+                  Marker(
+                    point:
+                        LatLng(widget.center.latitude, widget.center.longitude),
+                    width: 60,
+                    height: 60,
+                    builder: (context) {
+                      return CircleAvatar(
+                        backgroundColor: Color.fromRGBO(51, 111, 93, 0.397),
+                        child: Icon(
+                          Icons.emoji_people_outlined,
+                          color: Colors.black,
+                          size: 25,
+                        ),
+                      );
+                    },
+                  )
+              ])
             ],
           )),
           Column(
@@ -403,11 +440,30 @@ class _OpenStreetMapSearchAndPickState
                         topRight: Radius.circular(30),
                         topLeft: Radius.circular(30),
                       ),
-                      color: Colors.red),
+                      color: Color.fromRGBO(51, 111, 93, 1)),
                   height: 250,
                   width: MediaQuery.of(context).size.width,
-                  child: SingleChildScrollView(
-                    child: Text("Teste"),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 18,
+                      ),
+                      Expanded(
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection("pontos_de_coleta")
+                              .snapshots(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return Text('Something went wrong');
+                            }
+                            return new ListView(
+                                children: getExpenseItems(snapshot));
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ]),
