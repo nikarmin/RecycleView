@@ -33,12 +33,13 @@ class _PieData {
 
 class _PerfilState extends State<Perfil> {
   Widget _buildPopupDialog(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: Text(
         'Adicionar reciclagem',
-        style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black)),
+        style: GoogleFonts.poppins(
+            textStyle: const TextStyle(color: Colors.black)),
       ),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -56,31 +57,33 @@ class _PerfilState extends State<Perfil> {
                         width: 18,
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: Text(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(3)),
+                            shape:
+                                MaterialStateProperty.all(const CircleBorder()),
+                          ),
+                          child: const Text(
                             '-',
                             textAlign: TextAlign.center,
                           ),
-                          style: ButtonStyle(
-                            padding:
-                                MaterialStateProperty.all(EdgeInsets.all(3)),
-                            shape: MaterialStateProperty.all(CircleBorder()),
-                          ),
                         ),
                       ),
-                      Text('oiii'),
+                      const Text('oiii'),
                       SizedBox(
                         height: 18,
                         width: 18,
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: Text(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(3)),
+                            shape:
+                                MaterialStateProperty.all(const CircleBorder()),
+                          ),
+                          child: const Text(
                             '+',
                             textAlign: TextAlign.center,
-                          ),
-                          style: ButtonStyle(
-                            padding:
-                                MaterialStateProperty.all(EdgeInsets.all(3)),
-                            shape: MaterialStateProperty.all(CircleBorder()),
                           ),
                         ),
                       )
@@ -137,7 +140,7 @@ class _PerfilState extends State<Perfil> {
         ],
       ),
       actions: <Widget>[
-        new ElevatedButton(
+        ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -207,7 +210,7 @@ class _PerfilState extends State<Perfil> {
           });
         } else if (snapshot.state == TaskState.success) {
           final String downloadUrl = await snapshot.ref.getDownloadURL();
-          print(user?.uid.toString());
+          // print(user?.uid.toString());
           user?.updatePhotoURL(downloadUrl);
           img = user?.photoURL;
           await FirebaseFirestore.instance
@@ -231,19 +234,19 @@ class _PerfilState extends State<Perfil> {
           return AlertDialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            title: Text("Escolha uma opção:"),
-            content: Container(
+            title: const Text("Escolha uma opção:"),
+            content: SizedBox(
               height: MediaQuery.of(context).size.height / 6,
               child: Column(children: [
                 ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Color.fromRGBO(51, 111, 93, 1))),
+                            (states) => const Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () async {
                       Navigator.pop(context);
                       pickAndUploadImage();
                     },
-                    child: Row(
+                    child: const Row(
                       children: [
                         Icon(Icons.image),
                         SizedBox(
@@ -255,12 +258,12 @@ class _PerfilState extends State<Perfil> {
                 ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Color.fromRGBO(51, 111, 93, 1))),
+                            (states) => const Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () async {
                       Navigator.pop(context);
                       pickAndUploadImage();
                     },
-                    child: Row(
+                    child: const Row(
                       children: [
                         Icon(Icons.camera),
                         SizedBox(
@@ -355,13 +358,14 @@ class _PerfilState extends State<Perfil> {
 
     return Scaffold(
         appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+          title: const ImageIcon(
+              AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
-          backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+          backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
@@ -371,7 +375,7 @@ class _PerfilState extends State<Perfil> {
           ),
           actions: [
             IconButton(
-              icon: ImageIcon(
+              icon: const ImageIcon(
                 AssetImage('assets/images/icons/account.png'),
                 color: Colors.black,
               ),
@@ -384,19 +388,19 @@ class _PerfilState extends State<Perfil> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Color.fromRGBO(233, 233, 233, 1),
+            color: const Color.fromRGBO(233, 233, 233, 1),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   img == null
                       ? Stack(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   //shape: BoxShape.rectangle,
                                   shape: BoxShape.circle,
                                   //borderRadius: BorderRadius.circular(20),
@@ -419,23 +423,21 @@ class _PerfilState extends State<Perfil> {
                                   style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateColor.resolveWith(
-                                              (states) => Color.fromARGB(
+                                              (states) => const Color.fromARGB(
                                                   255, 226, 226, 226)),
                                       padding:
                                           MaterialStateProperty.all<EdgeInsets>(
                                               EdgeInsets.zero),
                                       alignment: Alignment.center,
                                       shape: MaterialStateProperty.all<
-                                          CircleBorder>(CircleBorder())),
+                                          CircleBorder>(const CircleBorder())),
                                   onPressed: () {
                                     myAlert();
                                   },
-                                  child: Container(
-                                    child: Icon(
-                                      Icons.brush,
-                                      color: Colors.black,
-                                      size: 15,
-                                    ),
+                                  child: const Icon(
+                                    Icons.brush,
+                                    color: Colors.black,
+                                    size: 15,
                                   ),
                                 ),
                               ),
@@ -461,31 +463,30 @@ class _PerfilState extends State<Perfil> {
                               height: 30,
                               child: ElevatedButton(
                                 style: ButtonStyle(
-                                    backgroundColor: MaterialStateColor
-                                        .resolveWith((states) =>
-                                            Color.fromARGB(255, 226, 226, 226)),
+                                    backgroundColor:
+                                        MaterialStateColor.resolveWith(
+                                            (states) => const Color.fromARGB(
+                                                255, 226, 226, 226)),
                                     padding:
                                         MaterialStateProperty.all<EdgeInsets>(
                                             EdgeInsets.zero),
                                     alignment: Alignment.center,
                                     shape:
                                         MaterialStateProperty.all<CircleBorder>(
-                                            CircleBorder())),
+                                            const CircleBorder())),
                                 onPressed: () {
                                   myAlert();
                                 },
-                                child: Container(
-                                  child: Icon(
-                                    Icons.brush,
-                                    color: Colors.black,
-                                    size: 15,
-                                  ),
+                                child: const Icon(
+                                  Icons.brush,
+                                  color: Colors.black,
+                                  size: 15,
                                 ),
                               ),
                             ),
                           ),
                         ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -495,7 +496,7 @@ class _PerfilState extends State<Perfil> {
                   ),
                   Text(user!.email.toString(),
                       style: GoogleFonts.archivo(fontSize: 14)),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
@@ -505,19 +506,20 @@ class _PerfilState extends State<Perfil> {
                       child: ElevatedButton.icon(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateColor.resolveWith(
-                                (states) => Color.fromRGBO(51, 111, 93, 1))),
+                                (states) =>
+                                    const Color.fromRGBO(51, 111, 93, 1))),
                         label: Text(
                           "Editar",
                           style: GoogleFonts.archivo(
                               fontSize: 14, fontWeight: FontWeight.w500),
                         ),
-                        icon: Icon(Icons.edit_rounded),
+                        icon: const Icon(Icons.edit_rounded),
                         onPressed: () {
                           context.read<AuthService>().logout();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TelaInicial()));
+                                  builder: (context) => const TelaInicial()));
                         },
                         //user!.displayName.toString()
                       ),
@@ -530,19 +532,20 @@ class _PerfilState extends State<Perfil> {
                       child: ElevatedButton.icon(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateColor.resolveWith(
-                                (states) => Color.fromRGBO(51, 111, 93, 1))),
+                                (states) =>
+                                    const Color.fromRGBO(51, 111, 93, 1))),
                         label: Text(
                           "Sair    ",
                           style: GoogleFonts.archivo(
                               fontSize: 14, fontWeight: FontWeight.w500),
                         ),
-                        icon: Icon(Icons.logout),
+                        icon: const Icon(Icons.logout),
                         onPressed: () {
                           context.read<AuthService>().logout();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TelaInicial()));
+                                  builder: (context) => const TelaInicial()));
                         },
                         //user!.displayName.toString()
                       ),
@@ -555,13 +558,14 @@ class _PerfilState extends State<Perfil> {
                       child: ElevatedButton.icon(
                         style: ButtonStyle(
                             backgroundColor: MaterialStateColor.resolveWith(
-                                (states) => Color.fromRGBO(51, 111, 93, 1))),
+                                (states) =>
+                                    const Color.fromRGBO(51, 111, 93, 1))),
                         label: Text(
                           "Adicionar contribuição",
                           style: GoogleFonts.archivo(
                               fontSize: 14, fontWeight: FontWeight.w500),
                         ),
-                        icon: Icon(Icons.recycling_rounded),
+                        icon: const Icon(Icons.recycling_rounded),
                         onPressed: () {
                           showDialog(
                               context: context,
@@ -572,7 +576,7 @@ class _PerfilState extends State<Perfil> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: Row(
@@ -606,7 +610,7 @@ class _PerfilState extends State<Perfil> {
                             ),
                           ),
                         ),
-                        Column(
+                        const Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[

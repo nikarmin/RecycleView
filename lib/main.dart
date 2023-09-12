@@ -29,10 +29,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      color: Color.fromRGBO(233, 233, 233, 1),
+    return GetMaterialApp(
+      color: const Color.fromRGBO(233, 233, 233, 1),
       debugShowCheckedModeBanner: false,
-      home: Lalala(),
+      home: AuthCheck(),
     );
   }
 }
