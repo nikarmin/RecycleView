@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
+import 'package:recycle_view/views/cadastro_pontos.dart';
 import 'package:recycle_view/views/tela_inicial.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -32,6 +33,11 @@ class _PieData {
 }
 
 class _PerfilState extends State<Perfil> {
+  int countPlastico = 0;
+  int countMetal = 0;
+  int countPapel = 0;
+  int countVidro = 0;
+
   Widget _buildPopupDialog(BuildContext context) {
     return AlertDialog(
       title: Text(
@@ -40,102 +46,71 @@ class _PerfilState extends State<Perfil> {
             textStyle: const TextStyle(color: Colors.black)),
       ),
       content: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Form(
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          Column(
+            children: [
+              Row(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 18,
-                        width: 18,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(3)),
-                            shape:
-                                MaterialStateProperty.all(const CircleBorder()),
-                          ),
-                          child: const Text(
-                            '-',
-                            textAlign: TextAlign.center,
-                          ),
+                  SizedBox(
+                      height: 25,
+                      child: FloatingActionButton(
+                          backgroundColor:
+                              const Color.fromRGBO(134, 167, 102, 1),
+                          onPressed: () {
+                            setState(() {
+                              if (countMetal > 0) {
+                                countMetal--;
+                              } else {
+                                countMetal = 0;
+                              }
+                            });
+                          },
+                          child: const Icon(
+                            Icons.remove,
+                            size: 15,
+                          ))),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      (countMetal >= 0 ? countMetal.toString() : '0'),
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                          fontSize: 24,
+                          decoration: TextDecoration.none,
+                          color: Colors.black,
                         ),
                       ),
-                      const Text('oiii'),
-                      SizedBox(
-                        height: 18,
-                        width: 18,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(3)),
-                            shape:
-                                MaterialStateProperty.all(const CircleBorder()),
-                          ),
-                          child: const Text(
-                            '+',
-                            textAlign: TextAlign.center,
-                          ),
+                    ),
+                  ),
+                  SizedBox(
+                      height: 25,
+                      child: FloatingActionButton(
+                        backgroundColor: const Color.fromRGBO(134, 167, 102, 1),
+                        onPressed: () {
+                          setState(() {
+                            countMetal++;
+                          });
+                        },
+                        child: const Icon(
+                          Icons.add,
+                          size: 15,
                         ),
-                      )
-                    ],
+                      )),
+                  Text(
+                    ' Metal',
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        fontSize: 24,
+                        decoration: TextDecoration.none,
+                        color: Colors.black,
+                      ),
+                    ),
                   )
-
-                  // Text(
-                  //   'Objeto:',
-                  //   textAlign: TextAlign.left,
-                  //   style: GoogleFonts.poppins(
-                  //       textStyle: TextStyle(
-                  //           decoration: TextDecoration.none,
-                  //           fontSize: 16,
-                  //           color: Colors.black,
-                  //           fontWeight: FontWeight.w300)),
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Checkbox(value: false, onChanged: (value) {}),
-                  //     Text('Óleo',
-                  //         style: GoogleFonts.jost(
-                  //             textStyle: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w400,
-                  //                 color: Colors.black)))
-                  //   ],
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Checkbox(value: false, onChanged: (value) {}),
-                  //     Text('Eletrônicos',
-                  //         style: GoogleFonts.jost(
-                  //             textStyle: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w400,
-                  //                 color: Colors.black)))
-                  //   ],
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Checkbox(value: false, onChanged: (value) {}),
-                  //     Text('Recicláveis',
-                  //         style: GoogleFonts.jost(
-                  //             textStyle: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w400,
-                  //                 color: Colors.black)))
-                  //   ],
-                  // )
                 ],
               ),
-            ),
+            ],
           ),
         ],
       ),
@@ -144,7 +119,7 @@ class _PerfilState extends State<Perfil> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Close'),
+          child: const Text('Enviar'),
         ),
       ],
     );
@@ -567,10 +542,14 @@ class _PerfilState extends State<Perfil> {
                         ),
                         icon: const Icon(Icons.recycling_rounded),
                         onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  _buildPopupDialog(context));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const CadastroPontos();
+                          }));
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (BuildContext context) =>
+                          //         _buildPopupDialog(context));
                         },
                         //user!.displayName.toString()
                       ),
