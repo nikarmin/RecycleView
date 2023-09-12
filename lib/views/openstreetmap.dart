@@ -240,7 +240,11 @@ class _OpenStreetMapSearchAndPickState
     return snapshot.data?.docs
         .map((doc) => ListTile(
               title: GestureDetector(
-                child: LayoutPontos(nome: doc["nome"]),
+                child: LayoutPontos(
+                  nome: doc["nome"],
+                  tipo: doc["tipo"],
+                  horario: doc["funcionamento"],
+                ),
                 onTap: () {
                   // adicionar função
                 },
@@ -358,33 +362,6 @@ class _OpenStreetMapSearchAndPickState
                   ),
                 ),
               ]),
-          // Positioned(
-          //     bottom: 60,
-          //     right: 5,
-          //     child: FloatingActionButton(
-          //       heroTag: 'btn3',
-          //       backgroundColor: Colors.red,
-          //       onPressed: () async {
-          //         try {
-          //           LatLng position =
-          //               await widget.onGetCurrentLocationPressed.call();
-          //           _mapController.move(
-          //               LatLng(_currentPosition!.latitude!.toDouble(),
-          //                   _currentPosition!.longitude!.toDouble()),
-          //               _mapController.zoom);
-          //         } catch (e) {
-          //           _mapController.move(
-          //               LatLng(widget.center.latitude, widget.center.longitude),
-          //               _mapController.zoom);
-          //         } finally {
-          //           setNameCurrentPos();
-          //         }
-          //       },
-          //       child: Icon(
-          //         widget.currentLocationIcon,
-          //         color: widget.buttonTextColor,
-          //       ),
-          //     )),
           Positioned(
             top: 0,
             left: 0,

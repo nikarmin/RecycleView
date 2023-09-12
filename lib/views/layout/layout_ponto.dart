@@ -2,9 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LayoutPontos extends StatelessWidget {
-  const LayoutPontos({super.key, required this.nome});
+  const LayoutPontos({super.key, required this.nome, required this.tipo, required this.horario});
 
   final String nome;
+  final String tipo;
+  final String horario;
+
+  Widget popUpTipo(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      child: Container(
+        color: const Color.fromRGBO(233, 233, 233, 1),
+        height: MediaQuery.of(context).size.height,
+        child: Text(
+          tipo,
+          style: const TextStyle(fontSize: 20),
+        ),
+      ),
+    );
+  }
+
+  Widget popUpHorario(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      child: Container(
+        color: const Color.fromRGBO(233, 233, 233, 1),
+        height: MediaQuery.of(context).size.height,
+        child: Text(
+          horario,
+          style: const TextStyle(fontSize: 20),
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
