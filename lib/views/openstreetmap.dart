@@ -16,6 +16,7 @@ import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/views/layout/layout_ponto.dart';
 import 'package:recycle_view/views/tela_inicial.dart';
+import 'package:recycle_view/views/marker.dart';
 
 import '../services/auth_service.dart';
 
@@ -223,10 +224,12 @@ class _OpenStreetMapSearchAndPickState
     await context.read<AuthService>().getPontoDeColeta();
   }
 
+  late List<Markers> _markers;
   @override
   void initState() {
     setNameCurrentPos();
     pegar();
+    _markers = <Markers>[];
     super.initState();
   }
 
@@ -234,6 +237,31 @@ class _OpenStreetMapSearchAndPickState
   void dispose() {
     _mapController.dispose();
     super.dispose();
+  }
+
+
+
+  Future<List<Markers>> getMarkers() async {
+    var _dbRef = FirebaseFirestore.instance.doc("pontos_de_coleta").get();
+    _markers.clear();
+
+    await _dbRef.then(
+      (dataSnapShot) async {
+        // Access the markers from database
+        Map<String, dynamic>? mapMarkers = dataSnapShot.data();
+
+        // Get the markers in a local collection
+        mapMarkers?.forEach(
+          (key, value) {
+            Markers marker = Markers.fromJson(key as Map, value);
+            _markers.add(Markers(
+                latitude: double.parse(marker.latitude.toString()),
+                longitude: double.parse(marker.longitude.toString())));
+          },
+        );
+      },
+    );
+    return _markers;
   }
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
