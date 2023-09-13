@@ -225,6 +225,8 @@ class _OpenStreetMapSearchAndPickState
   }
 
   late List<Markers> _markers;
+  late List<LatLng> _pointsMarkers;
+
   @override
   void initState() {
     setNameCurrentPos();
@@ -238,8 +240,6 @@ class _OpenStreetMapSearchAndPickState
     _mapController.dispose();
     super.dispose();
   }
-
-
 
   Future<List<Markers>> getMarkers() async {
     var _dbRef = FirebaseFirestore.instance.doc("pontos_de_coleta").get();
@@ -264,21 +264,24 @@ class _OpenStreetMapSearchAndPickState
     return _markers;
   }
 
+  List<LatLng> pointers = [];
+
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return snapshot.data?.docs
-        .map((doc) => ListTile(
-              title: GestureDetector(
-                child: LayoutPontos(
-                  nome: doc["nome"],
-                  tipo: doc["tipo"],
-                  horario: doc["funcionamento"],
-                ),
-                onTap: () {
-                  // adicionar função
-                },
-              ),
-            ))
-        .toList();
+    return snapshot.data?.docs.map((doc) {
+      // pointers.add(LatLng(doc["lat"], doc["long"]));
+      ListTile(
+        title: GestureDetector(
+          child: LayoutPontos(
+            nome: doc["nome"],
+            // tipo: doc["tipo"],
+            // horario: doc["funcionamento"],
+          ),
+          onTap: () {
+            // adicionar função
+          },
+        ),
+      );
+    }).toList();
   }
 
   List<Marker> markers = [];
