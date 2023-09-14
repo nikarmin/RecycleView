@@ -224,14 +224,8 @@ class _OpenStreetMapSearchAndPickState
     await context.read<AuthService>().getPontoDeColeta();
   }
 
-  late List<Marker> _markers;
-
-  @override
-  void initState() {
-    setNameCurrentPos();
-    pegar();
-    super.initState();
-  }
+  final List<Marker> _markers = [];
+  List<LatLng> pointers = [];
 
   @override
   void dispose() {
@@ -239,28 +233,75 @@ class _OpenStreetMapSearchAndPickState
     super.dispose();
   }
 
-  List<LatLng> pointers = [];
-
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return snapshot.data?.docs
-        .map(
-          (doc) => ListTile(
-            title: GestureDetector(
-              child: LayoutPontos(
-                nome: doc["nome"],
-                lat: doc["lat"],
-                long: doc["long"],
-                pontos: pointers,
-                // tipo: doc["tipo"],
-                // horario: doc["funcionamento"],
-              ),
-              onTap: () {
-                // adicionar função
-              },
-            ),
+    //pointers.add(LatLng(e["lat"], e["long"])));
+    snapshot.data?.docs.map((e) => _markers.add(Marker(
+          point: LatLng(e["lat"], e["long"]),
+          width: 60,
+          height: 60,
+          builder: (context) => const Icon(
+            Icons.pin_drop,
+            size: 25,
+            color: Color.fromRGBO(51, 111, 93, 0.397),
           ),
-        )
+        )));
+
+    print(_markers.toList().toString());
+
+    return snapshot.data?.docs
+        .map((doc) => ListTile(
+              title: GestureDetector(
+                child: LayoutPontos(
+                  nome: doc["nome"],
+                  lat: doc["lat"],
+                  long: doc["long"],
+                  //pontos: pointers,
+                  // tipo: doc["tipo"],
+                  horario: doc["funcionamento"],
+                ),
+                onTap: () {
+                  // adicionar função
+                },
+              ),
+            ))
         .toList();
+  }
+
+  @override
+  void initState() {
+    setNameCurrentPos();
+    pegar();
+
+    _markers.add(Marker(
+      point: LatLng(widget.center.latitude, widget.center.longitude),
+      width: 60,
+      height: 60,
+      builder: (context) {
+        return const CircleAvatar(
+          backgroundColor: Color.fromRGBO(51, 111, 93, 0.397),
+          child: Icon(
+            Icons.emoji_people_outlined,
+            color: Colors.black,
+            size: 25,
+          ),
+        );
+      },
+    ));
+
+    // _markers.addAll(pointers
+    //     .map((point) => Marker(
+    //           point: point,
+    //           width: 60,
+    //           height: 60,
+    //           builder: (context) => const Icon(
+    //             Icons.pin_drop,
+    //             size: 25,
+    //             color: Color.fromRGBO(51, 111, 93, 0.397),
+    //           ),
+    //         ))
+    //     .toList());
+
+    super.initState();
   }
 
   @override
@@ -293,7 +334,9 @@ class _OpenStreetMapSearchAndPickState
                 //   return Text("© OpenStreetMap contributors");
                 // },
               ),
-              MarkerLayer(markers: [
+              MarkerLayer(
+                  markers:
+                      _markers /*[
                 Marker(
                   point:
                       LatLng(widget.center.latitude, widget.center.longitude),
@@ -310,7 +353,8 @@ class _OpenStreetMapSearchAndPickState
                     );
                   },
                 )
-              ])
+              ]*/
+                  )
             ],
           )),
           Column(

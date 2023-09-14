@@ -4,37 +4,40 @@ import 'package:latlong2/latlong.dart';
 
 class LayoutPontos extends StatefulWidget {
   const LayoutPontos(
-      {super.key, required this.nome, required this.lat, required this.long, required this.pontos
-      /*,
-      required this.tipo,
-      required this.horario*/
-      });
+      {super.key,
+      required this.nome,
+      required this.lat,
+      required this.long,
+      /* required this.pontos
+*/ /*,
+      required this.tipo,*/
+      required this.horario});
 
   final String nome;
   final double lat;
   final double long;
-  final List<LatLng> pontos;
+  final String horario;
+  //final List<LatLng> pontos;
 
   @override
   State<LayoutPontos> createState() => _LayoutPontosState();
 }
 
 class _LayoutPontosState extends State<LayoutPontos> {
+  // setPoints() {
+  //   LatLng loc = LatLng(widget.lat, widget.long);
+  //   widget.pontos.add(loc);
+  // }
 
-  setPoints() {
-    LatLng loc = LatLng(widget.lat, widget.long);
-    widget.pontos.add(loc);
-  }
+  // getPoints() {
+  //   return widget.pontos;
+  // }
 
-  getPoints() {
-    return widget.pontos;
-  }
-
-  @override
-  void initState() {
-    setPoints();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   setPoints();
+  //   super.initState();
+  // }
 
   // LatLng loc;
 
@@ -60,19 +63,43 @@ class _LayoutPontosState extends State<LayoutPontos> {
   //   );
   // }
 
-  // Widget popUpHorario(BuildContext context) {
-  //   return Dialog(
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-  //     child: Container(
-  //       color: const Color.fromRGBO(233, 233, 233, 1),
-  //       height: MediaQuery.of(context).size.height,
-  //       child: Text(
-  //         horario,
-  //         style: const TextStyle(fontSize: 20),
-  //       ),
-  //     ),
-  //   );
-  // }
+  popUpHorario(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: const Color.fromRGBO(233, 233, 233, 1)),
+        height: 80,
+        child: Expanded(
+          child: Row(
+            children: [
+              const Icon(
+                Icons.access_time_outlined,
+                size: 30,
+                color: Colors.black,
+              ),
+              Text(
+                widget.horario,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    // return Dialog(
+    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+    //   child: Container(
+    //     color: const Color.fromRGBO(233, 233, 233, 1),
+    //     height: MediaQuery.of(context).size.height,
+    //     child: Text(
+    //       widget.horario,
+    //       style: const TextStyle(fontSize: 20),
+    //     ),
+    //   ),
+    // );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,9 +159,9 @@ class _LayoutPontosState extends State<LayoutPontos> {
                     shape: MaterialStateProperty.all<CircleBorder>(
                         const CircleBorder())),
                 onPressed: () {
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (BuildContext context) => popUpHorario(context));
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => popUpHorario(context));
                 },
                 child: const Icon(
                   Icons.calendar_month_rounded,
