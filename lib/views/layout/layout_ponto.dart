@@ -1,15 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:latlong2/latlong.dart';
 
-class LayoutPontos extends StatelessWidget {
+class LayoutPontos extends StatefulWidget {
   const LayoutPontos(
-      {super.key,
-      required this.nome /*,
+      {super.key, required this.nome, required this.lat, required this.long, required this.pontos
+      /*,
       required this.tipo,
       required this.horario*/
       });
 
   final String nome;
+  final double lat;
+  final double long;
+  final List<LatLng> pontos;
+
+  @override
+  State<LayoutPontos> createState() => _LayoutPontosState();
+}
+
+class _LayoutPontosState extends State<LayoutPontos> {
+
+  setPoints() {
+    LatLng loc = LatLng(widget.lat, widget.long);
+    widget.pontos.add(loc);
+  }
+
+  getPoints() {
+    return widget.pontos;
+  }
+
+  @override
+  void initState() {
+    setPoints();
+    super.initState();
+  }
+
+  // LatLng loc;
+
+  // LatLng get localizacao {
+  //   loc = LatLng(lat, long);
+  //   return loc;
+  // }
+
   // final String tipo;
   // final String horario;
 
@@ -52,7 +85,7 @@ class LayoutPontos extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Stack(children: [
           Text(
-            nome,
+            widget.nome,
             style:
                 GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 20)),
           ),

@@ -224,14 +224,12 @@ class _OpenStreetMapSearchAndPickState
     await context.read<AuthService>().getPontoDeColeta();
   }
 
-  late List<Markers> _markers;
-  late List<LatLng> _pointsMarkers;
+  late List<Marker> _markers;
 
   @override
   void initState() {
     setNameCurrentPos();
     pegar();
-    _markers = <Markers>[];
     super.initState();
   }
 
@@ -241,50 +239,30 @@ class _OpenStreetMapSearchAndPickState
     super.dispose();
   }
 
-  Future<List<Markers>> getMarkers() async {
-    var _dbRef = FirebaseFirestore.instance.doc("pontos_de_coleta").get();
-    _markers.clear();
-
-    await _dbRef.then(
-      (dataSnapShot) async {
-        // Access the markers from database
-        Map<String, dynamic>? mapMarkers = dataSnapShot.data();
-
-        // Get the markers in a local collection
-        mapMarkers?.forEach(
-          (key, value) {
-            Markers marker = Markers.fromJson(key as Map, value);
-            _markers.add(Markers(
-                latitude: double.parse(marker.latitude.toString()),
-                longitude: double.parse(marker.longitude.toString())));
-          },
-        );
-      },
-    );
-    return _markers;
-  }
-
   List<LatLng> pointers = [];
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return snapshot.data?.docs.map((doc) {
-      // pointers.add(LatLng(doc["lat"], doc["long"]));
-      ListTile(
-        title: GestureDetector(
-          child: LayoutPontos(
-            nome: doc["nome"],
-            // tipo: doc["tipo"],
-            // horario: doc["funcionamento"],
+    return snapshot.data?.docs
+        .map(
+          (doc) => ListTile(
+            title: GestureDetector(
+              child: LayoutPontos(
+                nome: doc["nome"],
+                lat: doc["lat"],
+                long: doc["long"],
+                pontos: pointers,
+                // tipo: doc["tipo"],
+                // horario: doc["funcionamento"],
+              ),
+              onTap: () {
+                // adicionar função
+              },
+            ),
           ),
-          onTap: () {
-            // adicionar função
-          },
-        ),
-      );
-    }).toList();
+        )
+        .toList();
   }
 
-  List<Marker> markers = [];
   @override
   Widget build(BuildContext context) {
     // String? _autocompleteSelection;
@@ -301,25 +279,6 @@ class _OpenStreetMapSearchAndPickState
               child: FlutterMap(
             options: MapOptions(
                 screenSize: MediaQuery.of(context).size / 2,
-                onMapReady: () {
-                  setState(() {
-                    MarkerLayer(
-                      markers: [
-                        Marker(
-                          width: 20.0,
-                          height: 20.0,
-                          point: LatLng(
-                              widget.center.latitude, widget.center.longitude),
-                          builder: (ctx) => const Icon(
-                            Icons.location_on,
-                            color: Color.fromRGBO(51, 111, 93, 1),
-                            size: 35.0,
-                          ),
-                        ),
-                      ],
-                    );
-                  });
-                },
                 center: LatLng(widget.center.latitude, widget.center.longitude),
                 zoom: 15.0,
                 maxZoom: 18,
@@ -335,23 +294,22 @@ class _OpenStreetMapSearchAndPickState
                 // },
               ),
               MarkerLayer(markers: [
-                if (widget.center != null)
-                  Marker(
-                    point:
-                        LatLng(widget.center.latitude, widget.center.longitude),
-                    width: 60,
-                    height: 60,
-                    builder: (context) {
-                      return const CircleAvatar(
-                        backgroundColor: Color.fromRGBO(51, 111, 93, 0.397),
-                        child: Icon(
-                          Icons.emoji_people_outlined,
-                          color: Colors.black,
-                          size: 25,
-                        ),
-                      );
-                    },
-                  )
+                Marker(
+                  point:
+                      LatLng(widget.center.latitude, widget.center.longitude),
+                  width: 60,
+                  height: 60,
+                  builder: (context) {
+                    return const CircleAvatar(
+                      backgroundColor: Color.fromRGBO(51, 111, 93, 0.397),
+                      child: Icon(
+                        Icons.emoji_people_outlined,
+                        color: Colors.black,
+                        size: 25,
+                      ),
+                    );
+                  },
+                )
               ])
             ],
           )),
