@@ -256,7 +256,7 @@ class _OpenStreetMapSearchAndPickState
                   lat: doc["lat"],
                   long: doc["long"],
                   //pontos: pointers,
-                  // tipo: doc["tipo"],
+                  tipo: doc["tipo"],
                   horario: doc["funcionamento"],
                 ),
                 onTap: () {

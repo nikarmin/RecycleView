@@ -8,15 +8,16 @@ class LayoutPontos extends StatefulWidget {
       required this.nome,
       required this.lat,
       required this.long,
-      /* required this.pontos
-*/ /*,
-      required this.tipo,*/
+      /* required this.pontos,
+*/
+      required this.tipo,
       required this.horario});
 
   final String nome;
   final double lat;
   final double long;
   final String horario;
+  final String tipo;
   //final List<LatLng> pontos;
 
   @override
@@ -49,19 +50,32 @@ class _LayoutPontosState extends State<LayoutPontos> {
   // final String tipo;
   // final String horario;
 
-  // Widget popUpTipo(BuildContext context) {
-  //   return Dialog(
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-  //     child: Container(
-  //       color: const Color.fromRGBO(233, 233, 233, 1),
-  //       height: MediaQuery.of(context).size.height,
-  //       child: Text(
-  //         tipo,
-  //         style: const TextStyle(fontSize: 20),
-  //       ),
-  //     ),
-  //   );
-  // }
+  popUpTipo(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: const Color.fromRGBO(233, 233, 233, 1)),
+        height: 80,
+        child: Expanded(
+          child: Row(
+            children: [
+              const Icon(
+                Icons.access_time_outlined,
+                size: 30,
+                color: Colors.black,
+              ),
+              Text(
+                widget.tipo,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   popUpHorario(BuildContext context) {
     return Dialog(
@@ -131,7 +145,11 @@ class _LayoutPontosState extends State<LayoutPontos> {
                     alignment: Alignment.center,
                     shape: MaterialStateProperty.all<CircleBorder>(
                         const CircleBorder())),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => popUpTipo(context));
+                },
                 child: Text(
                   "?",
                   style: GoogleFonts.archivo(
