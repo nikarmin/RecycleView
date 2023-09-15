@@ -141,7 +141,7 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
               ),
             ),
           )),
-      backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+      backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
     );
   }
 }

@@ -19,6 +19,7 @@ class AuthService extends ChangeNotifier {
   FirebaseAuth _auth = FirebaseAuth.instance;
   final _db = FirebaseFirestore.instance;
   User? usuario;
+  User? usuario2;
   bool isLoading = true;
 
   AuthService() {
@@ -116,15 +117,37 @@ class AuthService extends ChangeNotifier {
 
   adicionarMaterialReciclado(
       int cMetal, int cPapel, int cPlastico, int cVidro) async {
-    var collection = _db.collection('usuarios');
-    collection.where('email', isEqualTo: usuario?.email).get().then((value) {
-      value.docs.add({
-        'qtdMetal': cMetal,
-        'qtdPapel': cPapel,
-        'qtdPlastico': cPlastico,
-        'qtdVidro': cVidro,
-      } as QueryDocumentSnapshot<Map<String, dynamic>>);
-    });
+    var pessoa = _db
+        .collection('usuarios')
+        .where('email', isEqualTo: usuario?.email)
+        .get();
+    pessoa.then((value) => value.docs.forEach((element) {
+          element.reference.set({
+            'qtdMetal': cMetal,
+            'qtdPapel': cPapel,
+            'qtdPlastico': cPlastico,
+            'qtdVidro': cVidro,
+          });
+        }));
+    //     .then((value) {
+    //   value.docs.add({
+    //     'qtdMetal': cMetal,
+    //     'qtdPapel': cPapel,
+    //     'qtdPlastico': cPlastico,
+    //     'qtdVidro': cVidro,
+    //   } as QueryDocumentSnapshot<Map<String, dynamic>>);
+    // });
+    // _db.collection('usuarios').where(_db.Field)
+
+    // var collection = _db.collection('usuarios');
+    // collection.where('email', isEqualTo: usuario?.email).get().then((value) {
+    //   value.docs.add({
+    //     'qtdMetal': cMetal,
+    //     'qtdPapel': cPapel,
+    //     'qtdPlastico': cPlastico,
+    //     'qtdVidro': cVidro,
+    //   } as QueryDocumentSnapshot<Map<String, dynamic>>);
+    // });
 
     // collection.where('email', isEqualTo: usuario?.email).get().then((value) {
     //   value.docs.add({

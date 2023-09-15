@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:recycle_view/models/coleta.dart';
+
 class Usuario {
   //final String uid;
   final String nome;
@@ -7,6 +9,7 @@ class Usuario {
   final String senha;
   final int cep;
   final String? urlFoto;
+  //final List<Coleta>? listaColeta;
 
   Usuario({
     required this.urlFoto,
@@ -14,6 +17,7 @@ class Usuario {
     required this.email,
     required this.senha,
     required this.cep,
+    //required this.listaColeta,
   });
 
   Map<String, dynamic> toJson() => {
@@ -22,7 +26,8 @@ class Usuario {
         'email': email,
         'senha': senha,
         'cep': cep,
-        'urlFoto': urlFoto
+        'urlFoto': urlFoto,
+        // 'listaColeta': listaColeta == null ? '0' : listaColeta,
       };
 
   Usuario.fromMap(Map<String, dynamic> map)
@@ -32,6 +37,7 @@ class Usuario {
         email = map['email'],
         senha = map['senha'],
         cep = map['cep'];
+  //listaColeta = map['listaColeta'];
 
   Usuario.fromDocumentSnapshot(Map<String, dynamic> map)
       : //uid = map['uid'],
@@ -40,4 +46,5 @@ class Usuario {
         email = map['email'],
         senha = map['senha'],
         cep = map['cep'];
+  //listaColeta = map['listaColeta'];
 }

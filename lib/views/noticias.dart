@@ -7,6 +7,7 @@ import 'package:recycle_view/services/news_service.dart';
 import 'package:recycle_view/views/conteudo_noticia.dart';
 import 'package:recycle_view/views/perfil_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../models/artigo.dart';
@@ -23,6 +24,10 @@ class _NoticiasState extends State<Noticias> {
   late String stringResponse;
   late Map mapResponse;
   List listResponse = [];
+
+  carregarPagina(String url) async {
+    await launchUrl(Uri.parse(url));
+  }
 
   Future apiCall() async {
     http.Response response;
@@ -77,15 +82,16 @@ class _NoticiasState extends State<Noticias> {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ConteudoNoticia(
-                    author: listResponse[index]['author'],
-                    content: listResponse[index]['content'],
-                    image: listResponse[index]['urlToImage'],
-                    title: listResponse[index]['title'],
-                    url: listResponse[index]['url'],
-                  );
-                }));
+                carregarPagina(listResponse[index]['url'].toString());
+                // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //   return ConteudoNoticia(
+                //     author: listResponse[index]['author'],
+                //     content: listResponse[index]['content'],
+                //     image: listResponse[index]['urlToImage'],
+                //     title: listResponse[index]['title'],
+                //     url: listResponse[index]['url'],
+                //   );
+                // }));
               },
               child: LayoutNoticia(
                 title: listResponse[index]['title'] != null

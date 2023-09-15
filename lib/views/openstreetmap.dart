@@ -226,6 +226,7 @@ class _OpenStreetMapSearchAndPickState
 
   final List<Marker> _markers = [];
   List<LatLng> pointers = [];
+  List<Marker> markerspoints = [];
 
   @override
   void dispose() {
@@ -235,20 +236,12 @@ class _OpenStreetMapSearchAndPickState
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
     //pointers.add(LatLng(e["lat"], e["long"])));
-    snapshot.data?.docs.map((e) => _markers.add(Marker(
-          point: LatLng(e["lat"], e["long"]),
-          width: 60,
-          height: 60,
-          builder: (context) => const Icon(
-            Icons.pin_drop,
-            size: 25,
-            color: Color.fromRGBO(51, 111, 93, 0.397),
-          ),
-        )));
+    snapshot.data?.docs.map((e) => print("data: " + e.data().toString()));
+    print(" snapshot: " + snapshot.toString());
 
-    print(_markers.toList().toString());
+    // print(_markers.toList().length);
 
-    return snapshot.data?.docs
+    final data = snapshot.data?.docs
         .map((doc) => ListTile(
               title: GestureDetector(
                 child: LayoutPontos(
@@ -266,6 +259,25 @@ class _OpenStreetMapSearchAndPickState
               ),
             ))
         .toList();
+    List<LatLng> pontinhosarr = [];
+    final pontinhos = snapshot.data?.docs
+        .map((doc) => pontinhosarr.add(LatLng(doc["lat"], doc["long"])))
+        .toList();
+
+    pontinhosarr.forEach((element) {
+      markerspoints.add(Marker(
+        point: element,
+        width: 60,
+        height: 60,
+        builder: (context) => const Icon(
+          Icons.place_rounded,
+          size: 45,
+          color: Color.fromRGBO(51, 111, 93, 1),
+        ),
+      ));
+    });
+
+    return data;
   }
 
   @override
@@ -273,7 +285,7 @@ class _OpenStreetMapSearchAndPickState
     setNameCurrentPos();
     pegar();
 
-    _markers.add(Marker(
+    markerspoints.add(Marker(
       point: LatLng(widget.center.latitude, widget.center.longitude),
       width: 60,
       height: 60,
@@ -331,31 +343,8 @@ class _OpenStreetMapSearchAndPickState
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 subdomains: const ['a', 'b', 'c'],
-                // attributionBuilder: (_) {
-                //   return Text("© OpenStreetMap contributors");
-                // },
               ),
-              MarkerLayer(
-                  markers:
-                      _markers /*[
-                Marker(
-                  point:
-                      LatLng(widget.center.latitude, widget.center.longitude),
-                  width: 60,
-                  height: 60,
-                  builder: (context) {
-                    return const CircleAvatar(
-                      backgroundColor: Color.fromRGBO(51, 111, 93, 0.397),
-                      child: Icon(
-                        Icons.emoji_people_outlined,
-                        color: Colors.black,
-                        size: 25,
-                      ),
-                    );
-                  },
-                )
-              ]*/
-                  )
+              MarkerLayer(markers: markerspoints)
             ],
           )),
           Column(
@@ -370,13 +359,27 @@ class _OpenStreetMapSearchAndPickState
                         topLeft: Radius.circular(30),
                       ),
                       color: Color.fromRGBO(51, 111, 93, 1)),
-                  height: 250,
+                  height: 260,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
                       const SizedBox(
                         height: 18,
                       ),
+                      ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                          leading: const ImageIcon(
+                            AssetImage('assets/images/icons/recycle-bin.png'),
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          title: Text(
+                              "${markerspoints.length - 1} PONTOS NA REGIÃO",
+                              style: GoogleFonts.jost(
+                                  textStyle: const TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       Expanded(
                         child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance

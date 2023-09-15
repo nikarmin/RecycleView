@@ -15,6 +15,7 @@ import 'package:recycle_view/views/home_screen.dart';
 import 'package:recycle_view/views/login.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/coleta.dart';
 import '../models/usuario.dart';
 import '../services/auth_service.dart';
 
@@ -30,6 +31,7 @@ class _CadastroState extends State<Cadastro> {
   final email = TextEditingController();
   final senha = TextEditingController();
   final nome = TextEditingController();
+  List<Coleta> listaColeta = [];
   var _procurarCepController = TextEditingController();
 
   late FirebaseFirestore db;
@@ -493,6 +495,7 @@ class _CadastroState extends State<Cadastro> {
                         nome: nome.text,
                         email: email.text,
                         senha: senha.text,
+                        //listaColeta: listaColeta,
                         urlFoto: '',
                         cep: int.parse(_procurarCepController.text));
 
