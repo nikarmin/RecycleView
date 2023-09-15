@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../services/auth_service.dart';
 
 class CadastroPontos extends StatefulWidget {
   const CadastroPontos({super.key});
@@ -13,6 +16,11 @@ class _CadastroPontosState extends State<CadastroPontos> {
   int countMetal = 0;
   int countPapel = 0;
   int countVidro = 0;
+
+  cadastrarPonto() async {
+    await context.read<AuthService>().adicionarMaterialReciclado(
+        countMetal, countPapel, countPlastico, countVidro);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -312,7 +320,9 @@ class _CadastroPontosState extends State<CadastroPontos> {
               height: 12,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                cadastrarPonto();
+              },
               style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
                   backgroundColor: const Color.fromRGBO(134, 167, 102, 1)),

@@ -255,6 +255,7 @@ class _OpenStreetMapSearchAndPickState
                   nome: doc["nome"],
                   lat: doc["lat"],
                   long: doc["long"],
+                  cidade: doc["cidade"],
                   //pontos: pointers,
                   tipo: doc["tipo"],
                   horario: doc["funcionamento"],

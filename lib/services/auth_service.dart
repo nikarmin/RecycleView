@@ -114,6 +114,44 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  adicionarMaterialReciclado(
+      int cMetal, int cPapel, int cPlastico, int cVidro) async {
+    var collection = _db.collection('usuarios');
+    collection.where('email', isEqualTo: usuario?.email).get().then((value) {
+      value.docs.add({
+        'qtdMetal': cMetal,
+        'qtdPapel': cPapel,
+        'qtdPlastico': cPlastico,
+        'qtdVidro': cVidro,
+      } as QueryDocumentSnapshot<Map<String, dynamic>>);
+    });
+
+    // collection.where('email', isEqualTo: usuario?.email).get().then((value) {
+    //   value.docs.add({
+    //     'qtdMetal': cMetal,
+    //     'qtdPapel': cPapel,
+    //     'qtdPlastico': cPlastico,
+    //     'qtdVidro': cVidro,
+    //   } as QueryDocumentSnapshot<Map<String, dynamic>>);
+    // });
+    // await collection.doc(usuario?.email).set({
+    //   'qtdMetal': cMetal,
+    //   'qtdPapel': cPapel,
+    //   'qtdPlastico': cPlastico,
+    //   'qtdVidro': cVidro,
+    // });
+    // await collection
+    //     .doc(usuario?.uid)
+    //     .collection('cadastro_de_pontos')
+    //     .doc(usuario?.uid)
+    //     .update({
+    //   'qtdMetal': cMetal,
+    //   'qtdPapel': cPapel,
+    //   'qtdPlastico': cPlastico,
+    //   'qtdVidro': cVidro,
+    // });
+  }
+
   pegarFoto() async {
     var collection = _db.collection('usuarios');
     var doc = await collection.doc(usuario?.uid).get();

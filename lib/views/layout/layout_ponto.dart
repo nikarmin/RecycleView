@@ -11,13 +11,15 @@ class LayoutPontos extends StatefulWidget {
       /* required this.pontos,
 */
       required this.tipo,
-      required this.horario});
+      required this.horario,
+      required this.cidade});
 
   final String nome;
   final double lat;
   final double long;
   final String horario;
   final String tipo;
+  final String cidade;
   //final List<LatLng> pontos;
 
   @override
@@ -87,15 +89,25 @@ class _LayoutPontosState extends State<LayoutPontos> {
         height: 80,
         child: Expanded(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.access_time_outlined,
-                size: 30,
-                color: Colors.black,
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.access_time_outlined,
+                  size: 30,
+                  color: Colors.black,
+                ),
               ),
-              Text(
-                widget.horario,
-                style: const TextStyle(fontSize: 20),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    widget.horario,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
               ),
             ],
           ),
@@ -118,7 +130,7 @@ class _LayoutPontosState extends State<LayoutPontos> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 100,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: const Color.fromRGBO(233, 233, 233, 1)),
@@ -131,6 +143,20 @@ class _LayoutPontosState extends State<LayoutPontos> {
                 GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 20)),
           ),
           Positioned(
+            bottom: 2,
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.location_city_rounded,
+                  color: Colors.black,
+                ),
+                Text(widget.cidade,
+                    style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(fontSize: 15))),
+              ],
+            ),
+          ),
+          /*Positioned(
             bottom: 2,
             right: 2,
             child: SizedBox(
@@ -160,10 +186,10 @@ class _LayoutPontosState extends State<LayoutPontos> {
                 ),
               ),
             ),
-          ),
+          ),*/
           Positioned(
             bottom: 2,
-            right: 40,
+            right: 2,
             child: SizedBox(
               width: 30,
               height: 30,
