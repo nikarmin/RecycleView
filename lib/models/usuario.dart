@@ -9,7 +9,7 @@ class Usuario {
   final String senha;
   final int cep;
   final String? urlFoto;
-  //final List<Coleta>? listaColeta;
+  final int? countMetal, countPapel, countPlastico, countVidro;
 
   Usuario({
     required this.urlFoto,
@@ -17,7 +17,10 @@ class Usuario {
     required this.email,
     required this.senha,
     required this.cep,
-    //required this.listaColeta,
+    required this.countMetal,
+    required this.countPapel,
+    required this.countPlastico,
+    required this.countVidro,
   });
 
   Map<String, dynamic> toJson() => {
@@ -27,7 +30,10 @@ class Usuario {
         'senha': senha,
         'cep': cep,
         'urlFoto': urlFoto,
-        // 'listaColeta': listaColeta == null ? '0' : listaColeta,
+        'qtdMetal': countMetal,
+        'qtdPapel': countPapel,
+        'qtdPlastico': countPlastico,
+        'qtdVidro': countVidro,
       };
 
   Usuario.fromMap(Map<String, dynamic> map)
@@ -36,8 +42,11 @@ class Usuario {
         nome = map['nome'],
         email = map['email'],
         senha = map['senha'],
-        cep = map['cep'];
-  //listaColeta = map['listaColeta'];
+        cep = map['cep'],
+        countMetal = map['qtdMetal'],
+        countPapel = map['qtdPapel'],
+        countPlastico = map['qtdPlastico'],
+        countVidro = map['qtdVidro'];
 
   Usuario.fromDocumentSnapshot(Map<String, dynamic> map)
       : //uid = map['uid'],
@@ -45,6 +54,9 @@ class Usuario {
         nome = map['nome'],
         email = map['email'],
         senha = map['senha'],
-        cep = map['cep'];
-  //listaColeta = map['listaColeta'];
+        cep = map['cep'],
+        countMetal = map['qtdMetal'],
+        countPapel = map['qtdPapel'],
+        countPlastico = map['qtdPlastico'],
+        countVidro = map['qtdVidro'];
 }

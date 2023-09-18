@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../models/coleta.dart';
 import '../services/auth_service.dart';
 
 class CadastroPontos extends StatefulWidget {
@@ -17,9 +18,10 @@ class _CadastroPontosState extends State<CadastroPontos> {
   int countPapel = 0;
   int countVidro = 0;
 
-  cadastrarPonto() async {
+  cadastrarPonto(
+      int countMetal, int countPapel, int countVidro, int countPlastico) async {
     await context.read<AuthService>().adicionarMaterialReciclado(
-        countMetal, countPapel, countPlastico, countVidro);
+        countMetal, countPlastico, countPapel, countVidro);
   }
 
   @override
@@ -303,7 +305,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                           ),
                         )),
                     Text(
-                      ' Papel',
+                      ' Vidro',
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                           fontSize: 24,
@@ -321,7 +323,8 @@ class _CadastroPontosState extends State<CadastroPontos> {
             ),
             ElevatedButton(
               onPressed: () {
-                cadastrarPonto();
+                cadastrarPonto(
+                    countMetal, countPapel, countVidro, countPlastico);
               },
               style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),

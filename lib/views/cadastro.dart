@@ -31,7 +31,6 @@ class _CadastroState extends State<Cadastro> {
   final email = TextEditingController();
   final senha = TextEditingController();
   final nome = TextEditingController();
-  List<Coleta> listaColeta = [];
   var _procurarCepController = TextEditingController();
 
   late FirebaseFirestore db;
@@ -495,7 +494,10 @@ class _CadastroState extends State<Cadastro> {
                         nome: nome.text,
                         email: email.text,
                         senha: senha.text,
-                        //listaColeta: listaColeta,
+                        countMetal: 0,
+                        countPapel: 0,
+                        countPlastico: 0,
+                        countVidro: 0,
                         urlFoto: '',
                         cep: int.parse(_procurarCepController.text));
 

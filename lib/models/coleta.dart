@@ -4,10 +4,12 @@ class Coleta {
   int? vidro;
   int? papel;
 
-  Coleta({
-    this.metal,
-    this.plastico,
-    this.vidro,
-    this.papel,
-  });
+  Coleta(int? countMetal, int? countPlastico, int? countVidro, int? countPapel);
+
+  Map<String, dynamic> toJson() => {
+        'metal': metal,
+        'plastico': plastico,
+        'vidro': vidro,
+        'papel': papel,
+      };
 }
