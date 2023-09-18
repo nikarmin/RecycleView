@@ -20,23 +20,3 @@ class Noticia {
         totalResults = newsJson['totalResults'],
         error = newsJson['error'];
 }
-// class Artigo {
-//   Source source;
-//   String author;
-//   String title;
-//   String description;
-//   String urlToImage;
-//   String url;
-//   String publishedAt;
-//   String content;
-
-//   Artigo.fromJson(Map<String, dynamic> articleJson)
-//       : source = Source.fromJson(articleJson['source']),
-//         author = articleJson['author'],
-//         title = articleJson['title'],
-//         description = articleJson['description'],
-//         url = articleJson['url'],
-//         urlToImage = articleJson['urlToImage'],
-//         publishedAt = articleJson['publishedAt'],
-//         content = articleJson['content'];
-// }

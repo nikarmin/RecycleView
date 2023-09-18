@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/inteligencia_artificial.dart';
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen>{
       backgroundColor: Color.fromRGBO(233, 233, 233, 1),
       body: _telas[_selectedIndex],
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(30),
             topLeft: Radius.circular(30),
@@ -45,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen>{
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
           ),
@@ -54,9 +53,9 @@ class _HomeScreenState extends State<HomeScreen>{
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            selectedItemColor: Color.fromARGB(255, 89, 165, 128),
+            selectedItemColor: const Color.fromARGB(255, 89, 165, 128),
             onTap: _onItemTapped,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: ImageIcon(
                   AssetImage(

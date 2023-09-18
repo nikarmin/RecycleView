@@ -15,8 +15,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/views/layout/layout_ponto.dart';
-import 'package:recycle_view/views/tela_inicial.dart';
-import 'package:recycle_view/views/marker.dart';
 
 import '../services/auth_service.dart';
 

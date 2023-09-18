@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:recycle_view/models/coleta.dart';
-
 class Usuario {
   //final String uid;
   final String nome;
