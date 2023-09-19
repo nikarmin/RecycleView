@@ -493,7 +493,10 @@ class _CadastroState extends State<Cadastro> {
                         nome: nome.text,
                         email: email.text,
                         senha: senha.text,
-                        //listaColeta: listaColeta,
+                        countMetal: 0,
+                        countPapel: 0,
+                        countPlastico: 0,
+                        countVidro: 0,
                         urlFoto: '',
                         cep: int.parse(_procurarCepController.text));
 

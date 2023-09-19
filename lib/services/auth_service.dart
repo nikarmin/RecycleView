@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'dart:io' as io;
 
+import '../models/coleta.dart';
 import '../models/usuario.dart';
 
 class AuthException implements Exception {
@@ -60,7 +61,7 @@ class AuthService extends ChangeNotifier {
 
   registrar2(Usuario usuario) async {
     try {
-      await _db.collection('usuários').add(usuario.toJson());
+      await _db.collection('usuarios').add(usuario.toJson());
       _getUser();
     } on FirebaseException catch (e) {
       Exception(e.message);
@@ -115,20 +116,22 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  adicionarMaterialReciclado(
-      int cMetal, int cPapel, int cPlastico, int cVidro) async {
-    var pessoa = _db
+  adicionarMaterialReciclado(int countMetal, int countPlastico, int countPapel, int countVidro) async {
+    final user = _db
         .collection('usuarios')
         .where('email', isEqualTo: usuario?.email)
-        .get();
-    pessoa.then((value) => value.docs.forEach((element) {
-          element.reference.set({
-            'qtdMetal': cMetal,
-            'qtdPapel': cPapel,
-            'qtdPlastico': cPlastico,
-            'qtdVidro': cVidro,
-          });
-        }));
+        .snapshots()
+        .listen((data) {
+      data.docs.forEach((doc) {
+        doc.reference.update({
+          'qtdMetal': countMetal + doc['qtdMetal'],
+          'qtdPapel': countPapel,
+          'qtdPlastico': countPlastico + doc['qtdPlastico'],
+          'qtdVidro': countVidro,
+        });
+      });
+    });
+
     //     .then((value) {
     //   value.docs.add({
     //     'qtdMetal': cMetal,
