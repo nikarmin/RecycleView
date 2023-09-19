@@ -44,6 +44,7 @@ dependencies:
   #tflite_flutter: ^0.10.1
   google_maps_flutter: ^2.0.3
   fl_chart: ^0.63.0
+  geo_firestore_flutter: ^0.1.6
 
 dev_dependencies:
   flutter_test:

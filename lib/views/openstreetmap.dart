@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -80,6 +81,37 @@ class _OpenStreetMapSearchAndPickState
   List<OSMdata> _options = <OSMdata>[];
   Timer? _debounce;
   var client = http.Client();
+
+  calcularPontosProximos(LatLng user, LatLng ponto) async {
+    const double raioTerra = 6372.795477598;
+
+    double lat1 = user.latitude * pi / 180;
+    double lon1 = user.longitude * pi / 180;
+    double lat2 = ponto.latitude * pi / 180;
+    double lon2 = ponto.longitude * pi / 180;
+
+    double dLat = lat2 - lat1;
+    double dLon = lon2 - lon1;
+
+    double a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
+
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    double distance = raioTerra * c; // Distância em quilômetros
+    return distance;
+  }
+
+  List<LatLng> findNearestPoints(
+      LatLng user, List<LatLng> recyclePoints, int numberOfPoints) {
+    recyclePoints.sort((a, b) {
+      double distanceA = calcularPontosProximos(user, a);
+      double distanceB = calcularPontosProximos(user, b);
+      return distanceA.compareTo(distanceB);
+    });
+
+    return recyclePoints.take(numberOfPoints).toList();
+  }
 
   void setNameCurrentPos() async {
     double latitude = _mapController.center.latitude;
@@ -225,6 +257,7 @@ class _OpenStreetMapSearchAndPickState
   final List<Marker> _markers = [];
   List<LatLng> pointers = [];
   List<Marker> markerspoints = [];
+  List<LatLng> pontinhosarr = [];
 
   @override
   void dispose() {
@@ -257,7 +290,7 @@ class _OpenStreetMapSearchAndPickState
               ),
             ))
         .toList();
-    List<LatLng> pontinhosarr = [];
+    // List<LatLng> pontinhosarr = [];
     final pontinhos = snapshot.data?.docs
         .map((doc) => pontinhosarr.add(LatLng(doc["lat"], doc["long"])))
         .toList();
@@ -275,7 +308,22 @@ class _OpenStreetMapSearchAndPickState
       ));
     });
 
+    pegarPontos();
+
     return data;
+  }
+
+  pegarPontos() async {
+    LatLng userLocation =
+        LatLng(widget.center.latitude, widget.center.longitude);
+    List<LatLng> nearestPoints =
+        findNearestPoints(userLocation, pontinhosarr, pontinhosarr.length);
+
+    print('Pontos de coleta mais próximos:');
+    for (var point in nearestPoints) {
+      double distance = calcularPontosProximos(userLocation, point);
+      print(' Distância = ${distance.toStringAsFixed(2)} km');
+    }
   }
 
   @override

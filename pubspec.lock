@@ -384,6 +384,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.5.0"
+  geo_firestore_flutter:
+    dependency: "direct main"
+    description:
+      name: geo_firestore_flutter
+      sha256: e47910419bbeb4d5cd319ea149198d3758e12b7ce6a85c524ef0eacc5108cfc3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.6"
   geocoding:
     dependency: "direct main"
     description:

@@ -116,21 +116,45 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  adicionarMaterialReciclado(int countMetal, int countPlastico, int countPapel, int countVidro) async {
+  adicionarMaterialReciclado(
+      int countMetal, int countPlastico, int countPapel, int countVidro) async {
+    int qAntMetal, qAntPlastico, qAntVidro, qAntPapel;
+
     final user = _db
         .collection('usuarios')
         .where('email', isEqualTo: usuario?.email)
-        .snapshots()
-        .listen((data) {
-      data.docs.forEach((doc) {
-        doc.reference.update({
-          'qtdMetal': countMetal + doc['qtdMetal'],
-          'qtdPapel': countPapel,
-          'qtdPlastico': countPlastico + doc['qtdPlastico'],
-          'qtdVidro': countVidro,
-        });
+        .get(); // Use get() em vez de snapshots() para obter os documentos uma vez
+
+    final documents = await user;
+
+    if (documents.docs.isNotEmpty) {
+      final doc = documents.docs.first;
+      final qAntMetal = doc['qtdMetal'] ?? 0;
+      final qAntPlastico = doc['qtdPlastico'] ?? 0;
+      final qAntPapel = doc['qtdPapel'] ?? 0;
+      final qAntVidro = doc['qtdVidro'] ?? 0;
+
+      doc.reference.update({
+        'qtdMetal': qAntMetal + countMetal,
+        'qtdPapel': qAntPapel + countPapel,
+        'qtdPlastico': qAntPlastico + countPlastico,
+        'qtdVidro': qAntVidro + countVidro,
       });
-    });
+    }
+    // final user = _db
+    //     .collection('usuarios')
+    //     .where('email', isEqualTo: usuario?.email)
+    //     .snapshots()
+    //     .listen((data) {
+    //   data.docs.forEach((doc) {
+    //     doc.reference.update({
+    //       'qtdMetal': countMetal,
+    //       'qtdPapel': countPapel,
+    //       'qtdPlastico': countPlastico,
+    //       'qtdVidro': countVidro,
+    //     });
+    //   });
+    // });
 
     //     .then((value) {
     //   value.docs.add({
