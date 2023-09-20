@@ -1,13 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geo_firestore_flutter/geo_firestore_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get_connect/http/src/http.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -82,36 +82,36 @@ class _OpenStreetMapSearchAndPickState
   Timer? _debounce;
   var client = http.Client();
 
-  calcularPontosProximos(LatLng user, LatLng ponto) async {
-    const double raioTerra = 6372.795477598;
+  // calcularPontosProximos(LatLng user, LatLng ponto) async {
+  //   const double raioTerra = 6372.795477598;
 
-    double lat1 = user.latitude * pi / 180;
-    double lon1 = user.longitude * pi / 180;
-    double lat2 = ponto.latitude * pi / 180;
-    double lon2 = ponto.longitude * pi / 180;
+  //   double lat1 = user.latitude * pi / 180;
+  //   double lon1 = user.longitude * pi / 180;
+  //   double lat2 = ponto.latitude * pi / 180;
+  //   double lon2 = ponto.longitude * pi / 180;
 
-    double dLat = lat2 - lat1;
-    double dLon = lon2 - lon1;
+  //   double dLat = lat2 - lat1;
+  //   double dLon = lon2 - lon1;
 
-    double a = sin(dLat / 2) * sin(dLat / 2) +
-        cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
+  //   double a = sin(dLat / 2) * sin(dLat / 2) +
+  //       cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
 
-    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+  //   double c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
-    double distance = raioTerra * c; // Distância em quilômetros
-    return distance;
-  }
+  //   double distance = raioTerra * c; // Distância em quilômetros
+  //   return distance;
+  // }
 
-  List<LatLng> findNearestPoints(
-      LatLng user, List<LatLng> recyclePoints, int numberOfPoints) {
-    recyclePoints.sort((a, b) {
-      double distanceA = calcularPontosProximos(user, a);
-      double distanceB = calcularPontosProximos(user, b);
-      return distanceA.compareTo(distanceB);
-    });
+  // List<LatLng> findNearestPoints(
+  //     LatLng user, List<LatLng> recyclePoints, int numberOfPoints) {
+  //   recyclePoints.sort((a, b) {
+  //     double distanceA = calcularPontosProximos(user, a);
+  //     double distanceB = calcularPontosProximos(user, b);
+  //     return distanceA.compareTo(distanceB);
+  //   });
 
-    return recyclePoints.take(numberOfPoints).toList();
-  }
+  //   return recyclePoints.take(numberOfPoints).toList();
+  // }
 
   void setNameCurrentPos() async {
     double latitude = _mapController.center.latitude;
@@ -308,23 +308,86 @@ class _OpenStreetMapSearchAndPickState
       ));
     });
 
-    pegarPontos();
+    // pegarPontos();
 
     return data;
   }
 
-  pegarPontos() async {
-    LatLng userLocation =
-        LatLng(widget.center.latitude, widget.center.longitude);
-    List<LatLng> nearestPoints =
-        findNearestPoints(userLocation, pontinhosarr, pontinhosarr.length);
+  // pegarPontosProximos() async {
+  //   final geo =
+  //       GeoFirestore(FirebaseFirestore.instance.collection('pontos_de_coleta'));
 
-    print('Pontos de coleta mais próximos:');
-    for (var point in nearestPoints) {
-      double distance = calcularPontosProximos(userLocation, point);
-      print(' Distância = ${distance.toStringAsFixed(2)} km');
-    }
-  }
+  //   QuerySnapshot querySnapshot =
+  //       await FirebaseFirestore.instance.collection('pontos_de_coleta').get();
+
+  //   for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
+  //     Map<String, dynamic> data =
+  //         documentSnapshot.data() as Map<String, dynamic>;
+
+  //     // Verifique se o documento possui campos de latitude e longitude
+  //     if (data.containsKey('latitude') && data.containsKey('longitude')) {
+  //       double latitude = data['latitude'];
+  //       double longitude = data['longitude'];
+
+  //       GeoPoint geoPoint =
+  //           geo.point(latitude: latitude, longitude: longitude);
+
+  //       // Adicione o ponto ao GeoFirestore
+  //       await geo.setLocation(documentSnapshot.id, geoPoint);
+  //       print('Documento ${documentSnapshot.id} adicionado ao GeoFirestore');
+  //     } else {
+  //       print(
+  //           'Documento ${documentSnapshot.id} não possui campos de latitude e longitude.');
+  //     }
+  //   }
+  // }
+
+  // Future<void> findNearbyPoints(
+  //     double latitude, double longitude, double radiusInKm) async {
+  //   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  //   final geo = GeoFirestore(firestore.collection('pontos_de_coleta'));
+
+  //   GeoFirestore center = geo.getLocation(documentID);
+  //   point(latitude: latitude, longitude: longitude);
+
+  //   String collectionName =
+  //       'pontos_de_coleta'; // Nome da coleção que contém os pontos
+  //   CollectionReference collection = _firestore.collection(collectionName);
+
+  //   Stream<List<DocumentSnapshot<Map<String, dynamic>>>> stream = geo
+  //       .collection(collection: collection)
+  //       .within(center: center, radius: radiusInKm, field: 'location');
+
+  //   stream.listen((List<DocumentSnapshot<Map<String, dynamic>>> result) {
+  //     // Result contém os documentos dos pontos de coleta dentro do raio especificado
+  //     for (var doc in result) {
+  //       var data = doc.data() as Map<String, dynamic>;
+  //       var pointName = data[
+  //           'name']; // Substitua 'name' pelo campo correto que contém o nome do ponto
+  //       var pointLocation = data[
+  //           'location']; // Substitua 'location' pelos campos corretos de latitude e longitude
+  //       var pointLatitude = pointLocation.latitude;
+  //       var pointLongitude = pointLocation.longitude;
+
+  //       // Agora você pode processar os pontos de coleta encontrados
+  //       print(
+  //           'Nome: $pointName, Latitude: $pointLatitude, Longitude: $pointLongitude');
+  //     }
+  //   });
+  // }
+
+  // pegarPontos() async {
+  //   LatLng userLocation =
+  //       LatLng(widget.center.latitude, widget.center.longitude);
+  //   List<LatLng> nearestPoints =
+  //       findNearestPoints(userLocation, pontinhosarr, pontinhosarr.length);
+
+  //   print('Pontos de coleta mais próximos:');
+  //   for (var point in nearestPoints) {
+  //     double distance = calcularPontosProximos(userLocation, point);
+  //     print(' Distância = ${distance.toStringAsFixed(2)} km');
+  //   }
+  // }
 
   @override
   void initState() {
