@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -16,6 +17,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/views/layout/layout_ponto.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
 
 import '../services/auth_service.dart';
 
@@ -308,9 +310,48 @@ class _OpenStreetMapSearchAndPickState
       ));
     });
 
+    buscarPontosProximos();
     // pegarPontos();
 
     return data;
+  }
+
+  void buscarPontosProximos() async {
+    try {
+      // Inicialize o Firebase
+      await Firebase.initializeApp();
+
+      // Obtenha a localização atual do dispositivo
+      Position position = await Geolocator.getCurrentPosition();
+      double latitude = position.latitude;
+      double longitude = position.longitude;
+
+      // Configure o GeoFlutterFire
+      final geo = GeoFlutterFire();
+      final _firestore = FirebaseFirestore.instance;
+      GeoFirePoint center = geo.point(latitude: latitude, longitude: longitude);
+      var collectionReference = _firestore.collection('pontos_de_coleta');
+
+      // Defina o raio para 2 km
+      double radius = 2.0;
+      String field = 'position';
+
+      // Consulta pontos dentro do raio de 2 km da localização atual
+      Stream<List<DocumentSnapshot>> stream = geo
+          .collection(collectionRef: collectionReference)
+          .within(center: center, radius: radius, field: field);
+
+      stream.listen((List<DocumentSnapshot> documentList) {
+        // Faça algo com os documentos encontrados (pontos próximos)
+        for (var document in documentList) {
+          print('Nome: ${document['nome']}');
+          print('Latitude: ${document['position'].latitude}');
+          print('Longitude: ${document['position'].longitude}');
+        }
+      });
+    } catch (e) {
+      print('Erro ao buscar pontos próximos: $e');
+    }
   }
 
   // pegarPontosProximos() async {
