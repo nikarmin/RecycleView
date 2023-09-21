@@ -22,6 +22,7 @@ import 'package:provider/provider.dart';
 import 'package:recycle_view/views/layout/layout_ponto.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 
+import '../models/coleta.dart';
 import '../services/auth_service.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
@@ -277,9 +278,8 @@ class _OpenStreetMapSearchAndPickState
         .map((doc) => pontinhosarr.add(LatLng(doc["lat"], doc["long"])))
         .toList();
 
-    final treco = snapshot.data?.docs
-        .map((doc) => pontosNome.add(doc["nome"]))
-        .toList();
+    final treco =
+        snapshot.data?.docs.map((doc) => pontosNome.add(doc["nome"])).toList();
 
     pontinhosarr.forEach((element) {
       markerspoints.add(Marker(
@@ -294,7 +294,8 @@ class _OpenStreetMapSearchAndPickState
       ));
     });
 
-    pontosProximos();
+    pontosProximos2();
+    //pontosProximos();
     // pegarPontos();
 
     return data;
@@ -307,6 +308,30 @@ class _OpenStreetMapSearchAndPickState
     FirebaseFirestore.instance
         .collection('locations')
         .add({'name': 'random name', 'position': myLocation.data});
+  }
+
+  List<Coleta> coletinha = [];
+
+  pontosProximos2() {
+    int cont = 0;
+    // Calcule a distância e encontre pontos próximos (por exemplo, dentro de 10 km)
+    double maxDistance = 5; // Em quilômetros
+    for (var location in pontinhosarr) {
+      double distance = Geolocator.distanceBetween(
+        widget.center.latitude,
+        widget.center.longitude,
+        location.latitude,
+        location.longitude,
+      );
+
+      if (distance <= maxDistance * 1000) {
+        // Converta para metros
+        nearbyLocations.add(location);
+        Coleta coleta = Coleta(nome: pontosNome[cont], localizacao: location);
+        coletinha.add(coleta);
+      }
+      cont++;
+    }
   }
 
   pontosProximos() {
@@ -374,7 +399,7 @@ class _OpenStreetMapSearchAndPickState
     OutlineInputBorder inputFocusBorder = OutlineInputBorder(
       borderSide: BorderSide(color: widget.buttonColor, width: 3.0),
     );
-    return SafeArea(   
+    return SafeArea(
       child: Stack(
         children: [
           Positioned.fill(
@@ -421,8 +446,7 @@ class _OpenStreetMapSearchAndPickState
                             size: 30,
                             color: Colors.white,
                           ),
-                          title: Text(
-                              "${markerspoints.length - 1} PONTOS NA REGIÃO",
+                          title: Text("${coletinha.length} PONTOS NA REGIÃO",
                               style: GoogleFonts.jost(
                                   textStyle: const TextStyle(
                                       fontSize: 30,
@@ -556,7 +580,44 @@ class _OpenStreetMapSearchAndPickState
                           child: Align(
                         alignment: Alignment.topRight,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    color: Colors.white,
+                                    child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: nearbyLocations.length,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            title: Text(
+                                              coletinha[index].nome,
+                                              style: GoogleFonts.poppins(),
+                                            ),
+                                            subtitle: Text(
+                                                '${coletinha[index].localizacao.latitude},${coletinha[index].localizacao.longitude}',
+                                                style: GoogleFonts.jost()),
+                                            onTap: () {
+                                              _mapController.move(
+                                                  LatLng(
+                                                      coletinha[index]
+                                                          .localizacao
+                                                          .latitude,
+                                                      coletinha[index]
+                                                          .localizacao
+                                                          .longitude),
+                                                  15.0);
+
+                                              _focusNode.unfocus();
+                                              _options.clear();
+                                              setState(() {});
+                                            },
+                                          );
+                                        }),
+                                  );
+                                });
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromRGBO(243, 243, 243, 1),
                             shape: CircleBorder(),
