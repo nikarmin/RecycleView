@@ -8,8 +8,6 @@ class LayoutPontos extends StatefulWidget {
       required this.nome,
       required this.lat,
       required this.long,
-      /* required this.pontos,
-*/
       required this.tipo,
       required this.horario,
       required this.cidade});
@@ -20,7 +18,6 @@ class LayoutPontos extends StatefulWidget {
   final String horario;
   final String tipo;
   final String cidade;
-  //final List<LatLng> pontos;
 
   @override
   State<LayoutPontos> createState() => _LayoutPontosState();

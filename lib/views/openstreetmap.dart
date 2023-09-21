@@ -233,6 +233,9 @@ class _OpenStreetMapSearchAndPickState
   List<Marker> markerspoints = [];
   List<LatLng> pontinhosarr = [];
   List<GeoPoint> listGeoPoint = [];
+  List<LatLng> nearbyLocations = [];
+  List<String> nomePontosProximos = [];
+  List<String> pontosNome = [];
 
   @override
   void dispose() {
@@ -274,6 +277,10 @@ class _OpenStreetMapSearchAndPickState
         .map((doc) => pontinhosarr.add(LatLng(doc["lat"], doc["long"])))
         .toList();
 
+    final treco = snapshot.data?.docs
+        .map((doc) => pontosNome.add(doc["nome"]))
+        .toList();
+
     pontinhosarr.forEach((element) {
       markerspoints.add(Marker(
         point: element,
@@ -287,7 +294,7 @@ class _OpenStreetMapSearchAndPickState
       ));
     });
 
-    //adicionarPonto();
+    pontosProximos();
     // pegarPontos();
 
     return data;
@@ -302,115 +309,27 @@ class _OpenStreetMapSearchAndPickState
         .add({'name': 'random name', 'position': myLocation.data});
   }
 
-  List<DocumentSnapshot> findPointsWithinRadius(
-    List<DocumentSnapshot> points,
-    double userLat,
-    double userLon,
-  ) {
-    List<DocumentSnapshot> nearbyPoints = [];
-    for (var point in points) {
-      double pointLat = point['lat'];
-      double pointLon = point['long'];
-      double distance = calculateHaversineDistance(
-        userLat,
-        userLon,
-        pointLat,
-        pointLon,
+  pontosProximos() {
+    // Calcule a distância e encontre pontos próximos (por exemplo, dentro de 10 km)
+    double maxDistance = 5; // Em quilômetros
+    for (var location in pontinhosarr) {
+      double distance = Geolocator.distanceBetween(
+        widget.center.latitude,
+        widget.center.longitude,
+        location.latitude,
+        location.longitude,
       );
-      if (distance <= 1.0) {
-        nearbyPoints.add(point);
+
+      if (distance <= maxDistance * 1000) {
+        // Converta para metros
+        nearbyLocations.add(location);
       }
     }
-    return nearbyPoints;
-  }
-
-  double calculateHaversineDistance(
-    double userLat,
-    double userLon,
-    double pointLat,
-    double pointLon,
-  ) {
-    const double radiusOfEarthKm = 6371.0; // Raio da Terra em quilômetros
-    double dLat = pointLat - userLat;
-    double dLon = pointLon - userLon;
-
-    double a = pow(sin(dLat / 2), 2) +
-        cos(userLat) * cos(pointLat) * pow(sin(dLon / 2), 2);
-    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
-
-    double distance = radiusOfEarthKm * c; // Distância em quilômetros
-    return distance;
-  }
-
-  Future<List<DocumentSnapshot>> findNearbyPoints() async {
-    final double radiusInKm = 1.0; // Raio em quilômetros
-
-    double lat = widget.center.latitude;
-    double lon = widget.center.longitude;
-
-    final QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection('pontos_de_coleta')
-        .where(
-          'lat',
-          isGreaterThanOrEqualTo:
-              lat - 0.009, // Aproximadamente 1km em latitude
-          isLessThanOrEqualTo: lat + 0.009,
-        )
-        // .where(
-        //   'long',
-        //   isGreaterThanOrEqualTo:
-        //       lon - 0.009, // Aproximadamente 1km em longitude
-        //   isLessThanOrEqualTo: lon + 0.009,
-        // )
-        .get();
-
-    return snapshot.docs;
-  }
-
-  buscarPontosProximos() async {
-    GeoFlutterFire geo = GeoFlutterFire();
-    Stream<List<DocumentSnapshot>> stream;
-    final radius = BehaviorSubject<double>.seeded(1.0);
-    GeoFirePoint center = geo.point(
-        latitude: widget.center.latitude, longitude: widget.center.longitude);
-    stream = radius.switchMap((rad) {
-      var collectionReference = FirebaseFirestore.instance.collection('teste');
-      return geo.collection(collectionRef: collectionReference).within(
-          center: center, radius: rad, field: 'ponto', strictMode: true);
-    });
-
-    stream.listen((List<DocumentSnapshot> documentList) {
-      print(documentList);
-    });
-    // final geo = GeoFlutterFire();
-    // GeoFirePoint center = geo.point(
-    //     latitude: widget.center.latitude, longitude: widget.center.longitude);
-    // var collectionReference = FirebaseFirestore.instance.collection('teste');
-    // var geoRef = geo.collection(collectionRef: collectionReference);
-    // var snap =
-    //     await geoRef.within(center: center, radius: 0, field: 'ponto').first;
-
-    // if (snap.isNotEmpty) {
-    //   print("DATAAAAAA: ${snap.first.toString()}");
-    // } else {
-    //   print("Nenhum dado encontrado.");
-    // }
-  }
-
-  oooo() async {
-    final points = await findNearbyPoints();
-    final nearbyPoints = findPointsWithinRadius(
-      points,
-      widget.center.latitude,
-      widget.center.longitude,
-    );
   }
 
   @override
   void initState() {
     //adicionarPonto();
-    //oooo();
-
     setNameCurrentPos();
     pegar();
 
@@ -455,7 +374,7 @@ class _OpenStreetMapSearchAndPickState
     OutlineInputBorder inputFocusBorder = OutlineInputBorder(
       borderSide: BorderSide(color: widget.buttonColor, width: 3.0),
     );
-    return SafeArea(
+    return SafeArea(   
       child: Stack(
         children: [
           Positioned.fill(
@@ -602,6 +521,55 @@ class _OpenStreetMapSearchAndPickState
                           setState(() {});
                         });
                       }),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Positioned(
+                          child: Align(
+                        alignment: Alignment.topRight,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _mapController.move(
+                                  LatLng(widget.center.latitude,
+                                      widget.center.longitude),
+                                  15.0);
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(243, 243, 243, 1),
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(15),
+                          ),
+                          child: Icon(
+                            Icons.my_location_rounded,
+                            color: Colors.black,
+                          ),
+                        ),
+                      )),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Positioned(
+                          child: Align(
+                        alignment: Alignment.topRight,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(243, 243, 243, 1),
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(15),
+                          ),
+                          child: Icon(
+                            Icons.mode_of_travel_rounded,
+                            color: Colors.black,
+                          ),
+                        ),
+                      )),
+                    ],
+                  ),
                   StatefulBuilder(builder: ((context, setState) {
                     return Container(
                       child: Column(children: [

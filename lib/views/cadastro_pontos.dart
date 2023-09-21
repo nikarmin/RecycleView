@@ -63,277 +63,316 @@ class _CadastroPontosState extends State<CadastroPontos> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  'Cadastre seus resíduos!',
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontSize: 24,
-                      decoration: TextDecoration.none,
-                      color: Colors.black,
-                    ),
+                Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                    child: Text(
+                        'A partir da reciclagem podemos tornar o mundo um lugar melhor. Através do cadastro da quantidade de resíduos reciclados por você, você pode os conferir e comparar com o decorrer do tempo olhando os gráficos!',
+                        style: GoogleFonts.jost(
+                            textStyle:
+                                TextStyle(color: Colors.black, fontSize: 22)))),
+                const SizedBox(
+                  height: 10,
+                ),
+
+                Container(
+                  width: 380,
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color.fromRGBO(134, 167, 102, 1),
+                  ),
+                  child: Text('Cadastre de resíduos reciclados',
+                      style: GoogleFonts.jost(
+                          textStyle:
+                              TextStyle(color: Colors.white, fontSize: 25))),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+
+                // metal //////////////////////////////////////////////////////////////////////////
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.amber,
+                  ),
+                  width: 380,
+                  height: 100,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
+                              backgroundColor: Color.fromRGBO(134, 167, 102, 1),
+                              onPressed: () {
+                                setState(() {
+                                  if (countMetal > 0) {
+                                    countMetal--;
+                                  } else {
+                                    countMetal = 0;
+                                  }
+                                });
+                              },
+                              child: const Icon(
+                                Icons.remove,
+                                size: 15,
+                              ))),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            (countMetal >= 0 ? countMetal.toString() : '0'),
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 35))),
+                      ),
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
+                            backgroundColor:
+                                const Color.fromRGBO(134, 167, 102, 1),
+                            onPressed: () {
+                              setState(() {
+                                countMetal++;
+                              });
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              size: 15,
+                            ),
+                          )),
+                      Text(' Metal',
+                          style: GoogleFonts.jost(
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 35)))
+                    ],
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
+
+                // plastico
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.red,
+                  ),
+                  width: 380,
+                  height: 100,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
+                              backgroundColor:
+                                  const Color.fromRGBO(134, 167, 102, 1),
+                              onPressed: () {
+                                setState(() {
+                                  if (countPlastico > 0) {
+                                    countPlastico--;
+                                  } else {
+                                    countPlastico = 0;
+                                  }
+                                });
+                              },
+                              child: const Icon(
+                                Icons.remove,
+                                size: 15,
+                              ))),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            (countPlastico >= 0
+                                ? countPlastico.toString()
+                                : '0'),
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 35))),
+                      ),
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
                             backgroundColor:
                                 const Color.fromRGBO(134, 167, 102, 1),
                             onPressed: () {
                               setState(() {
-                                if (countMetal > 0) {
-                                  countMetal--;
-                                } else {
-                                  countMetal = 0;
-                                }
+                                countPlastico++;
                               });
                             },
                             child: const Icon(
-                              Icons.remove,
+                              Icons.add,
                               size: 15,
-                            ))),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        (countMetal >= 0 ? countMetal.toString() : '0'),
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 24,
-                            decoration: TextDecoration.none,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
-                          backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
-                          onPressed: () {
-                            setState(() {
-                              countMetal++;
-                            });
-                          },
-                          child: const Icon(
-                            Icons.add,
-                            size: 15,
-                          ),
-                        )),
-                    Text(
-                      ' Metal',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                        ),
-                      ),
-                    )
-                  ],
+                            ),
+                          )),
+                      Text(' Plástico',
+                          style: GoogleFonts.jost(
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 35)))
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
+                const SizedBox(
+                  height: 10,
+                ),
+
+                // papel
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.lightBlueAccent,
+                  ),
+                  width: 380,
+                  height: 100,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
+                              backgroundColor:
+                                  const Color.fromRGBO(134, 167, 102, 1),
+                              onPressed: () {
+                                setState(() {
+                                  if (countPapel > 0) {
+                                    countPapel--;
+                                  } else {
+                                    countPapel = 0;
+                                  }
+                                });
+                              },
+                              child: const Icon(
+                                Icons.remove,
+                                size: 15,
+                              ))),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            (countPapel >= 0 ? countPapel.toString() : '0'),
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 35))),
+                      ),
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
                             backgroundColor:
                                 const Color.fromRGBO(134, 167, 102, 1),
                             onPressed: () {
                               setState(() {
-                                if (countPlastico > 0) {
-                                  countPlastico--;
-                                } else {
-                                  countPlastico = 0;
-                                }
+                                countPapel++;
                               });
                             },
                             child: const Icon(
-                              Icons.remove,
+                              Icons.add,
                               size: 15,
-                            ))),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        (countPlastico >= 0 ? countPlastico.toString() : '0'),
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 24,
-                            decoration: TextDecoration.none,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
-                          backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
-                          onPressed: () {
-                            setState(() {
-                              countPlastico++;
-                            });
-                          },
-                          child: const Icon(
-                            Icons.add,
-                            size: 15,
-                          ),
-                        )),
-                    Text(
-                      ' Plástico',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                        ),
-                      ),
-                    )
-                  ],
+                            ),
+                          )),
+                      Text(' Papel',
+                          style: GoogleFonts.jost(
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 35)))
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
+                const SizedBox(
+                  height: 10,
+                ),
+
+                // vidro
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color.fromARGB(255, 24, 87, 28),
+                  ),
+                  width: 380,
+                  height: 100,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
+                              backgroundColor:
+                                  const Color.fromRGBO(134, 167, 102, 1),
+                              onPressed: () {
+                                setState(() {
+                                  if (countVidro > 0) {
+                                    countVidro--;
+                                  } else {
+                                    countVidro = 0;
+                                  }
+                                });
+                              },
+                              child: const Icon(
+                                Icons.remove,
+                                size: 15,
+                              ))),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            (countVidro >= 0 ? countVidro.toString() : '0'),
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 35))),
+                      ),
+                      SizedBox(
+                          height: 25,
+                          child: FloatingActionButton(
                             backgroundColor:
                                 const Color.fromRGBO(134, 167, 102, 1),
                             onPressed: () {
                               setState(() {
-                                if (countPapel > 0) {
-                                  countPapel--;
-                                } else {
-                                  countPapel = 0;
-                                }
+                                countVidro++;
                               });
                             },
                             child: const Icon(
-                              Icons.remove,
+                              Icons.add,
                               size: 15,
-                            ))),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        (countPapel >= 0 ? countPapel.toString() : '0'),
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 24,
-                            decoration: TextDecoration.none,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
-                          backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
-                          onPressed: () {
-                            setState(() {
-                              countPapel++;
-                            });
-                          },
-                          child: const Icon(
-                            Icons.add,
-                            size: 15,
-                          ),
-                        )),
-                    Text(
-                      ' Papel',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
-                            backgroundColor:
-                                const Color.fromRGBO(134, 167, 102, 1),
-                            onPressed: () {
-                              setState(() {
-                                if (countVidro > 0) {
-                                  countVidro--;
-                                } else {
-                                  countVidro = 0;
-                                }
-                              });
-                            },
-                            child: const Icon(
-                              Icons.remove,
-                              size: 15,
-                            ))),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        (countVidro >= 0 ? countVidro.toString() : '0'),
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 24,
-                            decoration: TextDecoration.none,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        height: 25,
-                        child: FloatingActionButton(
-                          backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
-                          onPressed: () {
-                            setState(() {
-                              countVidro++;
-                            });
-                          },
-                          child: const Icon(
-                            Icons.add,
-                            size: 15,
-                          ),
-                        )),
-                    Text(
-                      ' Vidro',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                            ),
+                          )),
+                      Text(' Vidro',
+                          style: GoogleFonts.jost(
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 35)))
+                    ],
+                  ),
+                )
               ],
             ),
-            const SizedBox(
-              height: 12,
+            SizedBox(
+              height: 15,
             ),
-            ElevatedButton(
-              onPressed: () {
-                cadastrarPonto(
-                    countMetal, countPapel, countVidro, countPlastico);
-              },
-              style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  backgroundColor: const Color.fromRGBO(134, 167, 102, 1)),
-              child: const Padding(
-                padding: EdgeInsets.all(12),
-                child: Icon(Icons.send),
+            Align(
+              alignment: Alignment(0.85, 0.0),
+              child: ElevatedButton(
+                child: Container(
+                  height: 50,
+                  width: 130,
+                  child: Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 10),
+                        Text("Enviar",
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 25))),
+                        SizedBox(width: 10),
+                        Icon(Icons.send)
+                      ],
+                    ),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(134, 167, 102, 1),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    shadowColor: Color.fromARGB(255, 85, 116, 54)),
+                onPressed: () {
+                  cadastrarPonto(
+                      countMetal, countPapel, countVidro, countPlastico);
+                },
               ),
-            ),
+            )
           ],
         ),
       ),
