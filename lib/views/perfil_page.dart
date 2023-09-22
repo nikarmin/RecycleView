@@ -13,10 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
 import 'package:recycle_view/views/cadastro_pontos.dart';
 import 'package:recycle_view/views/tela_inicial.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../services/store_data.dart';
-import 'indicator.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -159,6 +157,7 @@ class _PerfilState extends State<Perfil> {
     super.initState();
     loadImages();
     img = user!.photoURL;
+    getMateriais();
   }
 
   Future<UploadTask> upload(String path) async {
@@ -254,75 +253,77 @@ class _PerfilState extends State<Perfil> {
   }
 
   saveProfile() async {
-    String resp = await StoreData().saveData(file: _bytesImage!);
+    await StoreData().saveData(file: _bytesImage!);
+  }
+
+  getMateriais() async {
+    final materiais = await FirebaseFirestore.instance
+        .collection("usuarios")
+        .where('email', isEqualTo: user?.email)
+        .get();
+
+    if (materiais.docs.isNotEmpty) {
+      setState(() {
+        countMetal = materiais.docs[0]['qtdMetal'];
+        countPapel = materiais.docs[0]['qtdPapel'];
+        countPlastico = materiais.docs[0]['qtdPlastico'];
+        countVidro = materiais.docs[0]['qtdVidro'];
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    List<_PieData> data = [
-      _PieData('35', 45, 'Jan'),
-      _PieData('28', 23, 'Feb'),
-    ];
-
     int touchedIndex = -1;
 
     List<PieChartSectionData> showingSections() {
       return List.generate(4, (i) {
         final isTouched = i == touchedIndex;
         final fontSize = isTouched ? 25.0 : 16.0;
-        final radius = isTouched ? 60.0 : 50.0;
-        const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+        double radius = 150;
         switch (i) {
           case 0:
             return PieChartSectionData(
-              color: Colors.green,
-              value: 40,
-              title: '40%',
+              color: const Color.fromRGBO(99, 195, 111, 1),
+              value: countVidro.toDouble(),
+              title: 'Vidro',
               radius: radius,
               titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
                 color: Colors.black,
-                shadows: shadows,
               ),
             );
           case 1:
             return PieChartSectionData(
-              color: Colors.red,
-              value: 30,
-              title: '30%',
+              color: const Color.fromRGBO(242, 101, 101, 1),
+              value: countPlastico.toDouble(),
+              title: 'Plástico',
               radius: radius,
               titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
                 color: Colors.black,
-                shadows: shadows,
               ),
             );
           case 2:
             return PieChartSectionData(
-              color: Colors.blue,
-              value: 15,
-              title: '15%',
+              color: const Color.fromRGBO(64, 140, 255, 1),
+              value: countPapel.toDouble(),
+              title: 'Papel',
               radius: radius,
               titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
                 color: Colors.black,
-                shadows: shadows,
               ),
             );
           case 3:
             return PieChartSectionData(
-              color: Colors.purple,
-              value: 15,
-              title: '15%',
+              color: const Color.fromRGBO(254, 218, 74, 1),
+              value: countMetal.toDouble(),
+              title: 'Metal',
               radius: radius,
               titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
                 color: Colors.black,
-                shadows: shadows,
               ),
             );
           default:
@@ -546,18 +547,12 @@ class _PerfilState extends State<Perfil> {
                               MaterialPageRoute(builder: (context) {
                             return const CadastroPontos();
                           }));
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (BuildContext context) =>
-                          //         _buildPopupDialog(context));
                         },
                         //user!.displayName.toString()
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
                     child: Row(
                       children: [
                         Expanded(
@@ -566,83 +561,104 @@ class _PerfilState extends State<Perfil> {
                             child: PieChart(
                               PieChartData(
                                   pieTouchData: PieTouchData(
-                                    touchCallback:
-                                        (FlTouchEvent event, pieTouchResponse) {
-                                      setState(() {
-                                        if (!event
-                                                .isInterestedForInteractions ||
-                                            pieTouchResponse == false ||
-                                            pieTouchResponse?.touchedSection ==
-                                                null) {
-                                          touchedIndex = -1;
-                                          return;
-                                        }
-                                        touchedIndex = pieTouchResponse!
-                                            .touchedSection!
-                                            .touchedSectionIndex;
-                                      });
-                                    },
-                                  ),
+                                      // touchCallback:
+                                      //     (FlTouchEvent event, pieTouchResponse) {
+                                      //   setState(() {
+                                      //     if (!event
+                                      //             .isInterestedForInteractions ||
+                                      //         pieTouchResponse == false ||
+                                      //         pieTouchResponse?.touchedSection ==
+                                      //             null) {
+                                      //       touchedIndex = -1;
+                                      //       return;
+                                      //     }
+                                      //     touchedIndex = pieTouchResponse!
+                                      //         .touchedSection!
+                                      //         .touchedSectionIndex;
+                                      //   });
+                                      // },
+                                      ),
                                   sectionsSpace: 0,
-                                  centerSpaceRadius: 40,
+                                  centerSpaceRadius: 0,
                                   sections: showingSections()),
                             ),
                           ),
                         ),
-                        const Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Indicator(
-                                color: Colors.black,
-                                text: 'First',
-                                isSquare: true,
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Indicator(
-                                color: Colors.white,
-                                text: 'Second',
-                                isSquare: true,
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                            ])
                       ],
                     ),
-                    /*SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(children: [
-                            SfCircularChart(
-                                title:
-                                    ChartTitle(text: 'Sales by sales person'),
-                                legend: Legend(isVisible: true),
-                                series: <PieSeries<_PieData, String>>[
-                                  PieSeries<_PieData, String>(
-                                      explode: true,
-                                      explodeIndex: 0,
-                                      dataSource: data,
-                                      xValueMapper: (_PieData data, _) =>
-                                          data.xData,
-                                      yValueMapper: (_PieData data, _) =>
-                                          data.yData,
-                                      dataLabelMapper: (_PieData data, _) =>
-                                          data.text,
-                                      dataLabelSettings:
-                                          DataLabelSettings(isVisible: true)),
-                                ])
-                          ]))*/
-                  )
+                  ),
+                  Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color.fromRGBO(233, 233, 233, 1),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color.fromARGB(23, 0, 0, 0),
+                                spreadRadius: 5,
+                                blurRadius: 12)
+                          ]),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color.fromRGBO(99, 195, 111, 1)),
+                                child: Image.asset(
+                                  'assets/images/icons/bottle.png',
+                                  height: 40,
+                                  width: 40,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Plástico',
+                                style: GoogleFonts.jost(
+                                  textStyle: const TextStyle(
+                                    fontSize: 16,
+                                    decoration: TextDecoration.none,
+                                    color: Color.fromRGBO(94, 94, 94, 1),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Text(
+                                  '$countPlastico itens',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.none,
+                                      color: Color.fromRGBO(81, 79, 79, 1),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      )),
                 ],
               ),
             ),
           ),
         ),
-        backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+        backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(30),
               topLeft: Radius.circular(30),
@@ -651,7 +667,7 @@ class _PerfilState extends State<Perfil> {
               BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 10)
             ],
           ),
-          child: ClipRRect(
+          child: const ClipRRect(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.0),
               topRight: Radius.circular(30.0),

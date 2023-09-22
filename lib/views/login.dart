@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:recycle_view/views/bemvindo_page.dart';
 import 'package:recycle_view/views/cadastro.dart';
 import 'package:recycle_view/views/esqueceu_a_senha_page.dart';
 import 'package:recycle_view/views/home_screen.dart';
@@ -29,7 +28,7 @@ class _LoginState extends State<Login> {
       isLogin = acao;
       if (!isLogin) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Cadastro()));
+            context, MaterialPageRoute(builder: (context) => const Cadastro()));
       }
     });
   }
@@ -41,7 +40,7 @@ class _LoginState extends State<Login> {
       });
       await context.read<AuthService>().login(email.text, senha.text);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) =>  const HomeScreen()));
       // Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
     } on AuthException catch (e) {
@@ -84,11 +83,16 @@ class _LoginState extends State<Login> {
           child: Form(
             key: formKey,
             child: Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 180,
               ),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 25, right: 25),
+                    backgroundColor: const Color.fromRGBO(24, 119, 242, 1)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -99,26 +103,26 @@ class _LoginState extends State<Login> {
                       height: 20,
                       width: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text('Logar com Facebook',
                         style: GoogleFonts.poppins(
-                            textStyle:
-                                TextStyle(fontSize: 16, color: Colors.white)))
+                            textStyle: const TextStyle(
+                                fontSize: 16, color: Colors.white)))
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 25, right: 25),
-                    backgroundColor: Color.fromRGBO(24, 119, 242, 1)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 25, right: 25),
+                    backgroundColor: const Color.fromRGBO(24, 119, 242, 1)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -129,33 +133,28 @@ class _LoginState extends State<Login> {
                       height: 20,
                       width: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text('Logar com Google',
                         style: GoogleFonts.poppins(
-                            textStyle:
-                                TextStyle(fontSize: 16, color: Colors.white)))
+                            textStyle: const TextStyle(
+                                fontSize: 16, color: Colors.white)))
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 25, right: 25),
-                    backgroundColor: Color.fromRGBO(24, 119, 242, 1)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 57),
+                padding: const EdgeInsets.only(left: 57),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     'Email: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 18,
                             color: Colors.black,
@@ -163,7 +162,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -185,7 +184,7 @@ class _LoginState extends State<Login> {
                           return null;
                         },
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Digite seu email...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
@@ -193,12 +192,12 @@ class _LoginState extends State<Login> {
                               color: Colors.black.withOpacity(0.3)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                         ),
@@ -207,18 +206,18 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 57),
+                padding: const EdgeInsets.only(left: 57),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     'Senha: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 18,
                             color: Colors.black,
@@ -226,7 +225,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -249,7 +248,7 @@ class _LoginState extends State<Login> {
                         },
                         decoration: InputDecoration(
                           suffixIcon: Padding(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             child: GestureDetector(
                               onTap: _toggleObscured,
                               child: Icon(
@@ -260,7 +259,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Digite sua senha...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
@@ -268,12 +267,12 @@ class _LoginState extends State<Login> {
                               color: Colors.black.withOpacity(0.3)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                         ),
@@ -282,7 +281,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Center(
@@ -292,8 +291,8 @@ class _LoginState extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: (loading)
                       ? [
-                          Padding(padding: EdgeInsets.all(16)),
-                          SizedBox(
+                          const Padding(padding: EdgeInsets.all(16)),
+                          const SizedBox(
                             width: 24,
                             height: 24,
                             child:
@@ -307,20 +306,20 @@ class _LoginState extends State<Login> {
                                 login();
                               }
                             },
-                            child: Text('ENTRAR',
-                                style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                        fontSize: 14, color: Colors.white))),
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 35, top: 15, bottom: 15, right: 35),
                                 backgroundColor:
-                                    Color.fromRGBO(51, 111, 93, 1)),
+                                    const Color.fromRGBO(51, 111, 93, 1)),
+                            child: Text('ENTRAR',
+                                style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        fontSize: 14, color: Colors.white))),
                           ),
                         ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
@@ -331,7 +330,7 @@ class _LoginState extends State<Login> {
                 child: Text.rich(TextSpan(
                     text: 'Esqueceu sua ',
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 14,
                             color: Color.fromRGBO(51, 111, 93, 0.5),
@@ -340,7 +339,7 @@ class _LoginState extends State<Login> {
                       TextSpan(
                           text: 'senha?',
                           style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   decoration: TextDecoration.none,
                                   fontSize: 14,
                                   color: Color.fromRGBO(51, 111, 93, 0.5),
@@ -350,12 +349,12 @@ class _LoginState extends State<Login> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Cadastro()));
+                      MaterialPageRoute(builder: (context) => const Cadastro()));
                 },
                 child: Text.rich(TextSpan(
                     text: 'Não possui uma ',
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 14,
                             color: Color.fromRGBO(51, 111, 93, 0.5),
@@ -364,7 +363,7 @@ class _LoginState extends State<Login> {
                       TextSpan(
                           text: 'conta?',
                           style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   decoration: TextDecoration.none,
                                   fontSize: 14,
                                   color: Color.fromRGBO(51, 111, 93, 0.5),

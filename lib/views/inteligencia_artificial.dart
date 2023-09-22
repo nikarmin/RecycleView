@@ -42,33 +42,30 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     Shadow(
                         color: Colors.black.withOpacity(0.12),
                         blurRadius: 10,
-                        offset: Offset(0, 0))
+                        offset: const Offset(0, 0))
                   ],
                   fontWeight: FontWeight.bold,
                   color: Colors.blue[400],
                   fontSize: 30.0,
                 ),
               )),
-          Container(
-              child: Text(_outputs![0]["confidence"].toString(),
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                    ),
-                  ))),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: Text(
-                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.jost(
-                    textStyle: TextStyle(
-                  fontSize: 18.0,
-                )),
-              ),
+          Text(_outputs![0]["confidence"].toString(),
+              style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(22.0),
+            child: Text(
+              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+              textAlign: TextAlign.justify,
+              style: GoogleFonts.jost(
+                  textStyle: const TextStyle(
+                fontSize: 18.0,
+              )),
             ),
           )
         ],
@@ -84,7 +81,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     Shadow(
                         color: Colors.black.withOpacity(0.12),
                         blurRadius: 10,
-                        offset: Offset(0, 0))
+                        offset: const Offset(0, 0))
                   ],
                   fontWeight: FontWeight.bold,
                   color: Colors.red[400],
@@ -94,7 +91,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
           Container(
               child: Text(_outputs![0]["confidence"].toString(),
                   style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30.0,
                     ),
@@ -107,7 +104,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                 'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
                 textAlign: TextAlign.justify,
                 style: GoogleFonts.jost(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                   fontSize: 18.0,
                 )),
               ),
@@ -126,33 +123,30 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     Shadow(
                         color: Colors.black.withOpacity(0.12),
                         blurRadius: 10,
-                        offset: Offset(0, 0))
+                        offset: const Offset(0, 0))
                   ],
                   fontWeight: FontWeight.bold,
                   color: Colors.yellow[400],
                   fontSize: 30.0,
                 ),
               )),
-          Container(
-              child: Text(_outputs![0]["confidence"].toString(),
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                    ),
-                  ))),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: Text(
-                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.jost(
-                    textStyle: TextStyle(
-                  fontSize: 18.0,
-                )),
-              ),
+          Text(_outputs![0]["confidence"].toString(),
+              style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(22.0),
+            child: Text(
+              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+              textAlign: TextAlign.justify,
+              style: GoogleFonts.jost(
+                  textStyle: const TextStyle(
+                fontSize: 18.0,
+              )),
             ),
           )
         ],
@@ -168,7 +162,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     Shadow(
                         color: Colors.black.withOpacity(0.12),
                         blurRadius: 10,
-                        offset: Offset(0, 0))
+                        offset: const Offset(0, 0))
                   ],
                   fontWeight: FontWeight.bold,
                   color: Colors.green[400],
@@ -178,7 +172,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
           Container(
               child: Text(_outputs![0]["confidence"].toString(),
                   style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30.0,
                     ),
@@ -191,7 +185,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                 'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
                 textAlign: TextAlign.justify,
                 style: GoogleFonts.jost(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                   fontSize: 18.0,
                 )),
               ),
@@ -206,7 +200,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Container(
-        color: Color.fromRGBO(233, 233, 233, 1),
+        color: const Color.fromRGBO(233, 233, 233, 1),
         height: MediaQuery.of(context).size.height,
         width: 400,
         child: SingleChildScrollView(
@@ -369,23 +363,23 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+      backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+        title: const ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: ImageIcon(
+            icon: const ImageIcon(
               AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Perfil();
+                return const Perfil();
               }));
             },
           ),
@@ -396,9 +390,9 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: controller == null
-                ? Center(child: Text("Loading Camera..."))
+                ? const Center(child: Text("Loading Camera..."))
                 : !controller!.value.isInitialized
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : CameraPreview(controller!)),
@@ -424,12 +418,13 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     print(e);
                   }
                 },
-                child: Text(''),
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.transparent),
-                    shape: MaterialStateProperty.all<CircleBorder>(CircleBorder(
-                        side: BorderSide(color: Colors.white, width: 2)))),
+                    shape: MaterialStateProperty.all<CircleBorder>(
+                        const CircleBorder(
+                            side: BorderSide(color: Colors.white, width: 2)))),
+                child: const Text(''),
               ),
             ),
           ),
@@ -457,30 +452,31 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                       ? controller?.setFlashMode(FlashMode.torch)
                       : controller?.setFlashMode(FlashMode.off);
                 },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    flashOn
-                        ? Icon(
-                            Icons.flash_off_rounded,
-                            color: Colors.black,
-                            size: 30,
-                          )
-                        : Icon(
-                            Icons.flash_on_rounded,
-                            color: Colors.black,
-                            size: 30,
-                          )
-                  ],
-                ),
                 style: ButtonStyle(
                     alignment: AlignmentDirectional.center,
                     shadowColor:
                         MaterialStateProperty.all<Color>(Colors.transparent),
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<CircleBorder>(CircleBorder(
-                        side: BorderSide(color: Colors.white, width: 2)))),
+                    shape: MaterialStateProperty.all<CircleBorder>(
+                        const CircleBorder(
+                            side: BorderSide(color: Colors.white, width: 2)))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    flashOn
+                        ? const Icon(
+                            Icons.flash_off_rounded,
+                            color: Colors.black,
+                            size: 30,
+                          )
+                        : const Icon(
+                            Icons.flash_on_rounded,
+                            color: Colors.black,
+                            size: 30,
+                          )
+                  ],
+                ),
               ),
             ),
           ),
@@ -500,7 +496,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                       builder: (context) {
                         return Container(
                           width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromRGBO(245, 245, 245, 1),
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
@@ -509,7 +505,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Container(
                                 height: 4,
                                 width: MediaQuery.of(context).size.width / 4,
@@ -518,29 +514,29 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.black12),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: Text(
                                   'Para utilizar IA (Inteligência Artificial) para auxiliar no reconhecimento e separação de materias recicláveis, siga as recomendações a seguir!',
                                   style: GoogleFonts.archivo(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black),
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color.fromRGBO(51, 111, 93, 1),
                                           shape: BoxShape.circle,
                                         ),
@@ -551,21 +547,21 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                             '1',
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
+                                                textStyle: const TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ),
                                         )),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Flexible(
                                       child: Text(
                                         'Fotos mal iluminadas dificultam o reconhecimento. Certifique-se de usar a camêra em um lugar bem iluminado. ',
                                         style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
+                                          textStyle: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black),
                                         ),
@@ -574,16 +570,16 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color.fromRGBO(51, 111, 93, 1),
                                           shape: BoxShape.circle,
                                         ),
@@ -594,21 +590,21 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                             '2',
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
+                                                textStyle: const TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ),
                                         )),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Flexible(
                                       child: Text(
                                         'Fotos muito próximas ou distantes dificultam o reconhecimento. Certifique-se de usar a camêra em um distância considerável. ',
                                         style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
+                                          textStyle: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black),
                                         ),
@@ -617,16 +613,16 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color.fromRGBO(51, 111, 93, 1),
                                           shape: BoxShape.circle,
                                         ),
@@ -637,21 +633,21 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                             '3',
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
+                                                textStyle: const TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ),
                                         )),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Flexible(
                                       child: Text(
                                         'A IA não garante 100% de certeza nos reconhecimentos, afinal, se o ser humano é falho, imagina uma máquina.',
                                         style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
+                                          textStyle: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black),
                                         ),
@@ -660,13 +656,22 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 40),
+                              const SizedBox(height: 40),
                             ],
                           ),
                         );
                       });
                 },
-                child: Column(
+                style: ButtonStyle(
+                    alignment: AlignmentDirectional.center,
+                    shadowColor:
+                        MaterialStateProperty.all<Color>(Colors.transparent),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    shape: MaterialStateProperty.all<CircleBorder>(
+                        const CircleBorder(
+                            side: BorderSide(color: Colors.white, width: 2)))),
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -678,14 +683,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                     )
                   ],
                 ),
-                style: ButtonStyle(
-                    alignment: AlignmentDirectional.center,
-                    shadowColor:
-                        MaterialStateProperty.all<Color>(Colors.transparent),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<CircleBorder>(CircleBorder(
-                        side: BorderSide(color: Colors.white, width: 2)))),
               ),
             ),
           ),
@@ -695,7 +692,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   }
 
   _arquivoWidget() {
-    return Container(
+    return SizedBox(
       width: size!.width - 50,
       height: size!.height - (size!.height / 3),
       child: imagem == null
@@ -713,11 +710,12 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     if (cameraController != null && cameraController.value.isInitialized) {
       try {
         XFile file = await cameraController.takePicture();
-        if (mounted)
+        if (mounted) {
           setState(() {
             imagem = file;
             img = File(file.path);
           });
+        }
       } on CameraException catch (e) {
         print(e.description);
       }
