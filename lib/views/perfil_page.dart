@@ -608,7 +608,7 @@ class _PerfilState extends State<Perfil> {
                                 margin: const EdgeInsets.only(left: 10),
                                 decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color.fromRGBO(99, 195, 111, 1)),
+                                    color: Color.fromRGBO(242, 101, 101, 1)),
                                 child: Image.asset(
                                   'assets/images/icons/bottle.png',
                                   height: 40,
@@ -651,6 +651,177 @@ class _PerfilState extends State<Perfil> {
                           )
                         ],
                       )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(242, 101, 101, 1)),
+                            child: Image.asset(
+                              'assets/images/icons/vidro.png',
+                              height: 40,
+                              width: 40,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Vidro',
+                            style: GoogleFonts.jost(
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                decoration: TextDecoration.none,
+                                color: Color.fromRGBO(94, 94, 94, 1),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            child: Text(
+                              '$countVidro itens',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                  color: Color.fromRGBO(81, 79, 79, 1),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(254, 218, 74, 1)),
+                            child: Image.asset(
+                              'assets/images/icons/scrap.png',
+                              height: 40,
+                              width: 40,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Metal',
+                            style: GoogleFonts.jost(
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                decoration: TextDecoration.none,
+                                color: Color.fromRGBO(94, 94, 94, 1),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            child: Text(
+                              '$countMetal itens',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                  color: Color.fromRGBO(81, 79, 79, 1),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(64, 140, 255, 1)),
+                            child: Image.asset(
+                              'assets/images/icons/toilet-paper.png',
+                              height: 40,
+                              width: 40,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Papel',
+                            style: GoogleFonts.jost(
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                decoration: TextDecoration.none,
+                                color: Color.fromRGBO(94, 94, 94, 1),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            child: Text(
+                              '$countPapel itens',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                  color: Color.fromRGBO(81, 79, 79, 1),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
