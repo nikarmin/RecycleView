@@ -1,13 +1,15 @@
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' as io;
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import '../models/coleta.dart';
 import '../models/usuario.dart';
 
@@ -83,27 +85,50 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-// final bytes = io.File(imageBytes.path).readAsBytesSync();
+  void sendOtp(String email) async {
+    bool result = await EmailAuth(sessionName: 'RecycleView')
+        .sendOtp(recipientMail: email);
+    if (result) {
+      print('OTP enviado');
+    } else {
+      print('erro');
+    }
+  }
 
-// String img64 = base64Encode(bytes);
+  void verify(String email) {
+    final TextEditingController otpController = TextEditingController();
+    EmailAuth(sessionName: 'RecycleView')
+        .validateOtp(recipientMail: email, userOtp: otpController.value.text);
+  }
+
+  Future<void> changePassword(String newPassword) async {
+    String? _token;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    print(newPassword);
+    _token = sharedPreferences.getString("token");
+    const url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBCBGOOiaMrzC1UlDREjTnYypw48SKu8h4';
+    try {
+      await http.post(
+        Uri.parse(url),
+        body: json.encode(
+          {
+            'idToken': _token,
+            'password': newPassword,
+            'returnSecureToken': true,
+          },
+        ),
+      );
+    } catch (error) {
+      rethrow;
+    }
+  }
 
   updateFoto(Uint8List? url) async {
     var collection = _db.collection('usuarios');
     await collection.doc(usuario?.uid).update({'urlFoto': url.toString()});
 
     _getUser();
-    // var collection = _db
-    //     .collection('usuarios')
-    //     .doc(usuario?.uid)
-    //     .update({'urlFoto': url.toString()});
-    // try {
-    //   print("IMAGEMMMMMMMMMMM: " + url.toString());
-    //   await usuario?.updatePhotoURL(url.toString());
-    //   _getUser();
-    //   print(usuario?.photoURL);
-    // } on FirebaseException catch (e) {
-    //   throw Exception(e.message);
-    // }
   }
 
   getPontoDeColeta() async {

@@ -46,6 +46,8 @@ dependencies:
   fl_chart: ^0.63.0
   geo_firestore_flutter: ^0.1.6
   geoflutterfire2: ^2.3.15
+  email_auth: ^1.0.0
+  shared_preferences: ^2.2.1
 
 dev_dependencies:
   flutter_test:
