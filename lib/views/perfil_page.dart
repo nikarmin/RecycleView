@@ -280,7 +280,7 @@ class _PerfilState extends State<Perfil> {
       return List.generate(4, (i) {
         final isTouched = i == touchedIndex;
         final fontSize = isTouched ? 25.0 : 16.0;
-        double radius = 150;
+        double radius = 130;
         switch (i) {
           case 0:
             return PieChartSectionData(
@@ -557,7 +557,7 @@ class _PerfilState extends State<Perfil> {
                       children: [
                         Expanded(
                           child: AspectRatio(
-                            aspectRatio: 1,
+                            aspectRatio: 1.5,
                             child: PieChart(
                               PieChartData(
                                   pieTouchData: PieTouchData(
@@ -587,239 +587,288 @@ class _PerfilState extends State<Perfil> {
                       ],
                     ),
                   ),
-                  Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color.fromRGBO(233, 233, 233, 1),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(23, 0, 0, 0),
-                                spreadRadius: 5,
-                                blurRadius: 12)
-                          ]),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(23, 0, 0, 0),
+                                    spreadRadius: 5,
+                                    blurRadius: 12)
+                              ]),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 10),
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color.fromRGBO(242, 101, 101, 1)),
-                                child: Image.asset(
-                                  'assets/images/icons/bottle.png',
-                                  height: 40,
-                                  width: 40,
-                                ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Plástico',
-                                style: GoogleFonts.jost(
-                                  textStyle: const TextStyle(
-                                    fontSize: 16,
-                                    decoration: TextDecoration.none,
-                                    color: Color.fromRGBO(94, 94, 94, 1),
-                                  ),
-                                ),
+                              Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color:
+                                            Color.fromRGBO(242, 101, 101, 1)),
+                                    child: Image.asset(
+                                      'assets/images/icons/bottle.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                margin: const EdgeInsets.only(right: 10),
-                                child: Text(
-                                  '$countPlastico itens',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.none,
-                                      color: Color.fromRGBO(81, 79, 79, 1),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Plástico',
+                                    style: GoogleFonts.jost(
+                                      textStyle: const TextStyle(
+                                        fontSize: 16,
+                                        decoration: TextDecoration.none,
+                                        color: Color.fromRGBO(94, 94, 94, 1),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    child: Text(
+                                      '$countPlastico itens',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.none,
+                                          color: Color.fromRGBO(81, 79, 79, 1),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
-                          )
-                        ],
-                      )),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color.fromRGBO(242, 101, 101, 1)),
-                            child: Image.asset(
-                              'assets/images/icons/vidro.png',
-                              height: 40,
-                              width: 40,
-                            ),
-                          )
-                        ],
-                      ),
+                          )),
                       const SizedBox(
-                        width: 15,
+                        height: 20,
+                        width: 20,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Vidro',
-                            style: GoogleFonts.jost(
-                              textStyle: const TextStyle(
-                                fontSize: 16,
-                                decoration: TextDecoration.none,
-                                color: Color.fromRGBO(94, 94, 94, 1),
+                      Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(23, 0, 0, 0),
+                                    spreadRadius: 5,
+                                    blurRadius: 12)
+                              ]),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(99, 195, 111, 1)),
+                                    child: Image.asset(
+                                      'assets/images/icons/vidro.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  )
+                                ],
                               ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            child: Text(
-                              '$countVidro itens',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  color: Color.fromRGBO(81, 79, 79, 1),
-                                ),
+                              const SizedBox(
+                                width: 15,
                               ),
-                            ),
-                          )
-                        ],
-                      )
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Vidro',
+                                    style: GoogleFonts.jost(
+                                      textStyle: const TextStyle(
+                                        fontSize: 16,
+                                        decoration: TextDecoration.none,
+                                        color: Color.fromRGBO(94, 94, 94, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    child: Text(
+                                      '$countVidro itens',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.none,
+                                          color: Color.fromRGBO(81, 79, 79, 1),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          )),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                   const SizedBox(
-                    width: 15,
+                    height: 10,
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color.fromRGBO(254, 218, 74, 1)),
-                            child: Image.asset(
-                              'assets/images/icons/scrap.png',
-                              height: 40,
-                              width: 40,
-                            ),
-                          )
-                        ],
-                      ),
+                      Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(23, 0, 0, 0),
+                                    spreadRadius: 5,
+                                    blurRadius: 12)
+                              ]),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(254, 218, 74, 1)),
+                                    child: Image.asset(
+                                      'assets/images/icons/scrap.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Metal',
+                                    style: GoogleFonts.jost(
+                                      textStyle: const TextStyle(
+                                        fontSize: 16,
+                                        decoration: TextDecoration.none,
+                                        color: Color.fromRGBO(94, 94, 94, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    child: Text(
+                                      '$countMetal itens',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.none,
+                                          color: Color.fromRGBO(81, 79, 79, 1),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          )),
                       const SizedBox(
                         width: 15,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Metal',
-                            style: GoogleFonts.jost(
-                              textStyle: const TextStyle(
-                                fontSize: 16,
-                                decoration: TextDecoration.none,
-                                color: Color.fromRGBO(94, 94, 94, 1),
+                      Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(23, 0, 0, 0),
+                                    spreadRadius: 5,
+                                    blurRadius: 12)
+                              ]),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(64, 140, 255, 1)),
+                                    child: Image.asset(
+                                      'assets/images/icons/toilet-paper.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  )
+                                ],
                               ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            child: Text(
-                              '$countMetal itens',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  color: Color.fromRGBO(81, 79, 79, 1),
-                                ),
+                              const SizedBox(
+                                width: 15,
                               ),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color.fromRGBO(64, 140, 255, 1)),
-                            child: Image.asset(
-                              'assets/images/icons/toilet-paper.png',
-                              height: 40,
-                              width: 40,
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Papel',
-                            style: GoogleFonts.jost(
-                              textStyle: const TextStyle(
-                                fontSize: 16,
-                                decoration: TextDecoration.none,
-                                color: Color.fromRGBO(94, 94, 94, 1),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            child: Text(
-                              '$countPapel itens',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  color: Color.fromRGBO(81, 79, 79, 1),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      )
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Papel',
+                                    style: GoogleFonts.jost(
+                                      textStyle: const TextStyle(
+                                        fontSize: 16,
+                                        decoration: TextDecoration.none,
+                                        color: Color.fromRGBO(94, 94, 94, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    child: Text(
+                                      '$countPapel itens',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.none,
+                                          color: Color.fromRGBO(81, 79, 79, 1),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          )),
                     ],
                   ),
                 ],
