@@ -20,7 +20,7 @@ class EducacaoAmbientalPage extends StatefulWidget {
 }
 
 class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
-  TextEditingController _search = TextEditingController();
+  final TextEditingController _search = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,34 +40,34 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Perfil();
+                return const Perfil();
               }));
             },
           ),
         ],
       ),
 /////////////////////////////////////////////////////////////////////////////
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Column(children: [
-                Container(
+                SizedBox(
                     width: MediaQuery.sizeOf(context).width / 1.1,
                     child: SearchAnchor(
-                      viewBackgroundColor: Color.fromRGBO(243, 243, 243, 1),
-                      viewSurfaceTintColor: Color.fromRGBO(243, 243, 243, 1),
-                      dividerColor: Color.fromRGBO(243, 243, 243, 1),
+                      viewBackgroundColor: const Color.fromRGBO(243, 243, 243, 1),
+                      viewSurfaceTintColor: const Color.fromRGBO(243, 243, 243, 1),
+                      dividerColor: const Color.fromRGBO(243, 243, 243, 1),
                       isFullScreen: false,
                       builder:
                           (BuildContext context, SearchController controller) {
                         return SearchBar(
                           backgroundColor: MaterialStateProperty.all(
-                              Color.fromRGBO(243, 243, 243, 1)),
+                              const Color.fromRGBO(243, 243, 243, 1)),
                           shadowColor: MaterialStateProperty.all(
                               Colors.black.withOpacity(0.2)),
                           controller: controller,
@@ -78,17 +78,17 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                             controller.openView();
                           },
                           leading: IconButton(
-                            icon: Icon(Icons.search, color: Colors.grey),
+                            icon: const Icon(Icons.search, color: Colors.grey),
                             onPressed: () {
                               // Perform the search here
                             },
                           ),
                           textStyle: MaterialStateProperty.all(GoogleFonts.jost(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   fontSize: 17, color: Colors.black))),
                           hintText: 'Jornais, papéis, pilhas...',
                           hintStyle: MaterialStateProperty.all(GoogleFonts.jost(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   fontSize: 17, color: Colors.black))),
                         );
                       },
@@ -107,47 +107,18 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                         });
                       },
                     )),
-                //   child: TextField(
-                //     controller: _search,
-                //     decoration: InputDecoration(
-                //       filled: true,
-                //       fillColor: Color.fromRGBO(243, 243, 243, 1),
-                //       border: OutlineInputBorder(
-                //           borderRadius: BorderRadius.circular(50),
-                //           borderSide: BorderSide(
-                //             style: BorderStyle.none,
-                //             width: 0,
-                //           )),
-                //       prefixIcon: IconButton(
-                //         icon: Icon(Icons.search, color: Colors.grey),
-                //         onPressed: () {
-                //           // Perform the search here
-                //         },
-                //       ),
-                //       suffixIcon: IconButton(
-                //         icon: Icon(Icons.clear, color: Colors.grey),
-                //         onPressed: () => _search.clear(),
-                //       ),
-                //       hintText: 'Jornais, papéis, pilhas...',
-                //       hintStyle: GoogleFonts.jost(
-                //           textStyle:
-                //               TextStyle(fontSize: 17, color: Colors.black)),
-                //     ),
-                //   ),
-                // ),
-                Container(
-                    child: Image.asset(
+                Image.asset(
                   'assets/images/image_education.png',
                   height: 150,
                   width: 250,
-                )),
+                ),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: 0, bottom: 20, right: 0, top: 20),
+                      const EdgeInsets.only(left: 0, bottom: 20, right: 0, top: 20),
                   child: Text(
                     'EDUCAÇÃO AMBIENTAL',
                     style: GoogleFonts.jost(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             fontSize: 30,
                             color: Colors.black,
                             fontWeight: FontWeight.bold)),
@@ -155,12 +126,12 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: 18, bottom: 5, right: 18, top: 0),
+                      const EdgeInsets.only(left: 18, bottom: 5, right: 18, top: 0),
                   child: Text(
                     '"Entendem-se por educação ambiental os processos por meio dos quais o indivíduo e a coletividade constroem valores sociais, conhecimentos, habilidades, atitudes e competências voltadas para a conservação do meio ambiente, bem de uso comum do povo, essencial à sadia qualidade de vida e sua sustentabilidade." Política Nacional de Educação Ambiental - Lei nº 9795/1999, Art 1º.',
                     style: GoogleFonts.jost(
                         textStyle:
-                            TextStyle(fontSize: 18, color: Colors.black)),
+                            const TextStyle(fontSize: 18, color: Colors.black)),
                     textAlign: TextAlign.justify,
                   ),
                 ),
@@ -177,20 +148,20 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   child: Card(
                       color: Colors.lightBlueAccent,
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "PAPEL ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/paper-plane.png'),
@@ -201,9 +172,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           subtitle: Text(
                               "\nJornais, revistas, caixas de papelão...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
@@ -221,20 +192,20 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   child: Card(
                       color: Colors.red,
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "PLÁSTICO ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/plastic-bottle.png'),
@@ -245,9 +216,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           subtitle: Text(
                               "\nGarrafas PET, embalagens, sacolas...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
@@ -263,20 +234,20 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   child: Card(
                       color: Colors.amber,
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "METAL ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/metals.png'),
@@ -286,9 +257,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           ])),
                           subtitle: Text("\nLatas, materiais de alumínio...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
@@ -302,22 +273,22 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                         MaterialPageRoute(builder: (context) => VidroPage()));
                   },
                   child: Card(
-                      color: Color.fromARGB(255, 24, 87, 28),
+                      color: const Color.fromARGB(255, 24, 87, 28),
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "VIDRO ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/bottle.png'),
@@ -327,9 +298,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           ])),
                           subtitle: Text("\nGarradas, copos, potes de vidro...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
@@ -347,20 +318,20 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   child: Card(
                       color: Colors.grey,
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "MATERIAIS ELETRÔNICOS ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/light-bulb.png'),
@@ -370,9 +341,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           ])),
                           subtitle: Text("\nCelulares, computadores, pilhas...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
@@ -386,22 +357,22 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                         MaterialPageRoute(builder: (context) => OleoPage()));
                   },
                   child: Card(
-                      color: Color.fromARGB(255, 246, 188, 43),
+                      color: const Color.fromARGB(255, 246, 188, 43),
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "ÓLEO ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/oil-bottle.png'),
@@ -411,9 +382,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           ])),
                           subtitle: Text("\nÓleo de cozinha...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
@@ -429,22 +400,22 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                             builder: (context) => OrganicoPage()));
                   },
                   child: Card(
-                      color: Color.fromARGB(255, 72, 47, 42),
+                      color: const Color.fromARGB(255, 72, 47, 42),
                       elevation: 7,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: ListTile(
                           title: Text.rich(TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "\n", style: TextStyle(fontSize: 18)),
                             TextSpan(
                                 text: "ORGÂNICOS ",
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white))),
-                            WidgetSpan(
+                            const WidgetSpan(
                                 child: ImageIcon(
                               AssetImage(
                                   'assets/images/icons_materials/apple.png'),
@@ -455,91 +426,21 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                           subtitle: Text(
                               "\nRestos de alimentos, folhas, sementes, restos de carne...",
                               style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       color: Colors.white, fontSize: 20))),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           iconColor: Colors.white)),
                 ),
               ),
               const SizedBox(height: 10),
-              /*
-              Container(
-                margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: Card(
-                    color: Colors.white,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "RESÍDUOS HOSPITALARES ",
-                              style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors
-                                            .white))),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/syringe-outline.png'),
-                            color: Colors.black,
-                            size: 25,
-                          ))
-                        ])),
-                        subtitle: Text(
-                            "\nAgulhas, seringas, algodões, bisturis...",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: const Card(
-                    color: Color.fromARGB(255, 123, 31, 162),
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "RESÍDUOS RADIOATIVOS ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 25)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/radiation.png'),
-                            color: Colors.white,
-                            size: 25,
-                          ))
-                        ])),
-                        subtitle: Text(
-                            "\nResíduos utilizados em usinas nucleares...",
-                            style:
-                                GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 17))),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
-              ),*/
             ],
           ),
         ),
       ),
 /////////////////////////////////////////////////////////////////////////////
-      backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+      backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(30),
             topLeft: Radius.circular(30),
@@ -548,7 +449,7 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
             BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 10)
           ],
         ),
-        child: ClipRRect(
+        child: const ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),

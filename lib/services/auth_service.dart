@@ -147,7 +147,6 @@ class AuthService extends ChangeNotifier {
 
   adicionarMaterialReciclado(
       int countMetal, int countPlastico, int countPapel, int countVidro) async {
-    int qAntMetal, qAntPlastico, qAntVidro, qAntPapel;
 
     final user = _db
         .collection('usuarios')
@@ -170,65 +169,6 @@ class AuthService extends ChangeNotifier {
         'qtdVidro': qAntVidro + countVidro,
       });
     }
-    // final user = _db
-    //     .collection('usuarios')
-    //     .where('email', isEqualTo: usuario?.email)
-    //     .snapshots()
-    //     .listen((data) {
-    //   data.docs.forEach((doc) {
-    //     doc.reference.update({
-    //       'qtdMetal': countMetal,
-    //       'qtdPapel': countPapel,
-    //       'qtdPlastico': countPlastico,
-    //       'qtdVidro': countVidro,
-    //     });
-    //   });
-    // });
-
-    //     .then((value) {
-    //   value.docs.add({
-    //     'qtdMetal': cMetal,
-    //     'qtdPapel': cPapel,
-    //     'qtdPlastico': cPlastico,
-    //     'qtdVidro': cVidro,
-    //   } as QueryDocumentSnapshot<Map<String, dynamic>>);
-    // });
-    // _db.collection('usuarios').where(_db.Field)
-
-    // var collection = _db.collection('usuarios');
-    // collection.where('email', isEqualTo: usuario?.email).get().then((value) {
-    //   value.docs.add({
-    //     'qtdMetal': cMetal,
-    //     'qtdPapel': cPapel,
-    //     'qtdPlastico': cPlastico,
-    //     'qtdVidro': cVidro,
-    //   } as QueryDocumentSnapshot<Map<String, dynamic>>);
-    // });
-
-    // collection.where('email', isEqualTo: usuario?.email).get().then((value) {
-    //   value.docs.add({
-    //     'qtdMetal': cMetal,
-    //     'qtdPapel': cPapel,
-    //     'qtdPlastico': cPlastico,
-    //     'qtdVidro': cVidro,
-    //   } as QueryDocumentSnapshot<Map<String, dynamic>>);
-    // });
-    // await collection.doc(usuario?.email).set({
-    //   'qtdMetal': cMetal,
-    //   'qtdPapel': cPapel,
-    //   'qtdPlastico': cPlastico,
-    //   'qtdVidro': cVidro,
-    // });
-    // await collection
-    //     .doc(usuario?.uid)
-    //     .collection('cadastro_de_pontos')
-    //     .doc(usuario?.uid)
-    //     .update({
-    //   'qtdMetal': cMetal,
-    //   'qtdPapel': cPapel,
-    //   'qtdPlastico': cPlastico,
-    //   'qtdVidro': cVidro,
-    // });
   }
 
   pegarFoto() async {
@@ -237,8 +177,6 @@ class AuthService extends ChangeNotifier {
     var url = doc.data()!['urlFoto'];
     return url;
   }
-
-  adicionarCep(int cep) async {}
 
   logout() async {
     await _auth.signOut();

@@ -18,7 +18,7 @@ class ConteudoNoticia extends StatefulWidget {
   final String image;
   final String url;
 
-  ConteudoNoticia(
+  const ConteudoNoticia(
       {Key? key,
       required this.title,
       required this.content,
@@ -34,20 +34,20 @@ class ConteudoNoticia extends StatefulWidget {
 class _ConteudoNoticiaState extends State<ConteudoNoticia> {
   String? webpageContent;
 
-  late WebViewController _webController = WebViewController()
+  late final WebViewController _webController = WebViewController()
     ..loadRequest(Uri.parse(widget.url.toString()));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+        title: const ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
             color: Colors.black),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
           ),
@@ -57,7 +57,7 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
         ),
         actions: [
           IconButton(
-            icon: ImageIcon(
+            icon: const ImageIcon(
               AssetImage('assets/images/icons/account.png'),
               color: Colors.black,
             ),
@@ -65,7 +65,7 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
           ),
         ],
       ),
-      body: Container(
+      body: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: SingleChildScrollView(
@@ -74,7 +74,7 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
               height: 900,
               child: Stack(
                 children: <Widget>[
-                  Container(
+                  SizedBox(
                       width: double.infinity,
                       height: 250,
                       child: Image.network(
@@ -86,7 +86,7 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(40.0),
                             topLeft: Radius.circular(40.0)),
@@ -94,43 +94,42 @@ class _ConteudoNoticiaState extends State<ConteudoNoticia> {
                       ),
                       child: Align(
                           child: Column(children: <Widget>[
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Container(
                             height: 60,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(40),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.fromLTRB(15, 10, 10, 10),
+                              padding: const EdgeInsets.fromLTRB(15, 10, 10, 10),
                               child: Row(
                                 children: [
                                   Container(
                                       decoration:
-                                          BoxDecoration(shape: BoxShape.circle),
-                                      child: Icon(
+                                          const BoxDecoration(shape: BoxShape.circle),
+                                      child: const Icon(
                                         Icons.account_circle,
                                         size: 40,
                                         color: Colors.black,
                                       )),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(widget.author,
-                                      style: TextStyle(color: Colors.black)),
+                                      style: const TextStyle(color: Colors.black)),
                                 ],
                               ),
                             )),
-                        Container(
-                            child: Padding(
-                                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                child: Text(widget.title,
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black)))),
+                        Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Text(widget.title,
+                                style: const TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black))),
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                             child: WebViewWidget(controller: _webController),
                           ),
                         )
