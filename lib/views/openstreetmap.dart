@@ -81,7 +81,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
 
 class _OpenStreetMapSearchAndPickState
     extends State<OpenStreetMapSearchAndPick> {
-  MapController _mapController = MapController();
+  final MapController _mapController = MapController();
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   List<OSMdata> _options = <OSMdata>[];
@@ -89,8 +89,8 @@ class _OpenStreetMapSearchAndPickState
   var client = http.Client();
 
   void setNameCurrentPos() async {
-    double latitude = _mapController.center.latitude;
-    double longitude = _mapController.center.longitude;
+    double? latitude = _mapController.center.latitude;
+    double? longitude = _mapController.center.longitude;
     if (kDebugMode) {
       print(latitude);
     }
@@ -373,32 +373,11 @@ class _OpenStreetMapSearchAndPickState
         );
       },
     ));
-
-    // _markers.addAll(pointers
-    //     .map((point) => Marker(
-    //           point: point,
-    //           width: 60,
-    //           height: 60,
-    //           builder: (context) => const Icon(
-    //             Icons.pin_drop,
-    //             size: 25,
-    //             color: Color.fromRGBO(51, 111, 93, 0.397),
-    //           ),
-    //         ))
-    //     .toList());
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // String? _autocompleteSelection;
-    OutlineInputBorder inputBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: widget.buttonColor),
-    );
-    OutlineInputBorder inputFocusBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: widget.buttonColor, width: 3.0),
-    );
     return SafeArea(
       child: Stack(
         children: [
@@ -440,7 +419,7 @@ class _OpenStreetMapSearchAndPickState
                         height: 18,
                       ),
                       ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                          contentPadding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
                           leading: const ImageIcon(
                             AssetImage('assets/images/icons/recycle-bin.png'),
                             size: 30,
@@ -460,7 +439,7 @@ class _OpenStreetMapSearchAndPickState
                           builder: (BuildContext context,
                               AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (snapshot.hasError) {
-                              return Text('Something went wrong');
+                              return const Text('Something went wrong');
                             }
                             return ListView(
                                 children: getExpenseItems(snapshot));
@@ -489,20 +468,20 @@ class _OpenStreetMapSearchAndPickState
                       style: GoogleFonts.poppins(),
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Color.fromRGBO(243, 243, 243, 1),
+                        fillColor: const Color.fromRGBO(243, 243, 243, 1),
                         hintText: widget.hintText,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               style: BorderStyle.none,
                               width: 0,
                             )),
                         suffixIcon: IconButton(
-                          icon: Icon(Icons.clear, color: Colors.grey),
+                          icon: const Icon(Icons.clear, color: Colors.grey),
                           onPressed: () => _searchController.clear(),
                         ),
                         prefixIcon: IconButton(
-                          icon: Icon(Icons.search, color: Colors.grey),
+                          icon: const Icon(Icons.search, color: Colors.grey),
                           onPressed: () {
                             // Perform the search here
                           },
@@ -547,7 +526,7 @@ class _OpenStreetMapSearchAndPickState
                       }),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Positioned(
@@ -563,17 +542,17 @@ class _OpenStreetMapSearchAndPickState
                             });
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(243, 243, 243, 1),
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(15),
+                            backgroundColor: const Color.fromRGBO(243, 243, 243, 1),
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(15),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.my_location_rounded,
                             color: Colors.black,
                           ),
                         ),
                       )),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Positioned(
@@ -619,11 +598,11 @@ class _OpenStreetMapSearchAndPickState
                                 });
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(243, 243, 243, 1),
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(15),
+                            backgroundColor: const Color.fromRGBO(243, 243, 243, 1),
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(15),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.mode_of_travel_rounded,
                             color: Colors.black,
                           ),
@@ -634,10 +613,10 @@ class _OpenStreetMapSearchAndPickState
                   StatefulBuilder(builder: ((context, setState) {
                     return Container(
                       child: Column(children: [
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(243, 243, 243, 1),
+                            color: const Color.fromRGBO(243, 243, 243, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: ListView.builder(

@@ -45,7 +45,7 @@ class _CadastroState extends State<Cadastro> {
           .registrar(email.text, senha.text, nome.text, user);
 
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return HomeScreen();
+        return const HomeScreen();
       }));
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -134,11 +134,16 @@ class _CadastroState extends State<Cadastro> {
           child: Form(
             key: formKey,
             child: Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 150,
               ),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 25, right: 25),
+                    backgroundColor: const Color.fromRGBO(24, 119, 242, 1)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -149,26 +154,26 @@ class _CadastroState extends State<Cadastro> {
                       height: 20,
                       width: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text('Registrar com Facebook',
                         style: GoogleFonts.poppins(
-                            textStyle:
-                                TextStyle(fontSize: 16, color: Colors.white)))
+                            textStyle: const TextStyle(
+                                fontSize: 16, color: Colors.white)))
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 25, right: 25),
-                    backgroundColor: Color.fromRGBO(24, 119, 242, 1)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 25, right: 25),
+                    backgroundColor: const Color.fromRGBO(24, 119, 242, 1)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -179,33 +184,28 @@ class _CadastroState extends State<Cadastro> {
                       height: 20,
                       width: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text('Registrar com Google',
                         style: GoogleFonts.poppins(
-                            textStyle:
-                                TextStyle(fontSize: 16, color: Colors.white)))
+                            textStyle: const TextStyle(
+                                fontSize: 16, color: Colors.white)))
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 25, right: 25),
-                    backgroundColor: Color.fromRGBO(24, 119, 242, 1)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 57),
+                padding: const EdgeInsets.only(left: 57),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     'Nome: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 18,
                             color: Colors.black,
@@ -213,7 +213,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -236,7 +236,7 @@ class _CadastroState extends State<Cadastro> {
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Digite seu primeiro nome...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
@@ -244,12 +244,12 @@ class _CadastroState extends State<Cadastro> {
                               color: Colors.black.withOpacity(0.3)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                         ),
@@ -258,18 +258,18 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 57),
+                padding: const EdgeInsets.only(left: 57),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     'Email: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 18,
                             color: Colors.black,
@@ -277,7 +277,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -302,7 +302,7 @@ class _CadastroState extends State<Cadastro> {
                         controller: email,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Digite seu email...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
@@ -310,12 +310,12 @@ class _CadastroState extends State<Cadastro> {
                               color: Colors.black.withOpacity(0.3)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                         ),
@@ -324,18 +324,18 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 57),
+                padding: const EdgeInsets.only(left: 57),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     'CEP: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 18,
                             color: Colors.black,
@@ -343,7 +343,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -356,17 +356,6 @@ class _CadastroState extends State<Cadastro> {
                       // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
-                        // autovalidateMode: AutovalidateMode.onUserInteraction,
-                        // inputFormatters: [
-                        //   MaskTextInputFormatter(
-                        //     mask: '#####-###',
-                        //     type: MaskAutoCompletionType.lazy,
-                        //     filter: {
-                        //       "#": RegExp(
-                        //           r'[0-9]'), //https://stackoverflow.com/questions/49644892/flutter-textinputformatter-regex-for-credit-card-expiry-date
-                        //     },
-                        //   )
-                        // ],
                         validator: (value) {
                           if (value!.isEmpty || value.length != 8) {
                             return 'Digite um CEP válido';
@@ -377,7 +366,7 @@ class _CadastroState extends State<Cadastro> {
                         controller: _procurarCepController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: '00000-000...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
@@ -385,12 +374,12 @@ class _CadastroState extends State<Cadastro> {
                               color: Colors.black.withOpacity(0.3)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                         ),
@@ -399,18 +388,18 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 57),
+                padding: const EdgeInsets.only(left: 57),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     'Senha: ',
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 18,
                             color: Colors.black,
@@ -418,7 +407,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -441,7 +430,7 @@ class _CadastroState extends State<Cadastro> {
                         controller: senha,
                         decoration: InputDecoration(
                           suffixIcon: Padding(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             child: GestureDetector(
                               onTap: _toggleObscured,
                               child: Icon(
@@ -452,7 +441,7 @@ class _CadastroState extends State<Cadastro> {
                               ),
                             ),
                           ),
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Digite sua senha...',
                           hintStyle: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
@@ -460,12 +449,12 @@ class _CadastroState extends State<Cadastro> {
                               color: Colors.black.withOpacity(0.3)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(51, 111, 93, 0.47),
                                   width: 1.5)),
                         ),
@@ -474,7 +463,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text('Mínimo de 6 caracteres',
@@ -483,7 +472,7 @@ class _CadastroState extends State<Cadastro> {
                           decoration: TextDecoration.none,
                           fontSize: 12,
                           color: Colors.black.withOpacity(0.3)))),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
@@ -499,44 +488,31 @@ class _CadastroState extends State<Cadastro> {
                         countVidro: 0,
                         urlFoto: '',
                         cep: int.parse(_procurarCepController.text));
-
-                    // registrar2(usuario);
-                    // startFirestore();
                     _encontrarCep();
                     registrar(usuario);
-
-                    // user.cep = int.parse(_procurarCepController.text);
-                    // final uid = await Provider.of(context).auth.getCurrentUID();
-
-                    // await Provider.of<dynamic>(context, listen: false)
-                    //     .db
-                    //     .collection('usuários')
-                    //     .document(uid)
-                    //     .setData(user.toJson());
-                    // adicionarCep();
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.only(
+                        left: 35, top: 15, bottom: 15, right: 35),
+                    backgroundColor: const Color.fromRGBO(51, 111, 93, 1)),
                 child: Text('REGISTRAR',
                     style: GoogleFonts.poppins(
-                        textStyle:
-                            TextStyle(fontSize: 14, color: Colors.white))),
-                style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.only(
-                        left: 35, top: 15, bottom: 15, right: 35),
-                    backgroundColor: Color.fromRGBO(51, 111, 93, 1)),
+                        textStyle: const TextStyle(
+                            fontSize: 14, color: Colors.white))),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
+                      MaterialPageRoute(builder: (context) => const Login()));
                 },
                 child: Text.rich(TextSpan(
                     text: 'Já é ',
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 14,
                             color: Color.fromRGBO(51, 111, 93, 0.5),
@@ -545,14 +521,14 @@ class _CadastroState extends State<Cadastro> {
                       TextSpan(
                           text: 'cadastrado?',
                           style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   decoration: TextDecoration.none,
                                   fontSize: 14,
                                   color: Color.fromRGBO(51, 111, 93, 0.5),
                                   fontWeight: FontWeight.w600)))
                     ])),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
             ]),

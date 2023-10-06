@@ -19,7 +19,10 @@ class _MapaPageState extends State<MapaPage> {
     bool localizacaoOn = await Geolocator.isLocationServiceEnabled();
 
     if (!localizacaoOn) {
-      return Future.error('Serviços de localização desativados.');
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
     }
     LocationPermission permissao = await Geolocator.checkPermission();
 
@@ -41,7 +44,8 @@ class _MapaPageState extends State<MapaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+          title: const ImageIcon(
+              AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
           backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
@@ -64,7 +68,7 @@ class _MapaPageState extends State<MapaPage> {
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child:  Container(
+          child: SizedBox(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height,
             child: FutureBuilder(
@@ -76,7 +80,10 @@ class _MapaPageState extends State<MapaPage> {
                       color: Colors.green,
                     ));
                   } else if (snap.hasError) {
-                    return Text(snap.hasError.toString());
+                    return const Text(
+                      "Ative a localização!",
+                      textAlign: TextAlign.center,
+                    );
                   } else {
                     return Expanded(
                         child: OpenStreetMapSearchAndPick(
@@ -90,20 +97,7 @@ class _MapaPageState extends State<MapaPage> {
                               print(pickedData.address);
                             }));
                   }
-                })
-            // Expanded(
-            //   child: OpenStreetMapSearchAndPick(
-            //       center: LatLong(23, 89),
-            //       buttonColor: Colors.blue,
-            //       buttonText: 'Set Current Location',
-            //       onPicked: (pickedData) {
-            //         print(pickedData.latLong.latitude);
-            //         print(pickedData.latLong.longitude);
-            //         print(pickedData.address);
-            //       }),
-            // ),
-
-            ,
+                }),
           ),
         ));
   }

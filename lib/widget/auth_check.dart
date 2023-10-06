@@ -19,17 +19,18 @@ class _AuthCheckState extends State<AuthCheck> {
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
 
-    if (auth.isLoading)
+    if (auth.isLoading) {
       return loading();
-    else if (auth.usuario == null)
-      return TelaInicial();
-    else
-      return HomeScreen();
+    } else if (auth.usuario == null) {
+      return const TelaInicial();
+    } else {
+      return const HomeScreen();
+    }
   }
 
   loading() {
-    return Scaffold(
-      body:  Center(
+    return const Scaffold(
+      body: Center(
         child: CircularProgressIndicator(),
       ),
     );

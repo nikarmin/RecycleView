@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,23 +35,31 @@ class _LoginState extends State<Login> {
   }
 
   login() async {
-    try {
-      setState(() {
-        loading = true;
-      });
-      await context.read<AuthService>().login(email.text, senha.text);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) =>  const HomeScreen()));
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
-    } on AuthException catch (e) {
+    //   try {
+    setState(() {
+      loading = true;
+    });
+
+    User? user =
+        await context.read<AuthService>().login(email.text, senha.text);
+
+    if (user == null) {
       setState(() {
         loading = false;
       });
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message!),
+
+      email.clear();
+      senha.clear();
+
+      const snackBar = SnackBar(
+        content: Text('Email ou senha inválidos!'),
         backgroundColor: Colors.red,
-      ));
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     }
   }
 
@@ -295,8 +304,8 @@ class _LoginState extends State<Login> {
                           const SizedBox(
                             width: 24,
                             height: 24,
-                            child:
-                                CircularProgressIndicator(color: Colors.white),
+                            child: CircularProgressIndicator(
+                                color: Color.fromRGBO(51, 111, 93, 1)),
                           )
                         ]
                       : [
@@ -348,8 +357,10 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Cadastro()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Cadastro()));
                 },
                 child: Text.rich(TextSpan(
                     text: 'Não possui uma ',
@@ -370,13 +381,6 @@ class _LoginState extends State<Login> {
                                   fontWeight: FontWeight.w600)))
                     ])),
               ),
-              // Text('Esqueceu sua senha?',
-              //     style: GoogleFonts.poppins(
-              //         textStyle: TextStyle(
-              //             decoration: TextDecoration.none,
-              //             fontSize: 14,
-              //             color: Color.fromRGBO(51, 111, 93, 0.5),
-              //             fontWeight: FontWeight.w300))),
             ]),
           ),
         ));

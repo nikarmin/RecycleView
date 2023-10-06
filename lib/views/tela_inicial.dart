@@ -10,26 +10,6 @@ class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // bottomSheet: Stack(children: <Widget>[
-        //   Container(
-        //     child: Image.asset('assets/images/ellipse.png'),
-        //   ),
-        //   Container(
-        //     //alignment: AlignmentDirectional.bottomEnd,
-        //     child: Image.asset(
-        //       'assets/images/leave.png',
-        //       height: 190,
-        //     ),
-        //   ),
-        //   Align(
-        //     alignment: Alignment.bottomRight,
-        //     child: Container(
-        //       child: Image.asset(
-        //         'assets/images/recycle-bin.png',
-        //       ),
-        //     ),
-        //   ),
-        // ]),
         body: Container(
       decoration: const BoxDecoration(
           color: Color.fromRGBO(233, 233, 233, 1),
@@ -79,15 +59,8 @@ class TelaInicial extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.bottomToTop,
-                        child: const Login(),
-                        duration: const Duration(milliseconds: 150)));
-                // Navigator.of(context).push(_createRoute(Login()));
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (context) => Login()));
+                 Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Login()));
               },
               style: ElevatedButton.styleFrom(
                   shape: const StadiumBorder(),
@@ -106,15 +79,8 @@ class TelaInicial extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.bottomToTop,
-                        child: const Cadastro(),
-                        duration: const Duration(milliseconds: 150)));
-                // Navigator.of(context).push(_createRoute(Cadastro()));
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (context) => Cadastro()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Cadastro()));
               },
               style: ElevatedButton.styleFrom(
                   shape: const StadiumBorder(),
@@ -131,48 +97,9 @@ class TelaInicial extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            // Stack(children: <Widget>[
-            //   Expanded(
-            //     child: SizedBox(
-            //       child: Container(
-            //         child: Image.asset('assets/images/ellipse.png'),
-            //       ),
-            //     ),
-            //   ),
-            //   Container(
-            //     //alignment: AlignmentDirectional.bottomEnd,
-            //     child: Image.asset(
-            //       'assets/images/leave.png',
-            //       height: 190,
-            //     ),
-            //   ),
-            //   Container(
-            //     child: Image.asset(
-            //       'assets/images/recycle-bin.png',
-            //     ),
-            //   ),
-            // ]),
           ],
         ),
       ),
     ));
   }
-}
-
-Route _createRoute(Widget page) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => page,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.easeInCubic;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }

@@ -71,9 +71,12 @@ class AuthService extends ChangeNotifier {
   }
 
   login(String email, String senha) async {
+    User? userLogin;
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: senha);
+      UserCredential userCredential =
+          await _auth.signInWithEmailAndPassword(email: email, password: senha);
       _getUser();
+      userLogin = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:  Text('')));
@@ -83,6 +86,7 @@ class AuthService extends ChangeNotifier {
         throw AuthException('Senha incorreta. Tente novamente');
       }
     }
+    return userLogin;
   }
 
   void sendOtp(String email) async {
