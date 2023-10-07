@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PlasticoPage extends StatelessWidget {
+class PapelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +38,9 @@ class PlasticoPage extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                // SizedBox(height: 160),
                 Image.asset(
-                  'assets/images/wave_plastico.png',
+                  'assets/images/wave_papel.png',
                   fit: BoxFit.cover,
                   width: MediaQuery.of(context).size.width,
                 ),
@@ -64,14 +65,13 @@ class PlasticoPage extends StatelessWidget {
                             text: TextSpan(children: [
                           const WidgetSpan(
                               child: Icon(Icons.circle,
-                                  size: 8, color: Colors.red),
+                                  size: 8, color: Colors.lightBlueAccent),
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text: "  Coleta Seletiva;",
                               style: GoogleFonts.jost(
-                                  textStyle: GoogleFonts.jost(
-                                      textStyle: const TextStyle(
-                                          color: Colors.black, fontSize: 17))))
+                                  textStyle: const TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -81,15 +81,14 @@ class PlasticoPage extends StatelessWidget {
                             text: TextSpan(children: [
                           const WidgetSpan(
                               child: Icon(Icons.circle,
-                                  size: 8, color: Colors.red),
+                                  size: 8, color: Colors.lightBlueAccent),
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text:
-                                  "  Separar os plásticos recicláveis para descarte;",
+                                  "  Separar os papéis recicláveis para descarte;",
                               style: GoogleFonts.jost(
-                                  textStyle: GoogleFonts.jost(
-                                      textStyle: const TextStyle(
-                                          color: Colors.black, fontSize: 17))))
+                                  textStyle: const TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -99,15 +98,14 @@ class PlasticoPage extends StatelessWidget {
                             text: TextSpan(children: [
                           const WidgetSpan(
                               child: Icon(Icons.circle,
-                                  size: 8, color: Colors.red),
+                                  size: 8, color: Colors.lightBlueAccent),
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text:
-                                  "  Recipientes em geral dever ser higienizados para evitar a proliferação de micro-organismos e pragas;",
+                                  "  Não incluir papeis sujos, engordurados, encerados ou plastificados;",
                               style: GoogleFonts.jost(
-                                  textStyle: GoogleFonts.jost(
-                                      textStyle: const TextStyle(
-                                          color: Colors.black, fontSize: 17))))
+                                  textStyle: const TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                       Padding(
@@ -117,15 +115,31 @@ class PlasticoPage extends StatelessWidget {
                             text: TextSpan(children: [
                           const WidgetSpan(
                               child: Icon(Icons.circle,
-                                  size: 8, color: Colors.red),
+                                  size: 8, color: Colors.lightBlueAccent),
                               alignment: PlaceholderAlignment.middle),
                           TextSpan(
                               text:
-                                  "  Embalagens e recipientes secos, não precisam ser lavados.",
+                                  "  Guardanapos e papel higiênico, ainda que limpos, não são recicláveis;",
                               style: GoogleFonts.jost(
-                                  textStyle: GoogleFonts.jost(
-                                      textStyle: const TextStyle(
-                                          color: Colors.black, fontSize: 17))))
+                                  textStyle: const TextStyle(
+                                      color: Colors.black, fontSize: 17)))
+                        ])),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 25, bottom: 5, right: 25, top: 5),
+                        child: RichText(
+                            text: TextSpan(children: [
+                          const WidgetSpan(
+                              child: Icon(Icons.circle,
+                                  size: 8, color: Colors.lightBlueAccent),
+                              alignment: PlaceholderAlignment.middle),
+                          TextSpan(
+                              text:
+                                  "  Para o transporte de papel, o ideal é não amassá-lo, para não afetar as fibras da celulose, nem deteriorar o valor comercial para reciclagem.",
+                              style: GoogleFonts.jost(
+                                  textStyle: const TextStyle(
+                                      color: Colors.black, fontSize: 17)))
                         ])),
                       ),
                     ]),
@@ -151,7 +165,7 @@ class PlasticoPage extends StatelessWidget {
                         child: RichText(
                             text: TextSpan(
                                 text:
-                                    "Através da reciclagem do plástico temos um menor impacto ambiental, pois, sem ela são inúmeros os impactos causados, como exemplo, toneladas de plástico são descartadas nos oceanos todos os anos, causando a morte de animais marinhos pela ingestão de microplásticos, remos a proliferação de plástico em aterros sanitários, contaminando assim, a água dos rios e lençóis freáticos e muitos outros. ",
+                                    "Através da reciclagem do papel temos um menor impacto ambiental, pois, a fabricação do papel afeta o meio ambiente de várias maneiras, com emissões de gases do efeito estufa, desmatamento em massa de florestas e poluição da água e ar. ",
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 17)))),
@@ -187,7 +201,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Tampas',
+                            child: Text('Jornais',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -200,7 +214,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Frascos',
+                            child: Text('Revistas',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -213,7 +227,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Potes de alimento',
+                            child: Text('Cadernos',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -226,25 +240,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Recipientes',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Garrafas PET',
+                            child: Text('Apostilas',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -257,20 +253,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Utilidades domésticas',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Sacos',
+                            child: Text('Caixas',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -288,7 +271,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Tubos e conexões de pvc',
+                            child: Text('Sacos de papel',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -301,7 +284,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Copos',
+                            child: Text('Papelão',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -314,7 +297,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Isopor',
+                            child: Text('Papéis-cartão',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -327,38 +310,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Sacolas',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Embalagens de alimentos',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Peças de brinquedos',
+                            child: Text('Envelopes',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -376,7 +328,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Escova de dente',
+                            child: Text('Livros',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -389,7 +341,33 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Caneta esferográfica',
+                            child: Text('Cartolinas',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Folhas de caderno',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Folhetos',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -426,77 +404,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Cabos de panela',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Tomadas',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Espuma',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
                             child: Text('Adesivos',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Teclados de computador',
-                                style: GoogleFonts.jost(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black, fontSize: 15))))),
-                    const SizedBox(width: 2),
-                    Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80)),
-                        margin: const EdgeInsets.all(4),
-                        elevation: 7,
-                        shadowColor: Colors.black,
-                        child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Text('Acrilíco',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -514,11 +422,6 @@ class PlasticoPage extends StatelessWidget {
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
                     const SizedBox(width: 2),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
                     Card(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80)),
@@ -527,7 +430,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Esponja',
+                            child: Text('Etiquetas',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -540,7 +443,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Embalagens metalizadas',
+                            child: Text('Fita crepe',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -558,7 +461,7 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Fraldas descartáveis',
+                            child: Text('Papel carbono',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
@@ -571,10 +474,104 @@ class PlasticoPage extends StatelessWidget {
                         shadowColor: Colors.black,
                         child: Container(
                             padding: const EdgeInsets.all(5),
-                            child: Text('Absorventes higiênicos',
+                            child: Text('Papéis de extrato bancário',
                                 style: GoogleFonts.jost(
                                     textStyle: const TextStyle(
                                         color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Fotografias',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Papel vegetal',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Papel toalha',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Papel higiênico',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Papel vegetal',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
+                    Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80)),
+                        margin: const EdgeInsets.all(4),
+                        elevation: 7,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            child: Text('Papéis metalizados',
+                                style: GoogleFonts.jost(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontSize: 15))))),
+                    const SizedBox(width: 2),
                   ],
                 ),
                 const SizedBox(height: 20),

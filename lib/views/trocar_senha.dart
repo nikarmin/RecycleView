@@ -68,14 +68,14 @@ class _TrocarSenhaState extends State<TrocarSenha> {
           ),
 
           Padding(
-            padding: EdgeInsets.only(left: 57),
+            padding: const EdgeInsets.only(left: 57),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
                 'Nova senha: ',
                 textAlign: TextAlign.left,
                 style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                         decoration: TextDecoration.none,
                         fontSize: 18,
                         color: Colors.black,
@@ -83,7 +83,7 @@ class _TrocarSenhaState extends State<TrocarSenha> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
 
@@ -119,7 +119,7 @@ class _TrocarSenhaState extends State<TrocarSenha> {
                             ),
                           ),
                         ),*/
-                      contentPadding: EdgeInsets.all(10),
+                      contentPadding: const EdgeInsets.all(10),
                       hintText: 'Digite sua nova senha...',
                       hintStyle: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -127,12 +127,12 @@ class _TrocarSenhaState extends State<TrocarSenha> {
                           color: Colors.black.withOpacity(0.3)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(51, 111, 93, 0.47),
                               width: 1.5)),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(51, 111, 93, 0.47),
                               width: 1.5)),
                     ),
@@ -141,12 +141,12 @@ class _TrocarSenhaState extends State<TrocarSenha> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
 
           Padding(
-            padding: EdgeInsets.only(left: 57),
+            padding: const EdgeInsets.only(left: 57),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text('Mínimo de 6 caracteres',
@@ -157,21 +157,21 @@ class _TrocarSenhaState extends State<TrocarSenha> {
                             color: Colors.black.withOpacity(0.3))))),
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           Padding(
-            padding: EdgeInsets.only(left: 57),
+            padding: const EdgeInsets.only(left: 57),
             child: Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 'Confirme a nova senha: ',
                 textAlign: TextAlign.left,
                 style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                         decoration: TextDecoration.none,
                         fontSize: 18,
                         color: Colors.black,
@@ -179,7 +179,7 @@ class _TrocarSenhaState extends State<TrocarSenha> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
 
@@ -215,7 +215,7 @@ class _TrocarSenhaState extends State<TrocarSenha> {
                               ),
                             ),
                           ),*/
-                      contentPadding: EdgeInsets.all(10),
+                      contentPadding: const EdgeInsets.all(10),
                       hintText: 'Confirme sua nova senha...',
                       hintStyle: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -223,12 +223,12 @@ class _TrocarSenhaState extends State<TrocarSenha> {
                           color: Colors.black.withOpacity(0.3)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(51, 111, 93, 0.47),
                               width: 1.5)),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(51, 111, 93, 0.47),
                               width: 1.5)),
                     ),
@@ -237,12 +237,12 @@ class _TrocarSenhaState extends State<TrocarSenha> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
 
           Padding(
-            padding: EdgeInsets.only(left: 57),
+            padding: const EdgeInsets.only(left: 57),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text('Confira se as duas senhas são iguais!',

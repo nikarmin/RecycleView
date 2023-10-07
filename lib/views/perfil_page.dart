@@ -36,6 +36,15 @@ class _PerfilState extends State<Perfil> {
   int countPapel = 0;
   int countVidro = 0;
 
+  @override
+  void setState(VoidCallback fn) {
+    countMetal;
+    countPapel;
+    countPlastico;
+    countVidro;
+    super.setState(fn);
+  }
+
   Widget _buildPopupDialog(BuildContext context) {
     return AlertDialog(
       title: Text(
@@ -270,6 +279,8 @@ class _PerfilState extends State<Perfil> {
         countVidro = materiais.docs[0]['qtdVidro'];
       });
     }
+
+    setState(() {});
   }
 
   @override

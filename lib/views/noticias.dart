@@ -56,27 +56,28 @@ class _NoticiasState extends State<Noticias> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: ImageIcon(AssetImage('assets/images/icons/earth-day.png'),
+          title: const ImageIcon(
+              AssetImage('assets/images/icons/earth-day.png'),
               color: Colors.black),
           centerTitle: true,
-          backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+          backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
           elevation: 0,
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
-              icon: ImageIcon(
+              icon: const ImageIcon(
                 AssetImage('assets/images/icons/account.png'),
                 color: Colors.black,
               ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Perfil();
+                  return const Perfil();
                 }));
               },
             ),
           ],
         ),
-        backgroundColor: Color.fromRGBO(233, 233, 233, 1),
+        backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
         body: ListView.builder(
           itemCount: listResponse.length,
           itemBuilder: (context, index) {
@@ -94,18 +95,10 @@ class _NoticiasState extends State<Noticias> {
                 // }));
               },
               child: LayoutNoticia(
-                title: listResponse[index]['title'] != null
-                    ? listResponse[index]['title']
-                    : "",
-                description: listResponse[index]['description'] != null
-                    ? listResponse[index]['description']
-                    : "",
-                author: listResponse[index]['author'] != null
-                    ? listResponse[index]['author']
-                    : "",
-                image: listResponse[index]['urlToImage'] != null
-                    ? listResponse[index]['urlToImage']
-                    : "",
+                title: listResponse[index]['title'] ?? "",
+                description: listResponse[index]['description'] ?? "",
+                author: listResponse[index]['author'] ?? "",
+                image: listResponse[index]['urlToImage'] ?? "",
               ),
             );
           },
