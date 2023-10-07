@@ -18,7 +18,7 @@ class ConteudoNoticia extends StatefulWidget {
   final String image;
   final String url;
 
-  ConteudoNoticia(
+  const ConteudoNoticia(
       {Key? key,
       required this.title,
       required this.content,
@@ -34,7 +34,7 @@ class ConteudoNoticia extends StatefulWidget {
 class _ConteudoNoticiaState extends State<ConteudoNoticia> {
   String? webpageContent;
 
-  late WebViewController _webController = WebViewController()
+  late final WebViewController _webController = WebViewController()
     ..loadRequest(Uri.parse(widget.url.toString()));
 
   @override

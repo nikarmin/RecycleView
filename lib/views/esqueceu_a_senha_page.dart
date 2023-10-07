@@ -1,7 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EsqueceuSenha extends StatelessWidget {
+class EsqueceuSenha extends StatefulWidget {
+  const EsqueceuSenha({super.key});
+
+  @override
+  State<EsqueceuSenha> createState() => _EsqueceuSenhaState();
+}
+
+class _EsqueceuSenhaState extends State<EsqueceuSenha> {
+  TextEditingController email = TextEditingController();
+
+  Future recuperarSenha() async {
+    try {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      await auth.sendPasswordResetEmail(email: email.text);
+
+    showDialog(context: context, builder: (context) {
+       return const AlertDialog(content: Text("Email enviado com sucesso!"));	
+    });
+
+    Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,7 +90,7 @@ class EsqueceuSenha extends StatelessWidget {
                   color: Colors.transparent,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    // controller: email,
+                    controller: email,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Digite um email válido!';
@@ -116,7 +141,9 @@ class EsqueceuSenha extends StatelessWidget {
                 width: 170,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Row(
+                  child: ElevatedButton(onPressed: () {
+                    recuperarSenha();
+                  }, child: Text('enviar')) /*Row(
                     children: [
                       const SizedBox(width: 45),
                       Text("Enviar",
@@ -127,7 +154,7 @@ class EsqueceuSenha extends StatelessWidget {
                       const Icon(Icons.send),
                       const SizedBox(width: 10),
                     ],
-                  ),
+                  ),*/
                 ),
               ),
             ),

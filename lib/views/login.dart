@@ -334,7 +334,7 @@ class _LoginState extends State<Login> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EsqueceuSenha()));
+                      MaterialPageRoute(builder: (context) => const EsqueceuSenha()));
                 },
                 child: Text.rich(TextSpan(
                     text: 'Esqueceu sua ',

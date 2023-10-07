@@ -22,70 +22,6 @@ class EducacaoAmbientalPage extends StatefulWidget {
 class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
   TextEditingController _search = TextEditingController();
 
-  final reciclaveis = [
-    "papel",
-    "jornal",
-    "revista",
-    "caderno",
-    "apostila",
-    "caixa de papelão",
-    "saco de papel",
-    "papelão",
-    "papel cartão",
-    "envelope",
-    "livro",
-    "cartolina",
-    "folhas de caderno",
-    "folheto",
-    "plástico",
-    "tampa de plástico",
-    "frasco de plástico",
-    "pote de alimento",
-    "recipiente de plástico",
-    "pote de plástico",
-    "garrafa pet",
-    "utilidade doméstica",
-    "saco de plástico",
-    "tubo e conexão pvc",
-    "pvc",
-    "copo de plástico",
-    "isopor",
-    "sacola",
-    "embalagem de alimento",
-    "embalagem",
-    "peça de brinquedo",
-    "escova de dente",
-    "caneta esferográfica",
-    "metal",
-    "lata de alumínio",
-    "lata de aço",
-    "tampa de metal",
-    "ferragens",
-    "esquadrias",
-    "cano de metal",
-    "moldura de quadro de metal",
-    "lata de alimento",
-    "alumínio",
-    "tampa de iogurte",
-    "folha de alumínio",
-    "cápsula de café",
-    "arame",
-    "fio de cobre",
-    "panela sem cabo",
-    "vidro",
-    "tampa de vidro",
-    "pote de vidro",
-    "frasco de vidro",
-    "copo de vidro",
-    "garrafa de vidro",
-    "caco de vidro",
-    "lâmpada fluorescente",
-    "lâmpada economizadadora",
-    "lâmpada de descarga",
-    "lâmpada led",
-    "luminária"
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,11 +59,9 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                 SizedBox(
                     width: MediaQuery.sizeOf(context).width / 1.1,
                     child: SearchAnchor(
-                      viewBackgroundColor:
-                          const Color.fromRGBO(243, 243, 243, 1),
-                      viewSurfaceTintColor:
-                          const Color.fromRGBO(243, 243, 243, 1),
-                      dividerColor: const Color.fromRGBO(243, 243, 243, 1),
+                      viewBackgroundColor: Color.fromRGBO(243, 243, 243, 1),
+                      viewSurfaceTintColor: Color.fromRGBO(243, 243, 243, 1),
+                      dividerColor: Color.fromRGBO(243, 243, 243, 1),
                       isFullScreen: false,
                       builder:
                           (BuildContext context, SearchController controller) {
@@ -179,8 +113,8 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   width: 250,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 0, bottom: 20, right: 0, top: 20),
+                  padding:
+                      EdgeInsets.only(left: 0, bottom: 20, right: 0, top: 20),
                   child: Text(
                     'EDUCAÇÃO AMBIENTAL',
                     style: GoogleFonts.jost(
@@ -191,8 +125,8 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 18, bottom: 5, right: 18, top: 0),
+                  padding:
+                      EdgeInsets.only(left: 18, bottom: 5, right: 18, top: 0),
                   child: Text(
                     '"Entendem-se por educação ambiental os processos por meio dos quais o indivíduo e a coletividade constroem valores sociais, conhecimentos, habilidades, atitudes e competências voltadas para a conservação do meio ambiente, bem de uso comum do povo, essencial à sadia qualidade de vida e sua sustentabilidade." Política Nacional de Educação Ambiental - Lei nº 9795/1999, Art 1º.',
                     style: GoogleFonts.jost(
@@ -499,76 +433,6 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              /*
-              Container(
-                margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: Card(
-                    color: Colors.white,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "RESÍDUOS HOSPITALARES ",
-                              style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors
-                                            .white))),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/syringe-outline.png'),
-                            color: Colors.black,
-                            size: 25,
-                          ))
-                        ])),
-                        subtitle: Text(
-                            "\nAgulhas, seringas, algodões, bisturis...",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                margin: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                height: 150,
-                child: const Card(
-                    color: Color.fromARGB(255, 123, 31, 162),
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: ListTile(
-                        title: Text.rich(TextSpan(children: [
-                          TextSpan(text: "\n", style: TextStyle(fontSize: 18)),
-                          TextSpan(
-                              text: "RESÍDUOS RADIOATIVOS ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 25)),
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage(
-                                'assets/images/icons_materials/radiation.png'),
-                            color: Colors.white,
-                            size: 25,
-                          ))
-                        ])),
-                        subtitle: Text(
-                            "\nResíduos utilizados em usinas nucleares...",
-                            style:
-                                GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 17))),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        iconColor: Colors.white)),
-              ),*/
             ],
           ),
         ),
