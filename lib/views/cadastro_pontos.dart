@@ -23,6 +23,8 @@ class _CadastroPontosState extends State<CadastroPontos> {
       int countMetal, int countPapel, int countVidro, int countPlastico) async {
     await context.read<AuthService>().adicionarMaterialReciclado(
         countMetal, countPlastico, countPapel, countVidro);
+
+    Navigator.pop(context);
   }
 
   @override

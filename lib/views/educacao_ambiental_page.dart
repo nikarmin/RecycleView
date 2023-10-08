@@ -22,7 +22,69 @@ class EducacaoAmbientalPage extends StatefulWidget {
 class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
   TextEditingController _search = TextEditingController();
 
-  final reciclaveis = ["papel", "jornal", "revista", "caderno", "apostila", "caixa de papelão", "saco de papel", "papelão", "papel cartão", "envelope", "livro", "cartolina", "folhas de caderno", "folheto",  "plástico", "tampa de plástico", "frasco de plástico", "pote de alimento", "recipiente de plástico", "pote de plástico", "garrafa pet", "utilidade doméstica", "saco de plástico", "tubo e conexão pvc", "pvc", "copo de plástico", "isopor", "sacola", "embalagem de alimento", "embalagem", "peça de brinquedo", "escova de dente", "caneta esferográfica",  "metal", "lata de alumínio", "lata de aço", "tampa de metal", "ferragens", "esquadrias",  "cano de metal", "moldura de quadro de metal", "lata de alimento", "alumínio", "tampa de iogurte", "folha de alumínio", "cápsula de café", "arame", "fio de cobre", "panela sem cabo", "vidro", "tampa de vidro", "pote de vidro", "frasco de vidro", "copo de vidro", "garrafa de vidro", "caco de vidro",  "lâmpada fluorescente", "lâmpada economizadadora", "lâmpada de descarga", "lâmpada led", "luminária"];
+  final reciclaveis = [
+    "Papel",
+    "Jornal",
+    "Revista",
+    "Caderno",
+    "Apostila",
+    "Caixa de papelão",
+    "Saco de papel",
+    "Papelão",
+    "Papel cartão",
+    "Envelope",
+    "Livro",
+    "Cartolina",
+    "Folhas de caderno",
+    "Folheto",
+    "Plástico",
+    "Tampa de plástico",
+    "Frasco de plástico",
+    "Pote de alimento",
+    "Recipiente de plástico",
+    "Pote de plástico",
+    "Garrafa pet",
+    "Utilidade doméstica",
+    "Saco de plástico",
+    "Tubo e conexão PVC",
+    "PVC",
+    "Copo de plástico",
+    "Isopor",
+    "Sacola",
+    "Embalagem de alimento",
+    "Embalagem",
+    "Peça de brinquedo",
+    "Escova de dente",
+    "Caneta esferográfica",
+    "Metal",
+    "Lata de alumínio",
+    "Lata de aço",
+    "Tampa de metal",
+    "Ferragens",
+    "Esquadrias",
+    "Cano de metal",
+    "Moldura de quadro de metal",
+    "Lata de alimento",
+    "Alumínio",
+    "Tampa de iogurte",
+    "Folha de alumínio",
+    "Cápsula de café",
+    "Arame",
+    "Fio de cobre",
+    "Panela sem cabo",
+    "Vidro",
+    "Tampa de vidro",
+    "Pote de vidro",
+    "Frasco de vidro",
+    "Copo de vidro",
+    "Garrafa de vidro",
+    "Caco de vidro",
+    "Lâmpada fluorescente",
+    "Lâmpada economizadadora",
+    "Lâmpada de descarga",
+    "Lâmpada led",
+    "Luminária"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -59,64 +121,139 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
               const SizedBox(height: 15),
               Column(children: [
                 SizedBox(
-                    width: MediaQuery.sizeOf(context).width / 1.1,
-                    child: SearchAnchor(
-                      viewBackgroundColor: const Color.fromRGBO(243, 243, 243, 1),
-                      viewSurfaceTintColor: const Color.fromRGBO(243, 243, 243, 1),
-                      dividerColor: const Color.fromRGBO(243, 243, 243, 1),
-                      isFullScreen: false,
-                      builder:
-                          (BuildContext context, SearchController controller) {
-                        return SearchBar(
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color.fromRGBO(243, 243, 243, 1)),
-                          shadowColor: MaterialStateProperty.all(
-                              Colors.black.withOpacity(0.2)),
-                          controller: controller,
-                          onTap: () {
-                            controller.openView();
-                          },
-                          onChanged: (_) {
-                            controller.openView();
-                          },
-                          leading: IconButton(
-                            icon: const Icon(Icons.search, color: Colors.grey),
+                  width: MediaQuery.sizeOf(context).width / 1.1,
+                  child: Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue controller) {
+                      return reciclaveis
+                          .where((element) => element.contains(controller.text))
+                          .toList();
+                    },
+                    displayStringForOption: (option) => option,
+                    fieldViewBuilder: (BuildContext context,
+                        TextEditingController fieldTextEditingController,
+                        FocusNode fieldFocusNode,
+                        VoidCallback onFieldSubmitted) {
+                      return TextField(
+                        controller: fieldTextEditingController,
+                        focusNode: fieldFocusNode,
+                        decoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(243, 243, 243, 1),
+                                  width: 0.0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30))),
+                          hintText: 'Jornais, papéis, pilhas...',
+                          hoverColor: Colors.transparent,
+                          hintStyle: GoogleFonts.jost(
+                              textStyle: const TextStyle(
+                                  fontSize: 17, color: Colors.black45)),
+                          filled: true,
+                          fillColor: const Color.fromRGBO(243, 243, 243, 1),
+                          prefixIcon: const Icon(Icons.search),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.clear),
                             onPressed: () {
-                              // Perform the search here
+                              fieldTextEditingController.clear();
                             },
                           ),
-                          textStyle: MaterialStateProperty.all(GoogleFonts.jost(
-                              textStyle: const TextStyle(
-                                  fontSize: 17, color: Colors.black))),
-                          hintText: 'Jornais, papéis, pilhas...',
-                          hintStyle: MaterialStateProperty.all(GoogleFonts.jost(
-                              textStyle: const TextStyle(
-                                  fontSize: 17, color: Colors.black))),
-                        );
-                      },
-                      suggestionsBuilder:
-                          (BuildContext context, SearchController controller) {
-                        return List<ListTile>.generate(reciclaveis.length,
-                            (int index) {
-                          return ListTile(
-                            title: Text(reciclaveis[index]),
-                            onTap: () {
-                              setState(() {
-                                controller.closeView(reciclaveis[index]);
-                              });
-                            },
-                          );
-                        });
-                      },
-                    )),
+                        ),
+                        style: GoogleFonts.jost(
+                            textStyle: const TextStyle(
+                                fontSize: 17, color: Colors.black)),
+                      );
+                    },
+                    optionsViewBuilder: (context, onSelected, options) {
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: Material(
+                          elevation: 4.0,
+                          child: Container(
+                            height: MediaQuery.of(context).size.height / 1.1,
+                            width: MediaQuery.of(context).size.width / 1.1,
+                            color: const Color.fromRGBO(243, 243, 243, 1),
+                            child: ListView.builder(
+                              padding: const EdgeInsets.all(8.0),
+                              itemCount: options.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final option = options.elementAt(index);
+                                return GestureDetector(
+                                  onTap: () {
+                                    onSelected(option);
+                                  },
+                                  child: ListTile(
+                                    title: Text(option),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                // SizedBox(
+                //     width: MediaQuery.sizeOf(context).width / 1.1,
+                //     child: SearchAnchor(
+                //       viewBackgroundColor:
+                //           const Color.fromRGBO(243, 243, 243, 1),
+                //       viewSurfaceTintColor:
+                //           const Color.fromRGBO(243, 243, 243, 1),
+                //       dividerColor: const Color.fromRGBO(243, 243, 243, 1),
+                //       isFullScreen: false,
+                //       builder:
+                //           (BuildContext context, SearchController controller) {
+                //         return SearchBar(
+                //           backgroundColor: MaterialStateProperty.all(
+                //               const Color.fromRGBO(243, 243, 243, 1)),
+                //           shadowColor: MaterialStateProperty.all(
+                //               Colors.black.withOpacity(0.2)),
+                //           controller: controller,
+                //           onTap: () {
+                //             controller.openView();
+                //           },
+                //           onChanged: (_) {
+                //             controller.openView();
+                //           },
+                //           leading: IconButton(
+                //             icon: const Icon(Icons.search, color: Colors.grey),
+                //             onPressed: () {
+                //               // Perform the search here
+                //             },
+                //           ),
+                //           textStyle: MaterialStateProperty.all(GoogleFonts.jost(
+                //               textStyle: const TextStyle(
+                //                   fontSize: 17, color: Colors.black))),
+                //           hintText: 'Jornais, papéis, pilhas...',
+                //           hintStyle: MaterialStateProperty.all(GoogleFonts.jost(
+                //               textStyle: const TextStyle(
+                //                   fontSize: 17, color: Colors.black))),
+                //         );
+                //       },
+                //       suggestionsBuilder:
+                //           (BuildContext context, SearchController controller) {
+                //         return List<ListTile>.generate(reciclaveis.length,
+                //             (int index) {
+                //           return ListTile(
+                //             title: Text(reciclaveis[index]),
+                //             onTap: () {
+                //               setState(() {
+                //                 controller.closeView(reciclaveis[index]);
+                //               });
+                //             },
+                //           );
+                //         });
+                //       },
+                //     )),
                 Image.asset(
                   'assets/images/image_education.png',
                   height: 150,
                   width: 250,
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 0, bottom: 20, right: 0, top: 20),
+                  padding: const EdgeInsets.only(
+                      left: 0, bottom: 20, right: 0, top: 20),
                   child: Text(
                     'EDUCAÇÃO AMBIENTAL',
                     style: GoogleFonts.jost(
@@ -127,8 +264,8 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, bottom: 5, right: 18, top: 0),
+                  padding: const EdgeInsets.only(
+                      left: 18, bottom: 5, right: 18, top: 0),
                   child: Text(
                     '"Entendem-se por educação ambiental os processos por meio dos quais o indivíduo e a coletividade constroem valores sociais, conhecimentos, habilidades, atitudes e competências voltadas para a conservação do meio ambiente, bem de uso comum do povo, essencial à sadia qualidade de vida e sua sustentabilidade." Política Nacional de Educação Ambiental - Lei nº 9795/1999, Art 1º.',
                     style: GoogleFonts.jost(

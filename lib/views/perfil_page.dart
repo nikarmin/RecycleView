@@ -38,99 +38,96 @@ class _PerfilState extends State<Perfil> {
 
   @override
   void setState(VoidCallback fn) {
-    countMetal;
-    countPapel;
-    countPlastico;
-    countVidro;
+    getMateriais();
     super.setState(fn);
   }
 
-  Widget _buildPopupDialog(BuildContext context) {
-    return AlertDialog(
-      title: Text(
-        'Adicionar reciclagem',
-        style: GoogleFonts.poppins(
-            textStyle: const TextStyle(color: Colors.black)),
-      ),
-      content: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Column(
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                      height: 25,
-                      child: FloatingActionButton(
-                          backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
-                          onPressed: () {
-                            setState(() {
-                              if (countMetal > 0) {
-                                countMetal--;
-                              } else {
-                                countMetal = 0;
-                              }
-                            });
-                          },
-                          child: const Icon(
-                            Icons.remove,
-                            size: 15,
-                          ))),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      (countMetal >= 0 ? countMetal.toString() : '0'),
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 25,
-                      child: FloatingActionButton(
-                        backgroundColor: const Color.fromRGBO(134, 167, 102, 1),
-                        onPressed: () {
-                          setState(() {
-                            countMetal++;
-                          });
-                        },
-                        child: const Icon(
-                          Icons.add,
-                          size: 15,
-                        ),
-                      )),
-                  Text(
-                    ' Metal',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        fontSize: 24,
-                        decoration: TextDecoration.none,
-                        color: Colors.black,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-      actions: <Widget>[
-        ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Enviar'),
-        ),
-      ],
-    );
-  }
+  // Widget _buildPopupDialog(BuildContext context) {
+  //   return AlertDialog(
+  //     title: Text(
+  //       'Adicionar reciclagem',
+  //       style: GoogleFonts.poppins(
+  //           textStyle: const TextStyle(color: Colors.black)),
+  //     ),
+  //     content: Column(
+  //       mainAxisAlignment: MainAxisAlignment.start,
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         Column(
+  //           children: [
+  //             Row(
+  //               children: [
+  //                 SizedBox(
+  //                     height: 25,
+  //                     child: FloatingActionButton(
+  //                         backgroundColor:
+  //                             const Color.fromRGBO(134, 167, 102, 1),
+  //                         onPressed: () {
+  //                           setState(() {
+  //                             if (countMetal > 0) {
+  //                               countMetal--;
+  //                             } else {
+  //                               countMetal = 0;
+  //                             }
+  //                           });
+  //                         },
+  //                         child: const Icon(
+  //                           Icons.remove,
+  //                           size: 15,
+  //                         ))),
+  //                 Padding(
+  //                   padding: const EdgeInsets.all(8.0),
+  //                   child: Text(
+  //                     (countMetal >= 0 ? countMetal.toString() : '0'),
+  //                     style: GoogleFonts.poppins(
+  //                       textStyle: const TextStyle(
+  //                         fontSize: 24,
+  //                         decoration: TextDecoration.none,
+  //                         color: Colors.black,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 SizedBox(
+  //                     height: 25,
+  //                     child: FloatingActionButton(
+  //                       backgroundColor: const Color.fromRGBO(134, 167, 102, 1),
+  //                       onPressed: () {
+  //                         setState(() {
+  //                           countMetal++;
+  //                         });
+  //                       },
+  //                       child: const Icon(
+  //                         Icons.add,
+  //                         size: 15,
+  //                       ),
+  //                     )),
+  //                 Text(
+  //                   ' Metal',
+  //                   style: GoogleFonts.poppins(
+  //                     textStyle: const TextStyle(
+  //                       fontSize: 24,
+  //                       decoration: TextDecoration.none,
+  //                       color: Colors.black,
+  //                     ),
+  //                   ),
+  //                 )
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //     actions: <Widget>[
+  //       ElevatedButton(
+  //         onPressed: () {
+  //           Navigator.of(context).pop();
+  //         },
+  //         child: const Text('Enviar'),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   final FirebaseStorage storage = FirebaseStorage.instance;
   bool uploading = false;
@@ -265,6 +262,11 @@ class _PerfilState extends State<Perfil> {
     await StoreData().saveData(file: _bytesImage!);
   }
 
+  late int contadorMetal = 0;
+  late int contadorPapel;
+  late int contadorPlastico;
+  late int contadorVidro;
+
   getMateriais() async {
     final materiais = await FirebaseFirestore.instance
         .collection("usuarios")
@@ -280,7 +282,9 @@ class _PerfilState extends State<Perfil> {
       });
     }
 
-    setState(() {});
+    setState(() {
+      getMateriais();
+    });
   }
 
   @override
@@ -329,7 +333,7 @@ class _PerfilState extends State<Perfil> {
           case 3:
             return PieChartSectionData(
               color: const Color.fromRGBO(254, 218, 74, 1),
-              value: countMetal.toDouble(),
+              value: contadorMetal.toDouble(),
               title: 'Metal',
               radius: radius,
               titleStyle: TextStyle(

@@ -22,7 +22,7 @@ class LayoutNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Color.fromRGBO(233, 233, 233, 1),
+        color: const Color.fromRGBO(233, 233, 233, 1),
         child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -52,27 +52,48 @@ class LayoutNoticia extends StatelessWidget {
                                       Align(
                                           alignment: Alignment.bottomLeft,
                                           child: Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  15, 15, 10, 15),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      15, 15, 10, 15),
                                               child: Text(title,
                                                   style: GoogleFonts.archivo(
-                                                    textStyle: TextStyle(
+                                                    textStyle: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color: Colors.white),
+                                                        color: Colors.white,
+                                                        shadows: [
+                                                          Shadow(
+                                                              blurRadius: 10,
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      162,
+                                                                      27,
+                                                                      94,
+                                                                      31),
+                                                              offset:
+                                                                  Offset(1, 0))
+                                                        ]),
                                                   )))),
-                                      SizedBox(height: 70),
+                                      const SizedBox(height: 70),
                                       Align(
                                         alignment: Alignment.bottomLeft,
                                         child: Padding(
-                                            padding: EdgeInsets.fromLTRB(
+                                            padding: const EdgeInsets.fromLTRB(
                                                 15, 0, 0, 0),
                                             child: Text(author,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 12,
                                                     //fontWeight: FontWeight.bold,
-                                                    color: Colors.white))),
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    shadows: [
+                                                      Shadow(
+                                                          blurRadius: 10,
+                                                          color: Color.fromARGB(
+                                                              162, 27, 94, 31),
+                                                          offset: Offset(1, 0))
+                                                    ]))),
                                       )
                                     ]))),
                   ]))

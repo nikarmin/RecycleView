@@ -29,6 +29,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   XFile? imagem;
   File? img;
   Size? size;
+  bool loading_ia = false;
 
   objLabel(String obj) {
     if (obj == 'Papel') {
@@ -88,26 +89,23 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Container(
-              child: Text(_outputs![0]["confidence"].toString(),
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                    ),
-                  ))),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: Text(
-                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.jost(
-                    textStyle: const TextStyle(
-                  fontSize: 18.0,
-                )),
-              ),
+          Text(_outputs![0]["confidence"].toString(),
+              style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(22.0),
+            child: Text(
+              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+              textAlign: TextAlign.justify,
+              style: GoogleFonts.jost(
+                  textStyle: const TextStyle(
+                fontSize: 18.0,
+              )),
             ),
           )
         ],
@@ -169,26 +167,23 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Container(
-              child: Text(_outputs![0]["confidence"].toString(),
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                    ),
-                  ))),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: Text(
-                'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-                'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.jost(
-                    textStyle: const TextStyle(
-                  fontSize: 18.0,
-                )),
-              ),
+          Text(_outputs![0]["confidence"].toString(),
+              style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(22.0),
+            child: Text(
+              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
+              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
+              textAlign: TextAlign.justify,
+              style: GoogleFonts.jost(
+                  textStyle: const TextStyle(
+                fontSize: 18.0,
+              )),
             ),
           )
         ],
@@ -276,7 +271,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
   bool setImage = false;
   List result = [];
   String output = '';
-  bool _loading = false;
   List<dynamic>? _outputs;
 
   Future<void> chooseFile() async {
@@ -306,7 +300,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         imageStd: 127.5);
 
     setState(() {
-      _loading = false;
       _outputs = out;
     });
   }
@@ -355,8 +348,8 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         imageStd: 127.5);
     setState(() {
       result = output!;
+      loading_ia = true;
     });
-    print(output);
   }
 
   @override
@@ -386,7 +379,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
         ],
       ),
       body: Stack(children: [
-        Container(
+        SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: controller == null
@@ -404,28 +397,33 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               height: 70,
               width: 70,
               child: ElevatedButton(
-                onPressed: () async {
-                  try {
-                    if (controller != null) {
-                      await tirarFoto();
-                      classifyImage(imagem);
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              infoObjeto(context));
+                  onPressed: () async {
+                    try {
+                      if (controller != null) {
+                        await tirarFoto();
+                        await classifyImage(imagem);
+                        // ignore: use_build_context_synchronously
+                        await showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                infoObjeto(context));
+
+                        setState(() {
+                          loading_ia = false;
+                        });
+                      }
+                    } catch (e) {
+                      print(e);
                     }
-                  } catch (e) {
-                    print(e);
-                  }
-                },
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.transparent),
-                    shape: MaterialStateProperty.all<CircleBorder>(
-                        const CircleBorder(
-                            side: BorderSide(color: Colors.white, width: 2)))),
-                child: const Text(''),
-              ),
+                  },
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.transparent),
+                      shape: MaterialStateProperty.all<CircleBorder>(
+                          const CircleBorder(
+                              side:
+                                  BorderSide(color: Colors.white, width: 2)))),
+                  child: const Text('')),
             ),
           ),
         ),
