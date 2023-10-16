@@ -12,6 +12,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/coleta.dart';
 import '../models/usuario.dart';
+import '../shared/config.dart';
 
 class AuthException implements Exception {
   String message;
@@ -110,8 +111,7 @@ class AuthService extends ChangeNotifier {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     print(newPassword);
     _token = sharedPreferences.getString("token");
-    const url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBCBGOOiaMrzC1UlDREjTnYypw48SKu8h4';
+    final url = Config.chave;
     try {
       await http.post(
         Uri.parse(url),
@@ -147,7 +147,6 @@ class AuthService extends ChangeNotifier {
 
   adicionarMaterialReciclado(
       int countMetal, int countPlastico, int countPapel, int countVidro) async {
-
     final user = _db
         .collection('usuarios')
         .where('email', isEqualTo: usuario?.email)
