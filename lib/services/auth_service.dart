@@ -77,16 +77,17 @@ class AuthService extends ChangeNotifier {
           await _auth.signInWithEmailAndPassword(email: email, password: senha);
       _getUser();
       userLogin = userCredential.user;
+
+      return 'sucecess';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:  Text('')));
-        throw AuthException('Email não encontrado. Cadastre-se.');
+        String msg = 'user-not-found';
+        return msg;
       } else if (e.code == 'wrong-password') {
-        print('SENHA INCORRETA');
-        throw AuthException('Senha incorreta. Tente novamente');
+        String msg = 'wrong-password';
+        return msg;
       }
     }
-    return userLogin;
   }
 
   void sendOtp(String email) async {
@@ -147,7 +148,6 @@ class AuthService extends ChangeNotifier {
 
   adicionarMaterialReciclado(
       int countMetal, int countPlastico, int countPapel, int countVidro) async {
-
     final user = _db
         .collection('usuarios')
         .where('email', isEqualTo: usuario?.email)

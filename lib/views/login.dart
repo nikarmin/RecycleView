@@ -24,6 +24,8 @@ class _LoginState extends State<Login> {
   bool isLogin = true;
   bool loading = false;
 
+  String alertText = '';
+
   setFormAction(bool acao) {
     setState(() {
       isLogin = acao;
@@ -40,23 +42,32 @@ class _LoginState extends State<Login> {
       loading = true;
     });
 
-    User? user =
-        await context.read<AuthService>().login(email.text, senha.text);
+    var msg = await context.read<AuthService>().login(email.text, senha.text);
 
-    if (user == null) {
+    if (msg == 'null') {
       setState(() {
         loading = false;
+        alertText = 'O usuário não existe!';
       });
 
       email.clear();
       senha.clear();
+    } else if (msg == 'user-not-found') {
+      setState(() {
+        loading = false;
+        alertText = 'O usuário não existe!';
+      });
 
-      const snackBar = SnackBar(
-        content: Text('Email ou senha inválidos!'),
-        backgroundColor: Colors.red,
-      );
+      email.clear();
+      senha.clear();
+    } else if (msg == 'wrong-password') {
+      setState(() {
+        loading = false;
+        alertText = 'O usuário não existe!';
+      });
 
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      email.clear();
+      senha.clear();
     } else {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomeScreen()));
@@ -66,6 +77,7 @@ class _LoginState extends State<Login> {
   final textFieldFocusNode = FocusNode();
   late bool mostrar;
 
+  @override
   initState() {
     super.initState();
     setFormAction(true);
@@ -181,7 +193,6 @@ class _LoginState extends State<Login> {
                   child: SizedBox(
                     width: 250,
                     child: Material(
-                      // TIRAR O FOCUS DO TEXTFIELD!!
                       color: Colors.transparent,
                       child: TextFormField(
                         keyboardType: TextInputType.emailAddress,
@@ -293,6 +304,31 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 15,
               ),
+              alertText != ''
+                  ? Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50.0),
+                          child: Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              alertText,
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                      decoration: TextDecoration.none,
+                                      fontSize: 14,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.w300)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                      ],
+                    )
+                  : Container(),
               Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -333,8 +369,10 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const EsqueceuSenha()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EsqueceuSenha()));
                 },
                 child: Text.rich(TextSpan(
                     text: 'Esqueceu sua ',
