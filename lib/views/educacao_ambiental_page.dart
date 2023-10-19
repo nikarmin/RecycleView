@@ -137,12 +137,14 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                         controller: fieldTextEditingController,
                         focusNode: fieldFocusNode,
                         decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromRGBO(243, 243, 243, 1),
-                                  width: 0.0),
+                          focusedBorder: const OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
+                                  BorderRadius.all(Radius.circular(50)),
+                              borderSide: BorderSide(
+                                  color: Colors.transparent, width: 1)),
+                          border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50))),
                           hintText: 'Jornais, papéis, pilhas...',
                           hoverColor: Colors.transparent,
                           hintStyle: GoogleFonts.jost(
@@ -150,9 +152,15 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                                   fontSize: 17, color: Colors.black45)),
                           filled: true,
                           fillColor: const Color.fromRGBO(243, 243, 243, 1),
-                          prefixIcon: const Icon(Icons.search),
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            color: Colors.black45,
+                          ),
                           suffixIcon: IconButton(
-                            icon: const Icon(Icons.clear),
+                            icon: const Icon(
+                              Icons.clear,
+                              color: Colors.black45,
+                            ),
                             onPressed: () {
                               fieldTextEditingController.clear();
                             },
@@ -164,29 +172,29 @@ class _EducacaoAmbientalPageState extends State<EducacaoAmbientalPage> {
                       );
                     },
                     optionsViewBuilder: (context, onSelected, options) {
-                      return Align(
-                        alignment: Alignment.topLeft,
-                        child: Material(
-                          elevation: 4.0,
-                          child: Container(
-                            height: MediaQuery.of(context).size.height / 1.1,
-                            width: MediaQuery.of(context).size.width / 1.1,
-                            color: const Color.fromRGBO(243, 243, 243, 1),
-                            child: ListView.builder(
-                              padding: const EdgeInsets.all(8.0),
-                              itemCount: options.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final option = options.elementAt(index);
-                                return GestureDetector(
-                                  onTap: () {
-                                    onSelected(option);
-                                  },
-                                  child: ListTile(
-                                    title: Text(option),
-                                  ),
-                                );
-                              },
-                            ),
+                      return Material(
+                        color: Colors.transparent,
+                        child: Container(
+                          //alignment: Alignment.topCenter,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color.fromRGBO(243, 243, 243, 1)),
+                          height: MediaQuery.of(context).size.height / 1.5,
+                          width: MediaQuery.sizeOf(context).width / 1.1,
+                          child: ListView.builder(
+                            padding: const EdgeInsets.all(2.0),
+                            itemCount: options.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final option = options.elementAt(index);
+                              return GestureDetector(
+                                onTap: () {
+                                  onSelected(option);
+                                },
+                                child: ListTile(
+                                  title: Text(option),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       );

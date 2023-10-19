@@ -69,8 +69,9 @@ class _LoginState extends State<Login> {
       email.clear();
       senha.clear();
     } else {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          (Route<dynamic> route) => false);
     }
   }
 

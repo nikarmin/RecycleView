@@ -24,6 +24,7 @@ class DefaultFirebaseOptions {
         return android;
       case TargetPlatform.iOS:
         return ios;
+        
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:

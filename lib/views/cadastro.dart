@@ -44,9 +44,9 @@ class _CadastroState extends State<Cadastro> {
           .read<AuthService>()
           .registrar(email.text, senha.text, nome.text, user);
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const HomeScreen();
-      }));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          (Route<dynamic> route) => false);
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.message!),
