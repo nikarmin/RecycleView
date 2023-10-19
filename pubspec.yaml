@@ -48,6 +48,7 @@ dependencies:
   geoflutterfire2: ^2.3.15
   email_auth: ^1.0.0
   shared_preferences: ^2.2.1
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -69,5 +70,6 @@ flutter:
     - assets/images/background/
     - assets/images/icons/
     - assets/images/icons_materials/
+    - .env
     
   uses-material-design: true
