@@ -135,7 +135,7 @@ class _PerfilState extends State<Perfil> {
   List<String> arquivos = [];
   List<Reference> refs = [];
   bool loading = true;
-  final User? user = FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
 
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
@@ -253,6 +253,43 @@ class _PerfilState extends State<Perfil> {
                       ],
                     ))
               ]),
+            ),
+          );
+        });
+  }
+
+  void editarPerfil() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: const Text("Escolha uma opção:"),
+            content: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                child: Column(children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Nome',
+                      hintText: user?.displayName.toString(),
+                    ),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      hintText: user?.email.toString(),
+                    ),
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Senha',
+                      hintText: "********",
+                    ),
+                  ),
+                ]),
+              ),
             ),
           );
         });
@@ -506,11 +543,13 @@ class _PerfilState extends State<Perfil> {
                         ),
                         icon: const Icon(Icons.edit_rounded),
                         onPressed: () {
-                          context.read<AuthService>().logout();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const TelaInicial()));
+                          editarPerfil();
+                          // context.read<AuthService>().logout();
+
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const TelaInicial()));
                         },
                         //user!.displayName.toString()
                       ),

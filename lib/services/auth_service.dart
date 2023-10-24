@@ -91,6 +91,21 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  editar(String nome, String senha, String email) async {
+    bool envio;
+    try {
+      await changePassword(senha);
+      usuario?.updateDisplayName(nome);
+      usuario?.updateEmail(email);
+      _getUser();
+      envio = true;
+    } on Exception catch (e) {
+      envio = false;
+    }
+
+    return envio;
+  }
+
   void sendOtp(String email) async {
     bool result = await EmailAuth(sessionName: 'RecycleView')
         .sendOtp(recipientMail: email);
