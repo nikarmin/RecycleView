@@ -326,7 +326,7 @@ class _OpenStreetMapSearchAndPickState
 
       if (distance <= maxDistance * 1000) {
         // Converta para metros
-        nearbyLocations.clear(); // mudar
+        coletinha.clear(); // mudar
         nearbyLocations.add(location);
         Coleta coleta = Coleta(nome: pontosNome[cont], localizacao: location);
         coletinha.add(coleta);

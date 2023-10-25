@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -129,7 +128,9 @@ class _PerfilState extends State<Perfil> {
                             (states) => const Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () async {
                       Navigator.pop(context);
-                      pickAndUploadImage();
+                      setState(() {
+                        pickAndUploadImage();
+                      });
                     },
                     child: const Row(
                       children: [
@@ -146,7 +147,9 @@ class _PerfilState extends State<Perfil> {
                             (states) => const Color.fromRGBO(51, 111, 93, 1))),
                     onPressed: () async {
                       Navigator.pop(context);
-                      pickAndUploadImage();
+                      setState(() {
+                        pickAndUploadImage();
+                      });
                     },
                     child: const Row(
                       children: [
@@ -323,7 +326,21 @@ class _PerfilState extends State<Perfil> {
                       ElevatedButton(
                           onPressed: () async {
                             //editarPerfil();
-                            await context.read<AuthService>().editar(controller_nome.text, controller_email.text, controller_senha.text);
+                            if (controller_nome.text.isEmpty) {
+                              controller_nome.text =
+                                  user!.displayName.toString();
+                            }
+                            if (controller_email.text.isEmpty) {
+                              controller_email.text = user!.email.toString();
+                            }
+
+                            await context.read<AuthService>().editar(
+                                controller_nome.text,
+                                controller_senha.text,
+                                controller_email.text);
+
+                            // ignore: use_build_context_synchronously
+                            Navigator.pop(context);
                           },
                           child: const Text('Enviar'))
                     ]),

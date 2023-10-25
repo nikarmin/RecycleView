@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:recycle_view/views/cadastro.dart';
 import 'package:recycle_view/views/login.dart';
 
