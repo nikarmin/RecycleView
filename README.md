@@ -6,6 +6,8 @@
 
 O RecycleView é um aplicativo mobile que auxilia a população brasileira a aprender ou/e reforçar seus conhecimentos a cerca da separação e descarte correto de resíduos sólidos e recicláveis. Tudo é feito por meio de conteúdos e informações de fácil acesso e compreensão, que englobam o reconhecimento e separação de resíduos sólidos através da câmera, localização de pontos de coleta próximo, notícias sobre meio ambiente e conteúdos educativos sobre reciclagem. 
 
+<strong>Projeto realizado para o Trabalho de Conclusão de Curso de Informática.</strong>
+
 ## ⚙ Ferramentas
 
 [![Ferramentas](https://skillicons.dev/icons?i=firebase,dart,flutter,figma,tensorflow)](https://skillicons.dev)
@@ -51,10 +53,9 @@ O projeto contém uma variável de ambiente, com a informação da chave do fire
 - [Giovanna do Amaral Brigo](https://github.com/giovannaBrigo)
 - [Nicoli Ferreira](https://github.com/nikarmin)
 
-## ☎ Contato
-
+## 📞 Contato
 <table>
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/nikarmin/"><img style="border-radius: 50%;" src="https://skillicons.dev/icons?i=linkedin" width="100px;" alt=""/><br /><sub><b>Nicoli Ferreira</b></sub></a><br /></td>
-    <td align="center"><a href="https://www.linkedin.com/in/giovanna-do-amaral-brigo-851b28290/"><img style="border-radius: 50%;" src="https://skillicons.dev/icons?i=linkedin" width="100px;" alt=""/><br /><sub><b>Giovanna do Amaral Brigo</b></sub></a><br /></td>
+    <td align="center""><a href="https://www.linkedin.com/in/nikarmin/"><img style="border-radius: 50%;" src="https://skillicons.dev/icons?i=linkedin" width="50px;" alt=""/><br/><p><b>Nicoli</b></p></a><br/></td>
+    <td align="center"><a href="https://www.linkedin.com/in/giovanna-do-amaral-brigo-851b28290/"><img style="border-radius: 50%;" src="https://skillicons.dev/icons?i=linkedin" width="50px;" alt=""/><br/><p><b>Giovanna</b></p></a><br/></td>
   </tr>

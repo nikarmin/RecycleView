@@ -94,9 +94,14 @@ class AuthService extends ChangeNotifier {
   editar(String nome, String senha, String email) async {
     bool envio;
     try {
-      await changePassword(senha);
-      usuario?.updateDisplayName(nome);
-      usuario?.updateEmail(email);
+      if ((nome != null) && (senha != null) && (email != null)) {
+        await changePassword(senha);
+        usuario?.updateDisplayName(nome);
+        usuario?.updateEmail(email);
+      }
+      else {
+        
+      }
       _getUser();
       envio = true;
     } on Exception catch (e) {

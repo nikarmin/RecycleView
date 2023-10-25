@@ -23,111 +23,11 @@ class Perfil extends StatefulWidget {
   State<Perfil> createState() => _PerfilState();
 }
 
-class _PieData {
-  _PieData(this.xData, this.yData, this.text);
-  final String xData;
-  final num yData;
-  final String text;
-}
-
 class _PerfilState extends State<Perfil> {
   int countPlastico = 0;
   int countMetal = 0;
   int countPapel = 0;
   int countVidro = 0;
-
-  @override
-  void setState(VoidCallback fn) {
-    getMateriais();
-    super.setState(fn);
-  }
-
-  // Widget _buildPopupDialog(BuildContext context) {
-  //   return AlertDialog(
-  //     title: Text(
-  //       'Adicionar reciclagem',
-  //       style: GoogleFonts.poppins(
-  //           textStyle: const TextStyle(color: Colors.black)),
-  //     ),
-  //     content: Column(
-  //       mainAxisAlignment: MainAxisAlignment.start,
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         Column(
-  //           children: [
-  //             Row(
-  //               children: [
-  //                 SizedBox(
-  //                     height: 25,
-  //                     child: FloatingActionButton(
-  //                         backgroundColor:
-  //                             const Color.fromRGBO(134, 167, 102, 1),
-  //                         onPressed: () {
-  //                           setState(() {
-  //                             if (countMetal > 0) {
-  //                               countMetal--;
-  //                             } else {
-  //                               countMetal = 0;
-  //                             }
-  //                           });
-  //                         },
-  //                         child: const Icon(
-  //                           Icons.remove,
-  //                           size: 15,
-  //                         ))),
-  //                 Padding(
-  //                   padding: const EdgeInsets.all(8.0),
-  //                   child: Text(
-  //                     (countMetal >= 0 ? countMetal.toString() : '0'),
-  //                     style: GoogleFonts.poppins(
-  //                       textStyle: const TextStyle(
-  //                         fontSize: 24,
-  //                         decoration: TextDecoration.none,
-  //                         color: Colors.black,
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 SizedBox(
-  //                     height: 25,
-  //                     child: FloatingActionButton(
-  //                       backgroundColor: const Color.fromRGBO(134, 167, 102, 1),
-  //                       onPressed: () {
-  //                         setState(() {
-  //                           countMetal++;
-  //                         });
-  //                       },
-  //                       child: const Icon(
-  //                         Icons.add,
-  //                         size: 15,
-  //                       ),
-  //                     )),
-  //                 Text(
-  //                   ' Metal',
-  //                   style: GoogleFonts.poppins(
-  //                     textStyle: const TextStyle(
-  //                       fontSize: 24,
-  //                       decoration: TextDecoration.none,
-  //                       color: Colors.black,
-  //                     ),
-  //                   ),
-  //                 )
-  //               ],
-  //             ),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //     actions: <Widget>[
-  //       ElevatedButton(
-  //         onPressed: () {
-  //           Navigator.of(context).pop();
-  //         },
-  //         child: const Text('Enviar'),
-  //       ),
-  //     ],
-  //   );
-  // }
 
   final FirebaseStorage storage = FirebaseStorage.instance;
   bool uploading = false;
@@ -164,6 +64,11 @@ class _PerfilState extends State<Perfil> {
     loadImages();
     img = user!.photoURL;
     getMateriais();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
   }
 
   Future<UploadTask> upload(String path) async {
@@ -258,43 +163,6 @@ class _PerfilState extends State<Perfil> {
         });
   }
 
-  void editarPerfil() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            title: const Text("Escolha uma opção:"),
-            content: SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height / 2,
-                child: Column(children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Nome',
-                      hintText: user?.displayName.toString(),
-                    ),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      hintText: user?.email.toString(),
-                    ),
-                  ),
-                  const TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      hintText: "********",
-                    ),
-                  ),
-                ]),
-              ),
-            ),
-          );
-        });
-  }
-
   saveProfile() async {
     await StoreData().saveData(file: _bytesImage!);
   }
@@ -319,9 +187,150 @@ class _PerfilState extends State<Perfil> {
       });
     }
 
-    setState(() {
-      getMateriais();
-    });
+    // setState(() {
+    //   getMateriais();
+    // });
+  }
+
+  var controller_nome = TextEditingController();
+  var controller_email = TextEditingController();
+  var controller_senha = TextEditingController();
+
+  void editarPerfil() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: const Text(
+              "Editar perfil",
+              textAlign: TextAlign.center,
+            ),
+            content: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                width: 500,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Novo nome:',
+                          textAlign: TextAlign.right,
+                          style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                            fontSize: 16,
+                          )),
+                        ),
+                      ),
+                      TextField(
+                        controller: controller_nome,
+                        decoration: InputDecoration(
+                          suffixIcon: const Padding(
+                            padding: EdgeInsets.all(4),
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
+                          hintText: user?.displayName.toString(),
+                          hintStyle: TextStyle(
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontSize: 14,
+                              color: Colors.black.withOpacity(0.3)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(51, 111, 93, 0.47),
+                                  width: 1.5)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(51, 111, 93, 0.47),
+                                  width: 1.5)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Novo email:',
+                          textAlign: TextAlign.right,
+                          style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                            fontSize: 16,
+                          )),
+                        ),
+                      ),
+                      TextField(
+                        controller: controller_email,
+                        decoration: InputDecoration(
+                          suffixIcon: const Padding(
+                            padding: EdgeInsets.all(4),
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
+                          hintText: user?.email.toString(),
+                          hintStyle: TextStyle(
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontSize: 14,
+                              color: Colors.black.withOpacity(0.3)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(51, 111, 93, 0.47),
+                                  width: 1.5)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(51, 111, 93, 0.47),
+                                  width: 1.5)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Nova senha:',
+                          textAlign: TextAlign.right,
+                          style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                            fontSize: 16,
+                          )),
+                        ),
+                      ),
+                      TextField(
+                        controller: controller_senha,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          suffixIcon: const Padding(
+                            padding: EdgeInsets.all(4),
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
+                          hintText: 'Escreva uma nova senha...',
+                          hintStyle: TextStyle(
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontSize: 14,
+                              color: Colors.black.withOpacity(0.3)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(51, 111, 93, 0.47),
+                                  width: 1.5)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(51, 111, 93, 0.47),
+                                  width: 1.5)),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () async {
+                            //editarPerfil();
+                            await context.read<AuthService>().editar(controller_nome.text, controller_email.text, controller_senha.text);
+                          },
+                          child: const Text('Enviar'))
+                    ]),
+              ),
+            ),
+          );
+        });
   }
 
   @override
@@ -544,12 +553,6 @@ class _PerfilState extends State<Perfil> {
                         icon: const Icon(Icons.edit_rounded),
                         onPressed: () {
                           editarPerfil();
-                          // context.read<AuthService>().logout();
-
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const TelaInicial()));
                         },
                         //user!.displayName.toString()
                       ),

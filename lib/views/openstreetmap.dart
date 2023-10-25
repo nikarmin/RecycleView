@@ -326,6 +326,7 @@ class _OpenStreetMapSearchAndPickState
 
       if (distance <= maxDistance * 1000) {
         // Converta para metros
+        nearbyLocations.clear(); // mudar
         nearbyLocations.add(location);
         Coleta coleta = Coleta(nome: pontosNome[cont], localizacao: location);
         coletinha.add(coleta);
@@ -357,6 +358,7 @@ class _OpenStreetMapSearchAndPickState
     //adicionarPonto();
     setNameCurrentPos();
     pegar();
+    pontosProximos2();
 
     markerspoints.add(Marker(
       point: LatLng(widget.center.latitude, widget.center.longitude),
@@ -419,7 +421,8 @@ class _OpenStreetMapSearchAndPickState
                         height: 18,
                       ),
                       ListTile(
-                          contentPadding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(25, 0, 0, 0),
                           leading: const ImageIcon(
                             AssetImage('assets/images/icons/recycle-bin.png'),
                             size: 30,
@@ -542,7 +545,8 @@ class _OpenStreetMapSearchAndPickState
                             });
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(243, 243, 243, 1),
+                            backgroundColor:
+                                const Color.fromRGBO(243, 243, 243, 1),
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(15),
                           ),
@@ -598,7 +602,8 @@ class _OpenStreetMapSearchAndPickState
                                 });
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(243, 243, 243, 1),
+                            backgroundColor:
+                                const Color.fromRGBO(243, 243, 243, 1),
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(15),
                           ),
