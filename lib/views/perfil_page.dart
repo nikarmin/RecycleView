@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:recycle_view/services/auth_service.dart';
-import 'package:recycle_view/views/cadastro_pontos.dart';
+import 'package:recycle_view/views/cadastro_materiais.dart';
 import 'package:recycle_view/views/tela_inicial.dart';
 
 import '../services/store_data.dart';
@@ -362,7 +362,7 @@ class _PerfilState extends State<Perfil> {
         switch (i) {
           case 0:
             return PieChartSectionData(
-              color: const Color.fromRGBO(99, 195, 111, 1),
+              color: const Color.fromARGB(255, 56, 139, 60),
               value: countVidro.toDouble(),
               title: 'Vidro',
               radius: radius,
@@ -373,7 +373,7 @@ class _PerfilState extends State<Perfil> {
             );
           case 1:
             return PieChartSectionData(
-              color: const Color.fromRGBO(242, 101, 101, 1),
+              color: const Color.fromRGBO(244, 67, 54, 1),
               value: countPlastico.toDouble(),
               title: 'Plástico',
               radius: radius,
@@ -384,7 +384,7 @@ class _PerfilState extends State<Perfil> {
             );
           case 2:
             return PieChartSectionData(
-              color: const Color.fromRGBO(64, 140, 255, 1),
+              color: Colors.lightBlueAccent,
               value: countPapel.toDouble(),
               title: 'Papel',
               radius: radius,
@@ -395,7 +395,7 @@ class _PerfilState extends State<Perfil> {
             );
           case 3:
             return PieChartSectionData(
-              color: const Color.fromRGBO(254, 218, 74, 1),
+              color: Colors.amber,
               value: contadorMetal.toDouble(),
               title: 'Metal',
               radius: radius,
@@ -553,80 +553,86 @@ class _PerfilState extends State<Perfil> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: ElevatedButton.icon(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith(
-                                (states) =>
-                                    const Color.fromRGBO(51, 111, 93, 1))),
-                        label: Text(
-                          "Editar",
-                          style: GoogleFonts.archivo(
-                              fontSize: 14, fontWeight: FontWeight.w500),
+
+
+
+
+                  Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) =>
+                                        const Color.fromRGBO(51, 111, 93, 1))),
+                            label: Text(
+                              "Editar",
+                              style: GoogleFonts.archivo(
+                                  fontSize: 14, fontWeight: FontWeight.w500),
+                            ),
+                            icon: const Icon(Icons.edit_rounded),
+                            onPressed: () {
+                              editarPerfil();
+                            },
+                            //user!.displayName.toString()
+                          ),
                         ),
-                        icon: const Icon(Icons.edit_rounded),
-                        onPressed: () {
-                          editarPerfil();
-                        },
-                        //user!.displayName.toString()
+                      ),
+                    const SizedBox(width: 150),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateColor.resolveWith(
+                                  (states) =>
+                                      const Color.fromRGBO(51, 111, 93, 1))),
+                          label: Text(
+                            "Sair    ",
+                            style: GoogleFonts.archivo(
+                                fontSize: 14, fontWeight: FontWeight.w500),
+                          ),
+                          icon: const Icon(Icons.logout),
+                          onPressed: () {
+                            context.read<AuthService>().logout();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const TelaInicial()));
+                          },
+                          //user!.displayName.toString()
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: ElevatedButton.icon(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith(
-                                (states) =>
-                                    const Color.fromRGBO(51, 111, 93, 1))),
-                        label: Text(
-                          "Sair    ",
-                          style: GoogleFonts.archivo(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                        icon: const Icon(Icons.logout),
-                        onPressed: () {
-                          context.read<AuthService>().logout();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const TelaInicial()));
-                        },
-                        //user!.displayName.toString()
-                      ),
+                      ],
+                    ),
+
+
+                  
+
+                  const SizedBox(height: 40),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Gráfico de resíduos reciclados",
+                      style: GoogleFonts.archivo(
+                        fontSize: 30, fontWeight: FontWeight.bold
+                            
+                              ), 
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: ElevatedButton.icon(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith(
-                                (states) =>
-                                    const Color.fromRGBO(51, 111, 93, 1))),
-                        label: Text(
-                          "Adicionar contribuição",
-                          style: GoogleFonts.archivo(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                        icon: const Icon(Icons.recycling_rounded),
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const CadastroPontos();
-                          }));
-                        },
-                        //user!.displayName.toString()
-                      ),
-                    ),
-                  ),
-                  SizedBox(
+                  const SizedBox(height: 15),
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// grafico
+                  Stack(
+                    children: [
+                      SizedBox(
                     child: Row(
                       children: [
                         Expanded(
@@ -635,22 +641,6 @@ class _PerfilState extends State<Perfil> {
                             child: PieChart(
                               PieChartData(
                                   pieTouchData: PieTouchData(
-                                      // touchCallback:
-                                      //     (FlTouchEvent event, pieTouchResponse) {
-                                      //   setState(() {
-                                      //     if (!event
-                                      //             .isInterestedForInteractions ||
-                                      //         pieTouchResponse == false ||
-                                      //         pieTouchResponse?.touchedSection ==
-                                      //             null) {
-                                      //       touchedIndex = -1;
-                                      //       return;
-                                      //     }
-                                      //     touchedIndex = pieTouchResponse!
-                                      //         .touchedSection!
-                                      //         .touchedSectionIndex;
-                                      //   });
-                                      // },
                                       ),
                                   sectionsSpace: 0,
                                   centerSpaceRadius: 0,
@@ -661,6 +651,45 @@ class _PerfilState extends State<Perfil> {
                       ],
                     ),
                   ),
+                      Positioned(
+                        bottom: 10,
+                        right: 95,
+                        child: SizedBox(
+                          width: 45,
+                          height: 45,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateColor.resolveWith(
+                                        (states) => const Color.fromRGBO(51, 111, 93, 1)),
+                                padding:
+                                    MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.zero),
+                                alignment: Alignment.center,
+                                shape: MaterialStateProperty.all<
+                                    CircleBorder>(const CircleBorder())),
+                            onPressed: () {
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                                  return const CadastroMateriais();
+                                }
+                              ),
+                            );
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  
+                  const SizedBox(height: 25),
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// counts
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -687,7 +716,7 @@ class _PerfilState extends State<Perfil> {
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         color:
-                                            Color.fromRGBO(242, 101, 101, 1)),
+                                            Colors.red),
                                     child: Image.asset(
                                       'assets/images/icons/bottle.png',
                                       height: 40,
@@ -756,7 +785,7 @@ class _PerfilState extends State<Perfil> {
                                     margin: const EdgeInsets.only(left: 10),
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromRGBO(99, 195, 111, 1)),
+                                        color:  Color.fromARGB(255, 56, 139, 60)),
                                     child: Image.asset(
                                       'assets/images/icons/vidro.png',
                                       height: 40,
@@ -832,7 +861,7 @@ class _PerfilState extends State<Perfil> {
                                     margin: const EdgeInsets.only(left: 10),
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromRGBO(254, 218, 74, 1)),
+                                        color: Colors.amber,),
                                     child: Image.asset(
                                       'assets/images/icons/scrap.png',
                                       height: 40,
@@ -900,7 +929,7 @@ class _PerfilState extends State<Perfil> {
                                     margin: const EdgeInsets.only(left: 10),
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromRGBO(64, 140, 255, 1)),
+                                        color: Colors.lightBlueAccent,),
                                     child: Image.asset(
                                       'assets/images/icons/toilet-paper.png',
                                       height: 40,
@@ -945,11 +974,48 @@ class _PerfilState extends State<Perfil> {
                           )),
                     ],
                   ),
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// button
+     
+                  const SizedBox(height: 20), 
+                  
+
+                  /*
+                  Row(
+                    children: [
+                      const SizedBox(width: 135),
+                      Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateColor.resolveWith(
+                                  (states) =>
+                                      const Color.fromRGBO(51, 111, 93, 1))), //const Color.fromRGBO(134, 167, 102, 1),
+                          label: Text(
+                            "Adicionar contribuição",
+                            style: GoogleFonts.archivo(
+                                fontSize: 22, fontWeight: FontWeight.w300),
+                          ),
+                          icon: const Icon(Icons.recycling_rounded),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const CadastroPontos();
+                            }));
+                          },
+                          //user!.displayName.toString()
+                        ),
+                      )),
+
+                    ],
+                  )*/
                 ],
               ),
             ),
           ),
         ),
+
         backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
