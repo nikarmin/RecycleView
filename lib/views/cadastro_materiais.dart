@@ -6,14 +6,14 @@ import 'package:recycle_view/views/perfil_page.dart';
 import '../models/coleta.dart';
 import '../services/auth_service.dart';
 
-class CadastroPontos extends StatefulWidget {
-  const CadastroPontos({super.key});
+class CadastroMateriais extends StatefulWidget {
+  const CadastroMateriais({super.key});
 
   @override
-  State<CadastroPontos> createState() => _CadastroPontosState();
+  State<CadastroMateriais> createState() => _CadastroMateriaisState();
 }
 
-class _CadastroPontosState extends State<CadastroPontos> {
+class _CadastroMateriaisState extends State<CadastroMateriais> {
   int countPlastico = 0;
   int countMetal = 0;
   int countPapel = 0;
@@ -82,7 +82,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Color.fromRGBO(134, 167, 102, 1),
+                  color: const Color.fromRGBO(51, 111, 93, 1),
                 ),
                 child: Text('Cadastre de resíduos reciclados',
                     style: GoogleFonts.jost(
@@ -107,7 +107,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                             backgroundColor:
-                                const Color.fromRGBO(134, 167, 102, 1),
+                                const Color.fromRGBO(51, 111, 93, 1),
                             onPressed: () {
                               setState(() {
                                 if (countMetal > 0) {
@@ -133,7 +133,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                           backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
+                              const Color.fromRGBO(51, 111, 93, 1),
                           onPressed: () {
                             setState(() {
                               countMetal++;
@@ -169,7 +169,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                             backgroundColor:
-                                const Color.fromRGBO(134, 167, 102, 1),
+                                const Color.fromRGBO(51, 111, 93, 1),
                             onPressed: () {
                               setState(() {
                                 if (countPlastico > 0) {
@@ -195,7 +195,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                           backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
+                              const Color.fromRGBO(51, 111, 93, 1),
                           onPressed: () {
                             setState(() {
                               countPlastico++;
@@ -231,7 +231,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                             backgroundColor:
-                                const Color.fromRGBO(134, 167, 102, 1),
+                                const Color.fromRGBO(51, 111, 93, 1),
                             onPressed: () {
                               setState(() {
                                 if (countPapel > 0) {
@@ -257,7 +257,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                           backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
+                              const Color.fromRGBO(51, 111, 93, 1),
                           onPressed: () {
                             setState(() {
                               countPapel++;
@@ -283,7 +283,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
               Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Color.fromARGB(255, 24, 87, 28),
+                  color: Color.fromARGB(255, 56, 139, 60), //////////////////////////////
                 ),
                 width: 380,
                 height: 100,
@@ -293,7 +293,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                             backgroundColor:
-                                const Color.fromRGBO(134, 167, 102, 1),
+                                const Color.fromRGBO(51, 111, 93, 1),
                             onPressed: () {
                               setState(() {
                                 if (countVidro > 0) {
@@ -319,7 +319,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
                         height: 25,
                         child: FloatingActionButton(
                           backgroundColor:
-                              const Color.fromRGBO(134, 167, 102, 1),
+                              const Color.fromRGBO(51, 111, 93, 1),
                           onPressed: () {
                             setState(() {
                               countVidro++;
@@ -346,7 +346,7 @@ class _CadastroPontosState extends State<CadastroPontos> {
             alignment: const Alignment(0.85, 0.0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(134, 167, 102, 1),
+                  backgroundColor: const Color.fromRGBO(51, 111, 93, 1),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   shadowColor: const Color.fromARGB(255, 85, 116, 54)),
@@ -363,9 +363,9 @@ class _CadastroPontosState extends State<CadastroPontos> {
                     children: [
                       const SizedBox(width: 10),
                       Text("Enviar",
-                          style: GoogleFonts.jost(
+                          style: GoogleFonts.archivo(
                               textStyle: const TextStyle(
-                                  color: Colors.white, fontSize: 25))),
+                                  color: Colors.white, fontSize: 23))),
                       const SizedBox(width: 10),
                       const Icon(Icons.send)
                     ],
