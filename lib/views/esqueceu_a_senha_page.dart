@@ -123,42 +123,67 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
           const SizedBox(
             height: 20,
           ),
-          Center(
+
+          Align(
+            alignment: Alignment.center,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(
-                    51,
-                    111,
-                    93,
-                    1,
-                  ),
+                  backgroundColor: const Color.fromRGBO(51, 111, 93, 1),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  shadowColor: const Color.fromRGBO(35, 81, 67, 1)),
-              onPressed: () {},
+                  shadowColor: const Color.fromARGB(255, 85, 116, 54)),
+              onPressed: () {
+                recuperarSenha();
+              },
               child: SizedBox(
                 height: 50,
-                width: 170,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: ElevatedButton(onPressed: () {
-                    recuperarSenha();
-                  }, child: Text('enviar')) /*Row(
+                width: 130,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
                     children: [
-                      const SizedBox(width: 45),
+                      const SizedBox(width: 10),
                       Text("Enviar",
                           style: GoogleFonts.jost(
                               textStyle: const TextStyle(
-                                  color: Colors.white, fontSize: 25))),
+                                  color: Colors.white, fontSize: 23))),
                       const SizedBox(width: 10),
-                      const Icon(Icons.send),
-                      const SizedBox(width: 10),
+                      const Icon(Icons.send)
                     ],
-                  ),*/
+                  ),
                 ),
               ),
             ),
-          ),
-        ]));
+          )
+
+/*
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(51, 111, 93, 1),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
+                  shadowColor: const Color.fromRGBO(35, 81, 67, 1)
+              ),
+              onPressed: () {
+                recuperarSenha();
+              },
+              child: Text("Enviar",  
+                style: GoogleFonts.jost(
+                  textStyle: const TextStyle(
+                      color: Colors.white, fontSize: 25
+                  )
+                )
+              ),
+                      const SizedBox(width: 10),
+                      const Icon(Icons.send),
+                      const SizedBox(width: 10),
+            )
+          )*/
+        ]
+      ));
+              
+             
   }
 }
