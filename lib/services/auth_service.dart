@@ -91,21 +91,33 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  Future resetEmail(String newEmail) async {
+    var message;
+    usuario!
+        .updateEmail(newEmail)
+        .then(
+          (value) => message = 'Success',
+        )
+        .catchError((onError) => message = 'error');
+    return message;
+  }
+
   editar(String nome, String senha, String email) async {
     bool envio;
     try {
-      if ((nome != null) && (senha != null) && (email != null)) {
+      if (senha.isNotEmpty) {
         await changePassword(senha);
-        usuario?.updateDisplayName(nome);
-        usuario?.updateEmail(email);
-      }
-      else {
-        
+        await usuario?.updateDisplayName(nome);
+        await usuario?.updateEmail(email);
+      } else {
+        await usuario?.updateDisplayName(nome);
+        //resetEmail(email); arrumar
       }
       _getUser();
       envio = true;
     } on Exception catch (e) {
       envio = false;
+      print(e.toString());
     }
 
     return envio;
