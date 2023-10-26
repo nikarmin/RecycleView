@@ -82,7 +82,7 @@ class _CadastroMateriaisState extends State<CadastroMateriais> {
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: const Color.fromRGBO(51, 111, 93, 1),
+                  color: Color.fromRGBO(51, 111, 93, 1),
                 ),
                 child: Text('Cadastre de resíduos reciclados',
                     style: GoogleFonts.jost(

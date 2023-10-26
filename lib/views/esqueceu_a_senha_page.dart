@@ -17,6 +17,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
       FirebaseAuth auth = FirebaseAuth.instance;
       await auth.sendPasswordResetEmail(email: email.text);
 
+    // ignore: use_build_context_synchronously
     showDialog(context: context, builder: (context) {
        return const AlertDialog(content: Text("Email enviado com sucesso!"));	
     });
