@@ -57,18 +57,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Padding(
-            padding: const EdgeInsets.all(22.0),
-            child: Text(
-              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-              textAlign: TextAlign.justify,
-              style: GoogleFonts.jost(
-                  textStyle: const TextStyle(
-                fontSize: 18.0,
-              )),
-            ),
-          )
+          
         ],
       );
     } else if (obj == 'Vidro') {
@@ -89,25 +78,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Text(_outputs![0]["confidence"].toString(),
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(22.0),
-            child: Text(
-              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-              textAlign: TextAlign.justify,
-              style: GoogleFonts.jost(
-                  textStyle: const TextStyle(
-                fontSize: 18.0,
-              )),
-            ),
-          )
         ],
       );
     } else if (obj == 'Metal') {
@@ -128,25 +98,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Text(_outputs![0]["confidence"].toString(),
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(22.0),
-            child: Text(
-              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-              textAlign: TextAlign.justify,
-              style: GoogleFonts.jost(
-                  textStyle: const TextStyle(
-                fontSize: 18.0,
-              )),
-            ),
-          )
         ],
       );
     } else {
@@ -167,25 +118,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Text(_outputs![0]["confidence"].toString(),
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(22.0),
-            child: Text(
-              'No geral, os metais podem ser classificados em dois tipos: ferrosos e não-ferrosos. Os do primeiro tipo são combinações de ferro com carbono. Alguns exemplos incluem aço carbono, aço-liga, ferro forjado e ferro fundido. Do lado dos metais não ferrosos encontram-se alumínio, cobre, chumbo, zinco e lata.'
-              'Os metais não-ferrosos têm diversas funcionalidades, podendo substituir materiais ferrosos em várias aplicações. Geralmente isolados ou em forma de ligas metálicas, são amplamente empregados na construção de máquinas, automóveis, tratamento galvânicos de superfície de materiais, componentes elétricos, construções aeronáuticas e navais, entre outros.',
-              textAlign: TextAlign.justify,
-              style: GoogleFonts.jost(
-                  textStyle: const TextStyle(
-                fontSize: 18.0,
-              )),
-            ),
-          )
         ],
       );
     }
@@ -193,10 +125,9 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
 
   Widget infoObjeto(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Container(
         color: const Color.fromRGBO(233, 233, 233, 1),
-        height: MediaQuery.of(context).size.height,
+        //height: MediaQuery.of(context).size.height,
         width: 400,
         child: SingleChildScrollView(
           child: Column(
@@ -204,18 +135,20 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50)),
                   child: Image.file(
                     File(imagem!.path),
-                    height: 400,
+                    height: 500,
                     width: 400,
                   ),
                 ),
               ),
               _outputs != null
                   ? objLabel(_outputs![0]['label'].toString().substring(2))
-                  : Container()
+                  : Container(),
+
+              const SizedBox(height: 15)
             ],
           ),
         ),
@@ -516,7 +449,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: Text(
-                                  'Para utilizar IA (Inteligência Artificial) para auxiliar no reconhecimento e separação de materias recicláveis, siga as recomendações a seguir!',
+                                  'Siga as recomendações a seguir para o melhor aproveitamento do reconhecimento de materias recicláveis.',
                                   style: GoogleFonts.archivo(
                                     textStyle: const TextStyle(
                                         fontSize: 20,
@@ -525,7 +458,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 20),
+
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -568,7 +501,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: 5),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -600,7 +532,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                     ),
                                     Flexible(
                                       child: Text(
-                                        'Fotos muito próximas ou distantes dificultam o reconhecimento. Certifique-se de usar a camêra em um distância considerável. ',
+                                        'Ao tirar uma foto, certifique-se de manter seu celular firme, reto e focado no material reciclável por no mínimo 5 segundos.',
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
                                               fontSize: 16,
@@ -611,7 +543,6 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: 5),
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -643,7 +574,49 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                                     ),
                                     Flexible(
                                       child: Text(
-                                        'A IA não garante 100% de certeza nos reconhecimentos, afinal, se o ser humano é falho, imagina uma máquina.',
+                                        'Fotos muito próximas ou distantes dificultam o reconhecimento. Certifique-se de usar a camêra em um distância considerável. ',
+                                        style: GoogleFonts.poppins(
+                                          textStyle: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color.fromRGBO(51, 111, 93, 1),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        height: 40,
+                                        width: 40,
+                                        child: Center(
+                                          child: Text(
+                                            '4',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: const TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ),
+                                        )),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        'A IA não garante 100% de certeza nos reconhecimentos, afinal, se o ser humano é falho, quem dirá uma máquina.',
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
                                               fontSize: 16,
