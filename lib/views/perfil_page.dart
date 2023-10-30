@@ -410,7 +410,7 @@ class _PerfilState extends State<Perfil> {
           case 3:
             return PieChartSectionData(
               color: Colors.amber,
-              value: contadorMetal.toDouble(),
+              value: countMetal.toDouble(),
               title: 'Metal',
               radius: radius,
               titleStyle: TextStyle(
@@ -624,32 +624,33 @@ class _PerfilState extends State<Perfil> {
                   //   ],
                   // ),
 
+                  
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: ElevatedButton.icon(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith(
-                                (states) =>
-                                    const Color.fromRGBO(51, 111, 93, 1))),
-                        label: Text(
-                          "Sair    ",
-                          style: GoogleFonts.archivo(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                        icon: const Icon(Icons.logout),
-                        onPressed: () {
-                          context.read<AuthService>().logout();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const TelaInicial()));
-                        },
-                        //user!.displayName.toString()
-                      ),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) =>
+                                        const Color.fromRGBO(51, 111, 93, 1))),
+                            label: Text(
+                              "Sair    ",
+                              style: GoogleFonts.archivo(
+                                  fontSize: 14, fontWeight: FontWeight.w500),
+                            ),
+                            icon: const Icon(Icons.logout),
+                            onPressed: () {
+                              context.read<AuthService>().logout();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const TelaInicial()));
+                            },
+                            //user!.displayName.toString()
+                          ),
+                      )
                     ),
-                  ),
 
                   const SizedBox(height: 20),
                   Align(
