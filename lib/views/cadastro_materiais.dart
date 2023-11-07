@@ -84,7 +84,7 @@ class _CadastroMateriaisState extends State<CadastroMateriais> {
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   color: Color.fromRGBO(51, 111, 93, 1),
                 ),
-                child: Text('Cadastre de resíduos reciclados',
+                child: Text('Cadastro de resíduos reciclados',
                     style: GoogleFonts.jost(
                         textStyle: const TextStyle(
                             color: Colors.white, fontSize: 25))),

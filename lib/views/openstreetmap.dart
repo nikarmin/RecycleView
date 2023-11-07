@@ -573,13 +573,20 @@ class _OpenStreetMapSearchAndPickState
                                                 shrinkWrap: true,
                                                 itemCount: coletinha.length,
                                                 itemBuilder: (context, index) {
+                                                  String endereco = '';
+                                                  if (coletinha[index].bairro != null) {
+                                                        endereco = 'Endereço: ${coletinha[index].endereco} - ${coletinha[index].bairro}';
+                                                      } else {
+                                                        endereco = 'Endereço: ${coletinha[index].endereco} - Bairro não encontrado';
+                                                      }
+
                                                   return ListTile(
                                                     title: Text(
                                                       coletinha[index].nome,
                                                       style: GoogleFonts.poppins(),
                                                     ),
                                                     subtitle: Text(
-                                                        '${coletinha[index].localizacao.latitude}, ${coletinha[index].localizacao.longitude}, Endereço: ${coletinha[index].endereco} - ${coletinha[index].bairro}',
+                                                        endereco,
                                                         style: GoogleFonts.jost()),
                                                     onTap: () {
                                                       _mapController.move(
