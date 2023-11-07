@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:geocode/geocode.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -312,7 +313,7 @@ class _OpenStreetMapSearchAndPickState
 
   List<Coleta> coletinha = [];
 
-  pontosProximos2() {
+  pontosProximos2() async {
     int cont = 0;
     // Calcule a distância e encontre pontos próximos (por exemplo, dentro de 10 km)
     double maxDistance = 5; // Em quilômetros
@@ -326,30 +327,23 @@ class _OpenStreetMapSearchAndPickState
 
       if (distance <= maxDistance * 1000) {
         // Converta para metros
-        coletinha.clear(); // mudar
+        //coletinha.clear(); // mudar
         nearbyLocations.add(location);
-        Coleta coleta = Coleta(nome: pontosNome[cont], localizacao: location);
+       final apiUrl = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=${location.latitude}&lon=${location.longitude}';
+
+        final response = await http.get(Uri.parse(apiUrl));
+      String address = '';
+      String bairro = '';
+        if (response.statusCode == 200) {
+    final data = json.decode(response.body);
+     address = data['address']['road'].toString();
+      bairro = data['address']['suburb'].toString();
+  }
+
+        Coleta coleta = Coleta(nome: pontosNome[cont], localizacao: location, endereco: address, bairro: bairro);
         coletinha.add(coleta);
       }
       cont++;
-    }
-  }
-
-  pontosProximos() {
-    // Calcule a distância e encontre pontos próximos (por exemplo, dentro de 10 km)
-    double maxDistance = 5; // Em quilômetros
-    for (var location in pontinhosarr) {
-      double distance = Geolocator.distanceBetween(
-        widget.center.latitude,
-        widget.center.longitude,
-        location.latitude,
-        location.longitude,
-      );
-
-      if (distance <= maxDistance * 1000) {
-        // Converta para metros
-        nearbyLocations.add(location);
-      }
     }
   }
 
@@ -428,7 +422,7 @@ class _OpenStreetMapSearchAndPickState
                             size: 30,
                             color: Colors.white,
                           ),
-                          title: Text("${coletinha.length} PONTOS NA REGIÃO",
+                          title: Text("PONTOS NA REGIÃO",
                               style: GoogleFonts.jost(
                                   textStyle: const TextStyle(
                                       fontSize: 30,
@@ -535,7 +529,7 @@ class _OpenStreetMapSearchAndPickState
                       Positioned(
                           child: Align(
                         alignment: Alignment.topRight,
-                        child: ElevatedButton(
+                        child: ElevatedButton(// COLOCAR NA ONDE O USUÁRIO ESTÁ
                           onPressed: () {
                             setState(() {
                               _mapController.move(
@@ -562,42 +556,52 @@ class _OpenStreetMapSearchAndPickState
                       Positioned(
                           child: Align(
                         alignment: Alignment.topRight,
-                        child: ElevatedButton(
+                        child: ElevatedButton(  // mostrar pontos próximos (nomes)
                           onPressed: () {
                             showModalBottomSheet(
                                 context: context,
                                 builder: (context) {
                                   return Container(
                                     color: Colors.white,
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: nearbyLocations.length,
-                                        itemBuilder: (context, index) {
-                                          return ListTile(
-                                            title: Text(
-                                              coletinha[index].nome,
-                                              style: GoogleFonts.poppins(),
-                                            ),
-                                            subtitle: Text(
-                                                '${coletinha[index].localizacao.latitude},${coletinha[index].localizacao.longitude}',
-                                                style: GoogleFonts.jost()),
-                                            onTap: () {
-                                              _mapController.move(
-                                                  LatLng(
-                                                      coletinha[index]
-                                                          .localizacao
-                                                          .latitude,
-                                                      coletinha[index]
-                                                          .localizacao
-                                                          .longitude),
-                                                  15.0);
-
-                                              _focusNode.unfocus();
-                                              _options.clear();
-                                              setState(() {});
-                                            },
-                                          );
-                                        }),
+                                     child: Column(
+                                       children: [
+                                        const SizedBox(height: 10,),
+                                          Text('Pontos dentro de 5km', style: GoogleFonts.jost(fontSize: 24, fontWeight: FontWeight.w500),),
+                                          const SizedBox(height: 5,),
+                                          Expanded(
+                                            child: ListView.builder(
+                                                shrinkWrap: true,
+                                                itemCount: coletinha.length,
+                                                itemBuilder: (context, index) {
+                                                  return ListTile(
+                                                    title: Text(
+                                                      coletinha[index].nome,
+                                                      style: GoogleFonts.poppins(),
+                                                    ),
+                                                    subtitle: Text(
+                                                        '${coletinha[index].localizacao.latitude}, ${coletinha[index].localizacao.longitude}, Endereço: ${coletinha[index].endereco} - ${coletinha[index].bairro}',
+                                                        style: GoogleFonts.jost()),
+                                                    onTap: () {
+                                                      _mapController.move(
+                                                          LatLng(
+                                                              coletinha[index]
+                                                                  .localizacao
+                                                                  .latitude,
+                                                              coletinha[index]
+                                                                  .localizacao
+                                                                  .longitude),
+                                                          15.0);
+                                                                               
+                                                      _focusNode.unfocus();
+                                                      _options.clear();
+                                                      setState(() {});
+                                                    },
+                                                  );
+                                                }),
+                                          ),
+                                        ],
+                                                                        ),
+                                     
                                   );
                                 });
                           },
@@ -616,43 +620,41 @@ class _OpenStreetMapSearchAndPickState
                     ],
                   ),
                   StatefulBuilder(builder: ((context, setState) {
-                    return Container(
-                      child: Column(children: [
-                        const SizedBox(height: 10),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(243, 243, 243, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount:
-                                  _options.length > 5 ? 5 : _options.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  title: Text(
-                                    _options[index].displayname,
-                                    style: GoogleFonts.poppins(),
-                                  ),
-                                  subtitle: Text(
-                                      '${_options[index].lat},${_options[index].lon}',
-                                      style: GoogleFonts.jost()),
-                                  onTap: () {
-                                    _mapController.move(
-                                        LatLng(_options[index].lat,
-                                            _options[index].lon),
-                                        15.0);
-
-                                    _focusNode.unfocus();
-                                    _options.clear();
-                                    setState(() {});
-                                  },
-                                );
-                              }),
+                    return Column(children: [
+                      const SizedBox(height: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(243, 243, 243, 1),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ]),
-                    );
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount:
+                                _options.length > 5 ? 5 : _options.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(
+                                  _options[index].displayname,
+                                  style: GoogleFonts.poppins(),
+                                ),
+                                subtitle: Text(
+                                    '${_options[index].lat},${_options[index].lon}',
+                                    style: GoogleFonts.jost()),
+                                onTap: () {
+                                  _mapController.move(
+                                      LatLng(_options[index].lat,
+                                          _options[index].lon),
+                                      15.0);
+
+                                  _focusNode.unfocus();
+                                  _options.clear();
+                                  setState(() {});
+                                },
+                              );
+                            }),
+                      ),
+                    ]);
                   })),
                 ],
               ),

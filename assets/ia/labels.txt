@@ -1,4 +1,4 @@
 0 Vidro
 1 Metal
-2 Plástico
-3 Papel
+2 Papel
+3 Plástico

@@ -35,7 +35,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     if (obj == 'Papel') {
       return Column(
         children: [
-          Text(_outputs![0]["label"].toString().substring(1),
+          Text('Papel',
               textAlign: TextAlign.right,
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
@@ -50,20 +50,12 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
                   fontSize: 30.0,
                 ),
               )),
-          Text(_outputs![0]["confidence"].toString(),
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                ),
-              )),
-          
         ],
       );
     } else if (obj == 'Vidro') {
       return Column(
         children: [
-          Text(_outputs![0]["label"].toString().substring(1),
+          Text('Vidro',
               textAlign: TextAlign.right,
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
@@ -83,7 +75,7 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
     } else if (obj == 'Metal') {
       return Column(
         children: [
-          Text(_outputs![0]["label"].toString().substring(1),
+          Text('Metal',
               textAlign: TextAlign.right,
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
@@ -100,10 +92,10 @@ class _InteligenciaArtificialState extends State<InteligenciaArtificial> {
               )),
         ],
       );
-    } else {
+    } else if (obj == 'Plástico') {
       return Column(
         children: [
-          Text(_outputs![0]["label"].toString().substring(1),
+          Text('Plástico',
               textAlign: TextAlign.right,
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
