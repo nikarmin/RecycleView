@@ -46,6 +46,7 @@ app.*.map.json
 # Variável de ambiente
 
 .env*
+.env
 
 # Firebase Options
 
